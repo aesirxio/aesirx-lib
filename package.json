@@ -1,15 +1,12 @@
 {
   "name": "aesirx-dma-lib",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "GPL-2.0-only",
   "author": "AesirX",
   "repository": "https://github.com/aesirxio/dma-lib",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
-  "engines": {
-    "node": "14"
-  },
   "dependencies": {
     "axios": "^0.21.0",
     "axios-auth-refresh": "^3.0.0",

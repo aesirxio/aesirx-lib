@@ -22,7 +22,6 @@
 .env.production.local
 .env
 .env.test
-/package-lock.json
 
 npm-debug.log*
 yarn-debug.log*
