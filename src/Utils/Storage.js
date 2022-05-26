@@ -1,8 +1,7 @@
 var CryptoJS = require('crypto-js');
 
-// Todo:
-const k = 'encrypt';
-const encrypt = process.env.REACT_APP_ENCRYPT;
+const k = process.env.REACT_APP_ENCRYPT;
+const encrypt = true;
 class Storage {
   static setItem(key, value) {
     if (encrypt === 'true') {
