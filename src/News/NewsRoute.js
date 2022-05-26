@@ -1,3 +1,8 @@
+/*
+ * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
+ * @license     GNU General Public License version 3, see LICENSE.
+*/
+
 import AesirxWebServiceApiInstance from '../gateway/IntanceWebServiceApi';
 import BaseRoute from '../Abstract/BaseRoute';
 import { AXIOS_CONFIGS } from '../Constant/Constant';

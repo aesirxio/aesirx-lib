@@ -1,3 +1,8 @@
+/*
+ * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
+ * @license     GNU General Public License version 3, see LICENSE.
+*/
+
 import { PERSONA_FIELD_KEY, PERSONA_RESPONSE_FIELD_KEY } from '../Constant/PersonaConstant';
 import BaseItemModel from '../Abstract/BaseItemModel';
 import BaseModel from '../Abstract/BaseModel';

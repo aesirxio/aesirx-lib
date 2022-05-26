@@ -1,3 +1,8 @@
+/*
+ * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
+ * @license     GNU General Public License version 3, see LICENSE.
+*/
+
 import AesirxProjectApiService from './Project/Project';
 import AesirxCampaignApiService from './Campaign/Campaign';
 import AesirxPersonaApiService from './Persona/Persona';
