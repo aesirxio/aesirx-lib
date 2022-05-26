@@ -1,3 +1,8 @@
+/*
+ * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
+ * @license     GNU General Public License version 3, see LICENSE.
+*/
+
 import BaseItemModel from '../Abstract/BaseItemModel';
 import BaseModel from '../Abstract/BaseModel';
 import { NEWS_FIELD_KEY, NEWS_API_RESPONSE_FIELD_KEY } from '../Constant/NewsConstant';

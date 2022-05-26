@@ -1,3 +1,8 @@
+/*
+ * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
+ * @license     GNU General Public License version 3, see LICENSE.
+*/
+
 import AesirxOrganisationChannelApiService from '../OrganisationChannel/OrganisationChannel';
 import OrganisationChannelMockData from './__mock__/OrganisationChannel.mock';
 import { requestANewAccessToken } from '../gateway/Instance';

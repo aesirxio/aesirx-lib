@@ -1,3 +1,8 @@
+/*
+ * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
+ * @license     GNU General Public License version 3, see LICENSE.
+*/
+
 const ESI_INVESTER_CONTACT_FIELD_KEY = {
   ID: 'id',
   ORGANIZATION_NAME: 'organization_name',
