@@ -1,7 +1,7 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
 const MEMBER_FIELD_KEY = {
   ID: 'id',
@@ -38,6 +38,7 @@ const MEMBER_GET_FIELD_KEY = {
   STATE: 'state',
   COUNTRY: 'country',
   TIMEZONE: 'timezone',
+  ALLOW_CREATE_ITEM: 'allow_create_item',
 };
 
 const MEMBER_CREATE_FIELD_KEY = {

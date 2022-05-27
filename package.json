@@ -14,11 +14,8 @@
     "qs": "^6.10.1"
   },
   "scripts": {
-    "build": "./build.sh",
     "start": "microbundle-crl watch --no-compress",
-    "dev": "microbundle-crl --no-compress",
-    "staging": "microbundle-crl --no-compress",
-    "master": "microbundle-crl --compress",
+    "build": "microbundle-crl --compress",
     "test": "node scripts/test.js",
     "docgen": "node scripts/docgen.js"
   },
