@@ -1,7 +1,7 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
 import { MemberItemModel } from './MemberModel';
 import MemberRoute from './MemberRoute';
@@ -174,7 +174,7 @@ class AesirxMemberApiService extends Component {
     try {
       return await this.route.getFacebookAdsAppAccessToken();
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return error;
     }
   }

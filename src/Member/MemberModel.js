@@ -1,7 +1,7 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
 import {
   MEMBER_CREATE_FIELD_KEY,
@@ -33,6 +33,8 @@ class MemberItemModel {
       [MEMBER_GET_FIELD_KEY.STATE]: data.state,
       [MEMBER_GET_FIELD_KEY.COUNTRY]: data.country,
       [MEMBER_GET_FIELD_KEY.TIMEZONE]: data.timezone,
+      [MEMBER_GET_FIELD_KEY.TIMEZONE]: data.timezone,
+      [MEMBER_GET_FIELD_KEY.ALLOW_CREATE_ITEM]: data.allow_create_item,
     };
   };
 
