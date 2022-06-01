@@ -14,8 +14,8 @@
     "qs": "^6.10.1"
   },
   "scripts": {
-    "start": "microbundle-crl watch --no-compress",
-    "build": "microbundle-crl --compress",
+    "start": "NODE_ENV=production BABEL_ENV=production microbundle watch --no-compress",
+    "build": "NODE_ENV=production BABEL_ENV=production microbundle --compress",
     "test": "node scripts/test.js",
     "docgen": "node scripts/docgen.js"
   },
@@ -145,7 +145,7 @@
     "jest-mock-axios": "^4.2.1",
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
-    "microbundle-crl": "^0.13.11",
+    "microbundle": "^0.15.0",
     "mini-css-extract-plugin": "0.11.3",
     "nth-check": "^2.1",
     "optimize-css-assets-webpack-plugin": "^6.0",
