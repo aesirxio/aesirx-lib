@@ -157,7 +157,7 @@
     "query-string": "^6.13.7",
     "react": "^17.0.1",
     "react-app-polyfill": "^2.0.0",
-    "react-dev-utils": "^11.0.1",
+    "react-dev-utils": "^12",
     "react-docgen": "^5.3.1",
     "react-dom": "^17.0.1",
     "react-refresh": "^0.13",
