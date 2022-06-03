@@ -7,6 +7,7 @@ import axios from 'axios';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
 import Storage from '../Utils/Storage';
+import FormData from 'form-data';
 
 const baseUrl =
   process.env.BASE_ENDPOINT_SERVICE_URL !== undefined &&
@@ -43,7 +44,7 @@ if (process.env.NODE_ENV !== 'test') {
   reqAuthFormData.append('client_secret', clientSecret);
 }
 
-export const requestANewLaravelCustomServiceAccessToken = (failedRequest) => {
+export const requestANewLaravelCustomServiceAccessToken = () => {
   return AesirxServiceApiInstance.post('/oauth/token', reqAuthFormData, {
     skipAuthRefresh: true,
   }).then(
@@ -63,7 +64,6 @@ export const requestANewLaravelCustomServiceAccessToken = (failedRequest) => {
 
       if (process.env.NODE_ENV === 'test') {
         process.env.AUTHORIZED_TOKEN_CUSTOM_SERVICE = accessToken;
-        // console.log('Set variable into env');
       } else {
         Storage.setItem(AUTHORIZATION_KEY.CUSTOM_SERVICE_ACCESS_TOKEN, accessToken);
         Storage.setItem(AUTHORIZATION_KEY.CUSTOM_SERVICE_TOKEN_TYPE, tokenType);
@@ -76,8 +76,6 @@ export const requestANewLaravelCustomServiceAccessToken = (failedRequest) => {
       return Promise.resolve();
     },
     (error) => {
-      console.log('refreshLaravelCustomServiceAuthLogic FAILED !!!');
-      console.log(error);
       // Do something with request error
       return Promise.reject(error);
     }
@@ -85,7 +83,6 @@ export const requestANewLaravelCustomServiceAccessToken = (failedRequest) => {
 };
 
 const refreshLaravelCustomServiceAuthLogic = (failedRequest) => {
-  console.log('= refreshLaravelCustomServiceAuthLogic');
   return requestANewLaravelCustomServiceAccessToken(failedRequest);
 };
 
@@ -95,7 +92,6 @@ createAuthRefreshInterceptor(AesirxServiceApiInstance, refreshLaravelCustomServi
 });
 
 const pending = {};
-const CancelToken = axios.CancelToken;
 const removePending = (config, f) => {
   if (config) {
     const url = config.url.replace(config.baseURL, '/');
@@ -116,7 +112,6 @@ const removePending = (config, f) => {
 
 AesirxServiceApiInstance.interceptors.request.use(
   function (config) {
-    // console.log('Current Environment', process.env.NODE_ENV);
     let accessToken = '';
 
     if (process.env.NODE_ENV === 'test') {
@@ -147,13 +142,10 @@ AesirxServiceApiInstance.interceptors.request.use(
 
 AesirxServiceApiInstance.interceptors.response.use(
   (response) => {
-    // console.log('AesirxPricingPlanApiInstance.interceptors.response.WIN');
     removePending(response.config);
     return response.data;
   },
   (error) => {
-    console.log('AesirxCustomServviceApiInstance.interceptors.response.ERROR');
-    console.log(error);
     removePending(error.config);
     if (!axios.isCancel(error)) {
       return Promise.reject(error);

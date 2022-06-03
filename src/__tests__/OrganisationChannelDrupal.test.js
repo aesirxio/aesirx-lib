@@ -4,9 +4,7 @@
  */
 
 import AesirxOrganisationChannelApiService from '../OrganisationChannel/OrganisationChannel';
-import OrganisationChannelMockData from './__mock__/OrganisationChannel.mock';
 import { requestANewAccessToken } from '../gateway/Instance';
-import { strict as assert } from 'assert';
 
 describe('Unit Testing - AesirX - Project Service', () => {
   beforeAll(async () => {
@@ -34,8 +32,6 @@ describe('Unit Testing - AesirX - Project Service', () => {
       channelType: 'drupal',
       content: '{"headline":"test headline","content": "test content"}',
     };
-    const response = await service.doPostContentToCMS(dataPost);
-
-    // expect(response).toBeTruthy();
+    await service.doPostContentToCMS(dataPost);
   });
 });

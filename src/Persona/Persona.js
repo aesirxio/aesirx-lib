@@ -6,12 +6,15 @@
 import { PersonaItemModel, PersonaModel, PersonaFilterModel } from './PersonaModel';
 import PersonaRoute from './PersonaRoute';
 import { Component } from 'react';
+import { PropTypes } from 'prop-types';
 
 /**
  * API Service - Persona
  */
 class AesirxPersonaApiService extends Component {
   route = null;
+
+  static propTypes = { mode: PropTypes.string };
 
   constructor(props) {
     super(props);
@@ -30,8 +33,6 @@ class AesirxPersonaApiService extends Component {
   async getPersonas(page = 1, limit = 20, returnAsJSON = true) {
     try {
       const data = await this.route.getPersonasRequest(page, limit);
-      console.log('here');
-      console.log(data);
 
       let results = null;
       let pagination = null;
@@ -50,7 +51,6 @@ class AesirxPersonaApiService extends Component {
         pagination: pagination,
       };
     } catch (error) {
-      console.log('API - Get Persona: ' + error);
       return null;
     }
   }
@@ -66,8 +66,6 @@ class AesirxPersonaApiService extends Component {
 
       const data = await this.route.getPersonaRequest(personaId);
 
-      console.log('datadatadatapersona', data);
-
       let item = null;
 
       if (data) {
@@ -80,7 +78,6 @@ class AesirxPersonaApiService extends Component {
 
       return item;
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -94,11 +91,8 @@ class AesirxPersonaApiService extends Component {
     try {
       // if (!data) return false;
       const dataToSubmit = PersonaItemModel.__transformItemToApiOfCreation(data);
-      console.log('Data is formatted before sending');
-      console.log(dataToSubmit);
 
       const result = await this.route.createPersonaRequest(dataToSubmit);
-      console.log('After submittion');
 
       if (result) {
         return true;
@@ -106,9 +100,6 @@ class AesirxPersonaApiService extends Component {
 
       return false;
     } catch (error) {
-      console.log('Error on creatingn');
-      console.log(error.response);
-      console.log(error.response.data._messages);
       return false;
     }
   }
@@ -130,9 +121,6 @@ class AesirxPersonaApiService extends Component {
       }
       return false;
     } catch (error) {
-      console.log('Error on updateProject');
-      console.log(error.response);
-      console.log(error.response.data._messages);
       return error;
     }
   }
@@ -146,7 +134,6 @@ class AesirxPersonaApiService extends Component {
     try {
       return await this.route.deletePersonaRequest(personaId);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -159,7 +146,6 @@ class AesirxPersonaApiService extends Component {
       //if (!projectId || projectId === 0) return false;
       return await this.route.getPersonaMasterDataRequest();
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -171,7 +157,6 @@ class AesirxPersonaApiService extends Component {
     try {
       return await this.route.getConnectedChannelByOrganisationIdRequest(organisationId);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -191,8 +176,6 @@ class AesirxPersonaApiService extends Component {
   async searchPersonas(dataFilter = {}, page = 1, limit = 20, returnAsJSON = true) {
     try {
       const data = await this.route.searchPersonasRequest(dataFilter, page, limit);
-      console.log('Debugging - search Personas');
-      console.log(data);
       let results = null;
       let pagination = null;
 
@@ -210,7 +193,6 @@ class AesirxPersonaApiService extends Component {
         pagination: pagination,
       };
     } catch (error) {
-      console.log('API - Search Persona: ' + error);
       return null;
     }
   }
@@ -222,7 +204,6 @@ class AesirxPersonaApiService extends Component {
     try {
       return await this.route.getConnectedChannelByPersonaIdsRequest(personaIds);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -234,7 +215,6 @@ class AesirxPersonaApiService extends Component {
     try {
       return await this.route.getMemberInfoRequest();
     } catch (error) {
-      console.log(error);
       return error;
     }
   }

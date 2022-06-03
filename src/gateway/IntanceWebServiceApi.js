@@ -10,6 +10,8 @@ import Storage from '../Utils/Storage';
 import BaseRoute from '../Abstract/BaseRoute';
 import queryString from 'query-string';
 import AesirxAuthenticationApiService from '../Authentication/Authentication';
+import FormData from 'form-data';
+
 const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
   {
     option: 'token',
@@ -52,7 +54,6 @@ const refreshToken = (failedRequest) => {
 };
 
 const refreshAuthLogic = (failedRequest) => {
-  console.log('refreshWebServiceAuthLogic');
   return refreshToken(failedRequest);
 };
 
@@ -83,7 +84,6 @@ const removePending = (config, f) => {
 
 AesirxWebServiceApiInstance.interceptors.request.use(
   function (config) {
-    // console.log('Current Environment', process.env.NODE_ENV);
     let accessToken = '';
 
     if (process.env.NODE_ENV === 'test') {
@@ -121,13 +121,10 @@ AesirxWebServiceApiInstance.interceptors.request.use(
 
 AesirxWebServiceApiInstance.interceptors.response.use(
   (response) => {
-    // console.log('AesirxPricingPlanApiInstance.interceptors.response.WIN');
     removePending(response.config);
     return response.data;
   },
   (error) => {
-    console.log('AesirxWebServviceApiInstance.interceptors.response.ERROR');
-    console.log(error);
     removePending(error.config);
     if (!axios.isCancel(error)) {
       return Promise.reject(error);

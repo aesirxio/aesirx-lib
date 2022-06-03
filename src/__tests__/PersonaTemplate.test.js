@@ -3,9 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { PERSONA_TEMPLATE_FIELD_KEY } from '../Constant/PersonaTemplateConstant';
 import AesirxPersonaTemplateApiService from '../PersonaTemplate/PersonaTemplate';
-import { PersonaTemplateItemModel } from '../PersonaTemplate/PersonaTemplateModel';
 import { requestANewAccessToken } from '../gateway/Instance';
 
 describe('Unit Testing - AesirX - persona template Service', () => {
@@ -32,7 +30,6 @@ describe('Unit Testing - AesirX - persona template Service', () => {
     const perosnaTemplates = await PersonaTemplateService.getPersonaTemplates(1, 2, false);
 
     if (!perosnaTemplates || !perosnaTemplates.items) {
-      console.log('No persona to do unit test');
       return false;
     }
 

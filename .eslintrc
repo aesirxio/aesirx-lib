@@ -1,7 +1,10 @@
 {
     "env": {
-        "browser": true,
-        "es6": true
+        "es6": true,
+        "node": true,
+        "commonjs": true,
+        "jest": true,
+        "browser": true
     },
     "extends": [
         "eslint:recommended",
@@ -22,12 +25,17 @@
         "react"
     ],
     "rules": {
-        "no-unused-vars": "error"
+        "no-unused-vars": "error",
+        "no-console": "error"
     },
     "settings": {
         "react": {
             "version": "17.0.2"
         }
     },
-    "parser": "@babel/eslint-parser"
+    "parser": "@babel/eslint-parser",
+    "ignorePatterns": [
+        "*.svg",
+        "*.css"
+    ]
 }

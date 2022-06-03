@@ -18,7 +18,6 @@ describe('Unit Testing - AesirX - Planning Service', () => {
     const plannings = planningData.list;
 
     if (!plannings || !plannings.items) {
-      console.log('No campaign to do unit test - filter campaign');
       return false;
     }
 
@@ -28,8 +27,7 @@ describe('Unit Testing - AesirX - Planning Service', () => {
     };
 
     const data = await planningService.searchPlanning(dataFilter, 1, 2, false);
-    console.log('Debugging - Unit Test API - filter Planning');
-    console.log(data.list);
+
     const mockDataToAssert = 1;
     let receivedData = 0;
     if (data) {

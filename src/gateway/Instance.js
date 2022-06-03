@@ -11,6 +11,7 @@ import BaseRoute from '../Abstract/BaseRoute';
 import { logout } from '../Authentication/Logout';
 import Storage from '../Utils/Storage';
 import AesirxAuthenticationApiService from '../Authentication/Authentication';
+import FormData from 'form-data';
 
 const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
   {
@@ -59,7 +60,7 @@ const AesirxApiInstance = axios.create({
   timeout: 100 * 10000,
 });
 
-export const requestANewAccessToken = (failedRequest) => {
+export const requestANewAccessToken = () => {
   axios.post(AUTHORIZED_CODE_URL, reqAuthFormData).then(
     (tokenRefreshResponse) => {
       let authorizationHeader = '';
@@ -72,8 +73,6 @@ export const requestANewAccessToken = (failedRequest) => {
       }
       if (process.env.NODE_ENV === 'test') {
         process.env.AUTHORIZED_TOKEN = accessToken;
-        console.log('ACCESS TOKEN via flow of TESTING');
-        console.log(process.env.AUTHORIZED_TOKEN);
       } else {
         Storage.setItem(AUTHORIZATION_KEY.ACCESS_TOKEN, accessToken);
         Storage.setItem(AUTHORIZATION_KEY.TOKEN_TYPE, tokenType);
@@ -83,8 +82,6 @@ export const requestANewAccessToken = (failedRequest) => {
       return Promise.resolve();
     },
     (error) => {
-      console.log('refreshAuthLogic FAILED !!!');
-      console.log(error);
       // Logout when token expired
       logout();
       // Do something with request error
@@ -140,13 +137,10 @@ const removePending = (config, f) => {
 
 AesirxApiInstance.interceptors.request.use(
   function (config) {
-    // console.log('Current Environment', process.env.NODE_ENV);
-
     let accessToken = '';
 
     if (process.env.NODE_ENV === 'test') {
       accessToken = process.env.AUTHORIZED_TOKEN;
-      // console.log('ACCESS TOKEN', accessToken);
     } else {
       accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
       const authorizationHeader = Storage.getItem(AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER);

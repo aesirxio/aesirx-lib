@@ -4,9 +4,6 @@
  */
 
 // LOGOUT
-const logout = () => {
-  // localStorage.clear();
-  // window.location.reload();
-};
+const logout = () => {};
 
 export { logout };

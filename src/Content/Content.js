@@ -11,12 +11,15 @@ import {
 } from './ContentModel';
 import ContentRoute from './ContentRoute';
 import { Component } from 'react';
+import { PropTypes } from 'prop-types';
 
 /**
  * API Service - Content
  */
 class AesirxContentApiService extends Component {
   route = null;
+
+  static propTypes = { mode: PropTypes.string };
 
   constructor(props) {
     super(props);
@@ -37,9 +40,6 @@ class AesirxContentApiService extends Component {
     try {
       const data = await this.route.getContentRequest(page, limit);
 
-      console.log('Debugging - getContents');
-      console.log(data);
-
       let results = null;
       let pagination = null;
 
@@ -57,7 +57,6 @@ class AesirxContentApiService extends Component {
         pagination: pagination,
       };
     } catch (error) {
-      console.log('API - Get Content: ' + error);
       return null;
     }
   }
@@ -74,7 +73,6 @@ class AesirxContentApiService extends Component {
     try {
       if (ContentID === 0) return null;
       const data = await this.route.getContentItemRequest(ContentID);
-      // console.log("Debugging - getContentItem");
       let item = null;
       if (data) {
         item = new ContentItemModel(data);
@@ -86,7 +84,6 @@ class AesirxContentApiService extends Component {
 
       return item;
     } catch (error) {
-      console.log(error);
       return null;
     }
   }
@@ -105,8 +102,6 @@ class AesirxContentApiService extends Component {
     try {
       // if (!data) return false;
       const dataToSubmit = ContentItemModel.__transformItemToApiOfCreation(data);
-      console.log('Data is formatted before sending');
-      console.log(dataToSubmit);
 
       const result = await this.route.createContentRequest(dataToSubmit);
 
@@ -116,9 +111,6 @@ class AesirxContentApiService extends Component {
 
       return false;
     } catch (error) {
-      console.log('Error on creatingn');
-      console.log(error.response);
-      console.log(error.response.data._messages);
       return false;
     }
   }
@@ -137,16 +129,12 @@ class AesirxContentApiService extends Component {
       if (!data) return false;
       if (data.id === null || data.id === 0 || data.id === undefined) return false;
       const dataToSubmit = ContentItemModel.__transformItemToApiOfUpdation(data);
-      console.log(dataToSubmit);
       const result = await this.route.updateContentRequest(dataToSubmit);
       if (result) {
         return true;
       }
       return false;
     } catch (error) {
-      console.log('Error on updateContent');
-      console.log(error.response);
-      console.log(error.response.data._messages);
       return error;
     }
   }
@@ -158,11 +146,9 @@ class AesirxContentApiService extends Component {
    */
   async deleteContent(contentId) {
     try {
-      console.warn(contentId);
       if (!contentId || contentId === 0) return false;
       return await this.route.deleteContentRequest(contentId);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -174,7 +160,6 @@ class AesirxContentApiService extends Component {
     try {
       return await this.route.getContentMasterDataRequest();
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -196,7 +181,6 @@ class AesirxContentApiService extends Component {
   async searchContents(dataFilter = {}, page = 1, limit = 20, returnAsJSON = true) {
     try {
       const data = await this.route.searchContentsRequest(dataFilter, page, limit);
-      console.log('Debugging - search Campaign', data);
       let results = null;
       let pagination = null;
 
@@ -213,7 +197,6 @@ class AesirxContentApiService extends Component {
         pagination: pagination,
       };
     } catch (error) {
-      console.log('API - Search Content: ' + error);
       return null;
     }
   }
@@ -229,9 +212,6 @@ class AesirxContentApiService extends Component {
     try {
       const data = await this.route.getContentsByCampaignIDsRequest(campaignIds, limit);
 
-      console.log('Debugging - getContents campaignIDs');
-      console.log(data);
-
       let results = null;
 
       if (data) {
@@ -242,12 +222,8 @@ class AesirxContentApiService extends Component {
         results = results.toJSON();
       }
 
-      console.log('Debugging - getContents campaignIDs results');
-      console.log(results);
-
       return results;
     } catch (error) {
-      console.log(error);
       return error;
     }
   }

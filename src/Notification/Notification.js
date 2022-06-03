@@ -5,12 +5,15 @@
 
 import NotificationRoute from './NotificationRoute';
 import { Component } from 'react';
+import { PropTypes } from 'prop-types';
 
 /**
  * API Service - Notification
  */
 class AesirxNotificationApiService extends Component {
   route = null;
+
+  static propTypes = { mode: PropTypes.string };
 
   constructor(props) {
     super(props);
