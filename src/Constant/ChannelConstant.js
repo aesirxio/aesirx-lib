@@ -1,7 +1,7 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
 const CHANNEL_FIELD_KEY = {
   ID: 'channel-id',
@@ -11,4 +11,4 @@ const CHANNEL_FIELD_KEY = {
   END_DATE: 'channel-end-date',
 };
 
-export {CHANNEL_FIELD_KEY}
+export { CHANNEL_FIELD_KEY };

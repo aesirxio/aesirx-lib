@@ -1,7 +1,7 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
 const PERSONA_TEMPLATE_FIELD_KEY = {
   ID: 'id',
@@ -23,7 +23,7 @@ const PERSONA_TEMPLATE_FIELD_KEY = {
   PAINT_POINT: 'paint_point',
   AVATAR: 'avatar',
   BIO: 'bio',
-  THUMBNAIL_URL: 'thumbnail_url'
+  THUMBNAIL_URL: 'thumbnail_url',
 };
 
 const PERSONA_TEMPLATE_RESPONSE_FIELD_KEY = {
@@ -46,7 +46,7 @@ const PERSONA_TEMPLATE_RESPONSE_FIELD_KEY = {
   PAINT_POINT: 'paint_point',
   AVATAR: 'avatar',
   BIO: 'bio',
-  THUMBNAIL_URL: 'thumbnail_url'
+  THUMBNAIL_URL: 'thumbnail_url',
 };
 
 export { PERSONA_TEMPLATE_FIELD_KEY, PERSONA_TEMPLATE_RESPONSE_FIELD_KEY };

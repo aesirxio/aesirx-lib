@@ -1,7 +1,7 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
 import { CONTENT_FIELD_KEY } from '../Constant/ContentConstant';
 import AesirxContentApiService from '../Content/Content';

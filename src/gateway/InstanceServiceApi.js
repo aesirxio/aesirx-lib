@@ -1,7 +1,7 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
 import axios from 'axios';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
@@ -44,47 +44,44 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 export const requestANewLaravelCustomServiceAccessToken = (failedRequest) => {
-  return AesirxServiceApiInstance
-    .post('/oauth/token', reqAuthFormData, { skipAuthRefresh: true })
-    .then(
-      (tokenRefreshResponse) => {
-        let authorizationHeader = '';
-        let tokenType = '';
-        let accessToken = '';
-        if (tokenRefreshResponse) {
-          tokenType = tokenRefreshResponse.token_type ?? 'Bearer';
-          accessToken = tokenRefreshResponse.access_token ?? '';
-          authorizationHeader = authorizationHeader
-            .concat(tokenType)
-            .concat(' ')
-            .concat(accessToken);
-        }
-        // if (failedRequest) {
-        //   // Uncomment this if HTTPS runs on the Server
-        //   failedRequest.response.config.headers['Authorization'] = authorizationHeader;
-        // }
-
-        if (process.env.NODE_ENV === 'test') {
-          process.env.AUTHORIZED_TOKEN_CUSTOM_SERVICE = accessToken;
-          // console.log('Set variable into env');
-        } else {
-          Storage.setItem(AUTHORIZATION_KEY.CUSTOM_SERVICE_ACCESS_TOKEN, accessToken);
-          Storage.setItem(AUTHORIZATION_KEY.CUSTOM_SERVICE_TOKEN_TYPE, tokenType);
-          Storage.setItem(
-            AUTHORIZATION_KEY.CUSTOM_SERVICE_AUTHORIZED_TOKEN_HEADER,
-            authorizationHeader
-          );
-        }
-
-        return Promise.resolve();
-      },
-      (error) => {
-        console.log('refreshLaravelCustomServiceAuthLogic FAILED !!!');
-        console.log(error);
-        // Do something with request error
-        return Promise.reject(error);
+  return AesirxServiceApiInstance.post('/oauth/token', reqAuthFormData, {
+    skipAuthRefresh: true,
+  }).then(
+    (tokenRefreshResponse) => {
+      let authorizationHeader = '';
+      let tokenType = '';
+      let accessToken = '';
+      if (tokenRefreshResponse) {
+        tokenType = tokenRefreshResponse.token_type ?? 'Bearer';
+        accessToken = tokenRefreshResponse.access_token ?? '';
+        authorizationHeader = authorizationHeader.concat(tokenType).concat(' ').concat(accessToken);
       }
-    );
+      // if (failedRequest) {
+      //   // Uncomment this if HTTPS runs on the Server
+      //   failedRequest.response.config.headers['Authorization'] = authorizationHeader;
+      // }
+
+      if (process.env.NODE_ENV === 'test') {
+        process.env.AUTHORIZED_TOKEN_CUSTOM_SERVICE = accessToken;
+        // console.log('Set variable into env');
+      } else {
+        Storage.setItem(AUTHORIZATION_KEY.CUSTOM_SERVICE_ACCESS_TOKEN, accessToken);
+        Storage.setItem(AUTHORIZATION_KEY.CUSTOM_SERVICE_TOKEN_TYPE, tokenType);
+        Storage.setItem(
+          AUTHORIZATION_KEY.CUSTOM_SERVICE_AUTHORIZED_TOKEN_HEADER,
+          authorizationHeader
+        );
+      }
+
+      return Promise.resolve();
+    },
+    (error) => {
+      console.log('refreshLaravelCustomServiceAuthLogic FAILED !!!');
+      console.log(error);
+      // Do something with request error
+      return Promise.reject(error);
+    }
+  );
 };
 
 const refreshLaravelCustomServiceAuthLogic = (failedRequest) => {

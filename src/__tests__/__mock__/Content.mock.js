@@ -1,7 +1,7 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
 import {
   ESI_CONTENT_API_RESPONSE_FIELD_KEY,
@@ -58,8 +58,9 @@ class ContentMockData {
       [ESI_CONTENT_FIELD_KEY.STATUS]: 1,
       [ESI_CONTENT_FIELD_KEY.CONTENT_TO_POST]: {
         [ESI_CONTENT_FIELD_KEY.CANVA_DESIGN_ID]: 'cxzhdfjas',
-        [ESI_CONTENT_FIELD_KEY.CANVA_EXPORTED_URL]: 'https://beerfridge.vn/components/com_redshop/assets/images/product/b8971688a79c2e771b343157e41378ca.png',
-        [ESI_CONTENT_FIELD_KEY.HEADLINE]: faker.lorem.sentence(6)
+        [ESI_CONTENT_FIELD_KEY.CANVA_EXPORTED_URL]:
+          'https://beerfridge.vn/components/com_redshop/assets/images/product/b8971688a79c2e771b343157e41378ca.png',
+        [ESI_CONTENT_FIELD_KEY.HEADLINE]: faker.lorem.sentence(6),
       },
       [ESI_CONTENT_FIELD_KEY.PROJECT]: 1079,
     };
@@ -112,8 +113,9 @@ class ContentMockData {
       [ESI_CONTENT_FIELD_KEY.STATUS]: 1,
       [ESI_CONTENT_FIELD_KEY.CONTENT_TO_POST]: {
         [ESI_CONTENT_FIELD_KEY.CANVA_DESIGN_ID]: 'cxzhdfjas',
-        [ESI_CONTENT_FIELD_KEY.CANVA_EXPORTED_URL]: 'https://beerfridge.vn/components/com_redshop/assets/images/product/b8971688a79c2e771b343157e41378ca.png',
-        [ESI_CONTENT_FIELD_KEY.HEADLINE]: faker.lorem.sentence(6)
+        [ESI_CONTENT_FIELD_KEY.CANVA_EXPORTED_URL]:
+          'https://beerfridge.vn/components/com_redshop/assets/images/product/b8971688a79c2e771b343157e41378ca.png',
+        [ESI_CONTENT_FIELD_KEY.HEADLINE]: faker.lorem.sentence(6),
       },
       [ESI_CONTENT_FIELD_KEY.PROJECT]: 1079,
     };

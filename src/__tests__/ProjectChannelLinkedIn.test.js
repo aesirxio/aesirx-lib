@@ -1,20 +1,20 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
 import AesirxProjectChannelApiService from '../ProjectChannel/ProjectChannel';
 import ProjectChannelMockData from './__mock__/ProjectChannel.mock';
-import {requestANewAccessToken} from '../gateway/Instance';
-import {strict as assert} from 'assert';
+import { requestANewAccessToken } from '../gateway/Instance';
+import { strict as assert } from 'assert';
 
 describe('Unit Testing - AesirX - Project Channel LinkedInService', () => {
   beforeAll(async () => {
     await requestANewAccessToken();
   });
 
-  const channelType = 'linkedin'
-  const projectId = ProjectChannelMockData.mockProjectId()
+  const channelType = 'linkedin';
+  const projectId = ProjectChannelMockData.mockProjectId();
 
   it('Unit Test API - Get login URL', async () => {
     const service = new AesirxProjectChannelApiService();
@@ -22,7 +22,10 @@ describe('Unit Testing - AesirX - Project Channel LinkedInService', () => {
 
     console.log('---Get Login URL---');
 
-    assert.equal(true, response.result.loginUrl.includes('https://www.linkedin.com/oauth/v2/authorization'));
+    assert.equal(
+      true,
+      response.result.loginUrl.includes('https://www.linkedin.com/oauth/v2/authorization')
+    );
     expect(response).toBeTruthy();
   });
 
@@ -50,5 +53,4 @@ describe('Unit Testing - AesirX - Project Channel LinkedInService', () => {
     assert.equal(true, response.result);
     expect(response.result).toBeTruthy();
   });
-
 });

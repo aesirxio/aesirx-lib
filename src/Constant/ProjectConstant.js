@@ -1,7 +1,7 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
 const ESI_PROJECT_FIELD_KEY = {
   ID: 'id',
@@ -23,4 +23,4 @@ const ESI_PROJECT_API_RESPONSE_FIELD_KEY = {
   PROJECT_LEAD: 'project_lead',
 };
 
-export { ESI_PROJECT_FIELD_KEY, ESI_PROJECT_API_RESPONSE_FIELD_KEY }
+export { ESI_PROJECT_FIELD_KEY, ESI_PROJECT_API_RESPONSE_FIELD_KEY };
