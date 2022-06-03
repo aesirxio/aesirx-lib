@@ -62,9 +62,6 @@ const AesirxApiInstance = axios.create({
 export const requestANewAccessToken = (failedRequest) => {
   axios.post(AUTHORIZED_CODE_URL, reqAuthFormData).then(
     (tokenRefreshResponse) => {
-      // console.log('Authorized Response');
-      // console.log(tokenRefreshResponse);
-
       let authorizationHeader = '';
       let tokenType = '';
       let accessToken = '';
@@ -73,13 +70,6 @@ export const requestANewAccessToken = (failedRequest) => {
         accessToken = tokenRefreshResponse.data.access_token ?? '';
         authorizationHeader = authorizationHeader.concat(tokenType).concat(' ').concat(accessToken);
       }
-      // if (failedRequest) {
-      //   // Uncomment this if HTTPS runs on the Server
-      //   failedRequest.response.config.headers[
-      //     "Authorization"
-      //   ] = authorizationHeader;
-      // }
-
       if (process.env.NODE_ENV === 'test') {
         process.env.AUTHORIZED_TOKEN = accessToken;
         console.log('ACCESS TOKEN via flow of TESTING');
