@@ -1,7 +1,7 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
 import AesirxProjectApiService from '../Project/Project';
 import { requestANewAccessToken } from '../gateway/Instance';
@@ -15,7 +15,7 @@ describe('Unit Testing - AesirX - Project Service', () => {
   it('Unit Test API - Read List Projects', async () => {
     const projectService = new AesirxProjectApiService();
     const data = await projectService.getProjects(1, 2, false);
-    console.log("Debugging - Unit Test API - Read List Projects");
+    console.log('Debugging - Unit Test API - Read List Projects');
     console.log(data);
     const mockDataToAssert = 2;
     let receivedData = 0;
@@ -91,17 +91,17 @@ describe('Unit Testing - AesirX - Project Service', () => {
 
     if (!projects || !projects.items) {
       console.log('No projects to do unit test - filter Poject');
-      return false;  
+      return false;
     }
 
     // console.log(projects.items);
     const dataToFetch = projects.items[0];
     const dataFilter = {
-      keyword: dataToFetch.title
-    }
+      keyword: dataToFetch.title,
+    };
 
     const data = await projectService.searchProjects(dataFilter, 1, 2, false);
-    console.log("Debugging - Unit Test API - filter Projects");
+    console.log('Debugging - Unit Test API - filter Projects');
     console.log(data.list);
     const mockDataToAssert = 1;
     let receivedData = 0;

@@ -1,7 +1,7 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
 import { PERSONA_TEMPLATE_FIELD_KEY } from '../Constant/PersonaTemplateConstant';
 import AesirxPersonaTemplateApiService from '../PersonaTemplate/PersonaTemplate';

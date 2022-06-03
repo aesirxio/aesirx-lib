@@ -1,12 +1,9 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
-import {
-  ContentThemeItemModel,
-  ContentThemeModel
-} from './ContentThemeModel';
+import { ContentThemeItemModel, ContentThemeModel } from './ContentThemeModel';
 import ContentThemeRoute from './ContentThemeRoute';
 import { Component } from 'react';
 
@@ -102,7 +99,7 @@ class AesirxContentThemeApiService extends Component {
       const dataToSubmit = ContentThemeItemModel.__transformItemToApiOfCreation(data);
       console.log('Data is formatted before sending');
       console.log(dataToSubmit);
-      
+
       const result = await this.route.createContentThemeRequest(dataToSubmit);
 
       if (result) {
@@ -168,7 +165,7 @@ class AesirxContentThemeApiService extends Component {
    * @returns {JSON|NULL}
    *  */
 
-   async getContentThemeByDesignId(designId = null, returnAsJSON = true) {
+  async getContentThemeByDesignId(designId = null, returnAsJSON = true) {
     try {
       if (designId === undefined || designId == null || designId == '') return null;
       const data = await this.route.getContentThemeByDesignIdRequest(designId);
@@ -188,7 +185,7 @@ class AesirxContentThemeApiService extends Component {
       console.log(error);
       return null;
     }
-  }  
+  }
 
   render() {
     return {};

@@ -1,7 +1,7 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
 import BaseRoute from '../Abstract/BaseRoute';
 import AesirxApiInstance from '../gateway/Instance';
@@ -24,7 +24,6 @@ class PersonaTemplateRoute extends BaseRoute {
       })
     );
 
-
   getPersonaTemplatesRequest = (page = 1, limit = 20) => {
     return AesirxApiInstance.get(
       this.createRequestURL({
@@ -33,8 +32,7 @@ class PersonaTemplateRoute extends BaseRoute {
         'list[limit]': limit,
       })
     );
-  }
-   
+  };
 }
 
 export default PersonaTemplateRoute;

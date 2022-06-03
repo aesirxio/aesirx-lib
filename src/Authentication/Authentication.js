@@ -1,7 +1,7 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
 import axios from 'axios';
 import { AXIOS_CONFIGS, AUTHORIZATION_KEY } from '../Constant/Constant';
