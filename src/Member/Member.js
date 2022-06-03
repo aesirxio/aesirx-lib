@@ -11,12 +11,16 @@ import BaseRoute from '../Abstract/BaseRoute';
 import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
 import axios from 'axios';
 import Storage from '../Utils/Storage';
+import FormData from 'form-data';
+import { PropTypes } from 'prop-types';
 
 /**
  * API Service - Member
  */
 class AesirxMemberApiService extends Component {
   route = null;
+
+  static propTypes = { mode: PropTypes.string };
 
   constructor(props) {
     super(props);
@@ -87,16 +91,8 @@ class AesirxMemberApiService extends Component {
         accessToken = result.data.access_token ?? '';
         authorizationHeader = authorizationHeader.concat(tokenType).concat(' ').concat(accessToken);
 
-        // if (failedRequest) {
-        //   // Uncomment this if HTTPS runs on the Server
-        //   failedRequest.response.config.headers[
-        //     "Authorization"
-        //   ] = authorizationHeader;
-        // }
         if (process.env.NODE_ENV === 'test') {
           process.env.AUTHORIZED_TOKEN = accessToken;
-          console.log('ACCESS TOKEN via flow of TESTING');
-          console.log(process.env.AUTHORIZED_TOKEN);
         } else {
           Storage.setItem(AUTHORIZATION_KEY.ACCESS_TOKEN, accessToken);
           Storage.setItem(AUTHORIZATION_KEY.TOKEN_TYPE, tokenType);
@@ -106,8 +102,6 @@ class AesirxMemberApiService extends Component {
       }
       return false;
     } catch (error) {
-      console.log('Something went wrong in Authentication Service');
-      console.log(error);
       return false;
     }
   }
@@ -128,7 +122,6 @@ class AesirxMemberApiService extends Component {
       const dataToSubmit = MemberItemModel.__transformItemToApiOfCreation(data);
       return await this.route.createMemberRequest(dataToSubmit);
     } catch (error) {
-      console.log(error.response);
       return false;
     }
   }
@@ -137,7 +130,6 @@ class AesirxMemberApiService extends Component {
     try {
       return await requestANewAccessToken();
     } catch (error) {
-      console.log(error.response);
       return false;
     }
   }
@@ -156,7 +148,6 @@ class AesirxMemberApiService extends Component {
       const dataToSubmit = MemberItemModel.__transformItemToApiOfActivation(data);
       return await this.route.activateMemberRequest(dataToSubmit);
     } catch (error) {
-      console.log(error.response);
       return false;
     }
   }
@@ -165,7 +156,6 @@ class AesirxMemberApiService extends Component {
     try {
       return await this.route.getTokenByUserRequest();
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -174,7 +164,6 @@ class AesirxMemberApiService extends Component {
     try {
       return await this.route.getFacebookAdsAppAccessToken();
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -189,7 +178,6 @@ class AesirxMemberApiService extends Component {
       let memberItemModel = new MemberItemModel();
       return memberItemModel.toJSON(memberInfoResponse);
     } catch (error) {
-      console.log(error);
       return null;
     }
   }
@@ -218,7 +206,6 @@ class AesirxMemberApiService extends Component {
       const dataToSubmit = MemberItemModel.__transformItemToApiOfUpdateMember(data);
       return await this.route.updateMemberRequest(dataToSubmit);
     } catch (error) {
-      console.log(error.response);
       return false;
     }
   }
@@ -239,7 +226,6 @@ class AesirxMemberApiService extends Component {
       const dataToSubmit = MemberItemModel.__transformItemToApiOfUpdateMemberPassword(data);
       return await this.route.updateMemberRequest(dataToSubmit);
     } catch (error) {
-      console.log(error.response);
       return false;
     }
   }
@@ -251,7 +237,6 @@ class AesirxMemberApiService extends Component {
     try {
       return await this.route.resendActivationEmailRequest(memberId);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -261,7 +246,6 @@ class AesirxMemberApiService extends Component {
       const dataToSubmit = MemberItemModel.__transformItemToApiOfResetMemberEmail(data);
       return await this.route.processResetRequest(dataToSubmit);
     } catch (error) {
-      console.log(error.response);
       return false;
     }
   }
@@ -271,7 +255,6 @@ class AesirxMemberApiService extends Component {
       const dataToSubmit = MemberItemModel.__transformItemToApiOfResetMemberActivation(data);
       return await this.route.processResetConfirm(dataToSubmit);
     } catch (error) {
-      console.log(error.response);
       return false;
     }
   }
@@ -281,18 +264,15 @@ class AesirxMemberApiService extends Component {
       const dataToSubmit = MemberItemModel.__transformItemToApiOfResetMemberNewPassword(data);
       return await this.route.processResetComplete(dataToSubmit);
     } catch (error) {
-      console.log(error.response);
       return false;
     }
   }
 
   async checkUsername(data) {
-    console.log(data);
     try {
       const dataToSubmit = MemberItemModel.__transformItemToApiOfCheckUsername(data);
       return await this.route.checkUsername(dataToSubmit);
     } catch (error) {
-      console.log(error.response);
       return false;
     }
   }
@@ -302,7 +282,6 @@ class AesirxMemberApiService extends Component {
       const dataToSubmit = MemberItemModel.__transformItemToApiOfCheckEmail(data);
       return await this.route.checkEmail(dataToSubmit);
     } catch (error) {
-      console.log(error.response);
       return false;
     }
   }

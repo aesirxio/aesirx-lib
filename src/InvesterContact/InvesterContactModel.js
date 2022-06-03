@@ -9,11 +9,12 @@ import {
 } from '../Constant/InvesterContactConstant';
 import BaseItemModel from '../Abstract/BaseItemModel';
 import BaseModel from '../Abstract/BaseModel';
+import PersonaItemModel from '../Persona/PersonaModel';
 
 class InvesterContactModel extends BaseModel {
   constructor(entities) {
+    super(entities);
     if (entities) {
-      super(entities);
       this.unTransformedItems = entities._embedded.item;
       this.items = entities._embedded.item.map((element) => {
         return new PersonaItemModel(element);
@@ -31,9 +32,8 @@ class InvesterContactItemModel extends BaseItemModel {
   phoneNumber = '';
 
   constructor(entity) {
+    super(entity);
     if (entity) {
-      super(entity);
-
       this.organizationName =
         entity[ESI_INVESTER_CONTACT_API_RESPONSE_FIELD_KEY.ORGANIZATION_NAME] ?? '';
       this.contactPerson = entity[ESI_INVESTER_CONTACT_API_RESPONSE_FIELD_KEY.CONTACT_PERSON] ?? '';
@@ -41,12 +41,6 @@ class InvesterContactItemModel extends BaseItemModel {
       this.phoneNumber = entity[ESI_INVESTER_CONTACT_API_RESPONSE_FIELD_KEY.PHONE_NUMBER] ?? '';
     }
   }
-
-  extractCustomFieldValues = () => {
-    const customFieldValues = this.getCustomfieldValues();
-    if (customFieldValues) {
-    }
-  };
 
   static __transformItemToApiOfCreation = (data) => {
     return {

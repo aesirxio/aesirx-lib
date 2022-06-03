@@ -6,12 +6,15 @@
 import { ContentThemeItemModel, ContentThemeModel } from './ContentThemeModel';
 import ContentThemeRoute from './ContentThemeRoute';
 import { Component } from 'react';
+import { PropTypes } from 'prop-types';
 
 /**
  * API Service - Content
  */
 class AesirxContentThemeApiService extends Component {
   route = null;
+
+  static propTypes = { mode: PropTypes.string };
 
   constructor(props) {
     super(props);
@@ -49,7 +52,6 @@ class AesirxContentThemeApiService extends Component {
         pagination: pagination,
       };
     } catch (error) {
-      console.log('API - Get Content Themes: ' + error);
       return null;
     }
   }
@@ -66,7 +68,6 @@ class AesirxContentThemeApiService extends Component {
     try {
       if (id === 0) return null;
       const data = await this.route.getContentThemeItemRequest(id);
-      // console.log("Debugging - getContentThemeItem");
       let item = null;
       if (data) {
         item = new ContentThemeItemModel(data);
@@ -78,7 +79,6 @@ class AesirxContentThemeApiService extends Component {
 
       return item;
     } catch (error) {
-      console.log(error);
       return null;
     }
   }
@@ -97,8 +97,6 @@ class AesirxContentThemeApiService extends Component {
     try {
       // if (!data) return false;
       const dataToSubmit = ContentThemeItemModel.__transformItemToApiOfCreation(data);
-      console.log('Data is formatted before sending');
-      console.log(dataToSubmit);
 
       const result = await this.route.createContentThemeRequest(dataToSubmit);
 
@@ -108,9 +106,6 @@ class AesirxContentThemeApiService extends Component {
 
       return false;
     } catch (error) {
-      console.log('Error on creatingn');
-      console.log(error.response);
-      console.log(error.response.data._messages);
       return false;
     }
   }
@@ -137,9 +132,6 @@ class AesirxContentThemeApiService extends Component {
       }
       return false;
     } catch (error) {
-      console.log('Error on updateContentTheme');
-      console.log(error.response);
-      console.log(error.response.data._messages);
       return error;
     }
   }
@@ -152,9 +144,8 @@ class AesirxContentThemeApiService extends Component {
   async deleteContentTheme(id) {
     try {
       if (!id || id === 0) return false;
-      $result = await this.route.deleteContentThemeRequest(id);
+      await this.route.deleteContentThemeRequest(id);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -170,7 +161,6 @@ class AesirxContentThemeApiService extends Component {
       if (designId === undefined || designId == null || designId == '') return null;
       const data = await this.route.getContentThemeByDesignIdRequest(designId);
 
-      // console.log("Debugging - getContentThemeItem");
       let item = null;
       if (data.result) {
         item = new ContentThemeItemModel(data.result);
@@ -182,7 +172,6 @@ class AesirxContentThemeApiService extends Component {
 
       return item;
     } catch (error) {
-      console.log(error);
       return null;
     }
   }

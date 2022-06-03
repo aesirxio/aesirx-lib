@@ -5,13 +5,15 @@
 
 import BillingPlanRoute from './BillingPlanRoute';
 import { Component } from 'react';
-import { BillingInvoiceModel } from './BillingInvoiceModel';
+import { PropTypes } from 'prop-types';
 
 /**
  * API Service - Billing Plan
  */
 class AesirxBillingPlanApiService extends Component {
   route = null;
+
+  static propTypes = { mode: PropTypes.string };
 
   constructor(props) {
     super(props);
@@ -25,7 +27,6 @@ class AesirxBillingPlanApiService extends Component {
     try {
       return await this.route.getPayLink(planName, interval);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -36,7 +37,6 @@ class AesirxBillingPlanApiService extends Component {
     try {
       return await this.route.createSubscriptionRequest(planName);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -51,7 +51,6 @@ class AesirxBillingPlanApiService extends Component {
 
       return null;
     } catch (err) {
-      console.log(err);
       return false;
     }
   }
@@ -66,7 +65,6 @@ class AesirxBillingPlanApiService extends Component {
 
       return null;
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -77,12 +75,11 @@ class AesirxBillingPlanApiService extends Component {
         planName: planName,
       });
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
 
-  async cancelSubscription(memberId) {
+  async cancelSubscription() {
     try {
       const response = await this.route.cancelSubscription();
 
@@ -90,7 +87,6 @@ class AesirxBillingPlanApiService extends Component {
         return response.result;
       }
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -99,7 +95,6 @@ class AesirxBillingPlanApiService extends Component {
     try {
       return await this.route.getFeatureMemberRequest(memberId);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -108,7 +103,6 @@ class AesirxBillingPlanApiService extends Component {
     try {
       return await this.route.getHistoryUploadQuotasRequest(organizationId);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }

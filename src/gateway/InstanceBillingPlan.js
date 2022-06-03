@@ -7,6 +7,7 @@ import axios from 'axios';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
 import Storage from '../Utils/Storage';
+import FormData from 'form-data';
 
 const baseUrl =
   process.env.BASE_ENDPOINT_PRICING_PLAN_URL !== undefined &&
@@ -46,9 +47,6 @@ if (process.env.NODE_ENV !== 'test') {
 export const requestANewLaravelPricingPlanAccessToken = (failedRequest) => {
   return AesirxPricingPlanApiInstance.post('/oauth/token', reqAuthFormData).then(
     (tokenRefreshResponse) => {
-      console.log('Authorized Response');
-      console.log(tokenRefreshResponse);
-
       let authorizationHeader = '';
       let tokenType = '';
       let accessToken = '';
@@ -64,7 +62,6 @@ export const requestANewLaravelPricingPlanAccessToken = (failedRequest) => {
 
       if (process.env.NODE_ENV === 'test') {
         process.env.AUTHORIZED_TOKEN = accessToken;
-        // console.log('Set variable into env');
       } else {
         Storage.setItem(AUTHORIZATION_KEY.PRICING_PLAN_ACCESS_TOKEN, accessToken);
         Storage.setItem(AUTHORIZATION_KEY.PRICING_PLAN_TOKEN_TYPE, tokenType);
@@ -77,8 +74,6 @@ export const requestANewLaravelPricingPlanAccessToken = (failedRequest) => {
       return Promise.resolve();
     },
     (error) => {
-      console.log('refreshLaravelPricingPlanAuthLogic FAILED !!!');
-      console.log(error);
       // Do something with request error
       return Promise.reject(error);
     }
@@ -86,7 +81,6 @@ export const requestANewLaravelPricingPlanAccessToken = (failedRequest) => {
 };
 
 const refreshLaravelPricingPlanAuthLogic = (failedRequest) => {
-  console.log('= refreshLaravelPricingPlanAuthLogic');
   return requestANewLaravelPricingPlanAccessToken(failedRequest);
 };
 
@@ -117,7 +111,6 @@ const removePending = (config, f) => {
 
 AesirxPricingPlanApiInstance.interceptors.request.use(
   function (config) {
-    // console.log('Current Environment', process.env.NODE_ENV);
     let accessToken = '';
 
     if (process.env.NODE_ENV === 'test') {
@@ -152,13 +145,10 @@ AesirxPricingPlanApiInstance.interceptors.request.use(
 
 AesirxPricingPlanApiInstance.interceptors.response.use(
   (response) => {
-    // console.log('AesirxPricingPlanApiInstance.interceptors.response.WIN');
     removePending(response.config);
     return response.data;
   },
   (error) => {
-    // console.log('AesirxPricingPlanApiInstance.interceptors.response.ERROR');
-    // console.log(error);
     removePending(error.config);
     if (!axios.isCancel(error)) {
       return Promise.reject(error);

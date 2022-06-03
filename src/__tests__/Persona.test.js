@@ -3,9 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { PERSONA_FIELD_KEY } from '../Constant/PersonaConstant';
 import AesirxPersonaApiService from '../Persona/Persona';
-import { PersonaItemModel } from '../Persona/PersonaModel';
 import { requestANewAccessToken } from '../gateway/Instance';
 import PersonaMockData from './__mock__/Persona.mock';
 
@@ -17,9 +15,6 @@ describe('Unit Testing - AesirX - persona Service', () => {
   it('Unit Test API - Read List Personas', async () => {
     const personaService = new AesirxPersonaApiService();
     const data = await personaService.getPersonas(1, 2, false);
-
-    console.log('Debugging - Unit Test API - Read List Personas');
-    console.log(data);
 
     const mockDataToAssert = data.list.totalItems();
     let receivedData = 0;
@@ -36,7 +31,6 @@ describe('Unit Testing - AesirX - persona Service', () => {
     const perosnas = await PersonaService.getPersonas(1, 2, false);
 
     if (!perosnas || !perosnas.items) {
-      console.log('No persona to do unit test');
       return false;
     }
 
@@ -70,7 +64,6 @@ describe('Unit Testing - AesirX - persona Service', () => {
     const personas = await PersonaService.getPersonas(1, 2, false);
 
     if (!personas || !personas.items) {
-      console.log('No persona to do unit test - Update persona');
       return false;
     }
 
@@ -86,7 +79,6 @@ describe('Unit Testing - AesirX - persona Service', () => {
 
     const personas = await PersonaService.getPersonas(1, 2, false);
     if (!personas || !personas.items) {
-      console.log('No personas to do unit test - Update PRoject');
       return false;
     }
 
@@ -103,19 +95,15 @@ describe('Unit Testing - AesirX - persona Service', () => {
     const personas = personaData.list;
 
     if (!personas || !personas.items) {
-      console.log('No personas to do unit test - filter Poject');
       return false;
     }
 
-    // console.log(personas.items);
     const dataToFetch = personas.items[0];
     const dataFilter = {
       keyword: dataToFetch.title,
     };
 
     const data = await personaService.searchPersonas(dataFilter, 1, 2, false);
-    console.log('Debugging - Unit Test API - filter personas');
-    console.log(data.list);
     const mockDataToAssert = 1;
     let receivedData = 0;
     if (data) {

@@ -6,12 +6,15 @@
 import { OrganisationChannelItemModel } from './OrganisationChannelModel';
 import OrganisationChannelRoute from './OrganisationChannelRoute';
 import { Component } from 'react';
+import { PropTypes } from 'prop-types';
 
 /**
  * API Service - Project
  */
 class AesirxOrganisationChannelApiService extends Component {
   route = null;
+
+  static propTypes = { mode: PropTypes.string };
 
   constructor(props) {
     super(props);
@@ -43,8 +46,6 @@ class AesirxOrganisationChannelApiService extends Component {
     try {
       if (projectID === 0) return null;
       const data = await this.route.getProjectChannelItemRequest(projectID);
-      console.log('Debugging - getProjectItem');
-      console.log(data);
       let item = null;
       if (data) {
         item = new OrganisationChannelItemModel(data);
@@ -54,7 +55,6 @@ class AesirxOrganisationChannelApiService extends Component {
       }
       return item;
     } catch (error) {
-      console.log(error);
       return null;
     }
   }
@@ -68,7 +68,6 @@ class AesirxOrganisationChannelApiService extends Component {
       if (!itemId || itemId === 0) return false;
       return await this.route.postToFanpageRequest(itemId, content, channelType);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -90,19 +89,14 @@ class AesirxOrganisationChannelApiService extends Component {
     try {
       // if (!data) return false;
       const dataToSubmit = OrganisationChannelItemModel.__transformItemToApiOfCreation(data);
-      console.log('Data is formatted before sending');
-      console.log(dataToSubmit);
+
       const result = await this.route.createProjectChannelRequest(dataToSubmit);
-      console.log('After submittion');
-      console.log(result);
+
       if (result) {
         return true;
       }
       return false;
     } catch (error) {
-      console.log('Error on creating project channel');
-      console.log(error.response);
-      console.log(error.response.data._messages);
       return false;
     }
   }
@@ -132,9 +126,6 @@ class AesirxOrganisationChannelApiService extends Component {
       }
       return false;
     } catch (error) {
-      console.log('Error on updateProject');
-      console.log(error.response);
-      console.log(error.response.data._messages);
       return error;
     }
   }
@@ -149,7 +140,6 @@ class AesirxOrganisationChannelApiService extends Component {
       if (!itemId || itemId === 0) return false;
       return await this.route.deleteProjectChannelRequest(itemId);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -158,7 +148,6 @@ class AesirxOrganisationChannelApiService extends Component {
     try {
       return await this.route.getLoginUrl(channelType);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -167,7 +156,6 @@ class AesirxOrganisationChannelApiService extends Component {
     try {
       return await this.route.checkConnectStatusChannel(channelType);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -177,7 +165,6 @@ class AesirxOrganisationChannelApiService extends Component {
     try {
       return await this.route.getListFanpageRequest(channelUniqueName);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -192,7 +179,6 @@ class AesirxOrganisationChannelApiService extends Component {
         })
       );
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -201,7 +187,6 @@ class AesirxOrganisationChannelApiService extends Component {
     try {
       return await this.route.connectFanpageRequest(channelUniqueName, pageId);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -210,7 +195,6 @@ class AesirxOrganisationChannelApiService extends Component {
     try {
       return await this.route.disconnectFanpageRequest(channelUniqueName, pageId);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -220,7 +204,6 @@ class AesirxOrganisationChannelApiService extends Component {
 
     response = await this.getListAdAccounts(channelType);
 
-    console.log('--- Interval get list Ad Accounts ---');
     return response;
   }
 
@@ -230,7 +213,6 @@ class AesirxOrganisationChannelApiService extends Component {
       const test = await this.route.getListAdAccountsRequest(channelType);
       return test;
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -245,7 +227,6 @@ class AesirxOrganisationChannelApiService extends Component {
         })
       );
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -254,7 +235,6 @@ class AesirxOrganisationChannelApiService extends Component {
     try {
       return await this.route.connectAdAccountRequest(accountId);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -264,8 +244,6 @@ class AesirxOrganisationChannelApiService extends Component {
 
     response = await this.getListAdAccount();
 
-    console.log('--- Interval get list AdAccount FB ---');
-    console.log(response);
     return response;
   }
 
@@ -285,7 +263,7 @@ class AesirxOrganisationChannelApiService extends Component {
    */
   doLoginCMS = async (dataPost) => {
     const result = await this.route.doLoginCMSRequest(dataPost);
-    console.log(result);
+
     return result.result;
   };
 

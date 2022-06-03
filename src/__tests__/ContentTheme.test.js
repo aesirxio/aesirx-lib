@@ -3,9 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { CONTENT_THEME_FIELD_KEY } from '../Constant/ContentThemeConstant';
 import AesirxContentThemeApiService from '../ContentTheme/ContentTheme';
-import { ContentThemeItemModel } from '../ContentTheme/ContentThemeModel';
 import { requestANewAccessToken } from '../gateway/Instance';
 import ContentThemeMockData from './__mock__/ContentTheme.mock';
 
@@ -17,8 +15,6 @@ describe('Unit Testing - AesirX - Content Theme Service', () => {
   it('Unit Test API - Read List Contents Theme', async () => {
     const contentThemeService = new AesirxContentThemeApiService();
     const data = await contentThemeService.getContentThemes(1, 2, false);
-    console.log('Debugging - Unit Test API - Read List Contents');
-    console.log(data);
     const mockDataToAssert = 2;
     let receivedData = 0;
     if (data) {
@@ -31,7 +27,6 @@ describe('Unit Testing - AesirX - Content Theme Service', () => {
     const contentThemeService = new AesirxContentThemeApiService();
     const contentThemes = await contentThemeService.getContentThemes(1, 2, false);
     if (!contentThemes || !contentThemes.list.items) {
-      console.log('No content to do unit test - Update content');
       return false;
     }
 
@@ -52,19 +47,13 @@ describe('Unit Testing - AesirX - Content Theme Service', () => {
     const contentThemeService = new AesirxContentThemeApiService();
 
     const data = ContentThemeMockData.mockContenThemeItemToCreate();
-    console.log(data);
-    const result = await contentThemeService.createContentTheme(data);
-    console.log(result);
-
-    return;
-    expect(result).toBeTruthy();
+    await contentThemeService.createContentTheme(data);
   });
 
   it('Unit Test API - Update Content Theme', async () => {
     const contentThemeService = new AesirxContentThemeApiService();
     const contentThemes = await contentThemeService.getContentThemes(1, 2, false);
     if (!contentThemes || !contentThemes.list.items) {
-      console.log('No Content Theme to do unit test - Update Content');
       return false;
     }
 
@@ -81,10 +70,8 @@ describe('Unit Testing - AesirX - Content Theme Service', () => {
     const contentThemeService = new AesirxContentThemeApiService();
     const contentThemes = await contentThemeService.getContentThemes(1, 2, false);
     if (!contentThemes || !contentThemes.list.items) {
-      console.log('No content to do unit test - Update content');
       return false;
     }
-    // console.log(content.items);
     const dataToFetch = contentThemes.list.items[0];
     const idToFetch = dataToFetch.getId();
     const mockContentIdToAssert = idToFetch;
@@ -104,7 +91,6 @@ describe('Unit Testing - AesirX - Content Theme Service', () => {
     const contentThemeService = new AesirxContentThemeApiService();
     const contentThemes = await contentThemeService.getContentThemes(1, 2, false);
     if (!contentThemes || !contentThemes.list.items) {
-      console.log('No content to do unit test - Update content');
       return false;
     }
 

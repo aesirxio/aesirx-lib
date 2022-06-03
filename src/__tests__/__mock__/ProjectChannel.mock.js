@@ -8,7 +8,7 @@ import {
   ESI_PROJECT_CHANNEL_FIELD_KEY,
 } from '../../Constant/ProjectChannelConstant';
 import faker from 'faker';
-import Utils from '../../Utils/Utils';
+
 class ProjectChannelMockData {
   static mockProjectChannelItem() {
     const mockData = {
@@ -34,7 +34,7 @@ class ProjectChannelMockData {
       [ESI_PROJECT_CHANNEL_FIELD_KEY.HANDLE]: faker.lorem.sentence(50),
     };
   }
-  static mockProjectChannelItemToUpdate(projectID) {
+  static mockProjectChannelItemToUpdate() {
     return {
       [ESI_PROJECT_CHANNEL_FIELD_KEY.TITLE]: faker.lorem.words(5),
       [ESI_PROJECT_CHANNEL_FIELD_KEY.CHANNEL]: [20],
