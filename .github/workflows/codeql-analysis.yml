@@ -34,7 +34,6 @@ jobs:
         languages: ${{ matrix.language }}
 
     - name: Lint
-      uses: actions/checkout@v2
       run: npm run lint:check
 
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
