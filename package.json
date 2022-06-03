@@ -8,12 +8,12 @@
   "module": "dist/index.modern.js",
   "source": "src/index.js",
   "dependencies": {
-    "query-string": "^7.1.1",
     "axios": "^0.21.0",
     "axios-auth-refresh": "^3.0.0",
     "crypto-js": "^4.1.1",
     "css-minimizer-webpack-plugin": "^4.0.0",
-    "qs": "^6.10.1"
+    "qs": "^6.10.1",
+    "query-string": "^7.1.1"
   },
   "scripts": {
     "lint": "NODE_ENV=production BABEL_ENV=production eslint --fix \"src/**/\"",
@@ -107,6 +107,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.1.2",
     "@testing-library/user-event": "^12.2.2",
@@ -117,12 +118,12 @@
     "babel-plugin-named-asset-import": "^0.3.7",
     "babel-plugin-relay": "^10.1.2",
     "babel-preset-react-app": "^10.0.0",
-    "@babel/plugin-proposal-class-properties": "^7.14.5",
-    "microbundle": "^0.15.0",
+    "eslint": "^7.32.0",
     "jest": "26.6.0",
     "jest-circus": "26.6.0",
     "jest-resolve": "26.6.0",
-    "jest-watch-typeahead": "0.6.1"
+    "jest-watch-typeahead": "0.6.1",
+    "microbundle": "^0.15.0"
   },
   "files": [
     "dist"
