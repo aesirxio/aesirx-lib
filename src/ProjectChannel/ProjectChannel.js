@@ -1,7 +1,7 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
 import {
   ProjectChannelItemModel,
@@ -283,7 +283,7 @@ class AesirxProjectChannelApiService extends Component {
 
   async getProjectChannelsByProjectId(projectId, returnAsJSON = true) {
     const data = await this.route.getProjectChannelsByProjectIdRequest(projectId);
-    
+
     let results = null;
     if (data) {
       results = new ProjectChannelByProjectIdModel(data);

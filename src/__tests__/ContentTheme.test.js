@@ -1,7 +1,7 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
 import { CONTENT_THEME_FIELD_KEY } from '../Constant/ContentThemeConstant';
 import AesirxContentThemeApiService from '../ContentTheme/ContentTheme';
@@ -43,14 +43,13 @@ describe('Unit Testing - AesirX - Content Theme Service', () => {
 
     let receivedContentThemeID = 0;
     if (data) {
-        receivedContentThemeID = data.id;
+      receivedContentThemeID = data.id;
     }
     expect(receivedContentThemeID).toEqual(mockContentThemeIdToAssert);
   });
 
   it('Unit Test API - Create A Content Theme', async () => {
     const contentThemeService = new AesirxContentThemeApiService();
-
 
     const data = ContentThemeMockData.mockContenThemeItemToCreate();
     console.log(data);
@@ -68,7 +67,6 @@ describe('Unit Testing - AesirX - Content Theme Service', () => {
       console.log('No Content Theme to do unit test - Update Content');
       return false;
     }
-
 
     const contentThemeId = contentThemes.list.items[0].getId();
 
@@ -118,7 +116,7 @@ describe('Unit Testing - AesirX - Content Theme Service', () => {
 
     let receivedContentThemeID = 0;
     if (data) {
-        receivedContentThemeID = parseInt(data.design_id);
+      receivedContentThemeID = parseInt(data.design_id);
     }
 
     expect(receivedContentThemeID).toEqual(mockContentThemeIdToAssert);

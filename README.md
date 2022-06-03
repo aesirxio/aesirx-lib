@@ -9,3 +9,5 @@ Find out more in [https://dma.aesirx.io/](https://dma.aesirx.io)
 ## This repository
 
 This repository enables access and contains the main classes to the AesirX data services.
+
+You might be looking for the DMA application, in [https://github.com/aesirxio/dma-app](https://github.com/aesirxio/dma-app).

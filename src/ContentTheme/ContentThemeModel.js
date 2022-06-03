@@ -1,7 +1,7 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
 import {
   ESI_CONTENT_THEME_FIELD_KEY,
@@ -53,15 +53,18 @@ class ContentThemeItemModel extends BaseItemModel {
 
   static __transformItemToApiOfCreation = (data) => {
     return {
-      [ESI_CONTENT_THEME_API_RESPONSE_FIELD_KEY.DESIGN_ID]: data[ESI_CONTENT_THEME_FIELD_KEY.DESIGN_ID] ?? '',
-      [ESI_CONTENT_THEME_API_RESPONSE_FIELD_KEY.IMAGE]: data[ESI_CONTENT_THEME_FIELD_KEY.IMAGE] ?? '',
+      [ESI_CONTENT_THEME_API_RESPONSE_FIELD_KEY.DESIGN_ID]:
+        data[ESI_CONTENT_THEME_FIELD_KEY.DESIGN_ID] ?? '',
+      [ESI_CONTENT_THEME_API_RESPONSE_FIELD_KEY.IMAGE]:
+        data[ESI_CONTENT_THEME_FIELD_KEY.IMAGE] ?? '',
     };
   };
 
   static __transformItemToApiOfUpdation = (data) => {
     return {
       [ESI_CONTENT_THEME_API_RESPONSE_FIELD_KEY.ID]: data[ESI_CONTENT_THEME_FIELD_KEY.ID],
-      [ESI_CONTENT_THEME_API_RESPONSE_FIELD_KEY.DESIGN_ID]: data[ESI_CONTENT_THEME_FIELD_KEY.DESIGN_ID],
+      [ESI_CONTENT_THEME_API_RESPONSE_FIELD_KEY.DESIGN_ID]:
+        data[ESI_CONTENT_THEME_FIELD_KEY.DESIGN_ID],
       [ESI_CONTENT_THEME_API_RESPONSE_FIELD_KEY.IMAGE]: data[ESI_CONTENT_THEME_FIELD_KEY.IMAGE],
     };
   };

@@ -1,6 +1,6 @@
 {
   "name": "aesirx-dma-lib",
-  "version": "1.1.0",
+  "version": "1.1.5",
   "license": "GPL-3.0-only",
   "author": "AesirX",
   "repository": "https://github.com/aesirxio/dma-lib",
@@ -12,11 +12,12 @@
     "axios": "^0.21.0",
     "axios-auth-refresh": "^3.0.0",
     "crypto-js": "^4.1.1",
+    "css-minimizer-webpack-plugin": "^4.0.0",
     "qs": "^6.10.1"
   },
   "scripts": {
-    "start": "microbundle watch --no-compress",
-    "build": "NODE_ENV=production microbundle --compress",
+    "start": "NODE_ENV=production BABEL_ENV=production microbundle watch --no-compress",
+    "build": "NODE_ENV=production BABEL_ENV=production microbundle --compress",
     "test": "node scripts/test.js",
     "docgen": "node scripts/docgen.js"
   },
@@ -111,7 +112,6 @@
     "@typescript-eslint/parser": "^4.5.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.0",
-    "babel-loader": "8.1.0",
     "babel-plugin-named-asset-import": "^0.3.7",
     "babel-plugin-relay": "^10.1.2",
     "babel-preset-react-app": "^10.0.0",

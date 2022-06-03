@@ -1,20 +1,20 @@
 /*
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
-*/
+ */
 
 import AesirxProjectChannelApiService from '../ProjectChannel/ProjectChannel';
 import ProjectChannelMockData from './__mock__/ProjectChannel.mock';
-import {requestANewAccessToken} from '../gateway/Instance';
-import {strict as assert} from 'assert';
+import { requestANewAccessToken } from '../gateway/Instance';
+import { strict as assert } from 'assert';
 
 describe('Unit Testing - AesirX - Project Channel TwitterService', () => {
   beforeAll(async () => {
     await requestANewAccessToken();
   });
 
-  const channelType = 'twitter'
-  const projectId = ProjectChannelMockData.mockProjectId()
+  const channelType = 'twitter';
+  const projectId = ProjectChannelMockData.mockProjectId();
 
   it('Unit Test API - Get login URL', async () => {
     const service = new AesirxProjectChannelApiService();
@@ -22,7 +22,10 @@ describe('Unit Testing - AesirX - Project Channel TwitterService', () => {
 
     console.log('---Get Login URL---');
 
-    assert.equal(true, response.result.loginUrl.includes('https://api.twitter.com/oauth/authorize'));
+    assert.equal(
+      true,
+      response.result.loginUrl.includes('https://api.twitter.com/oauth/authorize')
+    );
     expect(response).toBeTruthy();
   });
 
