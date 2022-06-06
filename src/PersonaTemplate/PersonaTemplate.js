@@ -6,15 +6,12 @@
 import { PersonaTemplateItemModel, PersonaTemplateModel } from './PersonaTemplateModel';
 import PersonaTemplateRoute from './PersonaTemplateRoute';
 import { Component } from 'react';
-import { PropTypes } from 'prop-types';
 
 /**
  * API Service - Persona Template
  */
 class AesirxPersonaTemplateApiService extends Component {
   route = null;
-
-  static propTypes = { mode: PropTypes.string };
 
   constructor(props) {
     super(props);
@@ -51,6 +48,7 @@ class AesirxPersonaTemplateApiService extends Component {
         pagination: pagination,
       };
     } catch (error) {
+      console.log('API - Get Persona: ' + error);
       return null;
     }
   }
@@ -78,6 +76,7 @@ class AesirxPersonaTemplateApiService extends Component {
 
       return item;
     } catch (error) {
+      console.log(error);
       return error;
     }
   }

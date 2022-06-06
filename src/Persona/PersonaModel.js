@@ -9,8 +9,8 @@ import BaseModel from '../Abstract/BaseModel';
 
 class PersonaModel extends BaseModel {
   constructor(entities) {
-    super(entities);
     if (entities) {
+      super(entities);
       this.unTransformedItems = entities._embedded.item;
       this.items = entities._embedded.item.map((element) => {
         return new PersonaItemModel(element);
@@ -23,12 +23,15 @@ class PersonaModel extends BaseModel {
 
 class PersonaFilterModel extends BaseModel {
   constructor(entities) {
-    super(entities);
     if (entities) {
+      console.log('PersonaFilterModel - debug');
+      super(entities);
       this.unTransformedItems = entities.result.data;
       this.items = entities.result.data.map((element) => {
         return new PersonaItemModel(element);
       });
+
+      console.log(this.items);
 
       this.items.pagination = this.getPagination();
     }
@@ -78,8 +81,12 @@ class PersonaItemModel extends BaseItemModel {
   // bio = '';
 
   constructor(entity) {
-    super(entity);
     if (entity) {
+      super(entity);
+
+      console.log(entity);
+      console.log('entity personal 22222');
+
       this.name = entity[PERSONA_RESPONSE_FIELD_KEY.NAME] ?? '';
       this.avatar = entity[PERSONA_RESPONSE_FIELD_KEY.AVATAR] ?? '';
       this.avatar_2 = entity[PERSONA_RESPONSE_FIELD_KEY.AVATAR_2] ?? '';
@@ -95,8 +102,28 @@ class PersonaItemModel extends BaseItemModel {
       this.behaviors_type = entity[PERSONA_RESPONSE_FIELD_KEY.BEHAVIORS_TYPE] ?? '';
       this.behaviors_select = entity[PERSONA_RESPONSE_FIELD_KEY.BEHAVIORS_SELECT] ?? '';
       this.location_all_contries = entity[PERSONA_RESPONSE_FIELD_KEY.ALL_COUNTRIES] ?? '';
+
+      // this.dgname = entity[PERSONA_RESPONSE_FIELD_KEY.DG_NAME] ?? '';
+      // this.age = entity[PERSONA_RESPONSE_FIELD_KEY.AGE] ?? '';
+      // this.tools = entity[PERSONA_RESPONSE_FIELD_KEY.TOOLS] ?? '';
+      // this.jobTitle = entity[PERSONA_RESPONSE_FIELD_KEY.JOB_TITLE] ?? '';
+      // this.website = entity[PERSONA_RESPONSE_FIELD_KEY.WEBSITE] ?? '';
+      // this.sector = entity[PERSONA_RESPONSE_FIELD_KEY.SECTOR] ?? '';
+      // this.vendorResearch = entity[PERSONA_RESPONSE_FIELD_KEY.VENDOR_RESEARCH] ?? '';
+      // this.interest = entity[PERSONA_RESPONSE_FIELD_KEY.INTEREST] ?? '';
+      // this.goals = entity[PERSONA_RESPONSE_FIELD_KEY.GOALS] ?? '';
+      // this.maritalStatus = entity[PERSONA_RESPONSE_FIELD_KEY.MARITAL_STATUS] ?? '';
+      // this.challenges = entity[PERSONA_RESPONSE_FIELD_KEY.CHALLENGES] ?? '';
+      // this.paintPoint = entity[PERSONA_RESPONSE_FIELD_KEY.PAINT_POINT] ?? '';
+      // this.bio = entity[PERSONA_RESPONSE_FIELD_KEY.BIO] ?? '';
     }
   }
+
+  extractCustomFieldValues = () => {
+    const customFieldValues = this.getCustomfieldValues();
+    if (customFieldValues) {
+    }
+  };
 
   toObject = () => {
     return {
@@ -175,6 +202,7 @@ class PersonaItemModel extends BaseItemModel {
   };
 
   static __transformItemToApiOfCreation = (data) => {
+    console.log('data1231312312313123123', data);
     return {
       [PERSONA_RESPONSE_FIELD_KEY.NAME]: data[PERSONA_FIELD_KEY.NAME] ?? '',
       [PERSONA_RESPONSE_FIELD_KEY.AVATAR]: data[PERSONA_FIELD_KEY.AVATAR] ?? '',

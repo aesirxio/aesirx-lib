@@ -12,8 +12,8 @@ import BaseModel from '../Abstract/BaseModel';
 
 class ContentThemeModel extends BaseModel {
   constructor(entities) {
-    super(entities);
     if (entities) {
+      super(entities);
       this.unTransformedItems = entities._embedded.item;
       this.items = entities._embedded.item.map((element) => {
         return new ContentThemeItemModel(element);
@@ -29,12 +29,18 @@ class ContentThemeItemModel extends BaseItemModel {
   image = '';
 
   constructor(entity) {
-    super(entity);
     if (entity) {
+      super(entity);
       this.designId = entity[ESI_CONTENT_THEME_API_RESPONSE_FIELD_KEY.DESIGN_ID] ?? '';
       this.image = entity[ESI_CONTENT_THEME_API_RESPONSE_FIELD_KEY.IMAGE] ?? '';
     }
   }
+
+  extractCustomFieldValues = () => {
+    const customFieldValues = this.getCustomfieldValues();
+    if (customFieldValues) {
+    }
+  };
 
   toJSON = () => {
     return {

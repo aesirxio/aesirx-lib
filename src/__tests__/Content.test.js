@@ -3,21 +3,28 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
+import { CONTENT_FIELD_KEY } from '../Constant/ContentConstant';
 import AesirxContentApiService from '../Content/Content';
+import { ContentItemModel } from '../Content/ContentModel';
+import { requestANewAccessToken } from '../gateway/Instance';
 import ContentMockData from './__mock__/Content.mock';
 import AesirxCampaignApiService from '../Campaign/Campaign';
 import AesirxPersonaApiService from '../Persona/Persona';
+import AesirxProjectChannelApiService from '../ProjectChannel/ProjectChannel';
 import AesirxContentThemeApiService from '../ContentTheme/ContentTheme';
 import { requestANewLaravelCustomServiceAccessToken } from '../gateway/InstanceServiceApi';
 
 describe('Unit Testing - AesirX - Content Service', () => {
   beforeAll(async () => {
+    // await requestANewAccessToken();
     await requestANewLaravelCustomServiceAccessToken();
   });
 
   it('Unit Test API - Read List Contents', async () => {
     const contentService = new AesirxContentApiService();
     const data = await contentService.getContents(1, 2, false);
+    console.log('Debugging - Unit Test API - Read List Contents');
+    console.log(data);
     const mockDataToAssert = 2;
     let receivedData = 0;
     if (data) {
@@ -30,13 +37,17 @@ describe('Unit Testing - AesirX - Content Service', () => {
     const contentService = new AesirxContentApiService();
     const content = await contentService.getContents(1, 2, false);
     if (!content || !content.items) {
+      console.log('No content to do unit test - Update content');
       return false;
     }
+    // console.log(content.items);
     const dataToFetch = content.items[0];
     const idToFetch = dataToFetch.getId();
     const mockContentIdToAssert = idToFetch;
 
     const data = await contentService.getContentItem(idToFetch);
+    // console.log('Debugging - Content Item');
+    // console.log(data);
     let receivedContentID = 0;
     if (data) {
       receivedContentID = data.id;
@@ -57,10 +68,12 @@ describe('Unit Testing - AesirX - Content Service', () => {
     const contentThemes = await contentThemeService.getContentThemes(1, 2, false);
 
     if (campaigns && campaigns.list.items == 0) {
+      console.log('No campaign');
       return false;
     }
 
     if (personas && personas.list.items == 0) {
+      console.log('No Persona');
       return false;
     }
 
@@ -90,13 +103,17 @@ describe('Unit Testing - AesirX - Content Service', () => {
     const contentService = new AesirxContentApiService();
     const content = await contentService.getContents(1, 2, false);
     if (!content || !content.items) {
+      console.log('No Content to do unit test - Update Content');
       return false;
     }
+    // console.log("Update Content Test");
+    // console.log(content.items);
 
     const CampaignService = new AesirxCampaignApiService();
     const campaigns = await CampaignService.getCampaigns(1, 2, false);
 
     if (campaigns && campaigns.items == 0) {
+      console.log('No campaign');
       return false;
     }
 
@@ -113,12 +130,16 @@ describe('Unit Testing - AesirX - Content Service', () => {
     const contentService = new AesirxContentApiService();
     const content = await contentService.getContents(1, 2, false);
     if (!content || !content.items) {
+      console.log('No content to do unit test - Update content');
       return false;
     }
+    // console.log(content.items);
     const dataToFetch = content.items[0];
     const idToFetch = dataToFetch.getId();
     const mockContentIdToAssert = idToFetch;
     const data = await contentService.getContentItem(idToFetch);
+    // console.log('Debugging - Content Item');
+    // console.log(data);
     let receivedContentID = 0;
     if (data) {
       receivedContentID = data.id;
@@ -134,14 +155,21 @@ describe('Unit Testing - AesirX - Content Service', () => {
     const contents = contentData.list;
 
     if (!contents || !contents.items[0]) {
+      console.log('No content to do unit test - filter content');
       return false;
     }
 
     const dataToFetch = contents.items[0];
+    console.log('dataToFetch.title');
+    console.log(dataToFetch.headline);
     const dataFilter = {
       keyword: dataToFetch.headline,
     };
+    console.log('dataFilter');
+    console.log(dataFilter);
     const data = await contentService.searchContents(dataFilter, 1, 2, false);
+    console.log('Debugging - Unit Test API - filter Content');
+    console.log(data);
     const mockDataToAssert = 1;
     let receivedData = 0;
     if (data) {
@@ -154,8 +182,11 @@ describe('Unit Testing - AesirX - Content Service', () => {
     const contentService = new AesirxContentApiService();
     const campaignIds = [366];
     const content = await contentService.getContentsByCampaignIDs(campaignIds, 10, false);
+    // console.log('content Contents By Campaign');
+    // console.log(content);
 
     if (!content || !content.items) {
+      console.log('No content to do unit test - Update content');
       return false;
     }
 
@@ -235,6 +266,8 @@ describe('Unit Testing - AesirX - Content Service', () => {
 
     const memberId = 30;
     const response = await service.getScheduleChannel(memberId);
+
+    console.log(response.data[1]);
 
     expect(response).toBeTruthy();
   });

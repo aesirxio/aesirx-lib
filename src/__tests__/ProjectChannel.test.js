@@ -4,6 +4,7 @@
  */
 
 import AesirxProjectChannelApiService from '../ProjectChannel/ProjectChannel';
+import { ProjectChannelItemModel } from '../ProjectChannel/ProjectChannelModel';
 import { requestANewAccessToken } from '../gateway/Instance';
 import ProjectChannelMockData from './__mock__/ProjectChannel.mock';
 //import { database } from 'faker';
@@ -28,14 +29,16 @@ describe('Unit Testing - AesirX - Project Service', () => {
     const projectChannelService = new AesirxProjectChannelApiService();
     const projectChannels = await projectChannelService.getProjectChannels(1, 2, false);
     if (!projectChannels || !projectChannels.items) {
+      console.log('No projects to do unit test - Update PRoject Channel');
       return false;
     }
-
+    // console.log(projects.items);
     const dataToFetch = projectChannels.items[0];
     const idToFetch = dataToFetch.getId();
     const mockIdToAssert = idToFetch;
     const data = await projectChannelService.getProjectChannelItem(idToFetch);
-
+    // console.log('Debugging - Project Item');
+    // console.log(data);
     let receivedProjectChannelID = 0;
     if (data) {
       receivedProjectChannelID = data.id;
@@ -46,9 +49,11 @@ describe('Unit Testing - AesirX - Project Service', () => {
   it('Unit Test API - Create A Project Channel', async () => {
     const service = new AesirxProjectChannelApiService();
     const data = ProjectChannelMockData.mockProjectChannelItemToCreate();
-
+    console.log('Create: data');
+    console.log(data);
     const result = await service.createProjectChannel(data);
-
+    console.log('Create: result');
+    console.log(result);
     expect(result).toBeTruthy();
   });
 
@@ -56,9 +61,11 @@ describe('Unit Testing - AesirX - Project Service', () => {
     const projectChannelService = new AesirxProjectChannelApiService();
     const projectChannels = await projectChannelService.getProjectChannels(1, 2, false);
     if (!projectChannels || !projectChannels.items) {
+      console.log('No projects to do unit test - Update PRoject Channel');
       return false;
     }
-
+    // console.log("Update Project Test");
+    // console.log(projects.items);
     let dataToSubmit = projectChannels.items[0];
     dataToSubmit = ProjectChannelMockData.mockProjectChannelItemToUpdate(dataToSubmit.getId());
     const result = await projectChannelService.updateProjectChannel(dataToSubmit);
@@ -69,12 +76,14 @@ describe('Unit Testing - AesirX - Project Service', () => {
     const projectChannelService = new AesirxProjectChannelApiService();
     const projectChannels = await projectChannelService.getProjectChannels(1, 2, false);
     if (!projectChannels || !projectChannels.items) {
+      console.log('No projects to do unit test - Update Project Channel');
       return false;
     }
-
+    // console.log('Delete A Project Test');
+    // console.log(projects.items);
     const dataToDelete = projectChannels.items[0];
     const idToDelete = dataToDelete.getId();
-
+    console.log(idToDelete);
     const result = await projectChannelService.deleteProjectChannel(idToDelete);
     expect(result).toBeTruthy();
   });
@@ -91,6 +100,9 @@ describe('Unit Testing - AesirX - Project Service', () => {
     const fakeId = 989;
     const response = await service.getLoginUrl(fakeId, 'facebook');
 
+    console.log('---Get FB Login URL---');
+    console.log(response.result.loginUrl);
+
     expect(response).toBeTruthy();
   });
 
@@ -98,6 +110,9 @@ describe('Unit Testing - AesirX - Project Service', () => {
     const service = new AesirxProjectChannelApiService();
     const fakeId = 989;
     const response = await service.getListFanpage(fakeId);
+
+    console.log('---Get list FB Fanpage---');
+    console.log(response.result.pages);
 
     expect(response).toBeTruthy();
   });
@@ -108,6 +123,9 @@ describe('Unit Testing - AesirX - Project Service', () => {
     const fakeId = 989;
     const fakePageId = '104179368334637';
     const response = await service.connectFanpage(fakeId, fakePageId);
+
+    console.log('---Connect FB Fanpage---');
+    console.log(response.result);
 
     expect(response).toBeTruthy();
   });
@@ -122,6 +140,9 @@ describe('Unit Testing - AesirX - Project Service', () => {
     const fakePostContent = 'Posted by ReactLib at ' + timestamp;
     const response = await service.postToFanpage(fakeId, fakePostContent);
 
+    console.log('--- Post content to Fanpage FB ---');
+    console.log(response.result);
+
     expect(response.result).toBeTruthy();
   });
 
@@ -129,6 +150,9 @@ describe('Unit Testing - AesirX - Project Service', () => {
     const service = new AesirxProjectChannelApiService();
     const fakeId = 989;
     const response = await service.checkConnectionStatusFacebook(fakeId);
+
+    console.log('---Simulate get list FB fanpage interval---');
+    console.log(response.result.pages);
 
     expect(response).toBeTruthy();
   });

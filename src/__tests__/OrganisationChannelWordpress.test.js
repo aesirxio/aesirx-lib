@@ -4,7 +4,9 @@
  */
 
 import AesirxOrganisationChannelApiService from '../OrganisationChannel/OrganisationChannel';
+import OrganisationChannelMockData from './__mock__/OrganisationChannel.mock';
 import { requestANewAccessToken } from '../gateway/Instance';
+import { strict as assert } from 'assert';
 
 describe('Unit Testing - AesirX - Project Service', () => {
   beforeAll(async () => {
@@ -32,6 +34,8 @@ describe('Unit Testing - AesirX - Project Service', () => {
       channelType: 'wordpress',
       content: '{"headline":"hung-test","content":"hung-test-content"}',
     };
-    await service.doPostContentToCMS(dataPost);
+    const response = await service.doPostContentToCMS(dataPost);
+
+    // expect(response).toBeTruthy();
   });
 });

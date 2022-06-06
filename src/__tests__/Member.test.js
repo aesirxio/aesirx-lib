@@ -81,14 +81,18 @@ describe('Unit Testing - AesirX - Member Service', () => {
   it('Unit Test API - New Username to check username', async () => {
     const memberService = new AesirxMemberApiService();
     const data = MemberMockData.mockCheckUsername();
+    console.log(data);
     const result = await memberService.checkUsername(data);
+    console.log(result);
     expect(result).toBeTruthy();
   });
 
   it('Unit Test API - New Email to check email', async () => {
     const memberService = new AesirxMemberApiService();
     const data = MemberMockData.mockCheckEmail();
+    console.log(data);
     const result = await memberService.checkEmail(data);
+    console.log(result);
     expect(result).toBeTruthy();
   });
 });

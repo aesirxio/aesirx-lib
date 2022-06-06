@@ -11,8 +11,6 @@ import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
 import Storage from '../Utils/Storage';
 import AesirxAuthenticationApiService from '../Authentication/Authentication';
 import BaseRoute from '../Abstract/BaseRoute';
-import FormData from 'form-data';
-
 class AesirxNewsApiService extends Component {
   route = null;
   constructor(props) {
@@ -74,6 +72,7 @@ class AesirxNewsApiService extends Component {
         list: results,
       };
     } catch (error) {
+      console.log('API - Get News: ' + error);
       return null;
     }
   }

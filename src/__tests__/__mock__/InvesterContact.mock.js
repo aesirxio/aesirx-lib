@@ -3,8 +3,12 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { ESI_INVESTER_CONTACT_FIELD_KEY } from '../../Constant/InvesterContactConstant';
-import faker from 'faker';
+import {
+  ESI_INVESTER_CONTACT_API_RESPONSE_FIELD_KEY,
+  ESI_INVESTER_CONTACT_FIELD_KEY,
+} from '../../Constant/InvesterContactConstant';
+import faker, { fake } from 'faker';
+import Utils from '../../Utils/Utils';
 
 class InvesterContactMockData {
   static mockInvesterContactItemToCreate() {

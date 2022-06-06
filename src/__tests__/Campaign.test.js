@@ -3,7 +3,9 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
+import { CAMPAIGN_API_RESPONSE_FIELD_KEY, CAMPAIGN_FIELD_KEY } from '../Constant/CampaignConstant';
 import AesirxCampaignApiService from '../Campaign/Campaign';
+import { CampaignItemModel } from '../Campaign/CampaignModel';
 import { requestANewAccessToken } from '../gateway/Instance';
 import CampaignMockData from './__mock__/Campaign.mock';
 import AesirxProjectApiService from '../Project/Project';
@@ -16,6 +18,8 @@ describe('Unit Testing - AesirX - Campaign Service', () => {
     const CampaignService = new AesirxCampaignApiService();
     const data = await CampaignService.getCampaigns(1, 2, false);
 
+    console.log('Debugging - Unit Test API - Read List Campaign');
+    console.log(data);
     const mockDataToAssert = data.list.totalItems();
     let receivedData = 0;
 
@@ -29,6 +33,7 @@ describe('Unit Testing - AesirX - Campaign Service', () => {
     const CampaignService = new AesirxCampaignApiService();
     const campaigns = await CampaignService.getCampaigns(1, 2, false);
     if (!campaigns || !campaigns.items) {
+      console.log('No campaign to do unit test');
       return false;
     }
 
@@ -36,6 +41,8 @@ describe('Unit Testing - AesirX - Campaign Service', () => {
     const idToFetch = dataToFetch.getId();
     const mockProjectIdToAssert = idToFetch;
     const data = await CampaignService.getCampaign(idToFetch);
+    // console.log('Debugging - Project Item');
+    // console.log(data);
     let receivedProjectID = 0;
     if (data) {
       receivedProjectID = data.id;
@@ -50,6 +57,7 @@ describe('Unit Testing - AesirX - Campaign Service', () => {
     const projects = await projectService.getProjects(1, 2, false);
 
     if (!projects || !projects.items) {
+      console.log('No project to do unit test - create Campaign');
       return false;
     }
 
@@ -57,6 +65,7 @@ describe('Unit Testing - AesirX - Campaign Service', () => {
     const projectId = dataToFetch.getId();
 
     const data = CampaignMockData.mockCampaignItemToCreate(projectId);
+    console.log('Test - Create Campaign');
 
     const result = await CampaignService.createCampaign(data);
 
@@ -69,6 +78,7 @@ describe('Unit Testing - AesirX - Campaign Service', () => {
     const campaigns = await CampaignService.getCampaigns(1, 2, false);
 
     if (!campaigns || !campaigns.items) {
+      console.log('No campaign to do unit test - Update Campaign');
       return false;
     }
 
@@ -76,6 +86,7 @@ describe('Unit Testing - AesirX - Campaign Service', () => {
     const projects = await projectService.getProjects(1, 2, false);
 
     if (!projects || !projects.items) {
+      console.log('No project to do unit test - create Campaign');
       return false;
     }
 
@@ -93,6 +104,7 @@ describe('Unit Testing - AesirX - Campaign Service', () => {
     const CampaignService = new AesirxCampaignApiService();
     const campaigns = await CampaignService.getCampaigns(1, 2, false);
     if (!campaigns || !campaigns.items) {
+      console.log('No campaigns to do unit test - Update PRoject');
       return false;
     }
 
@@ -109,6 +121,7 @@ describe('Unit Testing - AesirX - Campaign Service', () => {
     const campaigns = campaignData.list;
 
     if (!campaigns || !campaigns.items) {
+      console.log('No campaign to do unit test - filter campaign');
       return false;
     }
 
@@ -118,6 +131,8 @@ describe('Unit Testing - AesirX - Campaign Service', () => {
     };
 
     const data = await campaignService.searchCampaigns(dataFilter, 1, 2, false);
+    console.log('Debugging - Unit Test API - filter Campaign');
+    console.log(data.list);
     const mockDataToAssert = 1;
     let receivedData = 0;
     if (data) {

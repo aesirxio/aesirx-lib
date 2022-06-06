@@ -14,8 +14,8 @@ class ProjectChannelModel extends BaseModel {
   items = [];
   unTransformedItems = [];
   constructor(entities) {
-    super(entities);
     if (entities) {
+      super(entities);
       this.unTransformedItems = entities._embedded.item;
       this.items = entities._embedded.item.map((element) => {
         return new ProjectChannelItemModel(element);
@@ -28,8 +28,8 @@ class ProjectChannelByProjectIdModel extends BaseModel {
   items = [];
   unTransformedItems = [];
   constructor(entities) {
-    super(entities);
     if (entities) {
+      super(entities);
       const projectChannels = entities.result;
       this.unTransformedItems = projectChannels;
       this.items = projectChannels.map((element) => {
@@ -46,14 +46,20 @@ class ProjectChannelItemModel extends BaseItemModel {
   channelName = null;
 
   constructor(entity) {
-    super(entity);
     if (entity) {
+      super(entity);
       this.channel = entity[ESI_PROJECT_CHANNEL_API_RESPONSE_FIELD_KEY.CHANNEL] ?? [0];
       this.project = entity[ESI_PROJECT_CHANNEL_API_RESPONSE_FIELD_KEY.PROJECT] ?? [0];
       this.handle = entity[ESI_PROJECT_CHANNEL_API_RESPONSE_FIELD_KEY.HANDLE] ?? '';
       this.channelName = entity[ESI_PROJECT_CHANNEL_API_RESPONSE_FIELD_KEY.CHANNEL_NAME] ?? '';
     }
   }
+
+  extractCustomFieldValues = () => {
+    const customFieldValues = this.getCustomfieldValues();
+    if (customFieldValues) {
+    }
+  };
 
   getChannel = () => {
     return this.channel;

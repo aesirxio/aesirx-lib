@@ -22,7 +22,8 @@ describe('Unit Testing - AesirX - Billing Plan Service', () => {
   it('Unit Test API - Get billing plan invoice', async () => {
     const service = new AesirxBillingPlanApiService();
     const response = await service.getMemberInvoices();
-    assert.equal(true, Object.prototype.hasOwnProperty.call(response, 'list'));
+    console.log('---Get billing plan invoice =---');
+    assert.equal(true, response.hasOwnProperty('list'));
     expect(response).toBeTruthy();
   });
 
@@ -30,20 +31,25 @@ describe('Unit Testing - AesirX - Billing Plan Service', () => {
     const service = new AesirxBillingPlanApiService();
     const memberId = 6;
     const response = await service.getMemberSubscriptionDetail(memberId);
-    assert.equal(true, Object.prototype.hasOwnProperty.call(response, 'subscription'));
+    console.log(response);
+    console.log('---Get member subscription detail---');
+    assert.equal(true, response.hasOwnProperty('subscription'));
     expect(response).toBeTruthy();
   });
   it('Unit Test API - Get Features Member', async () => {
     const service = new AesirxBillingPlanApiService();
     const memberId = 6;
     const response = await service.getFeaturesMember(memberId);
-    assert.equal(true, Object.prototype.hasOwnProperty.call(response, 'subscription'));
+    console.log('---Get member subscription detail---');
+    assert.equal(true, response.hasOwnProperty('subscription'));
     expect(response).toBeTruthy();
   });
   it('Unit Test API - Get History Upload Quotas', async () => {
     const service = new AesirxBillingPlanApiService();
     const organizationId = 6;
     const response = await service.getHistoryUploadQuotas(organizationId);
+    console.log(response);
+    // assert.equal(true, response.status);
     expect(response).toBeTruthy();
   });
 });

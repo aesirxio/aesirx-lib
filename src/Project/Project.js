@@ -11,15 +11,12 @@ import {
 } from './ProjectModel';
 import ProjectRoute from './ProjectRoute';
 import { Component } from 'react';
-import { PropTypes } from 'prop-types';
 
 /**
  * API Service - Project
  */
 class AesirxProjectApiService extends Component {
   route = null;
-
-  static propTypes = { mode: PropTypes.string };
 
   constructor(props) {
     super(props);
@@ -43,6 +40,8 @@ class AesirxProjectApiService extends Component {
   async getProjects(page = 1, limit = 20, returnAsJSON = true) {
     try {
       const data = await this.route.getProjectsRequest(page, limit);
+      // console.log("Debugging - getProjects");
+      // console.log(data);
       let results = null;
       let pagination = null;
 
@@ -60,6 +59,7 @@ class AesirxProjectApiService extends Component {
         pagination: pagination,
       };
     } catch (error) {
+      console.log('API - Get Project: ' + error);
       return null;
     }
   }
@@ -75,6 +75,8 @@ class AesirxProjectApiService extends Component {
     try {
       if (projectID === 0) return null;
       const data = await this.route.getProjetItemRequest(projectID);
+      // console.log("Debugging - getProjectItem");
+      // console.log(data);
       let item = null;
       if (data) {
         item = new ProjectItemModel(data);
@@ -84,6 +86,7 @@ class AesirxProjectApiService extends Component {
       }
       return item;
     } catch (error) {
+      console.log(error);
       return null;
     }
   }
@@ -105,12 +108,18 @@ class AesirxProjectApiService extends Component {
     try {
       // if (!data) return false;
       const dataToSubmit = ProjectItemModel.__transformItemToApiOfCreation(data);
+      console.log('Data is formatted before sending');
+      console.log(dataToSubmit);
       const result = await this.route.createProjectRequest(dataToSubmit);
+      console.log('After submittion');
       if (result.result.success == true) {
         return result.result.id;
       }
       return null;
     } catch (error) {
+      console.log('Error on creatingn');
+      console.log(error.response);
+      console.log(error.response.data._messages);
       return false;
     }
   }
@@ -140,6 +149,9 @@ class AesirxProjectApiService extends Component {
       }
       return false;
     } catch (error) {
+      console.log('Error on updateProject');
+      console.log(error.response);
+      console.log(error.response.data._messages);
       return error;
     }
   }
@@ -154,6 +166,7 @@ class AesirxProjectApiService extends Component {
       //if (!projectId || projectId === 0) return false;
       return await this.route.deleteProjectRequest(projectId);
     } catch (error) {
+      console.log(error);
       return error;
     }
   }
@@ -177,6 +190,7 @@ class AesirxProjectApiService extends Component {
       }
       return results;
     } catch (error) {
+      console.log(error);
       return error;
     }
   }
@@ -196,6 +210,8 @@ class AesirxProjectApiService extends Component {
   async searchProjects(dataFilter = {}, page = 1, limit = 20, returnAsJSON = true) {
     try {
       const data = await this.route.searchProjectsRequest(dataFilter, page, limit);
+      console.log('Debugging - search Projects');
+      console.log(data);
       let results = null;
       let pagination = null;
 
@@ -213,6 +229,7 @@ class AesirxProjectApiService extends Component {
         pagination: pagination,
       };
     } catch (error) {
+      console.log('API - Get Project: ' + error);
       return null;
     }
   }

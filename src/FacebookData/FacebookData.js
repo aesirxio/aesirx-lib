@@ -8,7 +8,6 @@ import axios from 'axios';
 import { Component } from 'react';
 import { AUTHORIZATION_KEY } from '../Constant/Constant';
 import Storage from '../Utils/Storage';
-import { PropTypes } from 'prop-types';
 
 /**
  * Laravel Service - Facebook Data
@@ -19,8 +18,6 @@ class FacebookData extends Component {
   facebookGraphApiDomain = 'graph.facebook.com';
   facebookGraphApiVersion = 'v11.0';
 
-  static propTypes = { mode: PropTypes.string };
-
   constructor(props) {
     super(props);
     this.route = new FacebookDataRoute();
@@ -30,9 +27,11 @@ class FacebookData extends Component {
   }
 
   async getAdPreviewFromFacebookData(creative, pageId, organisationId) {
+    console.log('creativepageIdorganisationId', creative, pageId, organisationId);
     try {
       return await this.route.getAdPreviewFromFacebookDataRequest(creative, pageId, organisationId);
     } catch (error) {
+      console.log(error);
       return error;
     }
   }
@@ -54,7 +53,7 @@ class FacebookData extends Component {
       });
       return data;
     } catch (error) {
-      // no error throw
+      console.log('There is an error occured while making request to FB Graph API: ' + error);
     }
   }
 
@@ -75,7 +74,7 @@ class FacebookData extends Component {
       });
       return data;
     } catch (error) {
-      // no error throw
+      console.log('There is an error occured while making request to FB Graph API: ' + error);
     }
   }
 
@@ -96,7 +95,7 @@ class FacebookData extends Component {
       });
       return data;
     } catch (error) {
-      // no error throw
+      console.log('There is an error occured while making request to FB Graph API: ' + error);
     }
   }
 
@@ -117,7 +116,7 @@ class FacebookData extends Component {
       });
       return data;
     } catch (error) {
-      // no error throw
+      console.log('There is an error occured while making request to FB Graph API: ' + error);
     }
   }
 }
