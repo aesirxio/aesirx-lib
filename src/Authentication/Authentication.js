@@ -48,9 +48,11 @@ class AesirxAuthenticationApiService {
         data: qs.stringify(reqAuthFormData),
       };
 
-      const { result } = await axios(config);
+      const {
+        data: { result },
+      } = await axios(config);
 
-      if (result) {
+      if (result?.access_token) {
         return await this.setTokenUser(result, false);
       }
       return false;
