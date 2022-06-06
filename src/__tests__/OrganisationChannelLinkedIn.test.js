@@ -20,6 +20,8 @@ describe('Unit Testing - AesirX - Project Channel LinkedInService', () => {
     const service = new AesirxOrganisationChannelApiService();
     const response = await service.getLoginUrl(organisationId, channelType);
 
+    console.log('---Get Login URL---');
+
     assert.equal(
       true,
       response.result.loginUrl.includes('https://www.linkedin.com/oauth/v2/authorization')
@@ -31,6 +33,7 @@ describe('Unit Testing - AesirX - Project Channel LinkedInService', () => {
     const service = new AesirxOrganisationChannelApiService();
 
     const response = await service.getCheckConnectStatusChannel(organisationId, channelType);
+    console.log('---Get connect channel---');
 
     assert.equal('1', response.result.connected);
     expect(response).toBeTruthy();
@@ -38,6 +41,8 @@ describe('Unit Testing - AesirX - Project Channel LinkedInService', () => {
 
   it('Unit Test API - Post content', async () => {
     const service = new AesirxOrganisationChannelApiService();
+
+    console.log('---Post content---');
 
     const currentDate = new Date();
     const timestamp = currentDate.getTime();

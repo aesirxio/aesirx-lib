@@ -12,8 +12,8 @@ import BaseModel from '../Abstract/BaseModel';
 
 class PersonaTemplateModel extends BaseModel {
   constructor(entities) {
-    super(entities);
     if (entities) {
+      super(entities);
       this.unTransformedItems = entities._embedded.item;
       this.items = entities._embedded.item.map((element) => {
         return new PersonaTemplateItemModel(element);
@@ -45,8 +45,9 @@ class PersonaTemplateItemModel extends BaseItemModel {
   thumbnail_url = '';
 
   constructor(entity) {
-    super(entity);
     if (entity) {
+      super(entity);
+
       this.channel = entity[PERSONA_TEMPLATE_RESPONSE_FIELD_KEY.CHANNEL] ?? '';
       this.dgname = entity[PERSONA_TEMPLATE_RESPONSE_FIELD_KEY.DG_NAME] ?? '';
       this.age = entity[PERSONA_TEMPLATE_RESPONSE_FIELD_KEY.AGE] ?? '';
@@ -68,6 +69,12 @@ class PersonaTemplateItemModel extends BaseItemModel {
       this.thumbnail_url = entity[PERSONA_TEMPLATE_RESPONSE_FIELD_KEY.THUMBNAIL_URL] ?? '';
     }
   }
+
+  extractCustomFieldValues = () => {
+    const customFieldValues = this.getCustomfieldValues();
+    if (customFieldValues) {
+    }
+  };
 
   toObject = () => {
     return {

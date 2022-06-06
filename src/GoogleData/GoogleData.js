@@ -5,15 +5,12 @@
 
 import GoogleDataRoute from './GoogleDataRoute';
 import { Component } from 'react';
-import { PropTypes } from 'prop-types';
 
 /**
  * Laravel Service - Google Data
  */
 class GoogleData extends Component {
   route = null;
-
-  static propTypes = { mode: PropTypes.string };
 
   constructor(props) {
     super(props);
@@ -24,9 +21,11 @@ class GoogleData extends Component {
   }
 
   async getSearchLocationFromGoogleData(key) {
+    console.log('key23423324234234google', key);
     try {
       return await this.route.getSearchLocationFromGoogleDataRequest(key);
     } catch (error) {
+      console.log(error);
       return error;
     }
   }
@@ -35,6 +34,7 @@ class GoogleData extends Component {
     try {
       return await this.route.getInterestsFromGoogleDataRequest(key);
     } catch (error) {
+      console.log(error);
       return error;
     }
   }

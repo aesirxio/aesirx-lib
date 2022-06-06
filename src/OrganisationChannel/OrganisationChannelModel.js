@@ -14,8 +14,8 @@ class OrganisationChannelModel extends BaseModel {
   items = [];
   unTransformedItems = [];
   constructor(entities) {
-    super(entities);
     if (entities) {
+      super(entities);
       this.unTransformedItems = entities._embedded.item;
       this.items = entities._embedded.item.map((element) => {
         return new OrganisationChannelItemModel(element);
@@ -28,8 +28,8 @@ class OrganisationChannelByOrganisationIdModel extends BaseModel {
   items = [];
   unTransformedItems = [];
   constructor(entities) {
-    super(entities);
     if (entities) {
+      super(entities);
       const organisationChannels = entities.result;
       this.unTransformedItems = organisationChannels;
       this.items = organisationChannels.map((element) => {
@@ -46,8 +46,8 @@ class OrganisationChannelItemModel extends BaseItemModel {
   channelName = null;
 
   constructor(entity) {
-    super(entity);
     if (entity) {
+      super(entity);
       this.channel = entity[ESI_ORGANISATION_CHANNEL_API_RESPONSE_FIELD_KEY.CHANNEL] ?? [0];
       this.organisation = entity[ESI_ORGANISATION_CHANNEL_API_RESPONSE_FIELD_KEY.ORGANISATION] ?? [
         0,
@@ -56,6 +56,12 @@ class OrganisationChannelItemModel extends BaseItemModel {
       this.channelName = entity[ESI_ORGANISATION_CHANNEL_API_RESPONSE_FIELD_KEY.CHANNEL_NAME] ?? '';
     }
   }
+
+  extractCustomFieldValues = () => {
+    const customFieldValues = this.getCustomfieldValues();
+    if (customFieldValues) {
+    }
+  };
 
   getChannel = () => {
     return this.channel;

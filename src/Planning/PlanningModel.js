@@ -9,8 +9,8 @@ import BaseModel from '../Abstract/BaseModel';
 
 class PlanningModel extends BaseModel {
   constructor(entities) {
-    super(entities);
     if (entities) {
+      super(entities);
       this.unTransformedItems = entities._embedded.item;
       this.items = entities._embedded.item.map((element) => {
         return new PlanningItemModel(element);
@@ -23,12 +23,15 @@ class PlanningModel extends BaseModel {
 
 class PlanningFilterModel extends BaseModel {
   constructor(entities) {
-    super(entities);
     if (entities) {
+      console.log('PlanningFilterModel - debug');
+      super(entities);
       this.unTransformedItems = entities.result.data;
       this.items = entities.result.data.map((element) => {
         return new PlanningItemModel(element);
       });
+
+      console.log(this.items);
 
       this.items.pagination = this.getPagination();
     }
@@ -56,8 +59,9 @@ class PlanningItemModel extends BaseItemModel {
   desc = '';
 
   constructor(entity) {
-    super(entity);
     if (entity) {
+      super(entity);
+
       this.id = entity[PLANNING_FIELD_KEY.ID] ?? this.id;
       this.name = entity[PLANNING_FIELD_KEY.NAME] ?? this.name;
       this.startDate = entity[PLANNING_FIELD_KEY.STARTDATE] ?? this.startDate;

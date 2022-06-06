@@ -5,15 +5,17 @@
 
 import BaseItemModel from '../Abstract/BaseItemModel';
 import BaseModel from '../Abstract/BaseModel';
-import { NEWS_FIELD_KEY } from '../Constant/NewsConstant';
-
+import { NEWS_FIELD_KEY, NEWS_API_RESPONSE_FIELD_KEY } from '../Constant/NewsConstant';
+import Utils from '../Utils/Utils';
 class NewsModel extends BaseModel {
   constructor(entities) {
-    super(entities);
     if (entities) {
+      super(entities);
       this.items = entities._embedded.item.map((element) => {
         return new NewsItemModel(element);
       });
+
+      //   this.items.pagination = this.getPagination();
     }
   }
 }
@@ -26,8 +28,8 @@ class NewsItemModel extends BaseItemModel {
   category = '';
   category_link = '';
   constructor(entity) {
-    super(entity);
     if (entity) {
+      super(entity);
       this.id = entity[NEWS_FIELD_KEY.ID] ?? '';
       this.title = entity[NEWS_FIELD_KEY.TITLE] ?? '';
       this.intro_image = entity[NEWS_FIELD_KEY.INTRO_IMAGE];
@@ -55,11 +57,11 @@ class NewsItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = () => {
+  static __transformItemToApiOfCreation = (data) => {
     return {};
   };
 
-  static __transformItemToApiOfUpdation = () => {
+  static __transformItemToApiOfUpdation = (data) => {
     return {};
   };
 }

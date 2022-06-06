@@ -4,6 +4,7 @@
  */
 
 import AesirxOrganisationChannelApiService from '../OrganisationChannel/OrganisationChannel';
+import OrganisationChannelMockData from './__mock__/OrganisationChannel.mock';
 import { requestANewAccessToken } from '../gateway/Instance';
 import { strict as assert } from 'assert';
 
@@ -13,10 +14,20 @@ describe('Unit Testing - AesirX - FacebookAd Service', () => {
   });
 
   const channelType = 'facebook';
+  const organisationId = OrganisationChannelMockData.mockOrganisationId();
+
+  // it('Unit Test API - Connect FB Channeel', async () => {
+  //   const service = new AesirxOrganisationChannelApiService();
+  //   const result = await service.connectFBAd();
+
+  //   expect(result).toBeTruthy();
+  // });
 
   it('Unit Test API - Get login FB URL', async () => {
     const service = new AesirxOrganisationChannelApiService();
     const response = await service.getLoginUrl(channelType);
+
+    console.log('---Get Facebook Login URL---', response);
 
     assert.equal(
       true,
@@ -28,6 +39,9 @@ describe('Unit Testing - AesirX - FacebookAd Service', () => {
   it('Unit Test API - Get list Facebook fanpages', async () => {
     const service = new AesirxOrganisationChannelApiService();
     const response = await service.getListFanpage(channelType);
+
+    console.log('---Get list Facebook Fanpages---', response);
+    console.log(response.result.pages);
 
     expect(response).toBeTruthy();
   });
