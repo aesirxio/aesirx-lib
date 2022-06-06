@@ -52,7 +52,6 @@ const refreshToken = (failedRequest) => {
 };
 
 const refreshAuthLogic = (failedRequest) => {
-  console.log('refreshWebServiceAuthLogic');
   return refreshToken(failedRequest);
 };
 
@@ -83,7 +82,6 @@ const removePending = (config, f) => {
 
 AesirxWebServiceApiInstance.interceptors.request.use(
   function (config) {
-    // console.log('Current Environment', process.env.NODE_ENV);
     let accessToken = '';
 
     if (process.env.NODE_ENV === 'test') {
@@ -94,15 +92,7 @@ AesirxWebServiceApiInstance.interceptors.request.use(
       }
     } else {
       accessToken = Storage.getItem(AUTHORIZATION_KEY.WEBSERVICE_ACCESS_TOKEN);
-      // const authorizationHeader = Storage.getItem(
-      //   AUTHORIZATION_KEY.WEBSERVICE_AUTHORIZED_TOKEN_HEADER
-      // );
-      // if (authorizationHeader) {
-      //   // Uncomment this if HTTPS runs on the Server
-      //   config.headers.Authorization = authorizationHeader;
-      // }
       if (accessToken) {
-        // config.headers.Authorization = authorizationHeader;
         config.url = config.url
           .concat('&')
           .concat(queryString.stringify({ access_token: accessToken }));
@@ -121,13 +111,10 @@ AesirxWebServiceApiInstance.interceptors.request.use(
 
 AesirxWebServiceApiInstance.interceptors.response.use(
   (response) => {
-    // console.log('AesirxPricingPlanApiInstance.interceptors.response.WIN');
     removePending(response.config);
     return response.data;
   },
   (error) => {
-    console.log('AesirxWebServviceApiInstance.interceptors.response.ERROR');
-    console.log(error);
     removePending(error.config);
     if (!axios.isCancel(error)) {
       return Promise.reject(error);

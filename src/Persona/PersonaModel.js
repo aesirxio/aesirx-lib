@@ -9,8 +9,8 @@ import BaseModel from '../Abstract/BaseModel';
 
 class PersonaModel extends BaseModel {
   constructor(entities) {
+    super(entities);
     if (entities) {
-      super(entities);
       this.unTransformedItems = entities._embedded.item;
       this.items = entities._embedded.item.map((element) => {
         return new PersonaItemModel(element);
@@ -23,15 +23,12 @@ class PersonaModel extends BaseModel {
 
 class PersonaFilterModel extends BaseModel {
   constructor(entities) {
+    super(entities);
     if (entities) {
-      console.log('PersonaFilterModel - debug');
-      super(entities);
       this.unTransformedItems = entities.result.data;
       this.items = entities.result.data.map((element) => {
         return new PersonaItemModel(element);
       });
-
-      console.log(this.items);
 
       this.items.pagination = this.getPagination();
     }
@@ -67,26 +64,9 @@ class PersonaItemModel extends BaseItemModel {
   behaviors_select = '';
   location_all_contries = '';
 
-  // age = 18;
-  // tools = '';
-  // jobTitle = '';
-  // website = '';
-  // sector = '';
-  // vendorResearch = '';
-  // interest = 'interest1';
-  // goals = '';
-  // maritalStatus = 'single';
-  // challenges = '';
-  // paintPoint = '';
-  // bio = '';
-
   constructor(entity) {
+    super(entity);
     if (entity) {
-      super(entity);
-
-      console.log(entity);
-      console.log('entity personal 22222');
-
       this.name = entity[PERSONA_RESPONSE_FIELD_KEY.NAME] ?? '';
       this.avatar = entity[PERSONA_RESPONSE_FIELD_KEY.AVATAR] ?? '';
       this.avatar_2 = entity[PERSONA_RESPONSE_FIELD_KEY.AVATAR_2] ?? '';
@@ -102,28 +82,8 @@ class PersonaItemModel extends BaseItemModel {
       this.behaviors_type = entity[PERSONA_RESPONSE_FIELD_KEY.BEHAVIORS_TYPE] ?? '';
       this.behaviors_select = entity[PERSONA_RESPONSE_FIELD_KEY.BEHAVIORS_SELECT] ?? '';
       this.location_all_contries = entity[PERSONA_RESPONSE_FIELD_KEY.ALL_COUNTRIES] ?? '';
-
-      // this.dgname = entity[PERSONA_RESPONSE_FIELD_KEY.DG_NAME] ?? '';
-      // this.age = entity[PERSONA_RESPONSE_FIELD_KEY.AGE] ?? '';
-      // this.tools = entity[PERSONA_RESPONSE_FIELD_KEY.TOOLS] ?? '';
-      // this.jobTitle = entity[PERSONA_RESPONSE_FIELD_KEY.JOB_TITLE] ?? '';
-      // this.website = entity[PERSONA_RESPONSE_FIELD_KEY.WEBSITE] ?? '';
-      // this.sector = entity[PERSONA_RESPONSE_FIELD_KEY.SECTOR] ?? '';
-      // this.vendorResearch = entity[PERSONA_RESPONSE_FIELD_KEY.VENDOR_RESEARCH] ?? '';
-      // this.interest = entity[PERSONA_RESPONSE_FIELD_KEY.INTEREST] ?? '';
-      // this.goals = entity[PERSONA_RESPONSE_FIELD_KEY.GOALS] ?? '';
-      // this.maritalStatus = entity[PERSONA_RESPONSE_FIELD_KEY.MARITAL_STATUS] ?? '';
-      // this.challenges = entity[PERSONA_RESPONSE_FIELD_KEY.CHALLENGES] ?? '';
-      // this.paintPoint = entity[PERSONA_RESPONSE_FIELD_KEY.PAINT_POINT] ?? '';
-      // this.bio = entity[PERSONA_RESPONSE_FIELD_KEY.BIO] ?? '';
     }
   }
-
-  extractCustomFieldValues = () => {
-    const customFieldValues = this.getCustomfieldValues();
-    if (customFieldValues) {
-    }
-  };
 
   toObject = () => {
     return {
@@ -143,25 +103,6 @@ class PersonaItemModel extends BaseItemModel {
       [PERSONA_FIELD_KEY.BEHAVIORS_TYPE]: this.behaviors_type,
       [PERSONA_FIELD_KEY.BEHAVIORS_SELECT]: this.behaviors_select,
       [PERSONA_FIELD_KEY.ALL_COUNTRIES]: this.location_all_contries,
-
-      // [PERSONA_FIELD_KEY.DG_NAME]: this.dgname,
-      // [PERSONA_FIELD_KEY.CHANNEL]: this.channel,
-      // [PERSONA_FIELD_KEY.AGE]: this.age,
-      // [PERSONA_FIELD_KEY.GENDER]: this.gender,
-      // [PERSONA_FIELD_KEY.LOCATION]: this.location,
-      // [PERSONA_FIELD_KEY.TOOLS]: this.tools,
-      // [PERSONA_FIELD_KEY.JOB_TITLE]: this.jobTitle,
-      // [PERSONA_FIELD_KEY.WEBSITE]: this.website,
-      // [PERSONA_FIELD_KEY.SECTOR]: this.sector,
-      // [PERSONA_FIELD_KEY.VENDOR_RESEARCH]: this.vendorResearch,
-      // [PERSONA_FIELD_KEY.INTEREST]: this.interest,
-      // [PERSONA_FIELD_KEY.GOALS]: this.goals,
-      // [PERSONA_FIELD_KEY.MARITAL_STATUS]: this.maritalStatus,
-      // [PERSONA_FIELD_KEY.CHALLENGES]: this.challenges,
-      // [PERSONA_FIELD_KEY.PAINT_POINT]: this.paintPoint,
-      // [PERSONA_FIELD_KEY.AVATAR]: this.avatar,
-      // [PERSONA_FIELD_KEY.BIO]: this.bio,
-      // [PERSONA_FIELD_KEY.AVATAR_2]: this.avatar_2,
     };
   };
 
@@ -184,25 +125,10 @@ class PersonaItemModel extends BaseItemModel {
       [PERSONA_FIELD_KEY.BEHAVIORS_TYPE]: this.behaviors_type,
       [PERSONA_FIELD_KEY.BEHAVIORS_SELECT]: this.behaviors_select,
       [PERSONA_FIELD_KEY.ALL_COUNTRIES]: this.location_all_contries,
-
-      // [PERSONA_FIELD_KEY.DG_NAME]: this.dgname,
-      // [PERSONA_FIELD_KEY.AGE]: this.age,
-      // [PERSONA_FIELD_KEY.TOOLS]: this.tools,
-      // [PERSONA_FIELD_KEY.JOB_TITLE]: this.jobTitle,
-      // [PERSONA_FIELD_KEY.WEBSITE]: this.website,
-      // [PERSONA_FIELD_KEY.SECTOR]: this.sector,
-      // [PERSONA_FIELD_KEY.VENDOR_RESEARCH]: this.vendorResearch,
-      // [PERSONA_FIELD_KEY.INTEREST]: this.interest,
-      // [PERSONA_FIELD_KEY.GOALS]: this.goals,
-      // [PERSONA_FIELD_KEY.MARITAL_STATUS]: this.maritalStatus,
-      // [PERSONA_FIELD_KEY.CHALLENGES]: this.challenges,
-      // [PERSONA_FIELD_KEY.PAINT_POINT]: this.paintPoint,
-      // [PERSONA_FIELD_KEY.BIO]: this.bio,
     };
   };
 
   static __transformItemToApiOfCreation = (data) => {
-    console.log('data1231312312313123123', data);
     return {
       [PERSONA_RESPONSE_FIELD_KEY.NAME]: data[PERSONA_FIELD_KEY.NAME] ?? '',
       [PERSONA_RESPONSE_FIELD_KEY.AVATAR]: data[PERSONA_FIELD_KEY.AVATAR] ?? '',
@@ -223,19 +149,6 @@ class PersonaItemModel extends BaseItemModel {
       [PERSONA_RESPONSE_FIELD_KEY.BEHAVIORS_TYPE]: data[PERSONA_FIELD_KEY.BEHAVIORS_TYPE] ?? '',
       [PERSONA_RESPONSE_FIELD_KEY.BEHAVIORS_SELECT]: data[PERSONA_FIELD_KEY.BEHAVIORS_SELECT] ?? '',
       [PERSONA_RESPONSE_FIELD_KEY.ALL_COUNTRIES]: data[PERSONA_FIELD_KEY.ALL_COUNTRIES] ?? '',
-
-      // [PERSONA_RESPONSE_FIELD_KEY.AGE]: data[PERSONA_FIELD_KEY.AGE] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.DG_NAME]: data[PERSONA_FIELD_KEY.DG_NAME] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.TOOLS]: data[PERSONA_FIELD_KEY.TOOLS] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.JOB_TITLE]: data[PERSONA_FIELD_KEY.JOB_TITLE] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.WEBSITE]: data[PERSONA_FIELD_KEY.WEBSITE] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.SECTOR]: data[PERSONA_FIELD_KEY.SECTOR] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.VENDOR_RESEARCH]: data[PERSONA_FIELD_KEY.VENDOR_RESEARCH] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.GOALS]: data[PERSONA_FIELD_KEY.GOALS] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.MARITAL_STATUS]: data[PERSONA_FIELD_KEY.MARITAL_STATUS] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.CHALLENGES]: data[PERSONA_FIELD_KEY.CHALLENGES] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.PAINT_POINT]: data[PERSONA_FIELD_KEY.PAINT_POINT] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.BIO]: data[PERSONA_FIELD_KEY.BIO] ?? '',
     };
   };
 
@@ -259,19 +172,6 @@ class PersonaItemModel extends BaseItemModel {
       [PERSONA_RESPONSE_FIELD_KEY.BEHAVIORS_TYPE]: data[PERSONA_FIELD_KEY.BEHAVIORS_TYPE] ?? '',
       [PERSONA_RESPONSE_FIELD_KEY.BEHAVIORS_SELECT]: data[PERSONA_FIELD_KEY.BEHAVIORS_SELECT] ?? '',
       [PERSONA_RESPONSE_FIELD_KEY.ALL_COUNTRIES]: data[PERSONA_FIELD_KEY.ALL_COUNTRIES] ?? '',
-
-      // [PERSONA_RESPONSE_FIELD_KEY.DG_NAME]: data[PERSONA_FIELD_KEY.DG_NAME] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.AGE]: data[PERSONA_FIELD_KEY.AGE] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.TOOLS]: data[PERSONA_FIELD_KEY.TOOLS] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.JOB_TITLE]: data[PERSONA_FIELD_KEY.JOB_TITLE] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.WEBSITE]: data[PERSONA_FIELD_KEY.WEBSITE] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.SECTOR]: data[PERSONA_FIELD_KEY.SECTOR] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.VENDOR_RESEARCH]: data[PERSONA_FIELD_KEY.VENDOR_RESEARCH] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.GOALS]: data[PERSONA_FIELD_KEY.GOALS] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.MARITAL_STATUS]: data[PERSONA_FIELD_KEY.MARITAL_STATUS] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.CHALLENGES]: data[PERSONA_FIELD_KEY.CHALLENGES] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.PAINT_POINT]: data[PERSONA_FIELD_KEY.PAINT_POINT] ?? '',
-      // [PERSONA_RESPONSE_FIELD_KEY.BIO]: data[PERSONA_FIELD_KEY.BIO] ?? '',
     };
   };
 }

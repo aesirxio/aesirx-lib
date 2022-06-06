@@ -52,7 +52,6 @@ class AesirxPlanningApiService extends Component {
         pagination: pagination,
       };
     } catch (error) {
-      console.log('API - Get Plannings: ' + error);
       return null;
     }
   }
@@ -72,7 +71,6 @@ class AesirxPlanningApiService extends Component {
   async searchPlanning(dataFilter = {}, page = 1, limit = 20, returnAsJSON = true) {
     try {
       const data = await this.route.searchPlanningRequest(dataFilter, page, limit);
-      console.log('Debugging - searchPlanning', data);
 
       let results = null;
       let pagination = null;
@@ -91,7 +89,6 @@ class AesirxPlanningApiService extends Component {
         pagination: pagination,
       };
     } catch (error) {
-      console.log('API - searchPlanning: ' + error);
       return null;
     }
   }

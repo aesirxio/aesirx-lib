@@ -27,11 +27,9 @@ class FacebookData extends Component {
   }
 
   async getAdPreviewFromFacebookData(creative, pageId, organisationId) {
-    console.log('creativepageIdorganisationId', creative, pageId, organisationId);
     try {
       return await this.route.getAdPreviewFromFacebookDataRequest(creative, pageId, organisationId);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -53,7 +51,7 @@ class FacebookData extends Component {
       });
       return data;
     } catch (error) {
-      console.log('There is an error occured while making request to FB Graph API: ' + error);
+      // no error throw
     }
   }
 
@@ -74,7 +72,7 @@ class FacebookData extends Component {
       });
       return data;
     } catch (error) {
-      console.log('There is an error occured while making request to FB Graph API: ' + error);
+      // no error throw
     }
   }
 
@@ -95,7 +93,7 @@ class FacebookData extends Component {
       });
       return data;
     } catch (error) {
-      console.log('There is an error occured while making request to FB Graph API: ' + error);
+      // no error throw
     }
   }
 
@@ -116,7 +114,7 @@ class FacebookData extends Component {
       });
       return data;
     } catch (error) {
-      console.log('There is an error occured while making request to FB Graph API: ' + error);
+      // no error throw
     }
   }
 }

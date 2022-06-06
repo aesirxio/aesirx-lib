@@ -4,9 +4,7 @@
  */
 
 import AesirxProjectChannelApiService from '../ProjectChannel/ProjectChannel';
-import { ProjectChannelItemModel } from '../ProjectChannel/ProjectChannelModel';
 import { requestANewAccessToken } from '../gateway/Instance';
-import ProjectChannelMockData from './__mock__/ProjectChannel.mock';
 
 describe('Unit Testing - AesirX - Project Service', () => {
   beforeAll(async () => {
@@ -36,6 +34,6 @@ describe('Unit Testing - AesirX - Project Service', () => {
     };
     const response = await service.doPostContentToCMS(dataPost);
 
-    // expect(response).toBeTruthy();
+    expect(response).toBeTruthy();
   });
 });

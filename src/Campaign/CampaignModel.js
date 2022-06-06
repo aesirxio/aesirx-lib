@@ -9,8 +9,8 @@ import BaseModel from '../Abstract/BaseModel';
 
 class CampaignModel extends BaseModel {
   constructor(entities) {
+    super(entities);
     if (entities) {
-      super(entities);
       this.unTransformedItems = entities._embedded.item;
       this.items = entities._embedded.item.map((element) => {
         return new CampaignItemModel(element);
@@ -23,15 +23,12 @@ class CampaignModel extends BaseModel {
 
 class CampaignFilterModel extends BaseModel {
   constructor(entities) {
+    super(entities);
     if (entities) {
-      console.log('CampaignFilterModel - debug');
-      super(entities);
       this.unTransformedItems = entities.result.data;
       this.items = entities.result.data.map((element) => {
         return new CampaignItemModel(element);
       });
-
-      console.log(this.items);
 
       this.items.pagination = this.getPagination();
     }
@@ -63,9 +60,8 @@ class CampaignItemModel extends BaseItemModel {
   data = '';
 
   constructor(entity) {
+    super(entity);
     if (entity) {
-      super(entity);
-
       this.name = entity[CAMPAIGN_API_RESPONSE_FIELD_KEY.NAME] ?? '';
       this.startDate = entity[CAMPAIGN_API_RESPONSE_FIELD_KEY.START_DATE] ?? '0000-00-00 00:00:00';
       this.endDate = entity[CAMPAIGN_API_RESPONSE_FIELD_KEY.END_DATE] ?? '0000-00-00 00:00:00';
@@ -78,12 +74,6 @@ class CampaignItemModel extends BaseItemModel {
       this.data = entity[CAMPAIGN_API_RESPONSE_FIELD_KEY.DATA] ?? '';
     }
   }
-
-  extractCustomFieldValues = () => {
-    const customFieldValues = this.getCustomfieldValues();
-    if (customFieldValues) {
-    }
-  };
 
   toObject = () => {
     return {

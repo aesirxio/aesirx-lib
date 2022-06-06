@@ -16,7 +16,6 @@ describe('Unit Testing - AesirX - Invester Contact Service', () => {
     const investerContactService = new AesirxInvesterContactApiService();
 
     const data = InvesterContactMockData.mockInvesterContactItemToCreate();
-    console.log('Test - Create persona');
 
     const result = await investerContactService.createInvesterContact(data);
 

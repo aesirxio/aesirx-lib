@@ -72,7 +72,6 @@ class AesirxNewsApiService extends Component {
         list: results,
       };
     } catch (error) {
-      console.log('API - Get News: ' + error);
       return null;
     }
   }
