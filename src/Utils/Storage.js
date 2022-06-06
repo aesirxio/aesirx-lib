@@ -25,6 +25,8 @@ class Storage {
 
   static removeItem(key) {
     key = CryptoJS.MD5(encrypt + key);
+
+    localStorage.removeItem(key);
   }
 }
 
