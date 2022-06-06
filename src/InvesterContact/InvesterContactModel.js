@@ -9,7 +9,7 @@ import {
 } from '../Constant/InvesterContactConstant';
 import BaseItemModel from '../Abstract/BaseItemModel';
 import BaseModel from '../Abstract/BaseModel';
-import { PersonaItemModel } from '../Persona/PersonaModel';
+import PersonaItemModel from '../Persona/PersonaModel';
 
 class InvesterContactModel extends BaseModel {
   constructor(entities) {
