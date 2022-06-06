@@ -48,7 +48,6 @@ class AesirxPersonaTemplateApiService extends Component {
         pagination: pagination,
       };
     } catch (error) {
-      console.log('API - Get Persona: ' + error);
       return null;
     }
   }
@@ -76,7 +75,6 @@ class AesirxPersonaTemplateApiService extends Component {
 
       return item;
     } catch (error) {
-      console.log(error);
       return error;
     }
   }

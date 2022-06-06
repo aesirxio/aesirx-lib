@@ -3,6 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 

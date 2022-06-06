@@ -12,9 +12,8 @@ import BaseModel from '../Abstract/BaseModel';
 
 class BillingInvoiceModel extends BaseModel {
   constructor(entities) {
+    super(entities);
     if (entities) {
-      super(entities);
-      console.log(entities);
       this.unTransformedItems = entities;
       this.items = entities.map((element) => {
         return new BillingInvoiceModelItemModel(element);
@@ -33,9 +32,8 @@ class BillingInvoiceModelItemModel extends BaseItemModel {
   status = '';
 
   constructor(entity) {
+    super(entity);
     if (entity) {
-      super(entity);
-
       this.orderId = entity[ESI_BILLING_INVOICE_API_RESPONSE_FIELD_KEY.ORDER_ID] ?? '';
       this.subscriptionPlanName =
         entity[ESI_BILLING_INVOICE_API_RESPONSE_FIELD_KEY.SUBSCRIPTION_PLAN_NAME] ?? '';
@@ -46,12 +44,6 @@ class BillingInvoiceModelItemModel extends BaseItemModel {
       this.status = entity[ESI_BILLING_INVOICE_API_RESPONSE_FIELD_KEY.STATUS] ?? '';
     }
   }
-
-  extractCustomFieldValues = () => {
-    const customFieldValues = this.getCustomfieldValues();
-    if (customFieldValues) {
-    }
-  };
 
   toObject = () => {
     return {

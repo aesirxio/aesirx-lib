@@ -12,8 +12,8 @@ import BaseModel from '../Abstract/BaseModel';
 
 class ContentModel extends BaseModel {
   constructor(entities) {
+    super(entities);
     if (entities) {
-      super(entities);
       this.unTransformedItems = entities._embedded.item;
       this.items = entities._embedded.item.map((element) => {
         return new ContentItemModel(element);
@@ -26,10 +26,8 @@ class ContentModel extends BaseModel {
 
 class ContentFilterModel extends BaseModel {
   constructor(entities) {
+    super(entities);
     if (entities) {
-      console.log('ContentFilterModel - debug');
-      super(entities);
-
       this.unTransformedItems = entities.result.data;
 
       this.items = entities.result.data.map((element) => {
@@ -69,8 +67,8 @@ class ContentItemModel extends BaseItemModel {
   contentToContentThemes = '';
 
   constructor(entity) {
+    super(entity);
     if (entity) {
-      super(entity);
       this.headline = entity[ESI_CONTENT_API_RESPONSE_FIELD_KEY.HEADLINE] ?? '';
       this.description = entity[ESI_CONTENT_API_RESPONSE_FIELD_KEY.CONTENT_DATA] ?? '';
       this.persona = entity[ESI_CONTENT_API_RESPONSE_FIELD_KEY.PERSONA] ?? 0;
@@ -79,13 +77,6 @@ class ContentItemModel extends BaseItemModel {
       this.publishingType = entity[ESI_CONTENT_API_RESPONSE_FIELD_KEY.PUBLISH_TYPE] ?? '';
     }
   }
-
-  extractCustomFieldValues = () => {
-    const customFieldValues = this.getCustomfieldValues();
-    if (customFieldValues) {
-    }
-  };
-  Data;
 
   getHeadLine = () => {
     return this.headline;
@@ -227,79 +218,10 @@ class ContentItemModel extends BaseItemModel {
   };
 }
 
-class ContentDescriptionModel extends BaseModel {
-  constructor(entities) {
-    if (entities.length) {
-      super(entities);
-      entities = JSON.parse(entities);
-      this.items = entities.map((element) => {
-        return new ContentDescriptionItemModel(element);
-      });
-    }
-  }
-}
-
-class ContentDescriptionItemModel {
-  channelId = 0;
-  description = '';
-
-  constructor(entity) {
-    this.channelId = entity.channel_id ?? null;
-    this.description = entity.description ?? '';
-  }
-}
-
-class ContentToContentThemesModel extends BaseModel {
-  constructor(entities) {
-    if (entities.length) {
-      super(entities);
-      const parsedEntities = JSON.parse(entities);
-      this.items = parsedEntities.map((element) => {
-        return new ContentToContentThemeItemModel(element);
-      });
-    }
-  }
-}
-
-class ContentToContentThemeItemModel {
-  channelId = 0;
-  contentThemeId = 0;
-
-  constructor(entity) {
-    this.channelId = entity.channel_id ?? null;
-    this.contentThemeId = entity.content_theme_id ?? '';
-  }
-}
-
-class ContentAttachmentsModel extends BaseModel {
-  constructor(entities) {
-    if (entities.length) {
-      entities = JSON.parse(entities);
-      super(entities);
-
-      this.items = entities.map((element) => {
-        return new ContentAttachmentsItemModel(element);
-      });
-    }
-  }
-}
-
-class ContentAttachmentsItemModel {
-  channelId = 0;
-  channelName = 0;
-  attachments = '';
-
-  constructor(entity) {
-    this.channelId = entity.channel_id ?? null;
-    this.channelName = entity.channel_name ?? null;
-    this.attachments = entity.attachments ?? '';
-  }
-}
-
 class ContentsByCampaignModel extends BaseModel {
   constructor(entities) {
+    super(entities);
     if (entities) {
-      super(entities);
       this.unTransformedItems = entities.result;
       this.items = entities.result.map((element) => {
         return new ContentItemModel(element);

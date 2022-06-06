@@ -21,11 +21,9 @@ class GoogleData extends Component {
   }
 
   async getSearchLocationFromGoogleData(key) {
-    console.log('key23423324234234google', key);
     try {
       return await this.route.getSearchLocationFromGoogleDataRequest(key);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -34,7 +32,6 @@ class GoogleData extends Component {
     try {
       return await this.route.getInterestsFromGoogleDataRequest(key);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }

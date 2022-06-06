@@ -15,8 +15,8 @@ import BaseMasterDataModel from '../Abstract/BaseMasterDataModel';
 
 class ProjectModel extends BaseModel {
   constructor(entities) {
+    super(entities);
     if (entities) {
-      super(entities);
       this.unTransformedItems = entities._embedded.item;
       this.items = entities._embedded.item.map((element) => {
         return new ProjectItemModel(element);
@@ -29,15 +29,12 @@ class ProjectModel extends BaseModel {
 
 class ProjectFilterModel extends BaseModel {
   constructor(entities) {
+    super(entities);
     if (entities) {
-      console.log('ProjectFilterModel - debug');
-      super(entities);
       this.unTransformedItems = entities.result.data;
       this.items = entities.result.data.map((element) => {
         return new ProjectItemModel(element);
       });
-
-      console.log(this.items);
 
       this.items.pagination = this.getPagination();
     }
@@ -64,8 +61,8 @@ class ProjectItemModel extends BaseItemModel {
   projectLead = null;
 
   constructor(entity) {
+    super(entity);
     if (entity) {
-      super(entity);
       this.startDate =
         entity[ESI_PROJECT_API_RESPONSE_FIELD_KEY.START_DATE] ?? '0000-00-00 00:00:00';
       this.endDate = entity[ESI_PROJECT_API_RESPONSE_FIELD_KEY.END_DATE] ?? '0000-00-00 00:00:00';
@@ -74,12 +71,6 @@ class ProjectItemModel extends BaseItemModel {
       this.projectLead = entity[ESI_PROJECT_API_RESPONSE_FIELD_KEY.PROJECT_LEAD] ?? 0;
     }
   }
-
-  extractCustomFieldValues = () => {
-    const customFieldValues = this.getCustomfieldValues();
-    if (customFieldValues) {
-    }
-  };
 
   getStartDate = () => {
     return this.startDate;
@@ -146,12 +137,6 @@ class ProjectItemModel extends BaseItemModel {
 }
 
 class ProjectMasterDataItemModel extends BaseMasterDataItemModel {
-  constructor(entity) {
-    if (entity) {
-      super(entity);
-    }
-  }
-
   toJSON = () => {
     return {
       [ESI_PROJECT_FIELD_KEY.ID]: this.id,
@@ -162,8 +147,8 @@ class ProjectMasterDataItemModel extends BaseMasterDataItemModel {
 
 class ProjectMasterDataModel extends BaseMasterDataModel {
   constructor(entities) {
+    super(entities);
     if (entities) {
-      super(entities);
       this.unTransformedItems = entities.result;
       this.items = entities.result.map((element) => {
         return new ProjectMasterDataItemModel(element);

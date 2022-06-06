@@ -5,7 +5,7 @@
 
 import InvesterContactRoute from './InvesterContactRoute';
 import { Component } from 'react';
-import { InvesterContactItemModel, InvesterContactModel } from './InvesterContactModel';
+import { InvesterContactItemModel } from './InvesterContactModel';
 
 /**
  * API Service - Persona
@@ -30,11 +30,8 @@ class AesirxInvesterContactApiService extends Component {
     try {
       // if (!data) return false;
       const dataToSubmit = InvesterContactItemModel.__transformItemToApiOfCreation(data);
-      console.log('Data is formatted before sending');
-      console.log(dataToSubmit);
 
       const result = await this.route.createInvesterContactRequest(dataToSubmit);
-      console.log('After submittion');
 
       if (result) {
         return true;
@@ -42,9 +39,6 @@ class AesirxInvesterContactApiService extends Component {
 
       return false;
     } catch (error) {
-      console.log('Error on creatingn');
-      console.log(error.response);
-      console.log(error.response.data._messages);
       return false;
     }
   }

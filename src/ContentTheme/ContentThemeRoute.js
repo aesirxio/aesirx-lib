@@ -61,7 +61,6 @@ class ContentThemeRoute extends BaseRoute {
     }
 
     if (ids === null) {
-      console.log('deleteContentThemeRequest - single');
       return AesirxApiInstance.delete(
         this.createRequestURL({
           option: 'content_theme',

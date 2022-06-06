@@ -98,8 +98,6 @@ class OrganisationChannelRoute extends BaseRoute {
       task: 'getLoginUrl',
     });
 
-    console.log('-- Request URL ---', url);
-
     return AesirxApiInstance.get(url);
   };
 

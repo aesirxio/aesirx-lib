@@ -52,7 +52,6 @@ class AesirxCampaignApiService extends Component {
         pagination: pagination,
       };
     } catch (error) {
-      console.log('API - Get Campaigns: ' + error);
       return null;
     }
   }
@@ -80,7 +79,6 @@ class AesirxCampaignApiService extends Component {
 
       return item;
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -94,10 +92,8 @@ class AesirxCampaignApiService extends Component {
     try {
       // if (!data) return false;
       const dataToSubmit = CampaignItemModel.__transformItemToApiOfCreation(data);
-      console.log('Data is formatted before sending', dataToSubmit);
 
       const result = await this.route.createCampaignRequest(dataToSubmit);
-      console.log('After submittion', result);
 
       if (result) {
         return true;
@@ -105,9 +101,6 @@ class AesirxCampaignApiService extends Component {
 
       return false;
     } catch (error) {
-      console.log('Error on creatingn');
-      console.log(error.response);
-      console.log(error.response.data._messages);
       return false;
     }
   }
@@ -129,9 +122,6 @@ class AesirxCampaignApiService extends Component {
       }
       return false;
     } catch (error) {
-      console.log('Error on updateProject');
-      console.log(error.response);
-      console.log(error.response.data._messages);
       return error;
     }
   }
@@ -146,7 +136,6 @@ class AesirxCampaignApiService extends Component {
       if (!campaignId || campaignId === 0) return false;
       return await this.route.deleteCampaignRequest(campaignId);
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -158,7 +147,6 @@ class AesirxCampaignApiService extends Component {
     try {
       return await this.route.getCampaignMasterDataRequest();
     } catch (error) {
-      console.log(error);
       return error;
     }
   }
@@ -181,8 +169,6 @@ class AesirxCampaignApiService extends Component {
   async searchCampaigns(dataFilter = {}, page = 1, limit = 20, returnAsJSON = true) {
     try {
       const data = await this.route.searchCampaignsRequest(dataFilter, page, limit);
-      console.log('Debugging - search Campaign');
-      console.log(data);
       let results = null;
       let pagination = null;
 
@@ -200,7 +186,6 @@ class AesirxCampaignApiService extends Component {
         pagination: pagination,
       };
     } catch (error) {
-      console.log('API - Search Campaign: ' + error);
       return null;
     }
   }

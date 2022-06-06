@@ -8,7 +8,6 @@ import {
   PERSONA_FIELD_KEY,
 } from '../../Constant/PersonaConstant';
 import faker from 'faker';
-import Utils from '../../Utils/Utils';
 class PersonaMockData {
   static mockPersonaItem() {
     const mockData = {
