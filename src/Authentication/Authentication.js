@@ -11,37 +11,47 @@ import qs from 'query-string';
 import Storage from '../Utils/Storage';
 import { logout } from './Logout';
 class AesirxAuthenticationApiService {
-  async login(username, password) {
+  async login(email, password) {
     try {
-      if (!username || !password) return false;
+      if (!email || !password) return false;
       const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
         {
-          option: 'token',
-          api: 'oauth2',
+          option: 'member',
+          api: 'hal',
+          task: 'login',
         },
         false
       );
 
-      const reqAuthFormData = new FormData();
-      reqAuthFormData.append('grant_type', 'password');
-      reqAuthFormData.append(
-        'client_id',
-        process.env.OAUTH_CLIENT_ID !== undefined && process.env.OAUTH_CLIENT_ID !== ''
-          ? process.env.OAUTH_CLIENT_ID
-          : AXIOS_CONFIGS.CLIENT_ID
-      );
-      reqAuthFormData.append(
-        'client_secret',
-        process.env.OAUTH_CLIENT_SECRET !== undefined && process.env.OAUTH_CLIENT_SECRET !== ''
-          ? process.env.OAUTH_CLIENT_SECRET
-          : AXIOS_CONFIGS.CLIENT_SECRET
-      );
-      reqAuthFormData.append('username', username);
-      reqAuthFormData.append('password', password);
+      const reqAuthFormData = {
+        email: email,
+        password: password,
+        client_id:
+          process.env.OAUTH_CLIENT_ID !== undefined && process.env.OAUTH_CLIENT_ID !== ''
+            ? process.env.OAUTH_CLIENT_ID
+            : AXIOS_CONFIGS.CLIENT_ID,
+        secret:
+          process.env.OAUTH_CLIENT_SECRET !== undefined && process.env.OAUTH_CLIENT_SECRET !== ''
+            ? process.env.OAUTH_CLIENT_SECRET
+            : AXIOS_CONFIGS.CLIENT_SECRET,
+        license_key: AXIOS_CONFIGS.LICENSE,
+        test_mode: AXIOS_CONFIGS.TEST_MODE,
+        domain: window.location.hostname,
+      };
 
-      const result = await axios.post(AUTHORIZED_CODE_URL, reqAuthFormData);
+      const config = {
+        method: 'post',
+        url: AUTHORIZED_CODE_URL,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        data: qs.stringify(reqAuthFormData),
+      };
+
+      const { result } = await axios(config);
+
       if (result) {
-        return await this.setTokenUser(result.data, false);
+        return await this.setTokenUser(result, false);
       }
       return false;
     } catch (error) {
