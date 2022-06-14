@@ -31,7 +31,6 @@ class BaseRoute {
     } else {
       result = result.concat(queryString.stringify(props));
     }
-    // console.log(result);
     return result;
   };
 
