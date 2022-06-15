@@ -132,6 +132,9 @@
     "microbundle": "^0.15"
   },
   "files": [
-    "dist"
+    "dist",
+    "src",
+    "config",
+    "scripts"
   ]
 }
