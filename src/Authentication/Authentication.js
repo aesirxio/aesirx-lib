@@ -10,6 +10,7 @@ import AesirxMemberApiService from '../Member/Member';
 import qs from 'query-string';
 import Storage from '../Utils/Storage';
 import { logout } from './Logout';
+
 class AesirxAuthenticationApiService {
   async login(email, password) {
     try {
@@ -122,17 +123,11 @@ class AesirxAuthenticationApiService {
         [AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]: authorizationHeader,
         [AUTHORIZATION_KEY.REFRESH_TOKEN]: refreshToken,
       };
-      // Storage.setItem(AUTHORIZATION_KEY.ACCESS_TOKEN, accessToken);
-      // Storage.setItem(AUTHORIZATION_KEY.TOKEN_TYPE, tokenType);
-      // Storage.setItem(AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER, authorizationHeader);
-      // Storage.setItem(AUTHORIZATION_KEY.REFRESH_TOKEN, refreshToken);
-      // Storage.setItem('test', accessToken);
       this.setStore(setStore);
 
       try {
         const tokenUser = await serviceMember.getTokenByUser();
 
-        // console.warn(tokenUser);
         if (tokenUser.result) {
           const setStore = {
             [AUTHORIZATION_KEY.TOKEN_USER]: tokenUser.result.token,
