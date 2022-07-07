@@ -16,10 +16,10 @@
     "query-string": "^7.1.1"
   },
   "scripts": {
-    "lint": "npm run env NODE_ENV=production npm run env BABEL_ENV=production eslint --fix \"src/**/\"",
-    "lint:check": "npm run env NODE_ENV=production npm run env BABEL_ENV=production eslint \"src/**/\"",
-    "start": "npm run env NODE_ENV=production npm run env BABEL_ENV=production microbundle watch --no-compress",
-    "build": "npm run env NODE_ENV=production npm run env BABEL_ENV=production microbundle --compress",
+    "lint": "cross-env NODE_ENV=production BABEL_ENV=production eslint --fix \"src/**/\"",
+    "lint:check": "cross-env NODE_ENV=production BABEL_ENV=production eslint \"src/**/\"",
+    "start": "cross-env NODE_ENV=production BABEL_ENV=production microbundle watch --no-compress",
+    "build": "cross-env NODE_ENV=production BABEL_ENV=production microbundle --compress",
     "test": "node scripts/test.js",
     "docgen": "node scripts/docgen.js"
   },
@@ -123,6 +123,7 @@
     "babel-plugin-named-asset-import": "^0.3.7",
     "babel-plugin-relay": "^10.1.2",
     "babel-preset-react-app": "^10.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.17",
     "eslint-plugin-react": "^7.30",
     "jest": "26.6.0",
