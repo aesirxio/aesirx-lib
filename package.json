@@ -16,10 +16,10 @@
     "query-string": "^7.1.1"
   },
   "scripts": {
-    "lint": "NODE_ENV=production BABEL_ENV=production eslint --fix \"src/**/\"",
-    "lint:check": "NODE_ENV=production BABEL_ENV=production eslint \"src/**/\"",
-    "start": "NODE_ENV=production BABEL_ENV=production microbundle watch --no-compress",
-    "build": "NODE_ENV=production BABEL_ENV=production microbundle --compress",
+    "lint": "npm run env NODE_ENV=production; npm run env BABEL_ENV=production; eslint --fix \"src/**/\"",
+    "lint:check": "npm run env NODE_ENV=production; npm run env BABEL_ENV=production; eslint \"src/**/\"",
+    "start": "npm run env NODE_ENV=production; npm run env BABEL_ENV=production; microbundle watch --no-compress",
+    "build": "npm run env NODE_ENV=production; npm run env BABEL_ENV=production; microbundle --compress",
     "test": "node scripts/test.js",
     "docgen": "node scripts/docgen.js"
   },
