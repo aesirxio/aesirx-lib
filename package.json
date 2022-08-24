@@ -1,6 +1,6 @@
 {
   "name": "aesirx-dma-lib",
-  "version": "1.2.2",
+  "version": "1.2.3-alpha.1",
   "license": "GPL-3.0-only",
   "author": "AesirX",
   "repository": "https://github.com/aesirxio/dma-lib",
