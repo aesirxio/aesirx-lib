@@ -138,7 +138,6 @@ const removePending = (config, f) => {
 AesirxApiInstance.interceptors.request.use(
   function (config) {
     let accessToken = '';
-
     if (process.env.NODE_ENV === 'test') {
       accessToken = process.env.AUTHORIZED_TOKEN;
     } else {
@@ -163,7 +162,8 @@ AesirxApiInstance.interceptors.request.use(
     config.cancelToken = new CancelToken((c) => {
       removePending(config, c);
     });
-
+    config.params = config.params || {};
+    config.params['time'] = Math.floor(Date.now() / 1000);
     return config;
   },
   function (error) {
