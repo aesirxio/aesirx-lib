@@ -37,8 +37,8 @@ class AesirxDamApiService extends Component {
         results = results.toJSON();
       }
       return {
-        list: results,
-        pagination: pagination,
+        list: results ?? [],
+        pagination: pagination ?? {},
       };
     } catch (error) {
       console.log(error);
@@ -59,8 +59,8 @@ class AesirxDamApiService extends Component {
       }
 
       return {
-        list: results,
-        pagination: pagination,
+        list: results ?? [],
+        pagination: pagination ?? {},
       };
     } catch (error) {
       console.log(error);
