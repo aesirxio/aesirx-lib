@@ -160,9 +160,9 @@ AesirxApiInstance.interceptors.request.use(
         .concat('&')
         .concat(queryString.stringify({ access_token: accessToken }));
     }
-    // config.cancelToken = new CancelToken((c) => {
-    //   removePending(config, c);
-    // });
+    config.cancelToken = new CancelToken((c) => {
+      removePending(config, c);
+    });
     config.params = config.params || {};
     config.params['time'] = Math.floor(Date.now() / 1000);
 
@@ -176,11 +176,11 @@ AesirxApiInstance.interceptors.request.use(
 
 AesirxApiInstance.interceptors.response.use(
   (response) => {
-    // removePending(response.config);
+    removePending(response.config);
     return response.data;
   },
   (error) => {
-    // removePending(error.config);
+    removePending(error.config);
 
     if (!axios.isCancel(error)) {
       return Promise.reject(error);

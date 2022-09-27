@@ -11,6 +11,7 @@ import BaseRoute from '../Abstract/BaseRoute';
 import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
 import axios from 'axios';
 import Storage from '../Utils/Storage';
+import AesirxApiInstance from '../gateway/Instance';
 
 /**
  * API Service - Member
@@ -41,8 +42,9 @@ class AesirxDamApiService extends Component {
         pagination: pagination ?? {},
       };
     } catch (error) {
-      console.log(error);
-      return error;
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw new Error(error);
     }
   };
   getCollections = async (id = 0) => {
@@ -63,8 +65,9 @@ class AesirxDamApiService extends Component {
         pagination: pagination ?? {},
       };
     } catch (error) {
-      console.log(error);
-      return error;
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw new Error(error);
     }
   };
 
