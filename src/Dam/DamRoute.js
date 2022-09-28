@@ -31,21 +31,21 @@ class DamRoute extends BaseRoute {
       this.createRequestURL({
         option: 'dam_asset',
       }),
-      data
-    );
-  };
-
-  updateAssets = (id) => {
-    return AesirxApiInstance.delete(
-      this.createRequestURL({
-        option: 'dam_asset',
-        id: id,
-      }),
+      data,
       {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
       }
+    );
+  };
+
+  deleteAssets = (id) => {
+    return AesirxApiInstance.delete(
+      this.createRequestURL({
+        option: 'dam_asset',
+        id: id,
+      })
     );
   };
 

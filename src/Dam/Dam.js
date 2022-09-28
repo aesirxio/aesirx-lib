@@ -7,11 +7,7 @@ import { AssetsItemModel, AssetsModel, ColectionModel } from './DamModel';
 import DamRoute from './DamRoute';
 // import { requestANewAccessToken } from '../gateway/Instance';
 import { Component } from 'react';
-import BaseRoute from '../Abstract/BaseRoute';
-import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
 import axios from 'axios';
-import Storage from '../Utils/Storage';
-import AesirxApiInstance from '../gateway/Instance';
 
 /**
  * API Service - Member
