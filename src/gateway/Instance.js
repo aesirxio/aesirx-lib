@@ -156,9 +156,6 @@ AesirxApiInstance.interceptors.request.use(
     }
 
     if (accessToken) {
-      //   // config.url = config.url
-      //   //   .concat('&')
-      //   //   .concat(queryString.stringify({ access_token: accessToken }));
       config.headers = {
         ...config.headers,
         Authorization: 'Bearer ' + accessToken,
