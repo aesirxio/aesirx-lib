@@ -4,7 +4,6 @@
  */
 
 import axios from 'axios';
-import queryString from 'query-string';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
 import BaseRoute from '../Abstract/BaseRoute';
@@ -155,10 +154,12 @@ AesirxApiInstance.interceptors.request.use(
     }
 
     if (accessToken) {
-      config.url = config.url
-        .concat('&')
-        .concat(queryString.stringify({ access_token: accessToken }));
+      config.headers = {
+        ...config.headers,
+        Authorization: 'Bearer ' + accessToken,
+      };
     }
+
     config.cancelToken = new CancelToken((c) => {
       removePending(config, c);
     });

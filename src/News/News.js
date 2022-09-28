@@ -59,7 +59,6 @@ class AesirxNewsApiService extends Component {
       await this.init();
       const data = await this.route.getNews();
       let results = null;
-
       if (data) {
         results = new NewsModel(data);
       }
