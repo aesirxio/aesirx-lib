@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { AssetsItemModel, AssetsModel, ColectionModel } from './DamModel';
+import { AssetsItemModel, AssetsModel, ColectionModel, CollectionItemModel } from './DamModel';
 import DamRoute from './DamRoute';
 // import { requestANewAccessToken } from '../gateway/Instance';
 import { Component } from 'react';
@@ -19,6 +19,27 @@ class AesirxDamApiService extends Component {
     super(props);
     this.route = new DamRoute();
   }
+
+  getAsset = async (id) => {
+    try {
+      const data = await this.route.getAsset(id);
+
+      let results = null;
+      if (data) {
+        results = new AssetsItemModel(data);
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        item: results ?? {},
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw new Error(error);
+    }
+  };
 
   getAssets = async (collectionId = 0) => {
     try {
@@ -74,6 +95,42 @@ class AesirxDamApiService extends Component {
     }
   };
 
+  deleteAssets = async (id) => {
+    try {
+      // const dataToSubmit = AssetsItemModel.__transformItemToApiOfUpdation(data);
+      const result = await this.route.deleteAssets(id);
+      if (result.result) {
+        return result.result;
+      }
+      return { message: 'Something have problem' };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw new Error(error);
+    }
+  };
+
+  getCollection = async (id) => {
+    try {
+      const data = await this.route.getCollection(id);
+
+      let results = null;
+      if (data) {
+        results = new CollectionItemModel(data);
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        item: results ?? {},
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw new Error(error);
+    }
+  };
+
   getCollections = async (id = 0) => {
     try {
       const data = await this.route.getCollections(id);
@@ -98,11 +155,50 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  /**
-   * Get A New Access Token adapts for cases OUT OF Platform Dashboard
-   * Such as Forgot Pass / Sign Up Normal or Login Via Social Medias (Facebook / Twitter / Google)
-   * @returns {Boolean}
-   */
+  createCollections = async (data) => {
+    try {
+      const dataToSubmit = CollectionItemModel.__transformItemToApiOfCreation(data);
+      const result = await this.route.createCollections(dataToSubmit);
+      if (result.result) {
+        return result.result;
+      }
+      return { message: 'Something have problem' };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw new Error(error);
+    }
+  };
+
+  updateCollections = async (data) => {
+    try {
+      const dataToSubmit = CollectionItemModel.__transformItemToApiOfUpdation(data);
+      const result = await this.route.updateCollections(dataToSubmit);
+      if (result.result) {
+        return result.result;
+      }
+      return { message: 'Something have problem' };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw new Error(error);
+    }
+  };
+
+  deleteCollections = async (id) => {
+    try {
+      // const dataToSubmit = AssetsItemModel.__transformItemToApiOfUpdation(data);
+      const result = await this.route.deleteCollections(id);
+      if (result.result) {
+        return result.result;
+      }
+      return { message: 'Something have problem' };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw new Error(error);
+    }
+  };
 }
 
 export default AesirxDamApiService;

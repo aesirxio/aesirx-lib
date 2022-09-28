@@ -7,6 +7,15 @@ import AesirxApiInstance from '../gateway/Instance';
 import BaseRoute from '../Abstract/BaseRoute';
 
 class DamRoute extends BaseRoute {
+  getAsset = (id) => {
+    return AesirxApiInstance.get(
+      this.createRequestURL({
+        option: 'dam_asset',
+        id: id,
+      })
+    );
+  };
+
   getAssets = (collectionId = 0, dataFilter = {}) => {
     return AesirxApiInstance.get(
       this.createRequestURL({
@@ -44,6 +53,20 @@ class DamRoute extends BaseRoute {
     return AesirxApiInstance.delete(
       this.createRequestURL({
         option: 'dam_asset',
+      }),
+      { id: id },
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      }
+    );
+  };
+
+  getCollection = (id) => {
+    return AesirxApiInstance.get(
+      this.createRequestURL({
+        option: 'dam_collection',
         id: id,
       })
     );
@@ -86,8 +109,13 @@ class DamRoute extends BaseRoute {
     return AesirxApiInstance.delete(
       this.createRequestURL({
         option: 'dam_collection',
-        id: id,
-      })
+      }),
+      { id: id },
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      }
     );
   };
 }
