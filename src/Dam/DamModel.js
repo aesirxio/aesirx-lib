@@ -5,7 +5,13 @@
 
 import BaseItemModel from '../Abstract/BaseItemModel';
 import BaseModel from '../Abstract/BaseModel';
-import { DAM_ASSETS_FIELD_KEY, DAM_COLLECTION_FIELD_KEY } from '../Constant/DamConstant';
+import {
+  DAM_ASSETS_API_FIELD_KEY,
+  DAM_ASSETS_FIELD_KEY,
+  DAM_COLLECTION_API_RESPONSE_FIELD_KEY,
+  DAM_COLLECTION_FIELD_KEY,
+} from '../Constant/DamConstant';
+import Utils from '../Utils/Utils';
 class ColectionModel extends BaseModel {
   constructor(entities) {
     super(entities);
@@ -21,12 +27,20 @@ class CollectionItemModel extends BaseItemModel {
   id = null;
   parent_id = null;
   name = '';
+  file_size = 0;
+  owner = null;
+  last_modified = null;
   constructor(entity) {
     super(entity);
     if (entity) {
       this.id = entity[DAM_COLLECTION_FIELD_KEY.ID] ?? '';
       this.parent_id = entity[DAM_COLLECTION_FIELD_KEY.PARENT_ID] ?? 0;
       this.name = entity[DAM_COLLECTION_FIELD_KEY.NAME] ?? '';
+      this.file_size = entity[DAM_COLLECTION_FIELD_KEY.FILE_SIZE] ?? 0;
+      this.owner = entity[DAM_COLLECTION_FIELD_KEY.OWNER] ?? '';
+      this.last_modified = Utils.formatDatetimeByLocale(
+        entity[DAM_COLLECTION_FIELD_KEY.LAST_MODIFIED]
+      );
     }
   }
 
@@ -40,15 +54,34 @@ class CollectionItemModel extends BaseItemModel {
       [DAM_COLLECTION_FIELD_KEY.ID]: this.id,
       [DAM_COLLECTION_FIELD_KEY.PARENT_ID]: this.parent_id,
       [DAM_COLLECTION_FIELD_KEY.NAME]: this.name,
+      [DAM_COLLECTION_FIELD_KEY.FILE_SIZE]: this.file_size,
+      [DAM_COLLECTION_FIELD_KEY.LAST_MODIFIED]: this.last_modified,
+      [DAM_COLLECTION_FIELD_KEY.OWNER]: this.owner,
     };
   };
 
-  static __transformItemToApiOfCreation = () => {
-    return {};
+  static __transformItemToApiOfCreation = (data) => {
+    let formData = new FormData();
+    Object.keys(DAM_COLLECTION_API_RESPONSE_FIELD_KEY).forEach((index) => {
+      if (data[DAM_COLLECTION_FIELD_KEY[index]]) {
+        formData.append(
+          [DAM_COLLECTION_API_RESPONSE_FIELD_KEY[index]],
+          data[DAM_COLLECTION_FIELD_KEY[index]]
+        );
+      }
+    });
+    return formData;
   };
 
-  static __transformItemToApiOfUpdation = () => {
-    return {};
+  static __transformItemToApiOfUpdation = (data) => {
+    let formData = {};
+    Object.keys(DAM_COLLECTION_API_RESPONSE_FIELD_KEY).forEach((index) => {
+      if (data[DAM_COLLECTION_FIELD_KEY[index]]) {
+        formData[DAM_COLLECTION_API_RESPONSE_FIELD_KEY[index]] =
+          data[DAM_COLLECTION_FIELD_KEY[index]];
+      }
+    });
+    return formData;
   };
 }
 
@@ -75,7 +108,8 @@ class AssetsItemModel extends BaseItemModel {
   type_id = null;
   type = null;
   download_url = null;
-
+  owner = null;
+  last_modified = null;
   constructor(entity) {
     super(entity);
     if (entity) {
@@ -92,6 +126,8 @@ class AssetsItemModel extends BaseItemModel {
       this.type_id = entity[DAM_ASSETS_FIELD_KEY.TYPE_ID] ?? '';
       this.type = entity[DAM_ASSETS_FIELD_KEY.TYPE] ?? '';
       this.download_url = entity[DAM_ASSETS_FIELD_KEY.DOWNLOAD_URL] ?? '';
+      this.owner = entity[DAM_ASSETS_FIELD_KEY.OWNER] ?? '';
+      this.last_modified = Utils.formatDatetimeByLocale(entity[DAM_ASSETS_FIELD_KEY.LAST_MODIFIED]);
     }
   }
 
@@ -113,15 +149,33 @@ class AssetsItemModel extends BaseItemModel {
       [DAM_ASSETS_FIELD_KEY.TYPE_ID]: this.type_id,
       [DAM_ASSETS_FIELD_KEY.TYPE]: this.type,
       [DAM_ASSETS_FIELD_KEY.DOWNLOAD_URL]: this.download_url,
+      [DAM_ASSETS_FIELD_KEY.LAST_MODIFIED]: this.last_modified,
+      [DAM_ASSETS_FIELD_KEY.OWNER]: this.owner,
     };
   };
 
-  static __transformItemToApiOfCreation = () => {
-    return {};
+  static __transformItemToApiOfCreation = (data) => {
+    let formData = new FormData();
+
+    Object.keys(DAM_ASSETS_API_FIELD_KEY).forEach((index) => {
+      if (data[DAM_ASSETS_FIELD_KEY[index]]) {
+        formData.append([DAM_ASSETS_API_FIELD_KEY[index]], data[DAM_ASSETS_FIELD_KEY[index]]);
+      }
+    });
+
+    return formData;
   };
 
-  static __transformItemToApiOfUpdation = () => {
-    return {};
+  static __transformItemToApiOfUpdation = (data) => {
+    let formData = {};
+
+    Object.keys(DAM_ASSETS_API_FIELD_KEY).forEach((index) => {
+      if (data[DAM_ASSETS_FIELD_KEY[index]]) {
+        formData[DAM_ASSETS_API_FIELD_KEY[index]] = data[DAM_ASSETS_FIELD_KEY[index]];
+      }
+    });
+
+    return formData;
   };
 }
 

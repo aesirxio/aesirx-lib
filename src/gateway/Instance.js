@@ -155,11 +155,16 @@ AesirxApiInstance.interceptors.request.use(
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
     }
 
-    if (accessToken) {
-      config.url = config.url
-        .concat('&')
-        .concat(queryString.stringify({ access_token: accessToken }));
-    }
+    // if (accessToken) {
+    //   // config.url = config.url
+    //   //   .concat('&')
+    //   //   .concat(queryString.stringify({ access_token: accessToken }));
+    config.headers = {
+      ...config.headers,
+      Authorization: 'Bearer ' + accessToken,
+    };
+    // }
+
     config.cancelToken = new CancelToken((c) => {
       removePending(config, c);
     });

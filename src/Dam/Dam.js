@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { AssetsModel, ColectionModel } from './DamModel';
+import { AssetsItemModel, AssetsModel, ColectionModel } from './DamModel';
 import DamRoute from './DamRoute';
 // import { requestANewAccessToken } from '../gateway/Instance';
 import { Component } from 'react';
@@ -47,6 +47,37 @@ class AesirxDamApiService extends Component {
       } else throw new Error(error);
     }
   };
+
+  createAssets = async (data) => {
+    try {
+      const dataToSubmit = AssetsItemModel.__transformItemToApiOfCreation(data);
+      const result = await this.route.createAssets(dataToSubmit);
+      if (result.result) {
+        return result.result;
+      }
+      return { message: 'Something have problem' };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw new Error(error);
+    }
+  };
+
+  updateAssets = async (data) => {
+    try {
+      const dataToSubmit = AssetsItemModel.__transformItemToApiOfUpdation(data);
+      const result = await this.route.updateAssets(dataToSubmit);
+      if (result.result) {
+        return result.result;
+      }
+      return { message: 'Something have problem' };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw new Error(error);
+    }
+  };
+
   getCollections = async (id = 0) => {
     try {
       const data = await this.route.getCollections(id);
