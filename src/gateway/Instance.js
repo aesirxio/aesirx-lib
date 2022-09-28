@@ -138,7 +138,6 @@ const removePending = (config, f) => {
 AesirxApiInstance.interceptors.request.use(
   function (config) {
     let accessToken = '';
-
     if (process.env.NODE_ENV === 'test') {
       accessToken = process.env.AUTHORIZED_TOKEN;
     } else {
