@@ -156,13 +156,16 @@ class AssetsItemModel extends BaseItemModel {
 
   static __transformItemToApiOfCreation = (data) => {
     let formData = new FormData();
-
+    const excluded = [DAM_ASSETS_FIELD_KEY.COLLECTION_ID];
     Object.keys(DAM_ASSETS_API_FIELD_KEY).forEach((index) => {
-      if (data[DAM_ASSETS_FIELD_KEY[index]]) {
+      if (!excluded.includes(index) && data[DAM_ASSETS_FIELD_KEY[index]]) {
         formData.append([DAM_ASSETS_API_FIELD_KEY[index]], data[DAM_ASSETS_FIELD_KEY[index]]);
       }
     });
-
+    formData.append(
+      [DAM_ASSETS_API_FIELD_KEY.COLLECTION_ID],
+      data[DAM_ASSETS_FIELD_KEY.COLLECTION_ID] ?? 0
+    );
     return formData;
   };
 

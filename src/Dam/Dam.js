@@ -37,13 +37,14 @@ class AesirxDamApiService extends Component {
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
-      } else throw new Error(error);
+      } else throw error;
     }
   };
 
-  getAssets = async (collectionId = 0) => {
+  getAssets = async (collectionId = 0, dataFilter) => {
+    console.log(dataFilter);
     try {
-      const data = await this.route.getAssets(collectionId);
+      const data = await this.route.getAssets(collectionId, dataFilter);
 
       let results = null;
       let pagination = null;
@@ -61,7 +62,7 @@ class AesirxDamApiService extends Component {
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
-      } else throw new Error(error);
+      } else throw error;
     }
   };
 
@@ -69,6 +70,7 @@ class AesirxDamApiService extends Component {
     try {
       const dataToSubmit = AssetsItemModel.__transformItemToApiOfCreation(data);
       const result = await this.route.createAssets(dataToSubmit);
+      console.log();
       if (result.result) {
         return result.result;
       }
@@ -76,7 +78,7 @@ class AesirxDamApiService extends Component {
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
-      } else throw new Error(error);
+      } else throw error;
     }
   };
 
@@ -91,7 +93,7 @@ class AesirxDamApiService extends Component {
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
-      } else throw new Error(error);
+      } else throw error;
     }
   };
 
@@ -106,7 +108,7 @@ class AesirxDamApiService extends Component {
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
-      } else throw new Error(error);
+      } else throw error;
     }
   };
 
@@ -127,7 +129,7 @@ class AesirxDamApiService extends Component {
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
-      } else throw new Error(error);
+      } else throw error;
     }
   };
 
@@ -151,7 +153,7 @@ class AesirxDamApiService extends Component {
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
-      } else throw new Error(error);
+      } else throw error;
     }
   };
 
@@ -166,7 +168,7 @@ class AesirxDamApiService extends Component {
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
-      } else throw new Error(error);
+      } else throw error;
     }
   };
 
@@ -181,7 +183,7 @@ class AesirxDamApiService extends Component {
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
-      } else throw new Error(error);
+      } else throw error;
     }
   };
 
@@ -196,7 +198,7 @@ class AesirxDamApiService extends Component {
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
-      } else throw new Error(error);
+      } else throw error;
     }
   };
 }

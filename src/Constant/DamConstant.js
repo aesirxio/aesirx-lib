@@ -35,6 +35,8 @@ const DAM_ASSETS_FIELD_KEY = {
   DOWNLOAD_URL: 'download_url',
   OWNER: 'owner',
   LAST_MODIFIED: 'last_modified_date',
+  FILE_NAME: 'file_name',
+  FILE: 'file',
 };
 const DAM_ASSETS_API_FIELD_KEY = {
   ID: 'id',
@@ -50,6 +52,8 @@ const DAM_ASSETS_API_FIELD_KEY = {
   DOWNLOAD_URL: 'download_url',
   OWNER: 'owner',
   LAST_MODIFIED: 'last_modified_date',
+  FILE_NAME: 'file_name',
+  FILE: 'file',
 };
 
 export {
