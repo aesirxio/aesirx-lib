@@ -5,7 +5,7 @@
   "author": "AesirX",
   "repository": "https://github.com/aesirxio/dma-lib",
   "main": "dist/index.js",
-  "module": "dist/index.modern.js",
+  "module": "dist/index.js",
   "source": "src/index.js",
   "dependencies": {
     "axios": "^0.21.0",
@@ -19,7 +19,9 @@
     "lint": "cross-env NODE_ENV=production BABEL_ENV=production eslint --fix \"src/**/\"",
     "lint:check": "cross-env NODE_ENV=production BABEL_ENV=production eslint \"src/**/\"",
     "start": "cross-env NODE_ENV=production BABEL_ENV=production microbundle watch --no-compress",
-    "build": "cross-env NODE_ENV=production BABEL_ENV=production microbundle --compress",
+    "build": "npm run clean && cross-env NODE_ENV=production babel --config-file ./config/babel.config.js src --out-dir ./dist --extensions \".js,.jsx\"",
+    "watch": "npm run clean && cross-env NODE_ENV=production babel --config-file ./config/babel.config.js src --out-dir ./dist --extensions \".js,.jsx\" --watch",
+    "clean": "rm -rf dist",
     "test": "node scripts/test.js",
     "docgen": "node scripts/docgen.js"
   },
@@ -110,7 +112,8 @@
     "react": "^17.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.18",
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.19.1",
     "@babel/eslint-parser": "^7.18",
     "@babel/plugin-proposal-class-properties": "^7.17",
     "@testing-library/jest-dom": "^5.16.3",
@@ -129,8 +132,7 @@
     "jest": "26.6.0",
     "jest-circus": "26.6.0",
     "jest-resolve": "26.6.0",
-    "jest-watch-typeahead": "0.6.1",
-    "microbundle": "^0.15"
+    "jest-watch-typeahead": "0.6.1"
   },
   "files": [
     "dist",
