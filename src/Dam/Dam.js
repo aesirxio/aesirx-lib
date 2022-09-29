@@ -42,7 +42,6 @@ class AesirxDamApiService extends Component {
   };
 
   getAssets = async (collectionId = 0, dataFilter) => {
-    console.log(dataFilter);
     try {
       const data = await this.route.getAssets(collectionId, dataFilter);
 
@@ -70,7 +69,6 @@ class AesirxDamApiService extends Component {
     try {
       const dataToSubmit = AssetsItemModel.__transformItemToApiOfCreation(data);
       const result = await this.route.createAssets(dataToSubmit);
-      console.log();
       if (result.result) {
         return result.result;
       }
