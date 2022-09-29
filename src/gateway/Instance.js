@@ -184,7 +184,6 @@ AesirxApiInstance.interceptors.response.use(
     if (!axios.isCancel(error)) {
       return Promise.reject(error);
     } else {
-      // return empty object for aborted request
       return Promise.reject(error);
     }
   }
