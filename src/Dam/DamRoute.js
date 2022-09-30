@@ -54,11 +54,11 @@ class DamRoute extends BaseRoute {
       this.createRequestURL({
         option: 'dam_asset',
       }),
-      { id: id },
       {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
+        data: { id: id },
       }
     );
   };
@@ -110,11 +110,12 @@ class DamRoute extends BaseRoute {
       this.createRequestURL({
         option: 'dam_collection',
       }),
-      { id: id },
+
       {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
+        data: { id: id },
       }
     );
   };
