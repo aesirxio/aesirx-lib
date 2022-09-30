@@ -159,12 +159,13 @@ AesirxApiInstance.interceptors.request.use(
         Authorization: 'Bearer ' + accessToken,
       };
     }
+    config.params = config.params || {};
+    config.params['time'] = Math.floor(Date.now() / 1000);
 
     config.cancelToken = new CancelToken((c) => {
       removePending(config, c);
     });
-    config.params = config.params || {};
-    config.params['time'] = Math.floor(Date.now() / 1000);
+
     return config;
   },
   function (error) {

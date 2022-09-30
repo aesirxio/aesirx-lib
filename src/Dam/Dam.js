@@ -97,7 +97,6 @@ class AesirxDamApiService extends Component {
 
   deleteAssets = async (id) => {
     try {
-      // const dataToSubmit = AssetsItemModel.__transformItemToApiOfUpdation(data);
       const result = await this.route.deleteAssets(id);
       if (result.result) {
         return result.result;
