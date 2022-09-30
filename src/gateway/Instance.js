@@ -156,8 +156,6 @@ AesirxApiInstance.interceptors.request.use(
         Authorization: 'Bearer ' + accessToken,
       };
     }
-    config.params = config.params || {};
-    config.params['time'] = Math.floor(Date.now() / 1000);
 
     config.params = config.params || {};
     config.params['time'] = Math.floor(Date.now() / 1000);
