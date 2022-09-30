@@ -10,6 +10,7 @@ import BaseRoute from '../Abstract/BaseRoute';
 import { logout } from '../Authentication/Logout';
 import Storage from '../Utils/Storage';
 import AesirxAuthenticationApiService from '../Authentication/Authentication';
+import queryString from 'query-string';
 
 const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
   {
@@ -119,7 +120,9 @@ const CancelToken = axios.CancelToken;
 const removePending = (config, f) => {
   if (config) {
     const url = config.url.replace(config.baseURL, '/');
-    const flagUrl = url + '&' + config.method + '&' + JSON.stringify(config.params);
+
+    const flagUrl = url + '&' + config.method + '&' + queryString.stringify(config.params);
+
     if (flagUrl in pending) {
       if (f) {
         f(); // abort the request
@@ -141,12 +144,6 @@ AesirxApiInstance.interceptors.request.use(
       accessToken = process.env.AUTHORIZED_TOKEN;
     } else {
       accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
-      const authorizationHeader = Storage.getItem(AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER);
-
-      if (authorizationHeader) {
-        // Uncomment this if HTTPS runs on the Server
-        // config.headers.Authorization = authorizationHeader;
-      }
     }
 
     if (config.method === 'post' || config.method === 'put') {
@@ -159,6 +156,9 @@ AesirxApiInstance.interceptors.request.use(
         Authorization: 'Bearer ' + accessToken,
       };
     }
+    config.params = config.params || {};
+    config.params['time'] = Math.floor(Date.now() / 1000);
+
     config.params = config.params || {};
     config.params['time'] = Math.floor(Date.now() / 1000);
 
