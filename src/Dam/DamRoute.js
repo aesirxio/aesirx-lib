@@ -7,6 +7,14 @@ import AesirxApiInstance from '../gateway/Instance';
 import BaseRoute from '../Abstract/BaseRoute';
 
 class DamRoute extends BaseRoute {
+  getSubscription = () => {
+    return AesirxApiInstance.get(
+      this.createRequestURL({
+        option: 'user_subscription',
+      })
+    );
+  };
+
   getAsset = (id) => {
     return AesirxApiInstance.get(
       this.createRequestURL({
@@ -21,6 +29,15 @@ class DamRoute extends BaseRoute {
       this.createRequestURL({
         option: 'dam_asset',
         'filter[collection_id]': collectionId,
+        ...dataFilter,
+      })
+    );
+  };
+
+  searchAssets = (dataFilter = {}) => {
+    return AesirxApiInstance.get(
+      this.createRequestURL({
+        option: 'dam_asset',
         ...dataFilter,
       })
     );
@@ -77,6 +94,15 @@ class DamRoute extends BaseRoute {
       this.createRequestURL({
         option: 'dam_collection',
         'filter[collection_id]': id,
+        ...dataFilter,
+      })
+    );
+  };
+
+  searchCollections = (dataFilter = {}) => {
+    return AesirxApiInstance.get(
+      this.createRequestURL({
+        option: 'dam_collection',
         ...dataFilter,
       })
     );
