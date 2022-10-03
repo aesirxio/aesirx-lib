@@ -229,7 +229,7 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  updateDamStorage = async () => {
+  getDamSubscription = async () => {
     try {
       // const dataToSubmit = AssetsItemModel.__transformItemToApiOfUpdation(data);
       const result = await this.route.getSubscription();
@@ -244,10 +244,10 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  updateDamStorage = async (data) => {
+  updateDamSubscription = async (data) => {
     try {
       // const dataToSubmit = AssetsItemModel.__transformItemToApiOfUpdation(data);
-      const result = await this.route.updateDamStorage(data);
+      const result = await this.route.updateDamSubscription(data);
       if (result.result) {
         return result.result;
       }

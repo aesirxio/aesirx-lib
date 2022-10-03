@@ -15,7 +15,7 @@ class DamRoute extends BaseRoute {
     );
   };
 
-  updateDamStorage = (data) => {
+  updateDamSubscription = (data) => {
     return AesirxApiInstance.put(
       this.createRequestURL({
         option: 'user_subscription',

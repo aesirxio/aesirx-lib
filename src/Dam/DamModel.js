@@ -182,4 +182,77 @@ class AssetsItemModel extends BaseItemModel {
   };
 }
 
+class SubscriptionModel extends BaseModel {
+  constructor(entities) {
+    super(entities);
+    if (entities) {
+      this.items = entities._embedded.item.map((element) => {
+        return new SubsctiptionItemModel(element);
+      });
+      this.items.pagination = this.getPagination();
+    }
+  }
+}
+class SubsctiptionItemModel extends BaseItemModel {
+  id = null;
+  parent_id = null;
+  name = '';
+  file_size = 0;
+  owner = null;
+  last_modified = null;
+  constructor(entity) {
+    super(entity);
+    if (entity) {
+      this.id = entity[DAM_COLLECTION_FIELD_KEY.ID] ?? '';
+      this.parent_id = entity[DAM_COLLECTION_FIELD_KEY.PARENT_ID] ?? 0;
+      this.name = entity[DAM_COLLECTION_FIELD_KEY.NAME] ?? '';
+      this.file_size = entity[DAM_COLLECTION_FIELD_KEY.FILE_SIZE] ?? 0;
+      this.owner = entity[DAM_COLLECTION_FIELD_KEY.OWNER] ?? '';
+      this.last_modified = Utils.formatDatetimeByLocale(
+        entity[DAM_COLLECTION_FIELD_KEY.LAST_MODIFIED]
+      );
+    }
+  }
+
+  toObject = () => {
+    return {};
+  };
+
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [DAM_COLLECTION_FIELD_KEY.ID]: this.id,
+      [DAM_COLLECTION_FIELD_KEY.PARENT_ID]: this.parent_id,
+      [DAM_COLLECTION_FIELD_KEY.NAME]: this.name,
+      [DAM_COLLECTION_FIELD_KEY.FILE_SIZE]: this.file_size,
+      [DAM_COLLECTION_FIELD_KEY.LAST_MODIFIED]: this.last_modified,
+      [DAM_COLLECTION_FIELD_KEY.OWNER]: this.owner,
+    };
+  };
+
+  static __transformItemToApiOfCreation = (data) => {
+    let formData = new FormData();
+    Object.keys(DAM_COLLECTION_API_RESPONSE_FIELD_KEY).forEach((index) => {
+      if (data[DAM_COLLECTION_FIELD_KEY[index]]) {
+        formData.append(
+          [DAM_COLLECTION_API_RESPONSE_FIELD_KEY[index]],
+          data[DAM_COLLECTION_FIELD_KEY[index]]
+        );
+      }
+    });
+    return formData;
+  };
+
+  static __transformItemToApiOfUpdation = (data) => {
+    let formData = {};
+    Object.keys(DAM_COLLECTION_API_RESPONSE_FIELD_KEY).forEach((index) => {
+      if (data[DAM_COLLECTION_FIELD_KEY[index]]) {
+        formData[DAM_COLLECTION_API_RESPONSE_FIELD_KEY[index]] =
+          data[DAM_COLLECTION_FIELD_KEY[index]];
+      }
+    });
+    return formData;
+  };
+}
+
 export { ColectionModel, CollectionItemModel, AssetsItemModel, AssetsModel };
