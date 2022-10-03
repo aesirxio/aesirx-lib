@@ -255,4 +255,11 @@ class SubsctiptionItemModel extends BaseItemModel {
   };
 }
 
-export { ColectionModel, CollectionItemModel, AssetsItemModel, AssetsModel };
+export {
+  ColectionModel,
+  CollectionItemModel,
+  AssetsItemModel,
+  AssetsModel,
+  SubscriptionModel,
+  SubsctiptionItemModel,
+};

@@ -5,7 +5,6 @@
 
 import { AssetsItemModel, AssetsModel, ColectionModel, CollectionItemModel } from './DamModel';
 import DamRoute from './DamRoute';
-// import { requestANewAccessToken } from '../gateway/Instance';
 import { Component } from 'react';
 import axios from 'axios';
 
@@ -246,7 +245,6 @@ class AesirxDamApiService extends Component {
 
   updateDamSubscription = async (data) => {
     try {
-      // const dataToSubmit = AssetsItemModel.__transformItemToApiOfUpdation(data);
       const result = await this.route.updateDamSubscription(data);
       if (result.result) {
         return result.result;
