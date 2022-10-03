@@ -8,7 +8,7 @@ const DAM_COLLECTION_FIELD_KEY = {
   PARENT_ID: 'parent_id',
   NAME: 'name',
   OWNER: 'owner',
-  FILE_SIZE: 'file_size',
+  FILE_SIZE: 'size',
   LAST_MODIFIED: 'last_modified_date',
 };
 
@@ -17,7 +17,7 @@ const DAM_COLLECTION_API_RESPONSE_FIELD_KEY = {
   PARENT_ID: 'parent_id',
   NAME: 'name',
   OWNER: 'owner',
-  FILE_SIZE: 'file_size',
+  FILE_SIZE: 'size',
   LAST_MODIFIED: 'last_modified_date',
 };
 

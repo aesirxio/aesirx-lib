@@ -20,6 +20,36 @@ class AesirxDamApiService extends Component {
     this.route = new DamRoute();
   }
 
+  search = async (data) => {
+    try {
+      const dataSearchAssets = await this.route.searchAssets(data);
+      const dataSearchCollections = await this.route.searchCollections(data);
+
+      let resultsAssets = null;
+      let resultCollection = null;
+      if (dataSearchAssets) {
+        resultsAssets = new AssetsModel(dataSearchAssets);
+      }
+      if (dataSearchCollections) {
+        resultCollection = new ColectionModel(dataSearchCollections);
+      }
+      if (resultsAssets) {
+        resultsAssets = resultsAssets.toJSON();
+      }
+      if (resultCollection) {
+        resultCollection = resultCollection.toJSON();
+      }
+      return {
+        assets: resultsAssets ?? [],
+        collections: resultCollection ?? [],
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
   getAsset = async (id) => {
     try {
       const data = await this.route.getAsset(id);
