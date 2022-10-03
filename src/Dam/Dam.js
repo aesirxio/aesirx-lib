@@ -228,6 +228,36 @@ class AesirxDamApiService extends Component {
       } else throw error;
     }
   };
+
+  getDamSubscription = async () => {
+    try {
+      // const dataToSubmit = AssetsItemModel.__transformItemToApiOfUpdation(data);
+      const result = await this.route.getSubscription();
+      if (result._embedded.item) {
+        return result._embedded.item;
+      }
+      return { message: 'Something have problem' };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  updateDamSubscription = async (data) => {
+    try {
+      // const dataToSubmit = AssetsItemModel.__transformItemToApiOfUpdation(data);
+      const result = await this.route.updateDamSubscription(data);
+      if (result.result) {
+        return result.result;
+      }
+      return { message: 'Something have problem' };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
 }
 
 export default AesirxDamApiService;

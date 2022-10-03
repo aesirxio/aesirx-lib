@@ -56,9 +56,34 @@ const DAM_ASSETS_API_FIELD_KEY = {
   FILE: 'file',
 };
 
+const DAM_SUBSCIPTION_API_FIELD_KEY = {
+  ID: 'id',
+  LICENSE: 'license',
+  PRODUCT: 'product',
+  PRODUCT_TYPE: 'type',
+  PRODUCT_OPTION: 'options',
+  PACKAGE: 'package',
+  PACKAGE_NAME: 'name',
+  PACKAGE_NUMBER_POST_PER_DAY: 'number_posts_per_day',
+  PACKAGE_STORAGE_LIMIT: 'storage_limit',
+};
+const DAM_SUBSCIPTION_FIELD_KEY = {
+  ID: 'id',
+  LICENSE: 'license',
+  PRODUCT: 'product',
+  PRODUCT_TYPE: 'type',
+  PRODUCT_OPTION: 'options',
+  PACKAGE: 'package',
+  PACKAGE_NAME: 'name',
+  PACKAGE_NUMBER_POST_PER_DAY: 'number_posts_per_day',
+  PACKAGE_STORAGE_LIMIT: 'storage_limit',
+};
+
 export {
   DAM_COLLECTION_API_RESPONSE_FIELD_KEY,
   DAM_COLLECTION_FIELD_KEY,
   DAM_ASSETS_FIELD_KEY,
   DAM_ASSETS_API_FIELD_KEY,
+  DAM_SUBSCIPTION_FIELD_KEY,
+  DAM_SUBSCIPTION_API_FIELD_KEY,
 };
