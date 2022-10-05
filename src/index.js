@@ -21,7 +21,6 @@ import AesirxFacebookDataApiService from './FacebookData/FacebookData';
 import AesirxNotificationApiService from './Notification/Notification';
 import AesirxGoogleDataApiService from './GoogleData/GoogleData';
 import AesirxNewsApiService from './News/News';
-import AesirxDamApiService from './Dam/Dam';
 import Storage from './Utils/Storage';
 import {
   AXIOS_CONFIGS,
@@ -54,5 +53,4 @@ export {
   GENERAL_CONFIG,
   Storage,
   AesirxNewsApiService,
-  AesirxDamApiService,
 };
