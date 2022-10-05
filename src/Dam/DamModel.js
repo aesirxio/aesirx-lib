@@ -266,30 +266,6 @@ class SubsctiptionItemModel extends BaseItemModel {
       [DAM_SUBSCIPTION_FIELD_KEY.LICENSE]: this.license,
     };
   };
-
-  // static __transformItemToApiOfCreation = () => {
-  //   let formData = new FormData();
-  // Object.keys(DAM_COLLECTION_API_RESPONSE_FIELD_KEY).forEach((index) => {
-  //   if (data[DAM_COLLECTION_FIELD_KEY[index]]) {
-  //     formData.append(
-  //       [DAM_COLLECTION_API_RESPONSE_FIELD_KEY[index]],
-  //       data[DAM_COLLECTION_FIELD_KEY[index]]
-  //     );
-  //   }
-  // });
-  //   return formData;
-  // };
-
-  // static __transformItemToApiOfUpdation = (data) => {
-  //   let formData = {};
-  // Object.keys(DAM_COLLECTION_API_RESPONSE_FIELD_KEY).forEach((index) => {
-  //   if (data[DAM_COLLECTION_FIELD_KEY[index]]) {
-  //     formData[DAM_COLLECTION_API_RESPONSE_FIELD_KEY[index]] =
-  //       data[DAM_COLLECTION_FIELD_KEY[index]];
-  //   }
-  // });
-  //   return formData;
-  // };
 }
 
 export {
