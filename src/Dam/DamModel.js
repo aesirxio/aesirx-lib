@@ -10,6 +10,8 @@ import {
   DAM_ASSETS_FIELD_KEY,
   DAM_COLLECTION_API_RESPONSE_FIELD_KEY,
   DAM_COLLECTION_FIELD_KEY,
+  DAM_SUBSCIPTION_API_FIELD_KEY,
+  DAM_SUBSCIPTION_FIELD_KEY,
 } from '../Constant/DamConstant';
 import Utils from '../Utils/Utils';
 class ColectionModel extends BaseModel {
@@ -62,25 +64,36 @@ class CollectionItemModel extends BaseItemModel {
 
   static __transformItemToApiOfCreation = (data) => {
     let formData = new FormData();
+    const excluded = [DAM_COLLECTION_FIELD_KEY.PARENT_ID];
     Object.keys(DAM_COLLECTION_API_RESPONSE_FIELD_KEY).forEach((index) => {
-      if (data[DAM_COLLECTION_FIELD_KEY[index]]) {
+      if (!excluded.includes(index) && data[DAM_COLLECTION_FIELD_KEY[index]]) {
         formData.append(
           [DAM_COLLECTION_API_RESPONSE_FIELD_KEY[index]],
           data[DAM_COLLECTION_FIELD_KEY[index]]
         );
       }
     });
+    formData.append(
+      [DAM_COLLECTION_API_RESPONSE_FIELD_KEY.PARENT_ID],
+      data[DAM_COLLECTION_FIELD_KEY.PARENT_ID] ?? 0
+    );
     return formData;
   };
 
   static __transformItemToApiOfUpdation = (data) => {
     let formData = {};
+    const excluded = [DAM_COLLECTION_FIELD_KEY.PARENT_ID];
+
     Object.keys(DAM_COLLECTION_API_RESPONSE_FIELD_KEY).forEach((index) => {
-      if (data[DAM_COLLECTION_FIELD_KEY[index]]) {
+      if (!excluded.includes(index) && data[DAM_COLLECTION_FIELD_KEY[index]]) {
         formData[DAM_COLLECTION_API_RESPONSE_FIELD_KEY[index]] =
           data[DAM_COLLECTION_FIELD_KEY[index]];
       }
     });
+    formData.append(
+      [DAM_COLLECTION_API_RESPONSE_FIELD_KEY.PARENT_ID],
+      data[DAM_COLLECTION_FIELD_KEY.PARENT_ID] ?? 0
+    );
     return formData;
   };
 }
@@ -195,22 +208,48 @@ class SubscriptionModel extends BaseModel {
 }
 class SubsctiptionItemModel extends BaseItemModel {
   id = null;
-  parent_id = null;
-  name = '';
-  file_size = 0;
-  owner = null;
-  last_modified = null;
+  product = null;
+  product_type = null;
+  product_option = null;
+  product_storage_usage = null;
+  license = null;
+  package = null;
+  package_name = null;
+  package_storage_limit = null;
   constructor(entity) {
     super(entity);
     if (entity) {
-      this.id = entity[DAM_COLLECTION_FIELD_KEY.ID] ?? '';
-      this.parent_id = entity[DAM_COLLECTION_FIELD_KEY.PARENT_ID] ?? 0;
-      this.name = entity[DAM_COLLECTION_FIELD_KEY.NAME] ?? '';
-      this.file_size = entity[DAM_COLLECTION_FIELD_KEY.FILE_SIZE] ?? 0;
-      this.owner = entity[DAM_COLLECTION_FIELD_KEY.OWNER] ?? '';
-      this.last_modified = Utils.formatDatetimeByLocale(
-        entity[DAM_COLLECTION_FIELD_KEY.LAST_MODIFIED]
-      );
+      this.id = entity[DAM_SUBSCIPTION_API_FIELD_KEY.ID] ?? '';
+      if (entity[DAM_SUBSCIPTION_FIELD_KEY.PRODUCT]) {
+        this.product = {
+          [DAM_SUBSCIPTION_FIELD_KEY.PRODUCT_TYPE]:
+            entity[DAM_SUBSCIPTION_FIELD_KEY.PRODUCT][0][DAM_SUBSCIPTION_FIELD_KEY.PRODUCT_TYPE] ??
+            '',
+          [DAM_SUBSCIPTION_FIELD_KEY.PRODUCT_OPTION]:
+            entity[DAM_SUBSCIPTION_FIELD_KEY.PRODUCT][0][
+              DAM_SUBSCIPTION_FIELD_KEY.PRODUCT_OPTION
+            ] ?? {},
+          [DAM_SUBSCIPTION_FIELD_KEY.PRODUCT_STORAGE_USAGE]:
+            Math.floor(
+              +entity[DAM_SUBSCIPTION_FIELD_KEY.PRODUCT][0][
+                DAM_SUBSCIPTION_FIELD_KEY.PRODUCT_STORAGE_USAGE
+              ] / 1000000
+            ) ?? 0,
+        };
+      }
+      this.license = entity[DAM_SUBSCIPTION_FIELD_KEY.LICENSE] ?? '';
+      if (entity[DAM_SUBSCIPTION_FIELD_KEY.PACKAGE]) {
+        this.package = {
+          [DAM_SUBSCIPTION_FIELD_KEY.PACKAGE_NAME]:
+            entity[DAM_SUBSCIPTION_FIELD_KEY.PACKAGE][DAM_SUBSCIPTION_FIELD_KEY.PACKAGE_NAME] ?? '',
+          [DAM_SUBSCIPTION_FIELD_KEY.PACKAGE_STORAGE_LIMIT]:
+            Math.floor(
+              entity[DAM_SUBSCIPTION_FIELD_KEY.PACKAGE][
+                DAM_SUBSCIPTION_FIELD_KEY.PACKAGE_STORAGE_LIMIT
+              ].replace(',', '')
+            ) ?? '',
+        };
+      }
     }
   }
 
@@ -221,36 +260,34 @@ class SubsctiptionItemModel extends BaseItemModel {
   toJSON = () => {
     return {
       ...this.baseToJSON(),
-      [DAM_COLLECTION_FIELD_KEY.ID]: this.id,
-      [DAM_COLLECTION_FIELD_KEY.PARENT_ID]: this.parent_id,
-      [DAM_COLLECTION_FIELD_KEY.NAME]: this.name,
-      [DAM_COLLECTION_FIELD_KEY.FILE_SIZE]: this.file_size,
-      [DAM_COLLECTION_FIELD_KEY.LAST_MODIFIED]: this.last_modified,
-      [DAM_COLLECTION_FIELD_KEY.OWNER]: this.owner,
+      [DAM_SUBSCIPTION_FIELD_KEY.ID]: this.id,
+      [DAM_SUBSCIPTION_FIELD_KEY.PRODUCT]: this.product,
+      [DAM_SUBSCIPTION_FIELD_KEY.PACKAGE]: this.package,
+      [DAM_SUBSCIPTION_FIELD_KEY.LICENSE]: this.license,
     };
   };
 
   static __transformItemToApiOfCreation = (data) => {
     let formData = new FormData();
-    Object.keys(DAM_COLLECTION_API_RESPONSE_FIELD_KEY).forEach((index) => {
-      if (data[DAM_COLLECTION_FIELD_KEY[index]]) {
-        formData.append(
-          [DAM_COLLECTION_API_RESPONSE_FIELD_KEY[index]],
-          data[DAM_COLLECTION_FIELD_KEY[index]]
-        );
-      }
-    });
+    // Object.keys(DAM_COLLECTION_API_RESPONSE_FIELD_KEY).forEach((index) => {
+    //   if (data[DAM_COLLECTION_FIELD_KEY[index]]) {
+    //     formData.append(
+    //       [DAM_COLLECTION_API_RESPONSE_FIELD_KEY[index]],
+    //       data[DAM_COLLECTION_FIELD_KEY[index]]
+    //     );
+    //   }
+    // });
     return formData;
   };
 
   static __transformItemToApiOfUpdation = (data) => {
     let formData = {};
-    Object.keys(DAM_COLLECTION_API_RESPONSE_FIELD_KEY).forEach((index) => {
-      if (data[DAM_COLLECTION_FIELD_KEY[index]]) {
-        formData[DAM_COLLECTION_API_RESPONSE_FIELD_KEY[index]] =
-          data[DAM_COLLECTION_FIELD_KEY[index]];
-      }
-    });
+    // Object.keys(DAM_COLLECTION_API_RESPONSE_FIELD_KEY).forEach((index) => {
+    //   if (data[DAM_COLLECTION_FIELD_KEY[index]]) {
+    //     formData[DAM_COLLECTION_API_RESPONSE_FIELD_KEY[index]] =
+    //       data[DAM_COLLECTION_FIELD_KEY[index]];
+    //   }
+    // });
     return formData;
   };
 }

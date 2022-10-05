@@ -66,6 +66,7 @@ const DAM_SUBSCIPTION_API_FIELD_KEY = {
   PACKAGE_NAME: 'name',
   PACKAGE_NUMBER_POST_PER_DAY: 'number_posts_per_day',
   PACKAGE_STORAGE_LIMIT: 'storage_limit',
+  PRODUCT_STORAGE_USAGE: 'storage_usage',
 };
 const DAM_SUBSCIPTION_FIELD_KEY = {
   ID: 'id',
@@ -77,6 +78,7 @@ const DAM_SUBSCIPTION_FIELD_KEY = {
   PACKAGE_NAME: 'name',
   PACKAGE_NUMBER_POST_PER_DAY: 'number_posts_per_day',
   PACKAGE_STORAGE_LIMIT: 'storage_limit',
+  PRODUCT_STORAGE_USAGE: 'storage_usage',
 };
 
 export {
