@@ -26,6 +26,7 @@ const MEMBER_GET_FIELD_KEY = {
   ID: 'id',
   FULL_NAME: 'full_name',
   AVATAR_DAM: 'avatar_dam',
+  LOGO: 'member_logo',
   USERNAME: 'username',
   EMAIL: 'email',
   BIRTHDAY: 'birthday',
