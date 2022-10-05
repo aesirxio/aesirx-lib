@@ -4,6 +4,7 @@
  */
 
 import axios from 'axios';
+import queryString from 'query-string';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
 import BaseRoute from '../Abstract/BaseRoute';
@@ -183,6 +184,7 @@ AesirxApiInstance.interceptors.response.use(
     if (!axios.isCancel(error)) {
       return Promise.reject(error);
     } else {
+      // return empty object for aborted request
       return Promise.reject(error);
     }
   }
