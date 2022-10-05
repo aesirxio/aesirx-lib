@@ -11,7 +11,6 @@ import BaseRoute from '../Abstract/BaseRoute';
 import { logout } from '../Authentication/Logout';
 import Storage from '../Utils/Storage';
 import AesirxAuthenticationApiService from '../Authentication/Authentication';
-import queryString from 'query-string';
 
 const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
   {
