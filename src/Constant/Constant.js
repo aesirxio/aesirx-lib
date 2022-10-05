@@ -16,7 +16,6 @@ const AUTHORIZATION_KEY = {
   MEMBER_FULL_NAME: 'member_full_name',
   MEMBER_EMAIL: 'member_email',
   AVATAR: 'avatar',
-  LOGO: 'member_logo',
   ORGANISATION_ID: 'organisation_id',
   REFRESH_TOKEN: 'refresh_token',
   CUSTOM_SERVICE_ACCESS_TOKEN: 'custom_service_access_token',
