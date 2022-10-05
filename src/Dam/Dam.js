@@ -3,7 +3,13 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { AssetsItemModel, AssetsModel, ColectionModel, CollectionItemModel } from './DamModel';
+import {
+  AssetsItemModel,
+  AssetsModel,
+  ColectionModel,
+  CollectionItemModel,
+  SubscriptionModel,
+} from './DamModel';
 import DamRoute from './DamRoute';
 import { Component } from 'react';
 import axios from 'axios';
@@ -230,12 +236,17 @@ class AesirxDamApiService extends Component {
 
   getDamSubscription = async () => {
     try {
-      // const dataToSubmit = AssetsItemModel.__transformItemToApiOfUpdation(data);
-      const result = await this.route.getSubscription();
-      if (result._embedded.item) {
-        return result._embedded.item;
+      const data = await this.route.getSubscription();
+      let result = null;
+      if (data) {
+        result = new SubscriptionModel(data);
       }
-      return { message: 'Something have problem' };
+
+      if (result) {
+        result = result.toJSON();
+      }
+
+      return result;
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
