@@ -90,10 +90,10 @@ class CollectionItemModel extends BaseItemModel {
           data[DAM_COLLECTION_FIELD_KEY[index]];
       }
     });
-    formData.append(
-      [DAM_COLLECTION_API_RESPONSE_FIELD_KEY.PARENT_ID],
-      data[DAM_COLLECTION_FIELD_KEY.PARENT_ID] ?? 0
-    );
+
+    formData[DAM_COLLECTION_API_RESPONSE_FIELD_KEY.PARENT_ID] =
+      data[DAM_COLLECTION_FIELD_KEY.PARENT_ID] ?? 0;
+
     return formData;
   };
 }
