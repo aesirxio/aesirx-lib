@@ -28,7 +28,7 @@ const componentPathAll = [
 const componentDocumentPath = paths.appDocuments;
 
 function runDocGen() {
-  componentPathAll.forEach(componentPath => {
+  componentPathAll.forEach((componentPath) => {
     try {
       fs.readFile(componentPath, (error, content) => {
         const documentationPath =
@@ -37,14 +37,14 @@ function runDocGen() {
           path.basename(componentPath, path.extname(componentPath)) +
           '.md';
         let doc = reactDocgen.parse(content);
-        var md = "";
+        var md = '';
         // console.log(doc);
 
         if (doc !== undefined) {
           doc = Object.values(doc);
           console.log('----- DOC CONTENT ----');
 
-          doc.forEach(element => {
+          doc.forEach((element) => {
             let elementType = typeof element;
 
             switch (elementType) {
@@ -52,12 +52,15 @@ function runDocGen() {
                 md += '<h1>' + element + '</h1>';
                 break;
               case 'object':
-                element.forEach(subElement => {
+                element.forEach((subElement) => {
                   if (subElement.name !== undefined) {
                     console.log(subElement);
-                    const docblock = subElement.docblock; 
+                    const docblock = subElement.docblock;
                     const descriptionSplitted = docblock ? docblock.split('@') : [];
-                    const description = Array.isArray(descriptionSplitted) && descriptionSplitted.length > 0 ? descriptionSplitted[0] : "";
+                    const description =
+                      Array.isArray(descriptionSplitted) && descriptionSplitted.length > 0
+                        ? descriptionSplitted[0]
+                        : '';
                     md += '<h3>' + subElement.name + '</h3>';
                     md += '<ul>';
                     md += '<li><b>Type</b>: Method </li>';
@@ -71,7 +74,7 @@ function runDocGen() {
                       md += '<th>Name</th><th>Description</th><th>Type</th><th>Optional</th>';
                       md += '</thead>';
                       md += '<tbody>';
-                      subElement.params.forEach(param => {
+                      subElement.params.forEach((param) => {
                         md += '<tr>';
                         md += '<td>' + param.name + '</td>';
                         md += '<td>' + param.description + '</td>';
@@ -85,17 +88,18 @@ function runDocGen() {
 
                     let returnType = 'Any';
 
-                    if (subElement.returns.type && subElement.returns.type.name !== undefined) {
+                    if (subElement.returns?.type?.name !== undefined) {
                       returnType = subElement.returns.type.name;
                     }
 
                     let returnDescription = '';
 
-                    if (subElement.returns.description) {
+                    if (subElement.returns?.description !== undefined) {
                       returnDescription = subElement.returns.description;
                     }
-                    //console.log(subElement.returns.type.name);
-                    md += '<li><b>Returns</b>: ' + returnType + ' (' + returnDescription +' )</li>';
+
+                    md +=
+                      '<li><b>Returns</b>: ' + returnType + ' (' + returnDescription + ' )</li>';
                     md += '</ul>';
                   }
                 });

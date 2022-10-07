@@ -19,7 +19,7 @@
     "lint": "cross-env NODE_ENV=production BABEL_ENV=production eslint --fix \"src/**/\"",
     "lint:check": "cross-env NODE_ENV=production BABEL_ENV=production eslint \"src/**/\"",
     "build": "npm run clean && cross-env NODE_ENV=production babel --config-file ./config/babel.config.js src --out-dir ./dist --extensions \".js,.jsx\"",
-    "start": "npm run clean && cross-env NODE_ENV=production babel --config-file ./config/babel.config.js src --out-dir ./dist --extensions \".js,.jsx\" --watch",
+    "start": "npm run clean && cross-env NODE_ENV=development babel --config-file ./config/babel.config.js src --out-dir ./dist --extensions \".js,.jsx\" --watch",
     "clean": "rm -rf dist",
     "test": "node scripts/test.js",
     "docgen": "node scripts/docgen.js"
@@ -131,7 +131,9 @@
     "jest": "26.6.0",
     "jest-circus": "26.6.0",
     "jest-resolve": "26.6.0",
-    "jest-watch-typeahead": "0.6.1"
+    "jest-watch-typeahead": "0.6.1",
+    "react-dev-utils": "^12.0.1",
+    "react-docgen": "^5.4.3"
   },
   "files": [
     "dist",
