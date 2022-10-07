@@ -1,6 +1,6 @@
 {
   "name": "aesirx-dma-lib",
-  "version": "1.2.3-alpha.1",
+  "version": "1.4.2-alpha.1",
   "license": "GPL-3.0-only",
   "author": "AesirX",
   "repository": "https://github.com/aesirxio/dma-lib",
@@ -18,9 +18,8 @@
   "scripts": {
     "lint": "cross-env NODE_ENV=production BABEL_ENV=production eslint --fix \"src/**/\"",
     "lint:check": "cross-env NODE_ENV=production BABEL_ENV=production eslint \"src/**/\"",
-    "start": "cross-env NODE_ENV=production BABEL_ENV=production microbundle watch --no-compress",
     "build": "npm run clean && cross-env NODE_ENV=production babel --config-file ./config/babel.config.js src --out-dir ./dist --extensions \".js,.jsx\"",
-    "watch": "npm run clean && cross-env NODE_ENV=production babel --config-file ./config/babel.config.js src --out-dir ./dist --extensions \".js,.jsx\" --watch",
+    "start": "npm run clean && cross-env NODE_ENV=production babel --config-file ./config/babel.config.js src --out-dir ./dist --extensions \".js,.jsx\" --watch",
     "clean": "rm -rf dist",
     "test": "node scripts/test.js",
     "docgen": "node scripts/docgen.js"
