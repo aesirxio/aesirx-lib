@@ -14,8 +14,9 @@ import AesirxAuthenticationApiService from '../Authentication/Authentication';
 
 const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
   {
-    option: 'token',
-    api: 'oauth2',
+    option: 'member',
+    api: 'hal',
+    task: 'login',
   },
   false
 );
@@ -37,12 +38,14 @@ const defaultPassword =
     ? process.env.OAUTH_DEFAULT_PASSWORD
     : AXIOS_CONFIGS.PASSWORD;
 
-let reqAuthFormData = {
-  grant_type: 'password',
-  client_id: clientID,
-  client_secret: clientSecret,
-  username: defaultUsername,
+const reqAuthFormData = {
+  email: defaultUsername,
   password: defaultPassword,
+  client_id: clientID,
+  secret: clientSecret,
+  license_key: process.env.OAUTH_CLIENT_ID,
+  test_mode: process.env.OAUTH_CLIENT_ID,
+  domain: 'localhost',
 };
 
 if (process.env.NODE_ENV !== 'test') {
