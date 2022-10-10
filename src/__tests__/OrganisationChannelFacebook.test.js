@@ -18,8 +18,6 @@ describe('Unit Testing - AesirX - FacebookAd Service', () => {
     const service = new AesirxOrganisationChannelApiService();
     const response = await service.getLoginUrl(channelType);
 
-    console.log('re', response);
-
     assert.equal(
       true,
       response?.result?.loginUrl?.includes('https://www.facebook.com/v2.10/dialog/oauth')
