@@ -37,7 +37,7 @@ class AesirxAuthenticationApiService {
             : AXIOS_CONFIGS.CLIENT_SECRET,
         license_key: AXIOS_CONFIGS.LICENSE,
         test_mode: AXIOS_CONFIGS.TEST_MODE,
-        domain: window.location.hostname,
+        domain: process.env.NODE_ENV === 'test' ? 'localhost' : window.location.hostname,
       };
 
       const config = {
@@ -205,6 +205,7 @@ class AesirxAuthenticationApiService {
       }
     );
   };
+
   setStore = (key) => {
     Object.keys(key).forEach((_key) => {
       if (!_key) {

@@ -130,7 +130,7 @@
     "css-minimizer-webpack-plugin": "^4.0.0",
     "eslint": "^8.17",
     "eslint-plugin-react": "^7.30",
-    "faker": "^6.6.6",
+    "faker": "^5.5.3",
     "jest": "26.6.0",
     "jest-circus": "26.6.0",
     "jest-resolve": "26.6.0",

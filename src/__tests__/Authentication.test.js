@@ -8,7 +8,10 @@ import { default as AesirxAuthenticationApiService } from '../Authentication/Aut
 describe('Unit Testing - AesirX - Authentication Service', () => {
   it('Unit Test API - User Login', async () => {
     const authService = new AesirxAuthenticationApiService();
-    const result = await authService.login('test@r-digital.tech', 'test@r-digital.tech');
+    const result = await authService.login(
+      process.env.REACT_APP_OAUTH_DEFAULT_USERNAME,
+      process.env.REACT_APP_OAUTH_DEFAULT_PASSWORD
+    );
     expect(result).toBeTruthy();
   });
 });
