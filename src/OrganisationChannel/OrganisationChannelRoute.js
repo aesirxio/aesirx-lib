@@ -255,7 +255,7 @@ class OrganisationChannelRoute extends BaseRoute {
     );
 
   removeChannel = (channelName, channelId) =>
-    AesirxApiInstance.get(
+    AesirxApiInstance.post(
       this.createRequestURL({
         option: 'organisation_channel',
         task: 'removeChannel',
