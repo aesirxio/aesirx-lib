@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import BaseItemModel from 'library/Abstract/BaseItemModel';
+import BaseItemModel from '../Abstract/BaseItemModel';
 import {
   BI_DASHBOARD_FIELD_KEY,
   BI_WIDGET_FIELD_KEY,
@@ -12,7 +12,7 @@ import {
   BI_VISITORS_FIELD_KEY,
   BI_DOMAIN_FIELD_KEY,
   BI_SUMMARY_FIELD_KEY,
-} from 'library/Constant/BiConstant';
+} from '..//Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
 class DashboardModel extends BaseItemModel {
