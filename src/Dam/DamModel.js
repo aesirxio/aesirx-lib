@@ -208,6 +208,7 @@ class SubscriptionModel extends BaseModel {
 }
 class SubsctiptionItemModel extends BaseItemModel {
   id = null;
+
   product = null;
   product_type = null;
   product_option = null;
