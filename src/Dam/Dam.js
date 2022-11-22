@@ -50,7 +50,7 @@ class AesirxDamApiService extends Component {
       };
     } catch (error) {
       if (axios.isCancel(error)) {
-        return { message: 'isCancle' };
+        return { message: 'isCancel' };
       } else throw error;
     }
   };
@@ -71,7 +71,7 @@ class AesirxDamApiService extends Component {
       };
     } catch (error) {
       if (axios.isCancel(error)) {
-        return { message: 'isCancle' };
+        return { message: 'isCancel' };
       } else throw error;
     }
   };
@@ -95,7 +95,7 @@ class AesirxDamApiService extends Component {
       };
     } catch (error) {
       if (axios.isCancel(error)) {
-        return { message: 'isCancle' };
+        return { message: 'isCancel' };
       } else throw error;
     }
   };
@@ -110,7 +110,7 @@ class AesirxDamApiService extends Component {
       return { message: 'Something have problem' };
     } catch (error) {
       if (axios.isCancel(error)) {
-        return { message: 'isCancle' };
+        return { message: 'isCancel' };
       } else throw error;
     }
   };
@@ -125,7 +125,7 @@ class AesirxDamApiService extends Component {
       return { message: 'Something have problem' };
     } catch (error) {
       if (axios.isCancel(error)) {
-        return { message: 'isCancle' };
+        return { message: 'isCancel' };
       } else throw error;
     }
   };
@@ -139,7 +139,7 @@ class AesirxDamApiService extends Component {
       return { message: 'Something have problem' };
     } catch (error) {
       if (axios.isCancel(error)) {
-        return { message: 'isCancle' };
+        return { message: 'isCancel' };
       } else throw error;
     }
   };
@@ -160,7 +160,7 @@ class AesirxDamApiService extends Component {
       };
     } catch (error) {
       if (axios.isCancel(error)) {
-        return { message: 'isCancle' };
+        return { message: 'isCancel' };
       } else throw error;
     }
   };
@@ -184,7 +184,31 @@ class AesirxDamApiService extends Component {
       };
     } catch (error) {
       if (axios.isCancel(error)) {
-        return { message: 'isCancle' };
+        return { message: 'isCancel' };
+      } else throw error;
+    }
+  };
+
+  getAllCollections = async () => {
+    try {
+      const data = await this.route.searchCollections();
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new ColectionModel(data);
+
+        pagination = results.getPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results ?? [],
+        pagination: pagination ?? {},
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancel' };
       } else throw error;
     }
   };
@@ -199,7 +223,7 @@ class AesirxDamApiService extends Component {
       return { message: 'Something have problem' };
     } catch (error) {
       if (axios.isCancel(error)) {
-        return { message: 'isCancle' };
+        return { message: 'isCancel' };
       } else throw error;
     }
   };
@@ -214,7 +238,7 @@ class AesirxDamApiService extends Component {
       return { message: 'Something have problem' };
     } catch (error) {
       if (axios.isCancel(error)) {
-        return { message: 'isCancle' };
+        return { message: 'isCancel' };
       } else throw error;
     }
   };
@@ -229,7 +253,7 @@ class AesirxDamApiService extends Component {
       return { message: 'Something have problem' };
     } catch (error) {
       if (axios.isCancel(error)) {
-        return { message: 'isCancle' };
+        return { message: 'isCancel' };
       } else throw error;
     }
   };
@@ -249,7 +273,7 @@ class AesirxDamApiService extends Component {
       return result;
     } catch (error) {
       if (axios.isCancel(error)) {
-        return { message: 'isCancle' };
+        return { message: 'isCancel' };
       } else throw error;
     }
   };
@@ -263,7 +287,7 @@ class AesirxDamApiService extends Component {
       return { message: 'Something have problem' };
     } catch (error) {
       if (axios.isCancel(error)) {
-        return { message: 'isCancle' };
+        return { message: 'isCancel' };
       } else throw error;
     }
   };
