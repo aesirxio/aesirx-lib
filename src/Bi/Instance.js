@@ -7,7 +7,7 @@ import axios from 'axios';
 import queryString from 'query-string';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
-import BaseRoute from '../Abstract/BaseRoute';
+import BaseRoute from './BaseRoute';
 import { logout } from '../Authentication/Logout';
 import Storage from '../Utils/Storage';
 import AesirxAuthenticationApiService from './Authentication';
