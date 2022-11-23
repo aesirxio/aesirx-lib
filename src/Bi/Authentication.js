@@ -5,7 +5,7 @@
 
 import axios from 'axios';
 import { AXIOS_CONFIGS, AUTHORIZATION_KEY } from '../Constant/Constant';
-import BaseRoute from '../Abstract/BaseRoute';
+import BaseRoute from './BaseRoute';
 import qs from 'query-string';
 import Storage from '../Utils/Storage';
 import { logout } from '../Authentication/Logout';

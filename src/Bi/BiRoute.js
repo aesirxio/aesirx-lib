@@ -3,8 +3,8 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirxApiInstance from '../gateway/Instance';
-import BaseRoute from '../Abstract/BaseRoute';
+import AesirxApiInstance from './Instance';
+import BaseRoute from './BaseRoute';
 
 class BiRoute extends BaseRoute {
   getDashboard = () => {
