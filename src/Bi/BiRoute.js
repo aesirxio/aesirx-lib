@@ -32,7 +32,7 @@ class BiRoute extends BaseRoute {
         {
           ...dataFilter,
         },
-        'metrics',
+        'domains',
         {
           ...dateFilter,
         }

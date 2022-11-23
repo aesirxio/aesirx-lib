@@ -180,7 +180,19 @@ class VisitorItemModel extends BaseItemModel {
   };
 }
 
-class SummaryModel extends BaseItemModel {
+class SummaryModel extends BaseModel {
+  constructor(entities) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element) => {
+        return new SummaryItemModel(element);
+      });
+      this.items.pagination = this.getPagination();
+    }
+  }
+}
+
+class SummaryItemModel extends BaseItemModel {
   number_of_visitors = null;
   number_of_page_views = null;
   number_of_unique_page_views = null;
@@ -216,4 +228,4 @@ class SummaryModel extends BaseItemModel {
   };
 }
 
-export { DomainModel, DashboardModel, VisitorModel, SummaryModel };
+export { DomainModel, DashboardModel, VisitorModel, SummaryModel, SummaryItemModel };
