@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { DashboardModel, DomainModel, SummaryModel, VisitorModel } from './BiModel';
+import { DashboardModel, DomainModel, MetricsModel, SummaryModel, VisitorModel } from './BiModel';
 import BiRoute from './BiRoute';
 import { Component } from 'react';
 import axios from 'axios';
@@ -59,9 +59,28 @@ class AesirxBiApiService extends Component {
     }
   };
 
-  getVisitor = async (dataFilter, dateFilter) => {
+  getVisitors = async (dataFilter, dateFilter) => {
     try {
-      const data = await this.route.getVisitor(dataFilter, dateFilter);
+      const data = await this.route.getVisitors(dataFilter, dateFilter);
+
+      let results = null;
+      if (data) {
+        results = new VisitorModel(data);
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getVisits = async (dataFilter, dateFilter) => {
+    try {
+      const data = await this.route.getVisits(dataFilter, dateFilter);
 
       let results = null;
       if (data) {
@@ -85,6 +104,24 @@ class AesirxBiApiService extends Component {
       let results = null;
       if (data) {
         results = new SummaryModel(data);
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getMetrics = async (dataFilter, dateFilter) => {
+    try {
+      const data = await this.route.getMetrics(dataFilter, dateFilter);
+
+      let results = null;
+      if (data) {
+        results = new MetricsModel(data);
       }
       if (results) {
         results = results.toJSON();

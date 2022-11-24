@@ -50,6 +50,15 @@ const BI_SUMMARY_FIELD_KEY = {
   BOUNCE_RATE: 'bounce_rate',
 };
 
+const BI_METRICS_FIELD_KEY = {
+  NUMBER_OF_VISITORS: 'visitors',
+  NUMBER_OF_PAGE_VIEWS: 'page_views',
+  NUMBER_OF_UNIQUE_PAGE_VIEWS: 'page_views_unique',
+  AVERAGE_SESSION_DURATION: 'session_duration_average_seconds',
+  NUMBER_OF_PAGES_PER_SESSION: 'pages_per_session_average',
+  BOUNCE_RATE: 'bounce_rate_percentage',
+};
+
 const BI_DOMAIN_FIELD_KEY = {
   DOMAIN: 'domain',
   NAME: 'name',
@@ -63,4 +72,5 @@ export {
   BI_VISITORS_FIELD_KEY,
   BI_DOMAIN_FIELD_KEY,
   BI_SUMMARY_FIELD_KEY,
+  BI_METRICS_FIELD_KEY,
 };
