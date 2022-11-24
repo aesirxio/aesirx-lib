@@ -13,13 +13,39 @@ class BiRoute extends BaseRoute {
   getListDomain = (dataFilter, listDomains) => {
     return listDomains;
   };
-  getVisitor = (dataFilter, dateFilter) => {
+  getVisitors = (dataFilter, dateFilter) => {
     return AesirxApiInstance.get(
       this.createRequestURL(
         {
           ...dataFilter,
         },
-        'visitor',
+        'visitors',
+        {
+          ...dateFilter,
+        }
+      )
+    );
+  };
+  getVisits = (dataFilter, dateFilter) => {
+    return AesirxApiInstance.get(
+      this.createRequestURL(
+        {
+          ...dataFilter,
+        },
+        'visits',
+        {
+          ...dateFilter,
+        }
+      )
+    );
+  };
+  getMetrics = (dataFilter, dateFilter) => {
+    return AesirxApiInstance.get(
+      this.createRequestURL(
+        {
+          ...dataFilter,
+        },
+        'metrics',
         {
           ...dateFilter,
         }

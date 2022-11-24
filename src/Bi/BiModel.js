@@ -12,6 +12,7 @@ import {
   BI_VISITORS_FIELD_KEY,
   BI_DOMAIN_FIELD_KEY,
   BI_SUMMARY_FIELD_KEY,
+  BI_METRICS_FIELD_KEY,
 } from '..//Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
@@ -228,4 +229,40 @@ class SummaryItemModel extends BaseItemModel {
   };
 }
 
-export { DomainModel, DashboardModel, VisitorModel, SummaryModel, SummaryItemModel };
+class MetricsModel extends BaseItemModel {
+  visitors = null;
+  page_views = null;
+  page_views_unique = null;
+  session_duration_average_seconds = null;
+  pages_per_session_average = null;
+  bounce_rate_percentage = null;
+  constructor(entity) {
+    super(entity);
+    if (entity) {
+      this.visitors = entity[BI_METRICS_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.page_views = entity[BI_METRICS_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
+      this.page_views_unique = entity[BI_METRICS_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
+      this.session_duration_average_seconds =
+        entity[BI_METRICS_FIELD_KEY.AVERAGE_SESSION_DURATION] ?? '';
+      this.pages_per_session_average =
+        entity[BI_METRICS_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION] ?? '';
+      this.bounce_rate_percentage = entity[BI_METRICS_FIELD_KEY.BOUNCE_RATE] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
+      [BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION]: this.number_of_pages_per_session,
+      [BI_SUMMARY_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
+    };
+  };
+}
+
+export { DomainModel, DashboardModel, VisitorModel, SummaryModel, SummaryItemModel, MetricsModel };
