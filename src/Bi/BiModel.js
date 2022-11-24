@@ -255,12 +255,12 @@ class MetricsModel extends BaseItemModel {
   toJSON = () => {
     return {
       ...this.baseToJSON(),
-      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
-      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
-      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
-      [BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,
-      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION]: this.number_of_pages_per_session,
-      [BI_SUMMARY_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
+      [BI_METRICS_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_METRICS_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
+      [BI_METRICS_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
+      [BI_METRICS_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,
+      [BI_METRICS_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION]: this.number_of_pages_per_session,
+      [BI_METRICS_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
     };
   };
 }
