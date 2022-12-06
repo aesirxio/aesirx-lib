@@ -35,7 +35,6 @@ const AesirxDamApiInstance = axios.create({
 
 const refreshToken = (failedRequest) => {
   const refresh_token = Storage.getItem(AUTHORIZATION_KEY.DAM_REFRESH_TOKEN) ?? '';
-  console.log(refresh_token);
   const refreshTokenFormData = new FormData();
   refreshTokenFormData.append('grant_type', 'refresh_token');
   refreshTokenFormData.append('client_id', clientID);
