@@ -30,6 +30,15 @@ import {
   GENERAL_CONFIG,
 } from './Constant/Constant';
 
+import {
+  DAM_ASSETS_FIELD_KEY,
+  DAM_ASSETS_API_FIELD_KEY,
+  DAM_COLLECTION_API_RESPONSE_FIELD_KEY,
+  DAM_COLLECTION_FIELD_KEY,
+  DAM_SUBSCIPTION_API_FIELD_KEY,
+  DAM_SUBSCIPTION_FIELD_KEY,
+} from './Constant/DamConstant';
+
 export {
   AesirxProjectApiService,
   AesirxCampaignApiService,
@@ -55,4 +64,11 @@ export {
   Storage,
   AesirxNewsApiService,
   AesirxDamApiService,
+  // DAM Constant
+  DAM_ASSETS_FIELD_KEY,
+  DAM_ASSETS_API_FIELD_KEY,
+  DAM_COLLECTION_API_RESPONSE_FIELD_KEY,
+  DAM_COLLECTION_FIELD_KEY,
+  DAM_SUBSCIPTION_API_FIELD_KEY,
+  DAM_SUBSCIPTION_FIELD_KEY,
 };

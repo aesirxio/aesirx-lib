@@ -106,8 +106,7 @@ class AesirxAuthenticationApiService {
       const {
         data: { result },
       } = await axios(config);
-      console.log(result);
-      console.log(result?.[AUTHORIZATION_KEY.ACCESS_TOKEN]);
+
       if (result?.[AUTHORIZATION_KEY.ACCESS_TOKEN]) {
         let authorizationHeader = '';
         let tokenType = '';
@@ -123,8 +122,6 @@ class AesirxAuthenticationApiService {
           [AUTHORIZATION_KEY.DAM_AUTHORIZED_TOKEN_HEADER]: authorizationHeader,
           [AUTHORIZATION_KEY.DAM_REFRESH_TOKEN]: refreshToken,
         };
-        console.log('setstore');
-        console.log(setStore);
 
         this.setStore(setStore);
         return true;
