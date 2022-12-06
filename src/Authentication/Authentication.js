@@ -12,7 +12,7 @@ import Storage from '../Utils/Storage';
 import { logout } from './Logout';
 
 class AesirxAuthenticationApiService {
-  async login(email, password) {
+  login = async (email, password) => {
     try {
       if (!email || !password) return false;
       const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
@@ -53,14 +53,84 @@ class AesirxAuthenticationApiService {
         data: { result },
       } = await axios(config);
 
+      if (AXIOS_CONFIGS.DAM_LICENSE) {
+        this.damIntegrateLogin(email, password);
+      }
       if (result?.access_token) {
         return await this.setTokenUser(result, false);
+      }
+
+      return false;
+    } catch (error) {
+      return false;
+    }
+  };
+
+  damIntegrateLogin = async (email, password) => {
+    try {
+      if (!email || !password) return false;
+      const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
+        {
+          option: 'member',
+          api: 'hal',
+          task: 'login',
+        },
+        false
+      );
+
+      const reqAuthFormData = {
+        email: email,
+        password: password,
+        client_id:
+          process.env.OAUTH_CLIENT_ID !== undefined && process.env.OAUTH_CLIENT_ID !== ''
+            ? process.env.OAUTH_CLIENT_ID
+            : AXIOS_CONFIGS.CLIENT_ID,
+        secret:
+          process.env.OAUTH_CLIENT_SECRET !== undefined && process.env.OAUTH_CLIENT_SECRET !== ''
+            ? process.env.OAUTH_CLIENT_SECRET
+            : AXIOS_CONFIGS.CLIENT_SECRET,
+        license_key: AXIOS_CONFIGS.DAM_LICENSE,
+        test_mode: AXIOS_CONFIGS.TEST_MODE,
+        domain: window.location.hostname,
+      };
+
+      const config = {
+        method: 'post',
+        url: AUTHORIZED_CODE_URL,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        data: qs.stringify(reqAuthFormData),
+      };
+
+      const {
+        data: { result },
+      } = await axios(config);
+
+      if (result?.[AUTHORIZATION_KEY.ACCESS_TOKEN]) {
+        let authorizationHeader = '';
+        let tokenType = '';
+        let accessToken = '';
+        let refreshToken = '';
+        tokenType = result?.[AUTHORIZATION_KEY.TOKEN_TYPE] ?? 'Bearer';
+        accessToken = result?.[AUTHORIZATION_KEY.ACCESS_TOKEN] ?? '';
+        authorizationHeader = authorizationHeader.concat(tokenType).concat(' ').concat(accessToken);
+        refreshToken = result?.[AUTHORIZATION_KEY.REFRESH_TOKEN] ?? '';
+        const setStore = {
+          [AUTHORIZATION_KEY.DAM_ACCESS_TOKEN]: accessToken,
+          [AUTHORIZATION_KEY.DAM_TOKEN_TYPE]: tokenType,
+          [AUTHORIZATION_KEY.DAM_AUTHORIZED_TOKEN_HEADER]: authorizationHeader,
+          [AUTHORIZATION_KEY.DAM_REFRESH_TOKEN]: refreshToken,
+        };
+
+        this.setStore(setStore);
+        return true;
       }
       return false;
     } catch (error) {
       return false;
     }
-  }
+  };
 
   socialLogin = async (socialType, accessTokenSocial) => {
     try {
@@ -164,6 +234,7 @@ class AesirxAuthenticationApiService {
       };
     }
   };
+
   /**
    *
    * @param {requesFailed} failedRequest
@@ -205,6 +276,7 @@ class AesirxAuthenticationApiService {
       }
     );
   };
+
   setStore = (key) => {
     Object.keys(key).forEach((_key) => {
       if (!_key) {

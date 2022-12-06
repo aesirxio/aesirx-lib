@@ -26,6 +26,10 @@ const AUTHORIZATION_KEY = {
   WEBSERVICE_AUTHORIZED_TOKEN_HEADER: 'webservice_authorized_header',
   TIMEZONE: 'timezone',
   FACEBOOK_ADS_APP_ACCESS_TOKEN: 'facebook_ads_app_access_token',
+  DAM_ACCESS_TOKEN: 'dam_access_token',
+  DAM_REFRESH_TOKEN: 'dam_refresh_token',
+  DAM_TOKEN_TYPE: 'dam_refresh_token',
+  DAM_AUTHORIZED_TOKEN_HEADER: 'dam_refresh_token',
 };
 
 const AXIOS_CONFIGS = {
@@ -44,6 +48,7 @@ const AXIOS_CONFIGS = {
   WEBSERVICE_CLIENT_ID: process.env.REACT_APP_WEBSERVICE_CLIENT_ID || '',
   WEBSERVICE_CLIENT_SECRET: process.env.REACT_APP_WEBSERVICE_CLIENT_SECRET || '',
   LICENSE: process.env.REACT_APP_LICENSE || '',
+  DAM_LICENSE: process.env.REACT_APP_DAM_LICENSE || '',
   TEST_MODE: process.env.REACT_APP_TEST_MODE || '',
 };
 
