@@ -91,6 +91,9 @@ class CollectionItemModel extends BaseItemModel {
       }
     });
 
+    formData[DAM_COLLECTION_API_RESPONSE_FIELD_KEY.PARENT_ID] =
+      data[DAM_COLLECTION_FIELD_KEY.PARENT_ID] ?? 0;
+
     return formData;
   };
 }
