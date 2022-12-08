@@ -54,7 +54,7 @@ class AesirxAuthenticationApiService {
       } = await axios(config);
 
       if (AXIOS_CONFIGS.DAM_LICENSE) {
-        this.damIntegrateLogin(email, password);
+        await this.damIntegrateLogin(email, password);
       }
       if (result?.access_token) {
         return await this.setTokenUser(result, false);
