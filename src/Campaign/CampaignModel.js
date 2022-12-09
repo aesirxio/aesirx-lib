@@ -66,6 +66,7 @@ class CampaignItemModel extends BaseItemModel {
       this.startDate = entity[CAMPAIGN_API_RESPONSE_FIELD_KEY.START_DATE] ?? '0000-00-00 00:00:00';
       this.endDate = entity[CAMPAIGN_API_RESPONSE_FIELD_KEY.END_DATE] ?? '0000-00-00 00:00:00';
       this.status = entity[CAMPAIGN_API_RESPONSE_FIELD_KEY.STATUS] ?? '';
+      this.published = entity[CAMPAIGN_API_RESPONSE_FIELD_KEY.PUBLISHED] ?? '';
       this.project = entity[CAMPAIGN_API_RESPONSE_FIELD_KEY.PROJECT] ?? '';
       this.percentComplete = entity[CAMPAIGN_API_RESPONSE_FIELD_KEY.PERCENT_COMPLETE] ?? '';
       this.noToDoPosts = entity[CAMPAIGN_API_RESPONSE_FIELD_KEY.NO_TO_DO_POSTS] ?? '';
@@ -80,6 +81,7 @@ class CampaignItemModel extends BaseItemModel {
       [CAMPAIGN_FIELD_KEY.ID]: this.id,
       [CAMPAIGN_FIELD_KEY.NAME]: this.name,
       [CAMPAIGN_FIELD_KEY.STATUS]: this.status,
+      [CAMPAIGN_FIELD_KEY.PUBLISHED]: this.published,
       [CAMPAIGN_FIELD_KEY.PROJECT]: this.project,
       [CAMPAIGN_FIELD_KEY.START_DATE]: this.startDate,
       [CAMPAIGN_FIELD_KEY.END_DATE]: this.endDate,
@@ -97,6 +99,7 @@ class CampaignItemModel extends BaseItemModel {
       [CAMPAIGN_FIELD_KEY.ID]: this.id,
       [CAMPAIGN_FIELD_KEY.NAME]: this.name,
       [CAMPAIGN_FIELD_KEY.STATUS]: this.status,
+      [CAMPAIGN_FIELD_KEY.PUBLISHED]: this.published,
       [CAMPAIGN_FIELD_KEY.PROJECT]: this.project,
       [CAMPAIGN_FIELD_KEY.START_DATE]: this.startDate,
       [CAMPAIGN_FIELD_KEY.END_DATE]: this.endDate,
