@@ -66,7 +66,10 @@ class CollectionItemModel extends BaseItemModel {
     let formData = new FormData();
     const excluded = [DAM_COLLECTION_FIELD_KEY.PARENT_ID];
     Object.keys(DAM_COLLECTION_API_RESPONSE_FIELD_KEY).forEach((index) => {
-      if (!excluded.includes(index) && data[DAM_COLLECTION_FIELD_KEY[index]]) {
+      if (
+        !excluded.includes(DAM_COLLECTION_FIELD_KEY[index]) &&
+        data[DAM_COLLECTION_FIELD_KEY[index]]
+      ) {
         formData.append(
           [DAM_COLLECTION_API_RESPONSE_FIELD_KEY[index]],
           data[DAM_COLLECTION_FIELD_KEY[index]]
@@ -85,12 +88,14 @@ class CollectionItemModel extends BaseItemModel {
     const excluded = [DAM_COLLECTION_FIELD_KEY.PARENT_ID];
 
     Object.keys(DAM_COLLECTION_API_RESPONSE_FIELD_KEY).forEach((index) => {
-      if (!excluded.includes(index) && data[DAM_COLLECTION_FIELD_KEY[index]]) {
+      if (
+        !excluded.includes(DAM_COLLECTION_FIELD_KEY[index]) &&
+        data[DAM_COLLECTION_FIELD_KEY[index]]
+      ) {
         formData[DAM_COLLECTION_API_RESPONSE_FIELD_KEY[index]] =
           data[DAM_COLLECTION_FIELD_KEY[index]];
       }
     });
-
     formData[DAM_COLLECTION_API_RESPONSE_FIELD_KEY.PARENT_ID] =
       data[DAM_COLLECTION_FIELD_KEY.PARENT_ID] ?? 0;
 
@@ -171,7 +176,7 @@ class AssetsItemModel extends BaseItemModel {
     let formData = new FormData();
     const excluded = [DAM_ASSETS_FIELD_KEY.COLLECTION_ID];
     Object.keys(DAM_ASSETS_API_FIELD_KEY).forEach((index) => {
-      if (!excluded.includes(index) && data[DAM_ASSETS_FIELD_KEY[index]]) {
+      if (!excluded.includes(DAM_ASSETS_FIELD_KEY[index]) && data[DAM_ASSETS_FIELD_KEY[index]]) {
         formData.append([DAM_ASSETS_API_FIELD_KEY[index]], data[DAM_ASSETS_FIELD_KEY[index]]);
       }
     });
@@ -184,12 +189,14 @@ class AssetsItemModel extends BaseItemModel {
 
   static __transformItemToApiOfUpdation = (data) => {
     let formData = {};
-
+    const excluded = [DAM_ASSETS_FIELD_KEY.COLLECTION_ID];
     Object.keys(DAM_ASSETS_API_FIELD_KEY).forEach((index) => {
-      if (data[DAM_ASSETS_FIELD_KEY[index]]) {
+      if (!excluded.includes(DAM_ASSETS_FIELD_KEY[index]) && data[DAM_ASSETS_FIELD_KEY[index]]) {
         formData[DAM_ASSETS_API_FIELD_KEY[index]] = data[DAM_ASSETS_FIELD_KEY[index]];
       }
     });
+    formData[DAM_ASSETS_API_FIELD_KEY.COLLECTION_ID] =
+      data[DAM_ASSETS_API_FIELD_KEY.COLLECTION_ID] ?? 0;
 
     return formData;
   };
