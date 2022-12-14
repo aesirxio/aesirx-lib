@@ -28,14 +28,19 @@ const AUTHORIZATION_KEY = {
   FACEBOOK_ADS_APP_ACCESS_TOKEN: 'facebook_ads_app_access_token',
   DAM_ACCESS_TOKEN: 'dam_access_token',
   DAM_REFRESH_TOKEN: 'dam_refresh_token',
-  DAM_TOKEN_TYPE: 'dam_refresh_token',
-  DAM_AUTHORIZED_TOKEN_HEADER: 'dam_refresh_token',
+  DAM_TOKEN_TYPE: 'dam_token_type',
+  DAM_AUTHORIZED_TOKEN_HEADER: 'dam_authorized_token_header',
+  DMA_ACCESS_TOKEN: 'dma_access_token',
+  DMA_REFRESH_TOKEN: 'dma_refresh_token',
+  DMA_TOKEN_TYPE: 'dma_token_type',
+  DMA_AUTHORIZED_TOKEN_HEADER: 'dma_authorized_token_header',
 };
 
 const AXIOS_CONFIGS = {
   CLIENT_ID: process.env.REACT_APP_CLIENT_ID || '',
   CLIENT_SECRET: process.env.REACT_APP_CLIENT_SECRET || '',
   BASE_ENDPOINT_URL: process.env.REACT_APP_ENDPOINT_URL || '',
+  BASE_ENDPOINT_DAM_URL: process.env.REACT_APP_DAM_ENDPOINT_URL || '',
   BASE_ENDPOINT_PRICING_PLAN_URL: process.env.REACT_APP_ENDPOINT_PRICING_PLAN_URL || '',
   USERNAME: process.env.REACT_APP_OAUTH_DEFAULT_USERNAME || '',
   PASSWORD: process.env.REACT_APP_OAUTH_DEFAULT_PASSWORD || '',
@@ -49,6 +54,7 @@ const AXIOS_CONFIGS = {
   WEBSERVICE_CLIENT_SECRET: process.env.REACT_APP_WEBSERVICE_CLIENT_SECRET || '',
   LICENSE: process.env.REACT_APP_LICENSE || '',
   DAM_LICENSE: process.env.REACT_APP_DAM_LICENSE || '',
+  DMA_LICENSE: process.env.REACT_APP_DMA_LICENSE || '',
   TEST_MODE: process.env.REACT_APP_TEST_MODE || '',
 };
 
@@ -66,4 +72,9 @@ const AESIRX_CONFIGS = {
   },
 };
 
-export { AUTHORIZATION_KEY, AXIOS_CONFIGS, AESIRX_CONFIGS, GENERAL_CONFIG };
+const INTEGRATION_CONFIGS = {
+  DAM: 1,
+  DMA: 2,
+};
+
+export { AUTHORIZATION_KEY, AXIOS_CONFIGS, AESIRX_CONFIGS, GENERAL_CONFIG, INTEGRATION_CONFIGS };

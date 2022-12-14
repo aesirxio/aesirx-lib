@@ -29,7 +29,7 @@ const clientSecret =
     : AXIOS_CONFIGS.CLIENT_SECRET;
 
 const AesirxDamApiInstance = axios.create({
-  baseURL: AXIOS_CONFIGS.BASE_ENDPOINT_URL,
+  baseURL: AXIOS_CONFIGS.BASE_ENDPOINT_DAM_URL ?? AXIOS_CONFIGS.BASE_ENDPOINT_URL,
   timeout: 100 * 10000,
 });
 
