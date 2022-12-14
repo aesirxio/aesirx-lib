@@ -85,7 +85,6 @@ AesirxDamApiInstance.interceptors.request.use(
     if (process.env.NODE_ENV === 'test') {
       accessToken = process.env.AUTHORIZED_TOKEN;
     } else {
-      console.warn(config);
       accessToken =
         Storage.getItem(AUTHORIZATION_KEY.DAM_ACCESS_TOKEN) ??
         Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
