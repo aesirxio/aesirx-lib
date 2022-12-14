@@ -29,7 +29,7 @@ const clientSecret =
     : AXIOS_CONFIGS.CLIENT_SECRET;
 
 const AesirxDamApiInstance = axios.create({
-  baseURL: AXIOS_CONFIGS.BASE_ENDPOINT_URL,
+  baseURL: AXIOS_CONFIGS.BASE_ENDPOINT_DAM_URL ?? AXIOS_CONFIGS.BASE_ENDPOINT_URL,
   timeout: 100 * 10000,
 });
 
@@ -85,6 +85,7 @@ AesirxDamApiInstance.interceptors.request.use(
     if (process.env.NODE_ENV === 'test') {
       accessToken = process.env.AUTHORIZED_TOKEN;
     } else {
+      console.warn(config);
       accessToken =
         Storage.getItem(AUTHORIZATION_KEY.DAM_ACCESS_TOKEN) ??
         Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
