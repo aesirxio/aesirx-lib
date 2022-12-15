@@ -19,10 +19,10 @@
     "lint": "cross-env NODE_ENV=production BABEL_ENV=production eslint --fix \"src/**/\"",
     "lint:check": "cross-env NODE_ENV=production BABEL_ENV=production eslint \"src/**/\"",
     "start": "cross-env NODE_ENV=development BABEL_ENV=development microbundle --generateTypes true --no-compress -w",
-    "build": "cross-env NODE_ENV=production BABEL_ENV=production microbundle --no-sourcemap --generateTypes true --compress",
+    "build": "cross-env NODE_ENV=development BABEL_ENV=development microbundle --generateTypes true --no-compress ",
     "test": "node scripts/test.js",
-    "prepare": "npm run build",
-    "docgen": "node scripts/docgen.js"
+    "docgen": "node scripts/docgen.js",
+    "prepare": "yarn build"
   },
   "minify": {
     "compress": {

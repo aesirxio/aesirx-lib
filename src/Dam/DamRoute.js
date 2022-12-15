@@ -3,12 +3,13 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirxDamApiInstance from '../gateway/DamInstance';
+import AesirxApiInstance from '../gateway/Instance';
 import BaseRoute from '../Abstract/BaseRoute';
+import { INTEGRATION_CONFIGS } from '../Constant/Constant';
 
 class DamRoute extends BaseRoute {
   getSubscription = () => {
-    return AesirxDamApiInstance.get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).get(
       this.createRequestURL({
         option: 'user_subscription',
       })
@@ -16,7 +17,7 @@ class DamRoute extends BaseRoute {
   };
 
   updateDamSubscription = (data) => {
-    return AesirxDamApiInstance.put(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).put(
       this.createRequestURL({
         option: 'user_subscription',
       }),
@@ -30,7 +31,7 @@ class DamRoute extends BaseRoute {
   };
 
   getAsset = (id) => {
-    return AesirxDamApiInstance.get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).get(
       this.createRequestURL({
         option: 'dam_asset',
         id: id,
@@ -39,7 +40,7 @@ class DamRoute extends BaseRoute {
   };
 
   getAssets = (collectionId = 0, dataFilter = {}) => {
-    return AesirxDamApiInstance.get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).get(
       this.createRequestURL({
         option: 'dam_asset',
         'filter[collection_id]': collectionId,
@@ -49,7 +50,7 @@ class DamRoute extends BaseRoute {
   };
 
   searchAssets = (dataFilter = {}) => {
-    return AesirxDamApiInstance.get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).get(
       this.createRequestURL({
         option: 'dam_asset',
         ...dataFilter,
@@ -58,7 +59,7 @@ class DamRoute extends BaseRoute {
   };
 
   createAssets = (data) => {
-    return AesirxDamApiInstance.post(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).post(
       this.createRequestURL({
         option: 'dam_asset',
       }),
@@ -67,7 +68,7 @@ class DamRoute extends BaseRoute {
   };
 
   updateAssets = (data) => {
-    return AesirxDamApiInstance.put(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).put(
       this.createRequestURL({
         option: 'dam_asset',
       }),
@@ -81,7 +82,7 @@ class DamRoute extends BaseRoute {
   };
 
   deleteAssets = (id) => {
-    return AesirxDamApiInstance.delete(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).delete(
       this.createRequestURL({
         option: 'dam_asset',
       }),
@@ -95,7 +96,7 @@ class DamRoute extends BaseRoute {
   };
 
   getCollection = (id) => {
-    return AesirxDamApiInstance.get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).get(
       this.createRequestURL({
         option: 'dam_collection',
         id: id,
@@ -104,7 +105,7 @@ class DamRoute extends BaseRoute {
   };
 
   getCollections = (id = 0, dataFilter = {}) => {
-    return AesirxDamApiInstance.get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).get(
       this.createRequestURL({
         option: 'dam_collection',
         'filter[collection_id]': id,
@@ -114,7 +115,7 @@ class DamRoute extends BaseRoute {
   };
 
   searchCollections = (dataFilter = {}) => {
-    return AesirxDamApiInstance.get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).get(
       this.createRequestURL({
         option: 'dam_collection',
         ...dataFilter,
@@ -123,7 +124,7 @@ class DamRoute extends BaseRoute {
   };
 
   createCollections = (data) => {
-    return AesirxDamApiInstance.post(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).post(
       this.createRequestURL({
         option: 'dam_collection',
       }),
@@ -132,7 +133,7 @@ class DamRoute extends BaseRoute {
   };
 
   updateCollections = (data) => {
-    return AesirxDamApiInstance.put(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).put(
       this.createRequestURL({
         option: 'dam_collection',
       }),
@@ -146,7 +147,7 @@ class DamRoute extends BaseRoute {
   };
 
   deleteCollections = (id) => {
-    return AesirxDamApiInstance.delete(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).delete(
       this.createRequestURL({
         option: 'dam_collection',
       }),

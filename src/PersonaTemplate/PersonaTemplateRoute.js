@@ -17,7 +17,7 @@ class PersonaTemplateRoute extends BaseRoute {
    */
 
   getPersonaTemplateRequest = (personaTemplateId) =>
-    AesirxApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'persona_template',
         id: personaTemplateId,
@@ -25,7 +25,7 @@ class PersonaTemplateRoute extends BaseRoute {
     );
 
   getPersonaTemplatesRequest = (page = 1, limit = 20) => {
-    return AesirxApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'persona_template',
         'list[limitstart]': (page - 1) * limit,

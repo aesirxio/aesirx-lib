@@ -11,7 +11,7 @@ import BaseRoute from '../Abstract/BaseRoute';
  */
 class PlanningRoute extends BaseRoute {
   searchPlanningRequest = (dataFilter, page = 1, limit = 20) => {
-    return AesirxApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'planning',
         task: 'filterPlanning',
@@ -28,7 +28,7 @@ class PlanningRoute extends BaseRoute {
    * @param limit
    */
   getPlanningListRequest = (page = 1, limit = 20) =>
-    AesirxApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'planning',
         'list[limitstart]': (page - 1) * limit,

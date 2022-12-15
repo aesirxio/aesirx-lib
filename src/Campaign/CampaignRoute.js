@@ -16,7 +16,7 @@ class CampaignRoute extends BaseRoute {
    * @return JSON
    */
   getCampaignRequest = (campaignId) => {
-    return AesirxApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'campaign',
         id: campaignId,
@@ -29,7 +29,7 @@ class CampaignRoute extends BaseRoute {
    * @param data
    */
   createCampaignRequest = (data) =>
-    AesirxApiInstance.post(
+    AesirxApiInstance().post(
       this.createRequestURL({
         option: 'campaign',
       }),
@@ -41,7 +41,7 @@ class CampaignRoute extends BaseRoute {
    * @param data
    */
   updateCampaignRequest = (data) =>
-    AesirxApiInstance.put(
+    AesirxApiInstance().put(
       this.createRequestURL({
         option: 'campaign',
       }),
@@ -56,14 +56,14 @@ class CampaignRoute extends BaseRoute {
     const ids = campaignId.split(',');
 
     if (ids.length < 2) {
-      return AesirxApiInstance.delete(
+      return AesirxApiInstance().delete(
         this.createRequestURL({
           option: 'campaign',
           id: campaignId,
         })
       );
     } else {
-      return AesirxApiInstance.post(
+      return AesirxApiInstance().post(
         this.createRequestURL({
           option: 'campaign',
           task: 'deleteAll',
@@ -81,7 +81,7 @@ class CampaignRoute extends BaseRoute {
    * @param limit
    */
   getCampaignListRequest = (page = 1, limit = 20) =>
-    AesirxApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'campaign',
         'list[limitstart]': (page - 1) * limit,
@@ -90,7 +90,7 @@ class CampaignRoute extends BaseRoute {
     );
 
   getCampaignMasterDataRequest = () => {
-    return AesirxApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'campaign',
         task: 'getMasterData',
@@ -99,7 +99,7 @@ class CampaignRoute extends BaseRoute {
   };
 
   searchCampaignsRequest = (dataFilter, page = 1, limit = 20) => {
-    return AesirxApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'campaign',
         task: 'filterCampaign',

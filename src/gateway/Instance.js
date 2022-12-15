@@ -6,7 +6,7 @@
 import axios from 'axios';
 import queryString from 'query-string';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
-import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
+import { AUTHORIZATION_KEY, AXIOS_CONFIGS, INTEGRATION_CONFIGS } from '../Constant/Constant';
 import BaseRoute from '../Abstract/BaseRoute';
 import { logout } from '../Authentication/Logout';
 import Storage from '../Utils/Storage';
@@ -54,11 +54,6 @@ if (process.env.NODE_ENV !== 'test') {
   reqAuthFormData.append('password', defaultPassword);
 }
 
-const AesirxApiInstance = axios.create({
-  baseURL: AXIOS_CONFIGS.BASE_ENDPOINT_URL,
-  timeout: 100 * 10000,
-});
-
 export const requestANewAccessToken = () => {
   axios.post(AUTHORIZED_CODE_URL, reqAuthFormData).then(
     (tokenRefreshResponse) => {
@@ -90,31 +85,6 @@ export const requestANewAccessToken = () => {
   );
 };
 
-const refreshToken = (failedRequest) => {
-  const refresh_token = Storage.getItem(AUTHORIZATION_KEY.REFRESH_TOKEN) ?? '';
-
-  const refreshTokenFormData = new FormData();
-  refreshTokenFormData.append('grant_type', 'refresh_token');
-  refreshTokenFormData.append('client_id', clientID);
-  refreshTokenFormData.append('client_secret', clientSecret);
-  refreshTokenFormData.append('refresh_token', refresh_token);
-  const request = new AesirxAuthenticationApiService();
-  const key = {
-    [AUTHORIZATION_KEY.ACCESS_TOKEN]: [AUTHORIZATION_KEY.ACCESS_TOKEN],
-    [AUTHORIZATION_KEY.TOKEN_TYPE]: [AUTHORIZATION_KEY.TOKEN_TYPE],
-    [AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]: [AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER],
-    [AUTHORIZATION_KEY.REFRESH_TOKEN]: [AUTHORIZATION_KEY.REFRESH_TOKEN],
-  };
-  request.refreshToken(failedRequest, AUTHORIZED_CODE_URL, refreshTokenFormData, key);
-};
-
-const refreshAuthLogic = (failedRequest) => refreshToken(failedRequest);
-
-createAuthRefreshInterceptor(AesirxApiInstance, refreshAuthLogic, {
-  statusCodes: [401, 403],
-  pauseInstanceWhileRefreshing: true,
-});
-
 const pending = {};
 const CancelToken = axios.CancelToken;
 const removePending = (config, f) => {
@@ -137,56 +107,141 @@ const removePending = (config, f) => {
   }
 };
 
-AesirxApiInstance.interceptors.request.use(
-  function (config) {
-    let accessToken = '';
-    if (process.env.NODE_ENV === 'test') {
-      accessToken = process.env.AUTHORIZED_TOKEN;
-    } else {
-      accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
+const AesirxApiInstance = (platform = INTEGRATION_CONFIGS.DMA) => {
+  const api_Instance = axios.create({
+    baseURL:
+      platform === INTEGRATION_CONFIGS.DAM
+        ? AXIOS_CONFIGS.BASE_ENDPOINT_DAM_URL ?? AXIOS_CONFIGS.BASE_ENDPOINT_URL
+        : AXIOS_CONFIGS.BASE_ENDPOINT_URL,
+    timeout: 100 * 10000,
+  });
+
+  const refreshToken = (failedRequest) => {
+    let refresh_token = '';
+    let key = {};
+    switch (platform) {
+      case INTEGRATION_CONFIGS.DMA:
+        refresh_token =
+          Storage.getItem(AUTHORIZATION_KEY.DMA_REFRESH_TOKEN) ??
+          Storage.getItem(AUTHORIZATION_KEY.REFRESH_TOKEN) ??
+          '';
+        key = {
+          [AUTHORIZATION_KEY.ACCESS_TOKEN]: [AUTHORIZATION_KEY.DMA_ACCESS_TOKEN],
+          [AUTHORIZATION_KEY.TOKEN_TYPE]: [AUTHORIZATION_KEY.DMA_TOKEN_TYPE],
+          [AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]: [
+            AUTHORIZATION_KEY.DMA_AUTHORIZED_TOKEN_HEADER,
+          ],
+          [AUTHORIZATION_KEY.REFRESH_TOKEN]: [AUTHORIZATION_KEY.DMA_REFRESH_TOKEN],
+        };
+        break;
+      case INTEGRATION_CONFIGS.DAM:
+        refresh_token =
+          Storage.getItem(AUTHORIZATION_KEY.DAM_REFRESH_TOKEN) ??
+          Storage.getItem(AUTHORIZATION_KEY.REFRESH_TOKEN) ??
+          '';
+        key = {
+          [AUTHORIZATION_KEY.ACCESS_TOKEN]: [AUTHORIZATION_KEY.DAM_ACCESS_TOKEN],
+          [AUTHORIZATION_KEY.TOKEN_TYPE]: [AUTHORIZATION_KEY.DAM_TOKEN_TYPE],
+          [AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]: [
+            AUTHORIZATION_KEY.DAM_AUTHORIZED_TOKEN_HEADER,
+          ],
+          [AUTHORIZATION_KEY.REFRESH_TOKEN]: [AUTHORIZATION_KEY.DAM_REFRESH_TOKEN],
+        };
+        break;
+
+      default:
+        refresh_token = Storage.getItem(AUTHORIZATION_KEY.REFRESH_TOKEN) ?? '';
+        key = {
+          [AUTHORIZATION_KEY.ACCESS_TOKEN]: [AUTHORIZATION_KEY.ACCESS_TOKEN],
+          [AUTHORIZATION_KEY.TOKEN_TYPE]: [AUTHORIZATION_KEY.TOKEN_TYPE],
+          [AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]: [AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER],
+          [AUTHORIZATION_KEY.REFRESH_TOKEN]: [AUTHORIZATION_KEY.REFRESH_TOKEN],
+        };
+        break;
     }
+    const refreshTokenFormData = new FormData();
+    refreshTokenFormData.append('grant_type', 'refresh_token');
+    refreshTokenFormData.append('client_id', clientID);
+    refreshTokenFormData.append('client_secret', clientSecret);
+    refreshTokenFormData.append('refresh_token', refresh_token);
+    const request = new AesirxAuthenticationApiService();
 
-    if (config.method === 'post' || config.method === 'put') {
-      config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-    }
+    request.refreshToken(failedRequest, AUTHORIZED_CODE_URL, refreshTokenFormData, key);
+  };
 
-    if (accessToken) {
-      config.headers = {
-        ...config.headers,
-        Authorization: 'Bearer ' + accessToken,
-      };
-    }
+  const refreshAuthLogic = (failedRequest) => refreshToken(failedRequest);
 
-    config.params = config.params || {};
-    config.params['time'] = Math.floor(Date.now() / 1000);
+  createAuthRefreshInterceptor(api_Instance, refreshAuthLogic, {
+    statusCodes: [401, 403],
+    pauseInstanceWhileRefreshing: true,
+  });
 
-    config.cancelToken = new CancelToken((c) => {
-      removePending(config, c);
-    });
+  api_Instance.interceptors.request.use(
+    function (config) {
+      let accessToken = '';
 
-    return config;
-  },
-  function (error) {
-    // Do something with request error
-    return Promise.reject(error);
-  }
-);
+      // check for integration
+      switch (platform) {
+        case INTEGRATION_CONFIGS.DMA:
+          accessToken =
+            Storage.getItem(AUTHORIZATION_KEY.DMA_ACCESS_TOKEN) ??
+            Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
+          break;
+        case INTEGRATION_CONFIGS.DAM:
+          accessToken =
+            Storage.getItem(AUTHORIZATION_KEY.DAM_ACCESS_TOKEN) ??
+            Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
+          break;
 
-AesirxApiInstance.interceptors.response.use(
-  (response) => {
-    removePending(response.config);
-    return response.data;
-  },
-  (error) => {
-    removePending(error.config);
+        default:
+          accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
+          break;
+      }
 
-    if (!axios.isCancel(error)) {
+      if (config.method === 'post' || config.method === 'put') {
+        config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+      }
+
+      if (accessToken) {
+        config.headers = {
+          ...config.headers,
+          Authorization: 'Bearer ' + accessToken,
+        };
+      }
+
+      config.params = config.params || {};
+      config.params['time'] = Math.floor(Date.now() / 1000);
+
+      config.cancelToken = new CancelToken((c) => {
+        removePending(config, c);
+      });
+
+      return config;
+    },
+    function (error) {
+      // Do something with request error
       return Promise.reject(error);
-    } else {
-      // return empty object for aborted request
-      return Promise.reject(error);
     }
-  }
-);
+  );
+
+  api_Instance.interceptors.response.use(
+    (response) => {
+      removePending(response.config);
+      return response.data;
+    },
+    (error) => {
+      removePending(error.config);
+
+      if (!axios.isCancel(error)) {
+        return Promise.reject(error);
+      } else {
+        // return empty object for aborted request
+        return Promise.reject(error);
+      }
+    }
+  );
+
+  return api_Instance;
+};
 
 export default AesirxApiInstance;
