@@ -9,7 +9,7 @@ import AesirxServiceApiInstance from '../gateway/InstanceServiceApi';
 
 class ContentRoute extends BaseRoute {
   getContentItemRequest = (ContentID) =>
-    AesirxApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'content',
         id: ContentID,
@@ -17,7 +17,7 @@ class ContentRoute extends BaseRoute {
     );
 
   getContentRequest = (page = 1, limit = 20) =>
-    AesirxApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'content',
         'list[limitstart]': (page - 1) * limit,
@@ -30,7 +30,7 @@ class ContentRoute extends BaseRoute {
    * @param data
    */
   createContentRequest = (data) =>
-    AesirxApiInstance.post(
+    AesirxApiInstance().post(
       this.createRequestURL({
         option: 'content',
       }),
@@ -42,7 +42,7 @@ class ContentRoute extends BaseRoute {
    * @param data
    */
   updateContentRequest = (data) =>
-    AesirxApiInstance.put(
+    AesirxApiInstance().put(
       this.createRequestURL({
         option: 'content',
       }),
@@ -54,7 +54,7 @@ class ContentRoute extends BaseRoute {
    * @param contentId
    */
   deleteContentRequest = (contentId) => {
-    return AesirxApiInstance.delete(
+    return AesirxApiInstance().delete(
       this.createRequestURL({
         option: 'content',
         ids: contentId,
@@ -63,7 +63,7 @@ class ContentRoute extends BaseRoute {
   };
 
   getContentMasterDataRequest = () => {
-    return AesirxApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'content',
         task: 'getMasterData',
@@ -72,7 +72,7 @@ class ContentRoute extends BaseRoute {
   };
 
   getContentsByCampaignIDsRequest = (campaignIds, limit = 20) => {
-    return AesirxApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'content',
         task: 'getContentsByCampaignIDs',
@@ -83,7 +83,7 @@ class ContentRoute extends BaseRoute {
   };
 
   searchContentsRequest = (dataFilter, page = 1, limit = 20) =>
-    AesirxApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'content',
         task: 'filterPosts',
@@ -98,7 +98,7 @@ class ContentRoute extends BaseRoute {
    * @param data
    */
   createPostRequest = (data, publishingType) =>
-    AesirxApiInstance.post(
+    AesirxApiInstance().post(
       this.createRequestURL({
         option: 'content',
         task: 'createPost',
@@ -114,7 +114,7 @@ class ContentRoute extends BaseRoute {
    * @param data
    */
   getPostsRequest = () =>
-    AesirxApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'content',
         task: 'getPosts',
@@ -126,7 +126,7 @@ class ContentRoute extends BaseRoute {
    * @param id
    */
   getPostItemRequest = (categoryId, itemId) => {
-    return AesirxApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'content',
         task: 'getPostItem',
@@ -137,7 +137,7 @@ class ContentRoute extends BaseRoute {
   };
 
   getContentChannelItemRequest = (categoryId) => {
-    return AesirxApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: 'content',
         task: 'generateSubContentChannels',

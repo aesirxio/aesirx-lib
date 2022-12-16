@@ -15,7 +15,7 @@ class InvesterContactRoute extends BaseRoute {
    * @param data
    */
   createInvesterContactRequest = (data) =>
-    AesirxApiInstance.post(
+    AesirxApiInstance().post(
       this.createRequestURL({
         option: 'invester_contact',
       }),

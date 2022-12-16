@@ -8,7 +8,7 @@ import BaseRoute from '../Abstract/BaseRoute';
 
 class ProjectRoute extends BaseRoute {
   getProjetItemRequest = (projectId) =>
-    AesirxApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'project',
         id: projectId,
@@ -16,7 +16,7 @@ class ProjectRoute extends BaseRoute {
     );
 
   getProjectsRequest = (page = 1, limit = 20) =>
-    AesirxApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'project',
         'list[limitstart]': (page - 1) * limit,
@@ -25,7 +25,7 @@ class ProjectRoute extends BaseRoute {
     );
 
   searchProjectsRequest = (dataFilter, page = 1, limit = 20) => {
-    return AesirxApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'project',
         task: 'filterProject',
@@ -41,7 +41,7 @@ class ProjectRoute extends BaseRoute {
    * @param data
    */
   createProjectRequest = (data) =>
-    AesirxApiInstance.post(
+    AesirxApiInstance().post(
       this.createRequestURL({
         option: 'project',
       }),
@@ -53,7 +53,7 @@ class ProjectRoute extends BaseRoute {
    * @param data
    */
   updateProjectRequest = (data) =>
-    AesirxApiInstance.put(
+    AesirxApiInstance().put(
       this.createRequestURL({
         option: 'project',
       }),
@@ -67,14 +67,14 @@ class ProjectRoute extends BaseRoute {
     const ids = projectId.split(',');
 
     if (ids.length < 2) {
-      return AesirxApiInstance.delete(
+      return AesirxApiInstance().delete(
         this.createRequestURL({
           option: 'project',
           id: projectId,
         })
       );
     } else {
-      return AesirxApiInstance.post(
+      return AesirxApiInstance().post(
         this.createRequestURL({
           option: 'project',
           task: 'deleteAll',
@@ -87,7 +87,7 @@ class ProjectRoute extends BaseRoute {
   };
 
   getProjectMasterDataRequest = () => {
-    return AesirxApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'project',
         task: 'getMasterData',

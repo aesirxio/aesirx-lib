@@ -56,6 +56,9 @@ class AesirxAuthenticationApiService {
       if (AXIOS_CONFIGS.DAM_LICENSE) {
         await this.damIntegrateLogin(email, password);
       }
+      if (AXIOS_CONFIGS.DMA_LICENSE) {
+        await this.dmaIntegrateLogin(email, password);
+      }
       if (result?.access_token) {
         return await this.setTokenUser(result, false);
       }
@@ -121,6 +124,72 @@ class AesirxAuthenticationApiService {
           [AUTHORIZATION_KEY.DAM_TOKEN_TYPE]: tokenType,
           [AUTHORIZATION_KEY.DAM_AUTHORIZED_TOKEN_HEADER]: authorizationHeader,
           [AUTHORIZATION_KEY.DAM_REFRESH_TOKEN]: refreshToken,
+        };
+
+        this.setStore(setStore);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      return false;
+    }
+  };
+
+  dmaIntegrateLogin = async (email, password) => {
+    try {
+      if (!email || !password) return false;
+      const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
+        {
+          option: 'member',
+          api: 'hal',
+          task: 'login',
+        },
+        false
+      );
+
+      const reqAuthFormData = {
+        email: email,
+        password: password,
+        client_id:
+          process.env.OAUTH_CLIENT_ID !== undefined && process.env.OAUTH_CLIENT_ID !== ''
+            ? process.env.OAUTH_CLIENT_ID
+            : AXIOS_CONFIGS.CLIENT_ID,
+        secret:
+          process.env.OAUTH_CLIENT_SECRET !== undefined && process.env.OAUTH_CLIENT_SECRET !== ''
+            ? process.env.OAUTH_CLIENT_SECRET
+            : AXIOS_CONFIGS.CLIENT_SECRET,
+        license_key: AXIOS_CONFIGS.DMA_LICENSE,
+        test_mode: AXIOS_CONFIGS.TEST_MODE,
+        domain: window.location.hostname,
+      };
+
+      const config = {
+        method: 'post',
+        url: AUTHORIZED_CODE_URL,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        data: qs.stringify(reqAuthFormData),
+      };
+
+      const {
+        data: { result },
+      } = await axios(config);
+
+      if (result?.[AUTHORIZATION_KEY.ACCESS_TOKEN]) {
+        let authorizationHeader = '';
+        let tokenType = '';
+        let accessToken = '';
+        let refreshToken = '';
+        tokenType = result?.[AUTHORIZATION_KEY.TOKEN_TYPE] ?? 'Bearer';
+        accessToken = result?.[AUTHORIZATION_KEY.ACCESS_TOKEN] ?? '';
+        authorizationHeader = authorizationHeader.concat(tokenType).concat(' ').concat(accessToken);
+        refreshToken = result?.[AUTHORIZATION_KEY.REFRESH_TOKEN] ?? '';
+        const setStore = {
+          [AUTHORIZATION_KEY.DMA_ACCESS_TOKEN]: accessToken,
+          [AUTHORIZATION_KEY.DMA_TOKEN_TYPE]: tokenType,
+          [AUTHORIZATION_KEY.DMA_AUTHORIZED_TOKEN_HEADER]: authorizationHeader,
+          [AUTHORIZATION_KEY.DMA_REFRESH_TOKEN]: refreshToken,
         };
 
         this.setStore(setStore);
