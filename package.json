@@ -22,7 +22,7 @@
     "build": "cross-env NODE_ENV=development BABEL_ENV=development microbundle --generateTypes true --no-compress ",
     "test": "node scripts/test.js",
     "docgen": "node scripts/docgen.js",
-    "prepare": "yarn build"
+    "prepublishOnly": "npm run build"
   },
   "minify": {
     "compress": {
