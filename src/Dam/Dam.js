@@ -104,10 +104,15 @@ class AesirxDamApiService extends Component {
     try {
       const dataToSubmit = AssetsItemModel.__transformItemToApiOfCreation(data);
       const result = await this.route.createAssets(dataToSubmit);
+
       if (result.result) {
-        return result.result;
+        let data = new AssetsModel(result.result);
+        if (data) {
+          data = data.toJSON();
+          return data;
+        }
       }
-      return { message: 'Something have problem' };
+      return { message: 'Something have qwe' };
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancel' };

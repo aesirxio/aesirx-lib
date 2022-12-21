@@ -107,13 +107,20 @@ class AssetsModel extends BaseModel {
   constructor(entities) {
     super(entities);
     if (entities) {
-      this.items = entities._embedded.item.map((element) => {
-        return new AssetsItemModel(element);
-      });
-      this.items.pagination = this.getPagination();
+      if (entities?._embedded?.item) {
+        this.items = entities._embedded.item.map((element) => {
+          return new AssetsItemModel(element);
+        });
+        this.items.pagination = this.getPagination();
+      } else {
+        this.items = entities.map((element) => {
+          return new AssetsItemModel(element);
+        });
+      }
     }
   }
 }
+
 class AssetsItemModel extends BaseItemModel {
   id = null;
   collection_id = null;
@@ -174,7 +181,7 @@ class AssetsItemModel extends BaseItemModel {
 
   static __transformItemToApiOfCreation = (data) => {
     let formData = new FormData();
-    const excluded = [DAM_ASSETS_FIELD_KEY.COLLECTION_ID];
+    const excluded = [DAM_ASSETS_FIELD_KEY.COLLECTION_ID, DAM_ASSETS_FIELD_KEY.FILE];
     Object.keys(DAM_ASSETS_API_FIELD_KEY).forEach((index) => {
       if (!excluded.includes(DAM_ASSETS_FIELD_KEY[index]) && data[DAM_ASSETS_FIELD_KEY[index]]) {
         formData.append([DAM_ASSETS_API_FIELD_KEY[index]], data[DAM_ASSETS_FIELD_KEY[index]]);
@@ -184,6 +191,12 @@ class AssetsItemModel extends BaseItemModel {
       [DAM_ASSETS_API_FIELD_KEY.COLLECTION_ID],
       data[DAM_ASSETS_FIELD_KEY.COLLECTION_ID] ?? 0
     );
+    if (data[DAM_ASSETS_FIELD_KEY.FILE]) {
+      data[DAM_ASSETS_FIELD_KEY.FILE].forEach((file) => {
+        formData.append([DAM_ASSETS_API_FIELD_KEY.FILE] + '[]', file);
+      });
+    }
+
     return formData;
   };
 
