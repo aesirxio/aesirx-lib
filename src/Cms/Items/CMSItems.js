@@ -20,7 +20,6 @@ class AesirxCmsItemsApiService extends Component {
       }
       return results;
     } catch (error) {
-      console.log(error);
       if (axios.isCancel(error)) {
         return { message: 'isCancel' };
       } else throw error;
@@ -42,10 +41,9 @@ class AesirxCmsItemsApiService extends Component {
     }
   };
 
-  toggleFeatured = async (id, isFeatured) => {
+  toggleFeatured = async () => {
     try {
       // const response = await this.route.toggleFeatured(id, isFeatured);
-      console.log('items', id, isFeatured);
       const response = true;
       if (response) {
         return response;
@@ -53,7 +51,6 @@ class AesirxCmsItemsApiService extends Component {
         return false;
       }
     } catch (error) {
-      console.log('toggleFeatured', error);
       if (axios.isCancel(error)) {
         return { message: 'isCancel' };
       } else throw error;

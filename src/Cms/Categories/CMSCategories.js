@@ -36,7 +36,6 @@ class AesirxCmsCategoryApiService extends Component {
   create = async (data) => {
     try {
       const result = await this.route.create(data);
-      console.log('resultresult', result);
       if (result) {
         return result.result;
       }

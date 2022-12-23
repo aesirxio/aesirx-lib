@@ -17,8 +17,7 @@ class CmsItemsRoute extends BaseRoute {
     );
   };
 
-  getFields = (contentType) => {
-    console.log('get Fields', contentType);
+  getFields = () => {
     return true;
     // AesirxApiInstance().get(
     //   this.createRequestURL({
