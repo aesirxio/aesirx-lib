@@ -76,7 +76,7 @@ class AesirxPimProductApiService extends Component {
       if (data?._embedded) {
         listItems = await Promise.all(
           data._embedded.item.map(async (o) => {
-            return new ProductItemModel(o);
+            return new ProductItemModel(o).toJSON();
           })
         );
       }

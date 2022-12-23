@@ -3,8 +3,8 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirxApiInstance from 'aesirx-dma-lib/src/gateway/Instance';
-import BaseRoute from 'aesirx-dma-lib/src/Abstract/BaseRoute';
+import AesirxApiInstance from '../../gateway/Instance';
+import BaseRoute from '../../Abstract/BaseRoute';
 
 class PimDebtorGroupRoute extends BaseRoute {
   option = 'reditem-item_debtor_group_52';
@@ -59,7 +59,7 @@ class PimDebtorGroupRoute extends BaseRoute {
       data
     );
   };
-  
+
   update = (data) => {
     return AesirxApiInstance().put(
       this.createRequestURL({

@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import BaseItemModel from 'aesirx-dma-lib/src/Abstract/BaseItemModel';
+import BaseItemModel from '../../Abstract/BaseItemModel';
 import { PIM_PRODUCT_DETAIL_FIELD_KEY } from '../../Constant/PimConstant';
 class ProductItemModel extends BaseItemModel {
   id = null;
@@ -20,7 +20,7 @@ class ProductItemModel extends BaseItemModel {
   publish_up = null;
   related_categories = null;
   thumb_image = null;
-  modified_time= null;
+  modified_time = null;
 
   constructor(entity) {
     super(entity);
@@ -45,6 +45,7 @@ class ProductItemModel extends BaseItemModel {
   toObject = () => {
     return {};
   };
+
   isJsonString = (str) => {
     try {
       JSON.parse(str);

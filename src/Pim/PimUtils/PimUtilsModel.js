@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import BaseItemModel from 'aesirx-dma-lib/src/Abstract/BaseItemModel';
+import BaseItemModel from '../../Abstract/BaseItemModel';
 
 class PublishStatusModel extends BaseItemModel {
   label = null;
