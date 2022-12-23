@@ -148,4 +148,11 @@ export {
   PIM_FIELD_GROUP_DETAIL_FIELD_KEY,
   PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY,
   PIM_DASH_BOARD_DETAIL_FIELD_KEY,
+  // PIM Model
+  CategoryItemModel,
+  DebtorGroupItemModel,
+  FieldGroupItemModel,
+  FieldItemModel,
+  ProductPriceItemModel,
+  ProductItemModel,
 };
