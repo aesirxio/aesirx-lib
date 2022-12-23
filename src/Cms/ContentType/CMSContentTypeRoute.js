@@ -1,5 +1,5 @@
-import AesirxApiInstance from 'aesirx-dma-lib/src/gateway/Instance';
-import BaseRoute from 'aesirx-dma-lib/src/Abstract/BaseRoute';
+import AesirxApiInstance from '../../gateway/Instance';
+import BaseRoute from '../../Abstract/BaseRoute';
 
 class CmsContentTypeRoute extends BaseRoute {
   option = '';
