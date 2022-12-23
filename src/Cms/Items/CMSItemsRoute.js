@@ -59,8 +59,10 @@ class CmsItemsRoute extends BaseRoute {
       this.createRequestURL({
         option: 'reditem',
         view: 'item_with_org_check_metaverse_content_62',
-        id: id,
-      })
+      }),
+      {
+        data: { id: id },
+      }
     );
   };
   toggleFeatured = (id, isFeatured) => {
