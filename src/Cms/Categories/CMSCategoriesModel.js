@@ -1,6 +1,6 @@
-import BaseItemModel from 'aesirx-dma-lib/src/Abstract/BaseItemModel';
-import BaseModel from 'aesirx-dma-lib/src/Abstract/BaseModel';
-import { CMS_CATE_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import BaseItemModel from '../../Abstract/BaseItemModel';
+import BaseModel from '../../Abstract/BaseModel';
+import { CMS_CATE_DETAIL_FIELD_KEY } from '../../Constant/CmsConstant';
 
 class CategoryModel extends BaseModel {
   constructor(entities) {
