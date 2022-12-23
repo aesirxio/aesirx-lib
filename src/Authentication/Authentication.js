@@ -253,7 +253,7 @@ class AesirxAuthenticationApiService {
       if (isSocialLogin) {
         firstLogin = accessTokenData.first_login;
       } else {
-        firstLogin = accessTokenData.profile.lastVisitDate === '0000-00-00 00:00:00';
+        firstLogin = accessTokenData?.profile?.lastVisitDate === '0000-00-00 00:00:00';
       }
 
       const setStore = {
