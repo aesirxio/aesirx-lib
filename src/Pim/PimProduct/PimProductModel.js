@@ -45,6 +45,7 @@ class ProductItemModel extends BaseItemModel {
   toObject = () => {
     return {};
   };
+
   isJsonString = (str) => {
     try {
       JSON.parse(str);
