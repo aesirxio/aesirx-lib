@@ -52,8 +52,10 @@ class CmsCategoriesRoute extends BaseRoute {
       this.createRequestURL({
         option: 'reditem',
         view: 'category_with_org_check_metaverse_categories_63',
-        id: id,
-      })
+      }),
+      {
+        data: { id: id },
+      }
     );
   };
 
