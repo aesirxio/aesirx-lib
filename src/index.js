@@ -33,6 +33,13 @@ import AesirxPimProductApiService from './Pim/PimProduct/PimProduct';
 import AesirxPimProductPriceApiService from './Pim/PimProductPrice/PimProductPrice';
 import AesirxPimTagApiService from './Pim/PimTag/PimTag';
 import AesirxPimUtilApiService from './Pim/PimUtils/PimUtils';
+// PIM Model
+import { CategoryItemModel } from './Pim/PimCategory/PimCategoryModel';
+import { DebtorGroupItemModel } from './Pim/PimDebtorGroup/PimDebtorGroupModel';
+import { FieldGroupItemModel } from './Pim/PimFieldGroup/PimFieldGroupModel';
+import { FieldItemModel } from './Pim/PimField/PimFieldModel';
+import { ProductPriceItemModel } from './Pim/PimProductPrice/PimProductPriceModel';
+import { ProductItemModel } from './Pim/PimProduct/PimProductModel';
 
 import {
   AXIOS_CONFIGS,

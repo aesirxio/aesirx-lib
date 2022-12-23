@@ -3,8 +3,8 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import BaseItemModel from 'aesirx-dma-lib/src/Abstract/BaseItemModel';
-import BaseModel from 'store/Models/Abstract/BaseModel';
+import BaseItemModel from '../../Abstract/BaseItemModel';
+import BaseModel from '../../Abstract/BaseModel';
 import { PIM_CATEGORY_DETAIL_FIELD_KEY } from '../../Constant/PimConstant';
 class CategoryModel extends BaseModel {
   constructor(entities) {
