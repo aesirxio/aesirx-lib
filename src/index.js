@@ -23,6 +23,13 @@ import AesirxGoogleDataApiService from './GoogleData/GoogleData';
 import AesirxNewsApiService from './News/News';
 import AesirxDamApiService from './Dam/Dam';
 import Storage from './Utils/Storage';
+// CMS Service
+import AesirxCmsCategoryApiService from './Cms/Categories/CMSCategories';
+import AesirxCmsContentTypeApiService from './Cms/ContentType/CMSContentType';
+import AesirxCmsFieldsApiService from './Cms/Fields/CMSFields';
+import AesirxCmsFieldsGroupApiService from './Cms/FieldsGroup/CMSFieldsGroup';
+import AesirxCmsItemsApiService from './Cms/Items/CMSItems';
+
 import {
   AXIOS_CONFIGS,
   AUTHORIZATION_KEY,
@@ -38,6 +45,15 @@ import {
   DAM_SUBSCIPTION_API_FIELD_KEY,
   DAM_SUBSCIPTION_FIELD_KEY,
 } from './Constant/DamConstant';
+import {
+  CMS_CATE_DETAIL_FIELD_KEY,
+  GENERAL_INFORMATION,
+  CMS_ITEMS_DETAIL_FIELD_KEY,
+  CMS_LIST_DETAIL_FIELD_KEY,
+  CMS_FIELD_DETAIL_FIELD_KEY,
+  CMS_FIELD_GR_DETAIL_FIELD_KEY,
+  CMS_CONTENT_DETAIL_FIELD_KEY,
+} from './Constant/CmsConstant';
 
 export {
   AesirxProjectApiService,
@@ -71,4 +87,18 @@ export {
   DAM_COLLECTION_FIELD_KEY,
   DAM_SUBSCIPTION_API_FIELD_KEY,
   DAM_SUBSCIPTION_FIELD_KEY,
+  // CMS Service
+  AesirxCmsCategoryApiService,
+  AesirxCmsContentTypeApiService,
+  AesirxCmsFieldsApiService,
+  AesirxCmsFieldsGroupApiService,
+  AesirxCmsItemsApiService,
+  // CMS Constant
+  CMS_CATE_DETAIL_FIELD_KEY,
+  GENERAL_INFORMATION,
+  CMS_ITEMS_DETAIL_FIELD_KEY,
+  CMS_LIST_DETAIL_FIELD_KEY,
+  CMS_FIELD_DETAIL_FIELD_KEY,
+  CMS_FIELD_GR_DETAIL_FIELD_KEY,
+  CMS_CONTENT_DETAIL_FIELD_KEY,
 };
