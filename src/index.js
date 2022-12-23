@@ -23,6 +23,17 @@ import AesirxGoogleDataApiService from './GoogleData/GoogleData';
 import AesirxNewsApiService from './News/News';
 import AesirxDamApiService from './Dam/Dam';
 import Storage from './Utils/Storage';
+// PIM Service
+import AesirxPimCategoryApiService from './Pim/PimCategory/PimCategory';
+import AesirxPimDashboardApiService from './Pim/PimDashboard/PimDashboard';
+import AesirxPimDebtorGroupApiService from './Pim/PimDebtorGroup/PimDebtorGroup';
+import AesirxPimFieldApiService from './Pim/PimField/PimField';
+import AesirxPimFieldGroupApiService from './Pim/PimFieldGroup/PimFieldGroup';
+import AesirxPimProductApiService from './Pim/PimProduct/PimProduct';
+import AesirxPimProductPriceApiService from './Pim/PimProductPrice/PimProductPrice';
+import AesirxPimTagApiService from './Pim/PimTag/PimTag';
+import AesirxPimUtilApiService from './Pim/PimUtils/PimUtils';
+
 import {
   AXIOS_CONFIGS,
   AUTHORIZATION_KEY,
@@ -38,6 +49,17 @@ import {
   DAM_SUBSCIPTION_API_FIELD_KEY,
   DAM_SUBSCIPTION_FIELD_KEY,
 } from './Constant/DamConstant';
+
+import {
+  PIM_PRODUCT_DETAIL_FIELD_KEY,
+  PIM_CATEGORY_DETAIL_FIELD_KEY,
+  PIM_TAG_DETAIL_FIELD_KEY,
+  PIM_FIELD_DETAIL_FIELD_KEY,
+  PIM_PRICES_DETAIL_FIELD_KEY,
+  PIM_FIELD_GROUP_DETAIL_FIELD_KEY,
+  PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY,
+  PIM_DASH_BOARD_DETAIL_FIELD_KEY,
+} from './Constant/PimConstant';
 
 export {
   AesirxProjectApiService,
@@ -71,4 +93,23 @@ export {
   DAM_COLLECTION_FIELD_KEY,
   DAM_SUBSCIPTION_API_FIELD_KEY,
   DAM_SUBSCIPTION_FIELD_KEY,
+  // PIM Services
+  AesirxPimCategoryApiService,
+  AesirxPimDashboardApiService,
+  AesirxPimDebtorGroupApiService,
+  AesirxPimFieldApiService,
+  AesirxPimFieldGroupApiService,
+  AesirxPimProductApiService,
+  AesirxPimProductPriceApiService,
+  AesirxPimTagApiService,
+  AesirxPimUtilApiService,
+  // PIM Constant
+  PIM_PRODUCT_DETAIL_FIELD_KEY,
+  PIM_CATEGORY_DETAIL_FIELD_KEY,
+  PIM_TAG_DETAIL_FIELD_KEY,
+  PIM_FIELD_DETAIL_FIELD_KEY,
+  PIM_PRICES_DETAIL_FIELD_KEY,
+  PIM_FIELD_GROUP_DETAIL_FIELD_KEY,
+  PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY,
+  PIM_DASH_BOARD_DETAIL_FIELD_KEY,
 };
