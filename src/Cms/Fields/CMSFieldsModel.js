@@ -1,6 +1,6 @@
 import BaseItemModel from '../../Abstract/BaseItemModel';
 import BaseModel from '../../Abstract/BaseModel';
-import { CMS_CATE_DETAIL_FIELD_KEY } from 'library/Constant/CmsConstant';
+import { CMS_CATE_DETAIL_FIELD_KEY } from '../../Constant/CmsConstant';
 
 class FieldsModel extends BaseModel {
   constructor(entities) {
