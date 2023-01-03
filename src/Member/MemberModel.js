@@ -35,6 +35,7 @@ class MemberItemModel {
       [MEMBER_GET_FIELD_KEY.TIMEZONE]: data.timezone,
       [MEMBER_GET_FIELD_KEY.TIMEZONE]: data.timezone,
       [MEMBER_GET_FIELD_KEY.ALLOW_CREATE_ITEM]: data.allow_create_item,
+      [MEMBER_GET_FIELD_KEY.ORGANIZATION]: data.organization,
     };
   };
 
