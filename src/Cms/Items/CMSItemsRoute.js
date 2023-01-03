@@ -7,25 +7,17 @@ import AesirxApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class CmsItemsRoute extends BaseRoute {
-  getList = () => {
+  getList = (filters) => {
+    const buildFilters = this.createFilters(filters);
     return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'reditem',
         view: 'item_with_org_check_metaverse_content_62',
-        // ...filter,
+        ...buildFilters,
       })
     );
   };
 
-  getFields = () => {
-    return true;
-    // AesirxApiInstance().get(
-    //   this.createRequestURL({
-    //     option: 'items',
-    //     id: contentType,
-    //   })
-    // );
-  };
   getDetail = (id = 0) => {
     return AesirxApiInstance().get(
       this.createRequestURL({
@@ -73,6 +65,28 @@ class CmsItemsRoute extends BaseRoute {
         isFeatured,
       })
     );
+  };
+
+  createFilters = (filters) => {
+    let buildFilter = {};
+    for (const [key, value] of Object.entries(filters)) {
+      if (typeof value === 'object') {
+        switch (value.type) {
+          case 'custom_fields':
+            buildFilter['filter[' + value.type + '][' + key + '][]'] = value.value;
+            break;
+          case 'filter':
+            buildFilter['filter[' + key + ']'] = value.value;
+            break;
+          default:
+            break;
+        }
+      } else {
+        buildFilter[key] = value;
+      }
+    }
+
+    return buildFilter;
   };
 }
 
