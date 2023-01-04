@@ -39,6 +39,7 @@ const MEMBER_GET_FIELD_KEY = {
   COUNTRY: 'country',
   TIMEZONE: 'timezone',
   ALLOW_CREATE_ITEM: 'allow_create_item',
+  ORGANIZATION: 'organization',
 };
 
 const MEMBER_CREATE_FIELD_KEY = {
