@@ -36,7 +36,7 @@ class CategoriesItemModel extends BaseItemModel {
       this.type = entity[CMS_CATE_DETAIL_FIELD_KEY.TYPE] ?? '';
       this.visits = entity[CMS_CATE_DETAIL_FIELD_KEY.VISITS] ?? '';
       this.description = entity[CMS_CATE_DETAIL_FIELD_KEY.DESCRIPTION] ?? '';
-      this.featured_image = entity[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE] ?? '';
+      this.featured_image = entity[CMS_CATE_DETAIL_FIELD_KEY.FEATURED_IMAGE]?.url ?? '';
     }
   }
 
