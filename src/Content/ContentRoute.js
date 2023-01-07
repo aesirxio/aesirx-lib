@@ -54,10 +54,11 @@ class ContentRoute extends BaseRoute {
    * @param contentId
    */
   deleteContentRequest = (contentId) => {
+    const contentIds = JSON.parse(contentId);
     return AesirxApiInstance().delete(
       this.createRequestURL({
         option: 'content',
-        ids: contentId,
+        'ids[]': contentIds,
       })
     );
   };

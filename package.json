@@ -1,6 +1,6 @@
 {
   "name": "aesirx-dma-lib",
-  "version": "1.6.1-alpha.1",
+  "version": "1.7.4",
   "license": "GPL-3.0-only",
   "author": "AesirX",
   "repository": "https://github.com/aesirxio/dma-lib",
@@ -19,7 +19,7 @@
     "lint": "cross-env NODE_ENV=production BABEL_ENV=production eslint --fix \"src/**/\"",
     "lint:check": "cross-env NODE_ENV=production BABEL_ENV=production eslint \"src/**/\"",
     "start": "cross-env NODE_ENV=development BABEL_ENV=development microbundle --generateTypes true --no-compress -w",
-    "build": "cross-env NODE_ENV=development BABEL_ENV=development microbundle --generateTypes true --no-compress ",
+    "build": "cross-env NODE_ENV=production BABEL_ENV=production microbundle --generateTypes true --compress",
     "test": "node scripts/test.js",
     "docgen": "node scripts/docgen.js",
     "prepublishOnly": "npm run build"
