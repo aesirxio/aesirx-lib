@@ -13,7 +13,7 @@ const DAM_COLLECTION_FIELD_KEY = {
 };
 
 const DAM_COLLECTION_API_RESPONSE_FIELD_KEY = {
-  ID: 'id',
+  ID: 'ids',
   PARENT_ID: 'parent_id',
   NAME: 'name',
   OWNER: 'owner',
@@ -39,7 +39,7 @@ const DAM_ASSETS_FIELD_KEY = {
   FILE: 'file',
 };
 const DAM_ASSETS_API_FIELD_KEY = {
-  ID: 'id',
+  ID: 'ids',
   NAME: 'name',
   ALIAS: 'alias',
   UUID: 'uuid',

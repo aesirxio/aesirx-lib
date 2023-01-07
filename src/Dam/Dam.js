@@ -135,9 +135,10 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  deleteAssets = async (id) => {
+  deleteAssets = async (ids) => {
     try {
-      const result = await this.route.deleteAssets(id);
+      const dataToSubmit = AssetsItemModel.__transformItemToApiOfDelete(ids);
+      const result = await this.route.deleteAssets(dataToSubmit);
       if (result.result) {
         return result.result;
       }
@@ -248,10 +249,10 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  deleteCollections = async (id) => {
+  deleteCollections = async (ids) => {
     try {
-      // const dataToSubmit = AssetsItemModel.__transformItemToApiOfUpdation(data);
-      const result = await this.route.deleteCollections(id);
+      const dataToSubmit = CollectionItemModel.__transformItemToApiOfDelete(ids);
+      const result = await this.route.deleteCollections(dataToSubmit);
       if (result.result) {
         return result.result;
       }

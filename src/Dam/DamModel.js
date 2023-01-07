@@ -14,6 +14,8 @@ import {
   DAM_SUBSCIPTION_FIELD_KEY,
 } from '../Constant/DamConstant';
 import Utils from '../Utils/Utils';
+import queryString from 'query-string';
+
 class ColectionModel extends BaseModel {
   constructor(entities) {
     super(entities);
@@ -98,6 +100,15 @@ class CollectionItemModel extends BaseItemModel {
     });
     formData[DAM_COLLECTION_API_RESPONSE_FIELD_KEY.PARENT_ID] =
       data[DAM_COLLECTION_FIELD_KEY.PARENT_ID] ?? 0;
+
+    return formData;
+  };
+
+  static __transformItemToApiOfDelete = (data) => {
+    const formData = queryString.stringify(
+      { [DAM_COLLECTION_API_RESPONSE_FIELD_KEY.ID]: data },
+      { arrayFormat: 'bracket' }
+    );
 
     return formData;
   };
@@ -210,6 +221,15 @@ class AssetsItemModel extends BaseItemModel {
     });
     formData[DAM_ASSETS_API_FIELD_KEY.COLLECTION_ID] =
       data[DAM_ASSETS_API_FIELD_KEY.COLLECTION_ID] ?? 0;
+
+    return formData;
+  };
+
+  static __transformItemToApiOfDelete = (data) => {
+    const formData = queryString.stringify(
+      { [DAM_ASSETS_API_FIELD_KEY.ID]: data },
+      { arrayFormat: 'bracket' }
+    );
 
     return formData;
   };
