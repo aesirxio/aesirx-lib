@@ -27,7 +27,7 @@
     "rules": {
         "no-unused-vars": "error",
         "no-console": "error",
-        "react/prop-types": "warn"
+        "react/prop-types": "off"
     },
     "settings": {
         "react": {

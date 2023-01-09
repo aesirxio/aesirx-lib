@@ -115,7 +115,6 @@ class PimFieldRoute extends BaseRoute {
   };
 
   deleteFields = (listSelected) => {
-    console.log('listSelected', listSelected);
     return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
