@@ -111,6 +111,18 @@ class PimProductPriceRoute extends BaseRoute {
       }
     );
   };
+
+  deleteProductPrices = (listSelected) => {
+    return AesirxApiInstance().post(
+      this.createRequestURL({
+        option: this.option,
+        task: 'bulkDelete',
+      }),
+      {
+        items: listSelected,
+      }
+    );
+  };
 }
 
 export default PimProductPriceRoute;

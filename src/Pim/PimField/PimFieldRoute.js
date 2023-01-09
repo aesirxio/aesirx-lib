@@ -113,6 +113,18 @@ class PimFieldRoute extends BaseRoute {
       }
     );
   };
+
+  deleteFields = (listSelected) => {
+    return AesirxApiInstance().post(
+      this.createRequestURL({
+        option: this.option,
+        task: 'bulkDelete',
+      }),
+      {
+        items: listSelected,
+      }
+    );
+  };
 }
 
 export default PimFieldRoute;

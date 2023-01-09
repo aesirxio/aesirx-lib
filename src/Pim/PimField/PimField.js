@@ -99,7 +99,6 @@ class AesirxPimFieldApiService extends Component {
         );
       }
 
-
       pagination = {
         page: data.page,
         pageLimit: data.pageLimit,
@@ -107,11 +106,30 @@ class AesirxPimFieldApiService extends Component {
         totalItems: data.totalItems,
         limitStart: data.limitstart,
       };
-      
+
       return {
         items: listItems ?? [],
         pagination: pagination ?? {},
       };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancel' };
+      } else throw error;
+    }
+  };
+
+  deleteFields = async (arr) => {
+    try {
+      const listSelected = await arr.map((o) => {
+        return { id: o };
+      });
+
+      const result = await this.route.deleteFields(listSelected);
+
+      if (result) {
+        return result.result;
+      }
+      return { message: 'Something have problem' };
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancel' };
