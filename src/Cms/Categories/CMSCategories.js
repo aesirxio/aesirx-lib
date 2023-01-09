@@ -37,7 +37,7 @@ class AesirxCmsCategoryApiService extends Component {
     try {
       const result = await this.route.create(data);
       if (result) {
-        return result.result;
+        return result;
       }
       return { message: 'Something have problem' };
     } catch (error) {
