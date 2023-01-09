@@ -37,7 +37,7 @@ class ItemsItemModel extends BaseItemModel {
       this.title = entity[CMS_ITEMS_DETAIL_FIELD_KEY.NAME] ?? '';
       this.description = entity[CMS_ITEMS_DETAIL_FIELD_KEY.INTRO_TEXT] ?? '';
       this.intro_text = entity[CMS_ITEMS_DETAIL_FIELD_KEY.CONTENT] ?? '';
-      this.thumb_image = entity[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE] ?? '';
+      this.thumb_image = entity[CMS_ITEMS_DETAIL_FIELD_KEY.FEATURED_IMAGE]?.url ?? '';
       this.type = entity[CMS_ITEMS_DETAIL_FIELD_KEY.TYPE] ?? '';
       this.categories = entity[CMS_ITEMS_DETAIL_FIELD_KEY.CATEGORY] ?? '';
       this.status = this.transformStatus(entity[CMS_ITEMS_DETAIL_FIELD_KEY.STATUS]);
