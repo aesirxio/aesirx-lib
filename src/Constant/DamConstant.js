@@ -9,7 +9,8 @@ const DAM_COLLECTION_FIELD_KEY = {
   NAME: 'name',
   OWNER: 'owner',
   FILE_SIZE: 'size',
-  LAST_MODIFIED: 'last_modified_date',
+  LAST_MODIFIED: 'modified_date',
+  CREATE_DATE: 'createed_date',
 };
 
 const DAM_COLLECTION_API_RESPONSE_FIELD_KEY = {
@@ -18,7 +19,8 @@ const DAM_COLLECTION_API_RESPONSE_FIELD_KEY = {
   NAME: 'name',
   OWNER: 'owner',
   FILE_SIZE: 'size',
-  LAST_MODIFIED: 'last_modified_date',
+  LAST_MODIFIED: 'modified_date',
+  CREATE_DATE: 'createed_date',
 };
 
 const DAM_ASSETS_FIELD_KEY = {
@@ -34,7 +36,8 @@ const DAM_ASSETS_FIELD_KEY = {
   TYPE: 'type',
   DOWNLOAD_URL: 'download_url',
   OWNER: 'owner',
-  LAST_MODIFIED: 'last_modified_date',
+  LAST_MODIFIED: 'modified_date',
+  CREATE_DATE: 'createed_date',
   FILE_NAME: 'file_name',
   FILE: 'file',
 };
@@ -51,7 +54,8 @@ const DAM_ASSETS_API_FIELD_KEY = {
   TYPE: 'type',
   DOWNLOAD_URL: 'download_url',
   OWNER: 'owner',
-  LAST_MODIFIED: 'last_modified_date',
+  LAST_MODIFIED: 'modified_date',
+  CREATE_DATE: 'createed_date',
   FILE_NAME: 'file_name',
   FILE: 'file',
 };
