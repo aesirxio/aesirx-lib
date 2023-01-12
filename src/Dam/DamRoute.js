@@ -103,11 +103,11 @@ class DamRoute extends BaseRoute {
     );
   };
 
-  getCollections = (id = 0, dataFilter = {}) => {
+  getCollections = (collectionId = 0, dataFilter = {}) => {
     return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).get(
       this.createRequestURL({
         option: 'dam_collection',
-        'filter[collection_id]': id,
+        'filter[collection_id]': collectionId,
         ...dataFilter,
       })
     );

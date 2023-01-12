@@ -171,9 +171,9 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  getCollections = async (id = 0) => {
+  getCollections = async (collectionId = 0, dataFilter) => {
     try {
-      const data = await this.route.getCollections(id);
+      const data = await this.route.getCollections(collectionId, dataFilter);
       let results = null;
       let pagination = null;
       if (data) {

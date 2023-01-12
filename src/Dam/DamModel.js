@@ -33,7 +33,6 @@ class CollectionItemModel extends BaseItemModel {
   name = '';
   file_size = 0;
   owner = null;
-  last_modified = null;
   constructor(entity) {
     super(entity);
     if (entity) {
@@ -42,9 +41,6 @@ class CollectionItemModel extends BaseItemModel {
       this.name = entity[DAM_COLLECTION_FIELD_KEY.NAME] ?? '';
       this.file_size = entity[DAM_COLLECTION_FIELD_KEY.FILE_SIZE] ?? 0;
       this.owner = entity[DAM_COLLECTION_FIELD_KEY.OWNER] ?? '';
-      this.last_modified = Utils.formatDatetimeByLocale(
-        entity[DAM_COLLECTION_FIELD_KEY.LAST_MODIFIED]
-      );
     }
   }
 
@@ -59,7 +55,6 @@ class CollectionItemModel extends BaseItemModel {
       [DAM_COLLECTION_FIELD_KEY.PARENT_ID]: this.parent_id,
       [DAM_COLLECTION_FIELD_KEY.NAME]: this.name,
       [DAM_COLLECTION_FIELD_KEY.FILE_SIZE]: this.file_size,
-      [DAM_COLLECTION_FIELD_KEY.LAST_MODIFIED]: this.last_modified,
       [DAM_COLLECTION_FIELD_KEY.OWNER]: this.owner,
     };
   };
@@ -145,7 +140,6 @@ class AssetsItemModel extends BaseItemModel {
   type = null;
   download_url = null;
   owner = null;
-  last_modified = null;
   constructor(entity) {
     super(entity);
     if (entity) {
@@ -163,7 +157,6 @@ class AssetsItemModel extends BaseItemModel {
       this.type = entity[DAM_ASSETS_FIELD_KEY.TYPE] ?? '';
       this.download_url = entity[DAM_ASSETS_FIELD_KEY.DOWNLOAD_URL] ?? '';
       this.owner = entity[DAM_ASSETS_FIELD_KEY.OWNER] ?? '';
-      this.last_modified = Utils.formatDatetimeByLocale(entity[DAM_ASSETS_FIELD_KEY.LAST_MODIFIED]);
     }
   }
 
@@ -185,7 +178,6 @@ class AssetsItemModel extends BaseItemModel {
       [DAM_ASSETS_FIELD_KEY.TYPE_ID]: this.type_id,
       [DAM_ASSETS_FIELD_KEY.TYPE]: this.type,
       [DAM_ASSETS_FIELD_KEY.DOWNLOAD_URL]: this.download_url,
-      [DAM_ASSETS_FIELD_KEY.LAST_MODIFIED]: this.last_modified,
       [DAM_ASSETS_FIELD_KEY.OWNER]: this.owner,
     };
   };
