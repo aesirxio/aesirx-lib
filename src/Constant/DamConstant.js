@@ -48,7 +48,7 @@ const DAM_ASSETS_FIELD_KEY = {
 };
 const DAM_ASSETS_API_FIELD_KEY = {
   ID: 'id',
-  IDS: 'idS',
+  IDS: 'ids',
   NAME: 'name',
   ALIAS: 'alias',
   UUID: 'uuid',
