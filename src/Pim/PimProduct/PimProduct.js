@@ -24,7 +24,7 @@ class AesirxPimProductApiService extends Component {
       const result = await this.route.create(data);
 
       if (result) {
-        return result.result;
+        return result;
       }
       return { message: 'Something have problem' };
     } catch (error) {
@@ -38,7 +38,7 @@ class AesirxPimProductApiService extends Component {
     try {
       const result = await this.route.update(data);
       if (result) {
-        return result.result;
+        return result;
       }
       return { message: 'Something have problem' };
     } catch (error) {
@@ -126,7 +126,7 @@ class AesirxPimProductApiService extends Component {
       });
 
       const result = await this.route.deleteProducts(listSelected);
-      
+
       if (result) {
         return result.result;
       }
