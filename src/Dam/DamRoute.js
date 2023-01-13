@@ -159,6 +159,16 @@ class DamRoute extends BaseRoute {
       }
     );
   };
+
+  moveToFolder = (data) => {
+    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).post(
+      this.createRequestURL({
+        option: 'dam_collection',
+        task: 'changeParrentId',
+      }),
+      data
+    );
+  };
 }
 
 export default DamRoute;

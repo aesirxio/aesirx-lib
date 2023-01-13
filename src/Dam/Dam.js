@@ -297,6 +297,21 @@ class AesirxDamApiService extends Component {
       } else throw error;
     }
   };
+
+  moveToFolder = async (data) => {
+    try {
+      const dataToSubmit = CollectionItemModel.__transformItemToApiOfMoveToFolder(data);
+      const result = await this.route.moveToFolder(dataToSubmit);
+      if (result.result) {
+        return result.result;
+      }
+      return { message: 'Something have problem' };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancel' };
+      } else throw error;
+    }
+  };
 }
 
 export default AesirxDamApiService;

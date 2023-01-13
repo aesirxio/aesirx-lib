@@ -101,10 +101,32 @@ class CollectionItemModel extends BaseItemModel {
 
   static __transformItemToApiOfDelete = (data) => {
     const formData = queryString.stringify(
-      { [DAM_COLLECTION_API_RESPONSE_FIELD_KEY.ID]: data },
+      { [DAM_COLLECTION_API_RESPONSE_FIELD_KEY.IDS]: data },
       { arrayFormat: 'bracket' }
     );
 
+    return formData;
+  };
+
+  static __transformItemToApiOfMoveToFolder = (data) => {
+    let formData = new FormData();
+    if (data[DAM_COLLECTION_FIELD_KEY.PARENT_ID]) {
+      formData.append(
+        [DAM_COLLECTION_FIELD_KEY.PARENT_ID],
+        data[DAM_COLLECTION_FIELD_KEY.PARENT_ID] ?? 0
+      );
+    }
+
+    if (data[DAM_COLLECTION_FIELD_KEY.COLLECTIONIDS]) {
+      data[DAM_COLLECTION_FIELD_KEY.COLLECTIONIDS].forEach((collection) => {
+        formData.append([DAM_COLLECTION_API_RESPONSE_FIELD_KEY.COLLECTIONIDS] + '[]', collection);
+      });
+    }
+    if (data[DAM_COLLECTION_FIELD_KEY.ASSETSIDS]) {
+      data[DAM_COLLECTION_FIELD_KEY.ASSETSIDS].forEach((asset) => {
+        formData.append([DAM_COLLECTION_API_RESPONSE_FIELD_KEY.ASSETSIDS] + '[]', asset);
+      });
+    }
     return formData;
   };
 }
@@ -219,7 +241,7 @@ class AssetsItemModel extends BaseItemModel {
 
   static __transformItemToApiOfDelete = (data) => {
     const formData = queryString.stringify(
-      { [DAM_ASSETS_API_FIELD_KEY.ID]: data },
+      { [DAM_ASSETS_API_FIELD_KEY.IDS]: data },
       { arrayFormat: 'bracket' }
     );
 
