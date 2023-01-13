@@ -13,7 +13,6 @@ import {
   DAM_SUBSCIPTION_API_FIELD_KEY,
   DAM_SUBSCIPTION_FIELD_KEY,
 } from '../Constant/DamConstant';
-import Utils from '../Utils/Utils';
 import queryString from 'query-string';
 
 class ColectionModel extends BaseModel {
