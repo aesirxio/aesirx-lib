@@ -11,6 +11,8 @@ const DAM_COLLECTION_FIELD_KEY = {
   FILE_SIZE: 'size',
   LAST_MODIFIED: 'modified_date',
   CREATE_DATE: 'createed_date',
+  ASSETSIDS: 'assetIds',
+  COLLECTIONIDS: 'collectionIds',
 };
 
 const DAM_COLLECTION_API_RESPONSE_FIELD_KEY = {
@@ -21,6 +23,9 @@ const DAM_COLLECTION_API_RESPONSE_FIELD_KEY = {
   FILE_SIZE: 'size',
   LAST_MODIFIED: 'modified_date',
   CREATE_DATE: 'createed_date',
+  ASSETSIDS: 'assetIds',
+  COLLECTIONIDS: 'collectionIds',
+  IDS: 'ids',
 };
 
 const DAM_ASSETS_FIELD_KEY = {
@@ -43,6 +48,7 @@ const DAM_ASSETS_FIELD_KEY = {
 };
 const DAM_ASSETS_API_FIELD_KEY = {
   ID: 'id',
+  IDS: 'ids',
   NAME: 'name',
   ALIAS: 'alias',
   UUID: 'uuid',

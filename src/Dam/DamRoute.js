@@ -6,7 +6,6 @@
 import AesirxApiInstance from '../gateway/Instance';
 import BaseRoute from '../Abstract/BaseRoute';
 import { INTEGRATION_CONFIGS } from '../Constant/Constant';
-
 class DamRoute extends BaseRoute {
   getSubscription = () => {
     return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).get(
@@ -81,7 +80,7 @@ class DamRoute extends BaseRoute {
     );
   };
 
-  deleteAssets = (id) => {
+  deleteAssets = (ids) => {
     return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).delete(
       this.createRequestURL({
         option: 'dam_asset',
@@ -90,7 +89,7 @@ class DamRoute extends BaseRoute {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        data: { id: id },
+        data: ids,
       }
     );
   };
@@ -146,7 +145,7 @@ class DamRoute extends BaseRoute {
     );
   };
 
-  deleteCollections = (id) => {
+  deleteCollections = (ids) => {
     return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).delete(
       this.createRequestURL({
         option: 'dam_collection',
@@ -156,8 +155,18 @@ class DamRoute extends BaseRoute {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        data: { id: id },
+        data: ids,
       }
+    );
+  };
+
+  moveToFolder = (data) => {
+    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).post(
+      this.createRequestURL({
+        option: 'dam_collection',
+        task: 'changeParrentId',
+      }),
+      data
     );
   };
 }
