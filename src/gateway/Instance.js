@@ -197,7 +197,6 @@ const AesirxApiInstance = (platform = INTEGRATION_CONFIGS.DMA) => {
           accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
           break;
       }
-
       if (config.method === 'post' || config.method === 'put') {
         config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
       }

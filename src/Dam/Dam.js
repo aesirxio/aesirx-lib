@@ -195,30 +195,6 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  getAllCollections = async () => {
-    try {
-      const data = await this.route.searchCollections();
-      let results = null;
-      let pagination = null;
-      if (data) {
-        results = new ColectionModel(data);
-
-        pagination = results.getPagination();
-      }
-      if (results) {
-        results = results.toJSON();
-      }
-      return {
-        list: results ?? [],
-        pagination: pagination ?? {},
-      };
-    } catch (error) {
-      if (axios.isCancel(error)) {
-        return { message: 'isCancel' };
-      } else throw error;
-    }
-  };
-
   createCollections = async (data) => {
     try {
       const dataToSubmit = CollectionItemModel.__transformItemToApiOfCreation(data);
@@ -304,6 +280,21 @@ class AesirxDamApiService extends Component {
       const result = await this.route.moveToFolder(dataToSubmit);
       if (result.result) {
         return result.result;
+      }
+      return { message: 'Something have problem' };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancel' };
+      } else throw error;
+    }
+  };
+
+  downloadCollections = async (id) => {
+    try {
+      const dataToSubmit = CollectionItemModel.__transformItemToApiOfDownload(id);
+      const result = await this.route.downloadCollections(dataToSubmit);
+      if (result) {
+        return result;
       }
       return { message: 'Something have problem' };
     } catch (error) {

@@ -128,6 +128,15 @@ class CollectionItemModel extends BaseItemModel {
     }
     return formData;
   };
+
+  static __transformItemToApiOfDownload = (data) => {
+    let formData = new FormData();
+    if (data) {
+      formData.append([DAM_COLLECTION_FIELD_KEY.ID], data ?? 0);
+    }
+
+    return formData;
+  };
 }
 
 class AssetsModel extends BaseModel {
