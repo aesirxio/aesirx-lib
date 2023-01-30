@@ -104,6 +104,10 @@ class DamRoute extends BaseRoute {
   };
 
   getCollections = (collectionId = 0, dataFilter = {}) => {
+    if (collectionId) {
+      // Todo
+      // Filter single collection
+    }
     return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).get(
       this.createRequestURL({
         option: 'dam_collection',
