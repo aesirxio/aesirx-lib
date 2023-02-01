@@ -28,6 +28,7 @@ class ProductPriceItemModel extends BaseItemModel {
   modified_user_name = null;
   created_time = null;
   debtor_groups = null;
+  thumbImageUrl = null;
 
   constructor(entity) {
     super(entity);
@@ -42,6 +43,15 @@ class ProductPriceItemModel extends BaseItemModel {
       this.modified_user_name = entity[PIM_PRICES_DETAIL_FIELD_KEY.MODIFIED_USER_NAME] ?? [];
       this.created_time = entity[PIM_PRICES_DETAIL_FIELD_KEY.CREATED_TIME] ?? [];
       this.debtor_groups = entity[PIM_PRICES_DETAIL_FIELD_KEY.DEBTOR_GROUPS] ?? [];
+      this.thumbImageUrl = entity[PIM_PRICES_DETAIL_FIELD_KEY.PRODUCTS][0][
+        PIM_PRICES_DETAIL_FIELD_KEY.CUSTOM_FIELDS
+      ][PIM_PRICES_DETAIL_FIELD_KEY.THUMB_IMAGE]
+        ? JSON.parse(
+            entity[PIM_PRICES_DETAIL_FIELD_KEY.PRODUCTS][0][
+              PIM_PRICES_DETAIL_FIELD_KEY.CUSTOM_FIELDS
+            ][PIM_PRICES_DETAIL_FIELD_KEY.THUMB_IMAGE][0]
+          )[PIM_PRICES_DETAIL_FIELD_KEY.DOWNLOAD_URL]
+        : '';
     }
   }
 
@@ -58,6 +68,7 @@ class ProductPriceItemModel extends BaseItemModel {
       [PIM_PRICES_DETAIL_FIELD_KEY.MODIFIED_USER_NAME]: this.modified_user_name,
       [PIM_PRICES_DETAIL_FIELD_KEY.CREATED_TIME]: this.created_time,
       [PIM_PRICES_DETAIL_FIELD_KEY.DEBTOR_GROUPS]: this.debtor_groups,
+      [PIM_PRICES_DETAIL_FIELD_KEY.THUMB_IMAGE_URL]: this.thumbImageUrl,
     };
   };
 

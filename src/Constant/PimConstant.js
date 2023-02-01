@@ -67,6 +67,7 @@ const PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY = {
   PUBLISH_UP: 'publish_up',
   CODE: 'code',
   ORGANISATION_NAME: 'organisation_name',
+  MODIFIED_TIME: 'modified_time',
 };
 
 const PIM_TAG_DETAIL_FIELD_KEY = {
@@ -142,6 +143,9 @@ const PIM_PRICES_DETAIL_FIELD_KEY = {
   ENDING_DATE: 'ending_date',
   TITLE: 'title',
   DEBTOR_GROUPS: 'debtor_groups',
+  THUMB_IMAGE: 'thumb_image',
+  DOWNLOAD_URL: 'download_url',
+  THUMB_IMAGE_URL: 'thumbImageUrl',
 };
 
 const PIM_DASH_BOARD_DETAIL_FIELD_KEY = {
