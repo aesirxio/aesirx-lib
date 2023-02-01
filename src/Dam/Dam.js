@@ -104,10 +104,15 @@ class AesirxDamApiService extends Component {
     try {
       const dataToSubmit = AssetsItemModel.__transformItemToApiOfCreation(data);
       const result = await this.route.createAssets(dataToSubmit);
+
       if (result.result) {
-        return result.result;
+        let data = new AssetsModel(result.result);
+        if (data) {
+          data = data.toJSON();
+          return data;
+        }
       }
-      return { message: 'Something have problem' };
+      return { message: 'Something have qwe' };
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancel' };
@@ -130,9 +135,10 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  deleteAssets = async (id) => {
+  deleteAssets = async (ids) => {
     try {
-      const result = await this.route.deleteAssets(id);
+      const dataToSubmit = AssetsItemModel.__transformItemToApiOfDelete(ids);
+      const result = await this.route.deleteAssets(dataToSubmit);
       if (result.result) {
         return result.result;
       }
@@ -189,30 +195,6 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  getAllCollections = async () => {
-    try {
-      const data = await this.route.searchCollections();
-      let results = null;
-      let pagination = null;
-      if (data) {
-        results = new ColectionModel(data);
-
-        pagination = results.getPagination();
-      }
-      if (results) {
-        results = results.toJSON();
-      }
-      return {
-        list: results ?? [],
-        pagination: pagination ?? {},
-      };
-    } catch (error) {
-      if (axios.isCancel(error)) {
-        return { message: 'isCancel' };
-      } else throw error;
-    }
-  };
-
   createCollections = async (data) => {
     try {
       const dataToSubmit = CollectionItemModel.__transformItemToApiOfCreation(data);
@@ -243,10 +225,10 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  deleteCollections = async (id) => {
+  deleteCollections = async (ids) => {
     try {
-      // const dataToSubmit = AssetsItemModel.__transformItemToApiOfUpdation(data);
-      const result = await this.route.deleteCollections(id);
+      const dataToSubmit = CollectionItemModel.__transformItemToApiOfDelete(ids);
+      const result = await this.route.deleteCollections(dataToSubmit);
       if (result.result) {
         return result.result;
       }
@@ -283,6 +265,36 @@ class AesirxDamApiService extends Component {
       const result = await this.route.updateDamSubscription(data);
       if (result.result) {
         return result.result;
+      }
+      return { message: 'Something have problem' };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancel' };
+      } else throw error;
+    }
+  };
+
+  moveToFolder = async (data) => {
+    try {
+      const dataToSubmit = CollectionItemModel.__transformItemToApiOfMoveToFolder(data);
+      const result = await this.route.moveToFolder(dataToSubmit);
+      if (result.result) {
+        return result.result;
+      }
+      return { message: 'Something have problem' };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancel' };
+      } else throw error;
+    }
+  };
+
+  downloadCollections = async (id) => {
+    try {
+      const dataToSubmit = CollectionItemModel.__transformItemToApiOfDownload(id);
+      const result = await this.route.downloadCollections(dataToSubmit);
+      if (result) {
+        return result;
       }
       return { message: 'Something have problem' };
     } catch (error) {

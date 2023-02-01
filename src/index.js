@@ -47,6 +47,10 @@ import { FieldItemModel } from './Pim/PimField/PimFieldModel';
 import { ProductPriceItemModel } from './Pim/PimProductPrice/PimProductPriceModel';
 import { ProductItemModel } from './Pim/PimProduct/PimProductModel';
 
+// ContentX
+import AesirxContentXCategoryApiService from './ContentX/Categories/ContentXCategories';
+import AesirxContentXItemsApiService from './ContentX/Items/ContentXItems';
+
 import {
   AXIOS_CONFIGS,
   AUTHORIZATION_KEY,
@@ -155,4 +159,7 @@ export {
   FieldItemModel,
   ProductPriceItemModel,
   ProductItemModel,
+  // ContentX
+  AesirxContentXItemsApiService,
+  AesirxContentXCategoryApiService,
 };
