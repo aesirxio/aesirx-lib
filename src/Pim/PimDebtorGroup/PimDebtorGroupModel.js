@@ -26,6 +26,7 @@ class DebtorGroupItemModel extends BaseItemModel {
   created_time = null;
   custom_fields = null;
   organisation_name = null;
+  modified_time = null;
 
   constructor(entity) {
     super(entity);
@@ -39,6 +40,7 @@ class DebtorGroupItemModel extends BaseItemModel {
       this.created_time = entity[PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY.CREATED_TIME] ?? '';
       this.custom_fields = entity[PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY.CUSTOM_FIELDS] ?? '';
       this.organisation_name = entity[PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY.ORGANISATION_NAME] ?? '';
+      this.modified_time = entity[PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY.MODIFIED_TIME] ?? '';
     }
   }
 
@@ -58,6 +60,7 @@ class DebtorGroupItemModel extends BaseItemModel {
       [PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY.CREATED_TIME]: this.created_time,
       [PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY.CUSTOM_FIELDS]: this.custom_fields,
       [PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY.ORGANISATION_NAME]: this.organisation_name,
+      [PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY.MODIFIED_TIME]: this.modified_time,
     };
   };
 
