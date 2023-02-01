@@ -88,6 +88,8 @@ class AesirxPimProductPriceApiService extends Component {
         limitStart: data.limitstart,
       };
 
+      console.log('listItems', listItems);
+
       return {
         listItems: listItems ?? [],
         pagination: pagination ?? {},
