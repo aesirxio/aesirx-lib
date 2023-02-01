@@ -13,6 +13,8 @@ import {
   DAM_SUBSCIPTION_API_FIELD_KEY,
   DAM_SUBSCIPTION_FIELD_KEY,
 } from '../Constant/DamConstant';
+import queryString from 'query-string';
+
 class ColectionModel extends BaseModel {
   constructor(entities) {
     super(entities);
@@ -95,19 +97,66 @@ class CollectionItemModel extends BaseItemModel {
 
     return formData;
   };
+
+  static __transformItemToApiOfDelete = (data) => {
+    const formData = queryString.stringify(
+      { [DAM_COLLECTION_API_RESPONSE_FIELD_KEY.IDS]: data },
+      { arrayFormat: 'bracket' }
+    );
+
+    return formData;
+  };
+
+  static __transformItemToApiOfMoveToFolder = (data) => {
+    let formData = new FormData();
+    if (data[DAM_COLLECTION_FIELD_KEY.PARENT_ID]) {
+      formData.append(
+        [DAM_COLLECTION_FIELD_KEY.PARENT_ID],
+        data[DAM_COLLECTION_FIELD_KEY.PARENT_ID] ?? 0
+      );
+    }
+
+    if (data[DAM_COLLECTION_FIELD_KEY.COLLECTIONIDS]) {
+      data[DAM_COLLECTION_FIELD_KEY.COLLECTIONIDS].forEach((collection) => {
+        formData.append([DAM_COLLECTION_API_RESPONSE_FIELD_KEY.COLLECTIONIDS] + '[]', collection);
+      });
+    }
+    if (data[DAM_COLLECTION_FIELD_KEY.ASSETSIDS]) {
+      data[DAM_COLLECTION_FIELD_KEY.ASSETSIDS].forEach((asset) => {
+        formData.append([DAM_COLLECTION_API_RESPONSE_FIELD_KEY.ASSETSIDS] + '[]', asset);
+      });
+    }
+    return formData;
+  };
+
+  static __transformItemToApiOfDownload = (data) => {
+    let formData = new FormData();
+    if (data) {
+      formData.append([DAM_COLLECTION_FIELD_KEY.ID], data ?? 0);
+    }
+
+    return formData;
+  };
 }
 
 class AssetsModel extends BaseModel {
   constructor(entities) {
     super(entities);
     if (entities) {
-      this.items = entities._embedded.item.map((element) => {
-        return new AssetsItemModel(element);
-      });
-      this.items.pagination = this.getPagination();
+      if (entities?._embedded?.item) {
+        this.items = entities._embedded.item.map((element) => {
+          return new AssetsItemModel(element);
+        });
+        this.items.pagination = this.getPagination();
+      } else {
+        this.items = entities.map((element) => {
+          return new AssetsItemModel(element);
+        });
+      }
     }
   }
 }
+
 class AssetsItemModel extends BaseItemModel {
   id = null;
   collection_id = null;
@@ -165,7 +214,7 @@ class AssetsItemModel extends BaseItemModel {
 
   static __transformItemToApiOfCreation = (data) => {
     let formData = new FormData();
-    const excluded = [DAM_ASSETS_FIELD_KEY.COLLECTION_ID];
+    const excluded = [DAM_ASSETS_FIELD_KEY.COLLECTION_ID, DAM_ASSETS_FIELD_KEY.FILE];
     Object.keys(DAM_ASSETS_API_FIELD_KEY).forEach((index) => {
       if (!excluded.includes(DAM_ASSETS_FIELD_KEY[index]) && data[DAM_ASSETS_FIELD_KEY[index]]) {
         formData.append([DAM_ASSETS_API_FIELD_KEY[index]], data[DAM_ASSETS_FIELD_KEY[index]]);
@@ -175,6 +224,12 @@ class AssetsItemModel extends BaseItemModel {
       [DAM_ASSETS_API_FIELD_KEY.COLLECTION_ID],
       data[DAM_ASSETS_FIELD_KEY.COLLECTION_ID] ?? 0
     );
+    if (data[DAM_ASSETS_FIELD_KEY.FILE]) {
+      data[DAM_ASSETS_FIELD_KEY.FILE].forEach((file) => {
+        formData.append([DAM_ASSETS_API_FIELD_KEY.FILE] + '[]', file);
+      });
+    }
+
     return formData;
   };
 
@@ -188,6 +243,15 @@ class AssetsItemModel extends BaseItemModel {
     });
     formData[DAM_ASSETS_API_FIELD_KEY.COLLECTION_ID] =
       data[DAM_ASSETS_API_FIELD_KEY.COLLECTION_ID] ?? 0;
+
+    return formData;
+  };
+
+  static __transformItemToApiOfDelete = (data) => {
+    const formData = queryString.stringify(
+      { [DAM_ASSETS_API_FIELD_KEY.IDS]: data },
+      { arrayFormat: 'bracket' }
+    );
 
     return formData;
   };
