@@ -104,10 +104,14 @@ class DamRoute extends BaseRoute {
   };
 
   getCollections = (collectionId = 0, dataFilter = {}) => {
+    if (collectionId) {
+      // Todo
+      // Filter single collection
+    }
     return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).get(
       this.createRequestURL({
         option: 'dam_collection',
-        'filter[collection_id]': collectionId,
+        // 'filter[id]': collectionId,
         ...dataFilter,
       })
     );
@@ -150,7 +154,6 @@ class DamRoute extends BaseRoute {
       this.createRequestURL({
         option: 'dam_collection',
       }),
-
       {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -167,6 +170,19 @@ class DamRoute extends BaseRoute {
         task: 'changeParrentId',
       }),
       data
+    );
+  };
+
+  downloadCollections = (id) => {
+    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).post(
+      this.createRequestURL({
+        option: 'dam_collection',
+        task: 'downloadCollection',
+      }),
+      id,
+      {
+        responseType: 'blob',
+      }
     );
   };
 }
