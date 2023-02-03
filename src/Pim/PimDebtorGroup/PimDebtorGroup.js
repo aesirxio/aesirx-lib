@@ -117,6 +117,25 @@ class AesirxPimDebtorGroupApiService extends Component {
       } else throw error;
     }
   };
+
+  deleteDebtorGroups = async (arr) => {
+    try {
+      const listSelected = await arr.map((o) => {
+        return { id: o };
+      });
+
+      const result = await this.route.deleteDebtorGroups(listSelected);
+
+      if (result) {
+        return result.result;
+      }
+      return { message: 'Something have problem' };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancel' };
+      } else throw error;
+    }
+  };
 }
 
 export default AesirxPimDebtorGroupApiService;

@@ -15,7 +15,7 @@ const CAMPAIGN_FIELD_KEY = {
   NO_SCHEDULED_POSTS: 'no_scheduled_posts',
   NO_PUBLISHED_POSTS: 'no_published_posts',
   DATA: 'data',
-  PUBLISHED: 'published',
+  PUBLISHED: 'status',
 };
 
 const CAMPAIGN_API_RESPONSE_FIELD_KEY = {
@@ -30,7 +30,7 @@ const CAMPAIGN_API_RESPONSE_FIELD_KEY = {
   NO_SCHEDULED_POSTS: 'no_scheduled_posts',
   NO_PUBLISHED_POSTS: 'no_published_posts',
   DATA: 'data',
-  PUBLISHED: 'published',
+  PUBLISHED: 'status',
 };
 
 export { CAMPAIGN_FIELD_KEY, CAMPAIGN_API_RESPONSE_FIELD_KEY };
