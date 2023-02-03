@@ -4,6 +4,7 @@
  */
 
 const DAM_COLLECTION_FIELD_KEY = {
+  IDS: 'ids',
   ID: 'id',
   PARENT_ID: 'parent_id',
   NAME: 'name',
