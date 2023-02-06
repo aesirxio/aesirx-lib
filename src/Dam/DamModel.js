@@ -131,10 +131,11 @@ class CollectionItemModel extends BaseItemModel {
 
   static __transformItemToApiOfDownload = (data) => {
     let formData = new FormData();
-    if (data) {
-      formData.append([DAM_COLLECTION_FIELD_KEY.ID], data ?? 0);
+    if (data.length) {
+      data.forEach((item) => {
+        formData.append([DAM_COLLECTION_FIELD_KEY.IDS], item ?? 0);
+      });
     }
-
     return formData;
   };
 }

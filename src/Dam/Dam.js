@@ -289,9 +289,9 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  downloadCollections = async (id) => {
+  downloadCollections = async (ids) => {
     try {
-      const dataToSubmit = CollectionItemModel.__transformItemToApiOfDownload(id);
+      const dataToSubmit = CollectionItemModel.__transformItemToApiOfDownload(ids);
       const result = await this.route.downloadCollections(dataToSubmit);
       if (result) {
         return result;

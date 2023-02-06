@@ -173,13 +173,13 @@ class DamRoute extends BaseRoute {
     );
   };
 
-  downloadCollections = (id) => {
+  downloadCollections = (ids) => {
     return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).post(
       this.createRequestURL({
         option: 'dam_collection',
         task: 'downloadCollection',
       }),
-      id,
+      ids,
       {
         responseType: 'blob',
       }
