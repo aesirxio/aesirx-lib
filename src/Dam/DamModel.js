@@ -131,11 +131,18 @@ class CollectionItemModel extends BaseItemModel {
 
   static __transformItemToApiOfDownload = (data) => {
     let formData = new FormData();
-    if (data.length) {
-      data.forEach((item) => {
-        formData.append([DAM_COLLECTION_FIELD_KEY.IDS], item ?? 0);
+
+    if (data[DAM_COLLECTION_FIELD_KEY.COLLECTIONIDS]) {
+      data[DAM_COLLECTION_FIELD_KEY.COLLECTIONIDS].forEach((collection) => {
+        formData.append([DAM_COLLECTION_API_RESPONSE_FIELD_KEY.COLLECTIONIDS] + '[]', collection);
       });
     }
+    if (data[DAM_COLLECTION_FIELD_KEY.ASSETSIDS]) {
+      data[DAM_COLLECTION_FIELD_KEY.ASSETSIDS].forEach((asset) => {
+        formData.append([DAM_COLLECTION_API_RESPONSE_FIELD_KEY.ASSETSIDS] + '[]', asset);
+      });
+    }
+
     return formData;
   };
 }
