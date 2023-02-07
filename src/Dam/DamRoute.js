@@ -177,7 +177,7 @@ class DamRoute extends BaseRoute {
     return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).post(
       this.createRequestURL({
         option: 'dam_collection',
-        task: 'downloadCollection',
+        task: 'downloadFiles',
       }),
       ids,
       {
