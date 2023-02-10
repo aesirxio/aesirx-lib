@@ -22,7 +22,6 @@ import AesirxNotificationApiService from './Notification/Notification';
 import AesirxGoogleDataApiService from './GoogleData/GoogleData';
 import AesirxNewsApiService from './News/News';
 import AesirxDamApiService from './Dam/Dam';
-import Storage from './Utils/Storage';
 // CMS Service
 import AesirxCmsCategoryApiService from './Cms/Categories/CMSCategories';
 import AesirxCmsContentTypeApiService from './Cms/ContentType/CMSContentType';
@@ -51,6 +50,13 @@ import { ProductItemModel } from './Pim/PimProduct/PimProductModel';
 import AesirxContentXCategoryApiService from './ContentX/Categories/ContentXCategories';
 import AesirxContentXItemsApiService from './ContentX/Items/ContentXItems';
 
+// BI app
+import AesirxBiApiService from './Bi/Bi';
+
+//Utils
+import Storage from './Utils/Storage';
+
+// Constants
 import {
   AXIOS_CONFIGS,
   AUTHORIZATION_KEY,
@@ -58,6 +64,7 @@ import {
   GENERAL_CONFIG,
 } from './Constant/Constant';
 
+// DAM Constant
 import {
   DAM_ASSETS_FIELD_KEY,
   DAM_ASSETS_API_FIELD_KEY,
@@ -66,6 +73,7 @@ import {
   DAM_SUBSCIPTION_API_FIELD_KEY,
   DAM_SUBSCIPTION_FIELD_KEY,
 } from './Constant/DamConstant';
+// CMS Constant
 import {
   CMS_CATE_DETAIL_FIELD_KEY,
   GENERAL_INFORMATION,
@@ -75,7 +83,7 @@ import {
   CMS_FIELD_GR_DETAIL_FIELD_KEY,
   CMS_CONTENT_DETAIL_FIELD_KEY,
 } from './Constant/CmsConstant';
-
+// Pim Constant
 import {
   PIM_PRODUCT_DETAIL_FIELD_KEY,
   PIM_CATEGORY_DETAIL_FIELD_KEY,
@@ -87,6 +95,18 @@ import {
   PIM_DASH_BOARD_DETAIL_FIELD_KEY,
 } from './Constant/PimConstant';
 
+// BI Constant
+import {
+  BI_DASHBOARD_FIELD_KEY,
+  BI_WIDGET_FIELD_KEY,
+  BI_NEW_USERS_KEY,
+  BI_CONTINENTS_KEY,
+  BI_VISITORS_FIELD_KEY,
+  BI_DOMAIN_FIELD_KEY,
+  BI_SUMMARY_FIELD_KEY,
+  BI_METRICS_FIELD_KEY,
+  BI_VISITOR_FIELD_KEY,
+} from './Constant/BiConstant';
 export {
   AesirxProjectApiService,
   AesirxCampaignApiService,
@@ -104,14 +124,14 @@ export {
   AesirxFacebookDataApiService,
   AesirxNotificationApiService,
   AesirxGoogleDataApiService,
+  AesirxNewsApiService,
+  AesirxDamApiService,
+  //Base Constant
   ESI_PERSONA_FIELD_KEY,
   AXIOS_CONFIGS,
   AUTHORIZATION_KEY,
   AESIRX_CONFIGS,
   GENERAL_CONFIG,
-  Storage,
-  AesirxNewsApiService,
-  AesirxDamApiService,
   // DAM Constant
   DAM_ASSETS_FIELD_KEY,
   DAM_ASSETS_API_FIELD_KEY,
@@ -152,6 +172,16 @@ export {
   PIM_FIELD_GROUP_DETAIL_FIELD_KEY,
   PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY,
   PIM_DASH_BOARD_DETAIL_FIELD_KEY,
+  // Bi Constant
+  BI_DASHBOARD_FIELD_KEY,
+  BI_WIDGET_FIELD_KEY,
+  BI_NEW_USERS_KEY,
+  BI_CONTINENTS_KEY,
+  BI_VISITORS_FIELD_KEY,
+  BI_DOMAIN_FIELD_KEY,
+  BI_SUMMARY_FIELD_KEY,
+  BI_METRICS_FIELD_KEY,
+  BI_VISITOR_FIELD_KEY,
   // PIM Model
   CategoryItemModel,
   DebtorGroupItemModel,
@@ -162,4 +192,8 @@ export {
   // ContentX
   AesirxContentXItemsApiService,
   AesirxContentXCategoryApiService,
+  // BI app
+  AesirxBiApiService,
+  // Utils
+  Storage,
 };

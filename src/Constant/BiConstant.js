@@ -41,6 +41,17 @@ const BI_VISITORS_FIELD_KEY = {
   VISITS: 'visits',
   DATE: 'date',
 };
+
+const BI_VISITOR_FIELD_KEY = {
+  START_DATE: 'start',
+  END_DATE: 'end',
+  EVENT_NAME: 'event_name',
+  EVENT_TYPE: 'event_type',
+  ATTRIBUTES: 'attributes',
+  REFERER: 'referer',
+  URL: 'url',
+};
+
 const BI_SUMMARY_FIELD_KEY = {
   NUMBER_OF_VISITORS: 'number_of_visitors',
   NUMBER_OF_PAGE_VIEWS: 'number_of_page_views',
@@ -73,4 +84,5 @@ export {
   BI_DOMAIN_FIELD_KEY,
   BI_SUMMARY_FIELD_KEY,
   BI_METRICS_FIELD_KEY,
+  BI_VISITOR_FIELD_KEY,
 };
