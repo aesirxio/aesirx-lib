@@ -104,24 +104,6 @@ class AesirxBiApiService extends Component {
     }
   };
 
-  init = async () => {
-    try {
-      const data = await this.route.init();
-
-      let results = null;
-      if (data) {
-        results = data;
-      }
-      if (results) {
-        results = results;
-      }
-      return results;
-    } catch (error) {
-      console.log(error);
-      return error;
-    }
-  };
-
   getVisits = async (dataFilter, dateFilter) => {
     try {
       const data = await this.route.getVisits(dataFilter, dateFilter);
