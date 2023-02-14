@@ -18,18 +18,31 @@ class BaseRoute {
     webserviceVersion: '1.0.0',
     api: 'hal',
   };
+  createRequestURL = (props, isDefault = true, baseUrl = this.baseURL, isBi = false) => {
+    let result;
+    if (isBi) {
+      const datePath = props?.date ? `${props?.date?.date_start}/${props?.date?.date_end}` : null;
 
-  createRequestURL = (props, isDefault = true, baseUrl = this.baseURL) => {
-    let result = baseUrl.concat('/').concat(this.slug).concat('?');
-    if (isDefault) {
-      result = decodeURI(
-        result
-          .concat(queryString.stringify(this.defaultQueryString))
-          .concat('&')
-          .concat(queryString.stringify(props))
-      );
+      result = this.baseURL.concat('/').concat(props?.url);
+
+      if (datePath) {
+        result = result.concat(datePath);
+      }
+      result = result.concat('?').concat(queryString.stringify(props.filter));
+      return decodeURI(result);
     } else {
-      result = result.concat(queryString.stringify(props));
+      result = baseUrl.concat('/').concat(this.slug).concat('?');
+
+      if (isDefault) {
+        result = decodeURI(
+          result
+            .concat(queryString.stringify(this.defaultQueryString))
+            .concat('&')
+            .concat(queryString.stringify(props))
+        );
+      } else {
+        result = result.concat(queryString.stringify(props));
+      }
     }
     return result;
   };
