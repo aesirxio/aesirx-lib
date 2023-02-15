@@ -1,6 +1,6 @@
 {
   "name": "aesirx-dma-lib",
-  "version": "1.7.9",
+  "version": "1.7.10",
   "license": "GPL-3.0-only",
   "author": "AesirX",
   "repository": "https://github.com/aesirxio/dma-lib",
@@ -11,7 +11,6 @@
     "axios": "^0.21.0",
     "axios-auth-refresh": "^3.0.0",
     "crypto-js": "^4.1.1",
-    "css-minimizer-webpack-plugin": "^4.0.0",
     "qs": "^6.10.1",
     "query-string": "^7.1.1"
   },
@@ -21,8 +20,9 @@
     "start": "cross-env NODE_ENV=development BABEL_ENV=development microbundle --generateTypes true --no-compress -w",
     "build": "cross-env NODE_ENV=production BABEL_ENV=production microbundle --generateTypes true --compress",
     "test": "node scripts/test.js",
-    "docgen": "node scripts/docgen.js",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "format:check": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
+    "format:write": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'"
   },
   "minify": {
     "compress": {
@@ -125,13 +125,15 @@
     "babel-plugin-relay": "^10.1.2",
     "babel-preset-react-app": "^10.0",
     "cross-env": "^7.0.3",
+    "css-minimizer-webpack-plugin": "^4.0.0",
     "eslint": "^8.17",
     "eslint-plugin-react": "^7.30",
     "jest": "26.6.0",
     "jest-circus": "26.6.0",
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
-    "microbundle": "^0.15"
+    "microbundle": "^0.15.1",
+    "prettier": "^2.8.4"
   },
   "files": [
     "dist",
