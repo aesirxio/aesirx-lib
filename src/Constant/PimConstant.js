@@ -33,6 +33,21 @@ const PIM_PRODUCT_DETAIL_FIELD_KEY = {
   MODIFIED_TIME: 'modified_time',
 };
 
+const PIM_VARIANT_DETAIL_FIELD_KEY = {
+  ID: 'id',
+  TITLE: 'title',
+  PUBLISHED: 'published',
+  FEATURED: 'featured',
+  CUSTOM_FIELDS: 'custom_fields',
+  ALIAS: 'alias',
+  ORGANISATION: 'organisation',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  PUBLISH_UP: 'publish_up',
+  MODIFIED_TIME: 'modified_time',
+};
+
 const PIM_CATEGORY_DETAIL_FIELD_KEY = {
   ID: 'id',
   TITLE: 'title',
@@ -169,4 +184,5 @@ export {
   PIM_FIELD_GROUP_DETAIL_FIELD_KEY,
   PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY,
   PIM_DASH_BOARD_DETAIL_FIELD_KEY,
+  PIM_VARIANT_DETAIL_FIELD_KEY,
 };
