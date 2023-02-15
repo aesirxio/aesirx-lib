@@ -13,7 +13,8 @@ import {
   BI_DOMAIN_FIELD_KEY,
   BI_SUMMARY_FIELD_KEY,
   BI_METRICS_FIELD_KEY,
-} from '..//Constant/BiConstant';
+  BI_VISITOR_FIELD_KEY,
+} from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
 class DashboardModel extends BaseItemModel {
@@ -148,18 +149,18 @@ class DomainItemModel extends BaseItemModel {
     };
   };
 }
-class VisitorModel extends BaseModel {
+class VisitorsModel extends BaseModel {
   constructor(entities) {
     super(entities);
     if (entities) {
       this.items = entities.collection.map((element) => {
-        return new VisitorItemModel(element);
+        return new VisitorsItemModel(element);
       });
       this.items.pagination = this.getPagination();
     }
   }
 }
-class VisitorItemModel extends BaseItemModel {
+class VisitorsItemModel extends BaseItemModel {
   visits = null;
   date = null;
   constructor(entity) {
@@ -180,7 +181,6 @@ class VisitorItemModel extends BaseItemModel {
     };
   };
 }
-
 class SummaryModel extends BaseModel {
   constructor(entities) {
     super(entities);
@@ -192,7 +192,6 @@ class SummaryModel extends BaseModel {
     }
   }
 }
-
 class SummaryItemModel extends BaseItemModel {
   number_of_visitors = null;
   number_of_page_views = null;
@@ -228,7 +227,6 @@ class SummaryItemModel extends BaseItemModel {
     };
   };
 }
-
 class MetricsModel extends BaseItemModel {
   visitors = null;
   page_views = null;
@@ -265,4 +263,61 @@ class MetricsModel extends BaseItemModel {
   };
 }
 
-export { DomainModel, DashboardModel, VisitorModel, SummaryModel, SummaryItemModel, MetricsModel };
+class VisitorModel extends BaseModel {
+  constructor(entities) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element) => {
+        return new VisitorItemModel(element);
+      });
+      this.items.pagination = this.getPagination();
+    }
+  }
+}
+class VisitorItemModel extends BaseItemModel {
+  start_date = null;
+  end_date = null;
+  event_name = null;
+  event_type = null;
+  attributes = null;
+  url = null;
+  referer = null;
+  constructor(entity) {
+    super(entity);
+    if (entity) {
+      this.start_date = entity[BI_VISITOR_FIELD_KEY.START_DATE] ?? '';
+      this.end_date = entity[BI_VISITOR_FIELD_KEY.END_DATE] ?? '';
+      this.event_name = entity[BI_VISITOR_FIELD_KEY.EVENT_NAME] ?? '';
+      this.event_type = entity[BI_VISITOR_FIELD_KEY.EVENT_TYPE] ?? '';
+      this.attributes = entity[BI_VISITOR_FIELD_KEY.ATTRIBUTES] ?? [];
+      this.url = entity[BI_VISITOR_FIELD_KEY.URL] ?? '';
+      this.referer = entity[BI_VISITOR_FIELD_KEY.REFERER] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_VISITOR_FIELD_KEY.EVENT_NAME]: this.event_name,
+      [BI_VISITOR_FIELD_KEY.EVENT_TYPE]: this.event_type,
+      [BI_VISITOR_FIELD_KEY.START_DATE]: this.start_date,
+      [BI_VISITOR_FIELD_KEY.END_DATE]: this.end_date,
+      [BI_VISITOR_FIELD_KEY.ATTRIBUTES]: this.attributes,
+      [BI_VISITOR_FIELD_KEY.URL]: this.url,
+      [BI_VISITOR_FIELD_KEY.REFERER]: this.referer,
+    };
+  };
+}
+
+export {
+  DomainModel,
+  DashboardModel,
+  VisitorsModel,
+  SummaryModel,
+  SummaryItemModel,
+  MetricsModel,
+  VisitorModel,
+  VisitorItemModel,
+};

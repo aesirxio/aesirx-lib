@@ -3,7 +3,14 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { DashboardModel, DomainModel, MetricsModel, SummaryModel, VisitorModel } from './BiModel';
+import {
+  DashboardModel,
+  DomainModel,
+  MetricsModel,
+  SummaryModel,
+  VisitorModel,
+  VisitorsModel,
+} from './BiModel';
 import BiRoute from './BiRoute';
 import { Component } from 'react';
 import axios from 'axios';
@@ -65,6 +72,25 @@ class AesirxBiApiService extends Component {
 
       let results = null;
       if (data) {
+        results = new VisitorsModel(data);
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getVisitor = async (dataFilter, dateFilter) => {
+    try {
+      const data = await this.route.getVisitor(dataFilter, dateFilter);
+
+      let results = null;
+      if (data) {
         results = new VisitorModel(data);
       }
       if (results) {
@@ -84,7 +110,7 @@ class AesirxBiApiService extends Component {
 
       let results = null;
       if (data) {
-        results = new VisitorModel(data);
+        results = new VisitorsModel(data);
       }
       if (results) {
         results = results.toJSON();
@@ -115,6 +141,7 @@ class AesirxBiApiService extends Component {
       } else throw error;
     }
   };
+
   getMetrics = async (dataFilter, dateFilter) => {
     try {
       const data = await this.route.getMetrics(dataFilter, dateFilter);

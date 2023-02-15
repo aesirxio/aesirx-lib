@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-var CryptoJS = require('crypto-js');
+const CryptoJS = require('crypto-js');
 
 const encrypt = process.env.REACT_APP_ENCRYPT;
 class Storage {
