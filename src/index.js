@@ -38,6 +38,7 @@ import AesirxPimProductApiService from './Pim/PimProduct/PimProduct';
 import AesirxPimProductPriceApiService from './Pim/PimProductPrice/PimProductPrice';
 import AesirxPimTagApiService from './Pim/PimTag/PimTag';
 import AesirxPimUtilApiService from './Pim/PimUtils/PimUtils';
+import AesirxPimVariantApiService from './Pim/PimVariant/PimVariant';
 // PIM Model
 import { CategoryItemModel } from './Pim/PimCategory/PimCategoryModel';
 import { DebtorGroupItemModel } from './Pim/PimDebtorGroup/PimDebtorGroupModel';
@@ -45,6 +46,7 @@ import { FieldGroupItemModel } from './Pim/PimFieldGroup/PimFieldGroupModel';
 import { FieldItemModel } from './Pim/PimField/PimFieldModel';
 import { ProductPriceItemModel } from './Pim/PimProductPrice/PimProductPriceModel';
 import { ProductItemModel } from './Pim/PimProduct/PimProductModel';
+import { VariantItemModel } from './Pim/PimVariant/PimVariantModel';
 
 // ContentX
 import AesirxContentXCategoryApiService from './ContentX/Categories/ContentXCategories';
@@ -86,6 +88,7 @@ import {
 // Pim Constant
 import {
   PIM_PRODUCT_DETAIL_FIELD_KEY,
+  PIM_VARIANT_DETAIL_FIELD_KEY,
   PIM_CATEGORY_DETAIL_FIELD_KEY,
   PIM_TAG_DETAIL_FIELD_KEY,
   PIM_FIELD_DETAIL_FIELD_KEY,
@@ -163,8 +166,10 @@ export {
   AesirxPimProductPriceApiService,
   AesirxPimTagApiService,
   AesirxPimUtilApiService,
+  AesirxPimVariantApiService,
   // PIM Constant
   PIM_PRODUCT_DETAIL_FIELD_KEY,
+  PIM_VARIANT_DETAIL_FIELD_KEY,
   PIM_CATEGORY_DETAIL_FIELD_KEY,
   PIM_TAG_DETAIL_FIELD_KEY,
   PIM_FIELD_DETAIL_FIELD_KEY,
@@ -189,6 +194,7 @@ export {
   FieldItemModel,
   ProductPriceItemModel,
   ProductItemModel,
+  VariantItemModel,
   // ContentX
   AesirxContentXItemsApiService,
   AesirxContentXCategoryApiService,
