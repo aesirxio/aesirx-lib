@@ -14,7 +14,7 @@ jobs:
           node-version: 16.x
 
       - name: Install dependencies
-        run: npm i
+        run: yarn i
 
       - name: Run Prettier
-        run: npm run format:check
+        run: yarn run format:check
