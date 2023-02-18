@@ -2,10 +2,11 @@
  * @copyright   Copyright (C) 2022 AesirX. All rights reserved.
  * @license     GNU General Public License version 3, see LICENSE.
  */
+import { env } from '../env';
 
 const CryptoJS = require('crypto-js');
 
-const encrypt = process.env.REACT_APP_ENCRYPT;
+const encrypt = env.REACT_APP_ENCRYPT;
 class Storage {
   static setItem(key, value) {
     const cKey = CryptoJS.MD5(encrypt + key);
