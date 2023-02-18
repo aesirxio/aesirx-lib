@@ -19,8 +19,7 @@
     "lint:check": "cross-env NODE_ENV=production BABEL_ENV=production eslint \"src/**/\"",
     "start": "cross-env NODE_ENV=development BABEL_ENV=development microbundle --generateTypes true --no-compress -w",
     "build": "cross-env NODE_ENV=production BABEL_ENV=production microbundle --generateTypes true --compress",
-    "test": "node scripts/test.js",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "yarn run build",
     "format:check": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
     "format:write": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'"
   },

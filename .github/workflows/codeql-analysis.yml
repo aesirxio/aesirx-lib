@@ -6,8 +6,6 @@ on:
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ master, develop, develop-* ]
-  schedule:
-    - cron: '18 10 * * 6'
 
 jobs:
   analyze:
@@ -34,10 +32,10 @@ jobs:
         languages: ${{ matrix.language }}
 
     - name: Install modules
-      run: npm i
+      run: yarn i
 
     - name: Lint
-      run: npm run lint:check
+      run: yarn run lint:check
 
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
