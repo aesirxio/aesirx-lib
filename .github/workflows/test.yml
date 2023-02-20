@@ -1,11 +1,12 @@
-name: Format
+name: Test
 
 on:
   pull_request:
 
 jobs:
-  code:
+  test:
     runs-on: ubuntu-latest
+    environment: test
 
     steps:
       - uses: actions/checkout@v3
