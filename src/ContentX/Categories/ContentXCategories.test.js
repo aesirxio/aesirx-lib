@@ -1,16 +1,16 @@
-import AesirxContentXItemsApiService from './ContentXItems';
+import AesirxContentXCategoryApiService from './ContentXCategories';
 
 let createID = '';
 
-describe('ContentXItems', () => {
+describe('ContentXCategories', () => {
   it('Create', async () => {
-    const service = new AesirxContentXItemsApiService();
+    const service = new AesirxContentXCategoryApiService();
 
     const data = {
-      title: 'Item 0000',
+      title: 'Category 0000',
     };
 
-    const response = await service.createItem(data);
+    const response = await service.create(data);
 
     createID = response?.id;
 
@@ -18,11 +18,11 @@ describe('ContentXItems', () => {
   });
 
   it('Get List', async () => {
-    const service = new AesirxContentXItemsApiService();
+    const service = new AesirxContentXCategoryApiService();
 
     const filters = {
       'list[limitstart]': 0,
-      'list[limit]': 1,
+      'list[limit]': 2,
     };
 
     const data = await service.getList(filters);
@@ -31,20 +31,20 @@ describe('ContentXItems', () => {
   });
 
   it('Update', async () => {
-    const service = new AesirxContentXItemsApiService();
+    const service = new AesirxContentXCategoryApiService();
 
     const data = {
       id: createID,
-      title: 'Item 0001',
+      title: 'Category 0001',
     };
 
-    const response = await service.updateItem(data);
+    const response = await service.update(data);
 
     expect(response).toBeTruthy();
   });
 
   it('Get Detail', async () => {
-    const service = new AesirxContentXItemsApiService();
+    const service = new AesirxContentXCategoryApiService();
 
     const response = await service.getDetail(createID);
 
@@ -52,9 +52,9 @@ describe('ContentXItems', () => {
   });
 
   it('Delete', async () => {
-    const service = new AesirxContentXItemsApiService();
+    const service = new AesirxContentXCategoryApiService();
 
-    const response = await service.deleteItems(createID);
+    const response = await service.delete(createID);
 
     expect(response?.result).toBeTruthy();
   });

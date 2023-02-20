@@ -1,13 +1,11 @@
-import { Component } from 'react';
 import axios from 'axios';
 import { CategoriesItemModel, CategoryModel } from './ContentXCategoriesModel';
 import ContentXCategoriesRoute from './ContentXCategoriesRoute';
 
-class AesirxContentXCategoryApiService extends Component {
+class AesirxContentXCategoryApiService {
   route = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new ContentXCategoriesRoute();
   }
   getList = async (filters) => {
@@ -51,7 +49,7 @@ class AesirxContentXCategoryApiService extends Component {
     try {
       const result = await this.route.update(data);
       if (result) {
-        return result;
+        return result.result;
       }
       return { message: 'Something have problem' };
     } catch (error) {

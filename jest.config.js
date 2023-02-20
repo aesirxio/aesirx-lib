@@ -3,6 +3,8 @@ require('dotenv').config();
 
 module.exports = {
   roots: ['<rootDir>/src'],
-
-  setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],
+  testTimeout: 20000,
+  setupFilesAfterEnv: ['<rootDir>/src/__test__/setupTests.js'],
+  globalSetup: '<rootDir>/src/__test__/globalSetup.js',
+  testEnvironment: 'jsdom',
 };

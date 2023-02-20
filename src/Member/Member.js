@@ -6,7 +6,6 @@
 import { MemberItemModel } from './MemberModel';
 import MemberRoute from './MemberRoute';
 import { requestANewAccessToken } from '../gateway/Instance';
-import { Component } from 'react';
 import BaseRoute from '../Abstract/BaseRoute';
 import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
 import axios from 'axios';
@@ -15,11 +14,10 @@ import Storage from '../Utils/Storage';
 /**
  * API Service - Member
  */
-class AesirxMemberApiService extends Component {
+class AesirxMemberApiService {
   route = null;
 
   constructor(props) {
-    super(props);
     this.route = new MemberRoute();
     if (props) {
       this.mode = props.mode ?? null;
