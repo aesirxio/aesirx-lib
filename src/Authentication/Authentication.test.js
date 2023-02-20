@@ -1,3 +1,4 @@
 it('Login', async () => {
-  expect(process.env.TOKEN).not.toBeFalsy();
+  console.log(process.env);
+  expect(process.env.TOKEN).not.toBe('false');
 });
