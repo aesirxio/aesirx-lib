@@ -5,13 +5,14 @@
 
 import AesirxApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
+import { INTEGRATION_CONFIGS } from '../../Constant/Constant';
 
 class PimProductRoute extends BaseRoute {
   option = 'reditem-item_pim_product_59';
 
   getList = (filters) => {
     const buildFilters = this.createFilters(filters);
-    return AesirxApiInstance().get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).get(
       this.createRequestURL({
         option: this.option,
         ...buildFilters,
@@ -42,7 +43,7 @@ class PimProductRoute extends BaseRoute {
   };
 
   getDetail = (id = 0, dataFilter = {}) => {
-    return AesirxApiInstance().get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).get(
       this.createRequestURL({
         option: this.option,
         id: id,
@@ -51,7 +52,7 @@ class PimProductRoute extends BaseRoute {
     );
   };
   create = (data) => {
-    return AesirxApiInstance().post(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).post(
       this.createRequestURL({
         option: this.option,
       }),
@@ -59,7 +60,7 @@ class PimProductRoute extends BaseRoute {
     );
   };
   update = (data) => {
-    return AesirxApiInstance().put(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).put(
       this.createRequestURL({
         option: this.option,
       }),
@@ -72,7 +73,7 @@ class PimProductRoute extends BaseRoute {
     );
   };
   delete = (id) => {
-    return AesirxApiInstance().delete(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).delete(
       this.createRequestURL({
         option: this.option,
       }),
@@ -86,7 +87,7 @@ class PimProductRoute extends BaseRoute {
   };
 
   updateStatus = (listSelected) => {
-    return AesirxApiInstance().post(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).post(
       this.createRequestURL({
         option: this.option,
         task: 'bulkUpdate',
@@ -98,7 +99,7 @@ class PimProductRoute extends BaseRoute {
   };
 
   deleteProducts = (listSelected) => {
-    return AesirxApiInstance().post(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).post(
       this.createRequestURL({
         option: this.option,
         task: 'bulkDelete',

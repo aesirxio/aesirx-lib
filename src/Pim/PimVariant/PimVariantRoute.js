@@ -5,12 +5,13 @@
 
 import AesirxApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
+import { INTEGRATION_CONFIGS } from '../../Constant/Constant';
 
 class PimVariantRoute extends BaseRoute {
   option = 'reditem-item_variant_53';
 
   create = (data) => {
-    return AesirxApiInstance().post(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).post(
       this.createRequestURL({
         option: this.option,
       }),
@@ -19,7 +20,7 @@ class PimVariantRoute extends BaseRoute {
   };
 
   update = (data) => {
-    return AesirxApiInstance().put(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).put(
       this.createRequestURL({
         option: this.option,
       }),
@@ -33,7 +34,7 @@ class PimVariantRoute extends BaseRoute {
   };
 
   getVariantDetail = (id = 0) => {
-    return AesirxApiInstance().get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).get(
       this.createRequestURL({
         option: this.option,
         id: id,

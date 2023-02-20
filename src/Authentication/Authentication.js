@@ -10,6 +10,7 @@ import AesirxMemberApiService from '../Member/Member';
 import qs from 'query-string';
 import Storage from '../Utils/Storage';
 import { logout } from './Logout';
+import AesirxApiInstance from '../gateway/Instance';
 
 class AesirxAuthenticationApiService {
   login = async (email, password) => {
@@ -312,38 +313,48 @@ class AesirxAuthenticationApiService {
    * @param {*} key
    */
   refreshToken = async (failedRequest, url, form, key) => {
-    await axios.post(url, form, { skipAuthRefresh: true }).then(
-      (tokenRefreshResponse) => {
-        let authorizationHeader = '';
-        let tokenType = '';
-        let accessToken = '';
-        let refreshToken = '';
-        if (tokenRefreshResponse && tokenRefreshResponse.data) {
-          tokenType = tokenRefreshResponse.data.token_type ?? 'Bearer';
-          accessToken = tokenRefreshResponse.data.access_token ?? '';
-          authorizationHeader = authorizationHeader
-            .concat(tokenType)
-            .concat(' ')
-            .concat(accessToken);
-          refreshToken = tokenRefreshResponse.data[AUTHORIZATION_KEY.REFRESH_TOKEN] ?? '';
-        }
-        const setStore = {
-          [key[AUTHORIZATION_KEY.ACCESS_TOKEN]]: accessToken,
-          [key[AUTHORIZATION_KEY.TOKEN_TYPE]]: tokenType,
-          [key[AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]]: authorizationHeader,
-          [key[AUTHORIZATION_KEY.REFRESH_TOKEN]]: refreshToken,
-        };
-        this.setStore(setStore);
-
-        return Promise.resolve();
+    const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
+      {
+        option: 'member',
+        api: 'hal',
+        task: 'refreshToken',
       },
-      (error) => {
-        // Logout when token expired
-        logout();
-        // Do something with request error
-        return Promise.reject(error);
-      }
+      false
     );
+    await AesirxApiInstance()
+      .post(AUTHORIZED_CODE_URL, form, { skipAuthRefresh: true })
+      .then(
+        (tokenRefreshResponse) => {
+          let authorizationHeader = '';
+          let tokenType = '';
+          let accessToken = '';
+          let refreshToken = '';
+          if (tokenRefreshResponse && tokenRefreshResponse.data) {
+            tokenType = tokenRefreshResponse.data.token_type ?? 'Bearer';
+            accessToken = tokenRefreshResponse.data.access_token ?? '';
+            authorizationHeader = authorizationHeader
+              .concat(tokenType)
+              .concat(' ')
+              .concat(accessToken);
+            refreshToken = tokenRefreshResponse.data[AUTHORIZATION_KEY.REFRESH_TOKEN] ?? '';
+          }
+          const setStore = {
+            [key[AUTHORIZATION_KEY.ACCESS_TOKEN]]: accessToken,
+            [key[AUTHORIZATION_KEY.TOKEN_TYPE]]: tokenType,
+            [key[AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]]: authorizationHeader,
+            [key[AUTHORIZATION_KEY.REFRESH_TOKEN]]: refreshToken,
+          };
+          this.setStore(setStore);
+
+          return Promise.resolve();
+        },
+        (error) => {
+          // Logout when token expired
+          logout();
+          // Do something with request error
+          return Promise.reject(error);
+        }
+      );
   };
 
   setStore = (key) => {

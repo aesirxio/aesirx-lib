@@ -5,6 +5,7 @@
 
 import AesirxApiInstance from '../gateway/Instance';
 import BaseRoute from '../Abstract/BaseRoute';
+import { INTEGRATION_CONFIGS } from '../Constant/Constant';
 
 const version = '/v1/';
 
@@ -17,7 +18,7 @@ class BiRoute extends BaseRoute {
   };
 
   getVisitor = (dataFilter, dateFilter) => {
-    return AesirxApiInstance().get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.BI).get(
       this.createRequestURL(
         {
           url: 'visitor' + version,
@@ -32,7 +33,7 @@ class BiRoute extends BaseRoute {
   };
 
   getVisitors = (dataFilter, dateFilter) => {
-    return AesirxApiInstance().get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.BI).get(
       this.createRequestURL(
         {
           url: 'visitors' + version,
@@ -47,7 +48,7 @@ class BiRoute extends BaseRoute {
   };
 
   getVisits = (dataFilter, dateFilter) => {
-    return AesirxApiInstance().get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.BI).get(
       this.createRequestURL(
         {
           url: 'visits' + version,
@@ -61,7 +62,7 @@ class BiRoute extends BaseRoute {
     );
   };
   getMetrics = (dataFilter, dateFilter) => {
-    return AesirxApiInstance().get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.BI).get(
       this.createRequestURL(
         {
           url: 'metrics' + version,
@@ -75,7 +76,7 @@ class BiRoute extends BaseRoute {
     );
   };
   getSummary = (dataFilter, dateFilter) => {
-    return AesirxApiInstance().get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.BI).get(
       this.createRequestURL(
         {
           url: 'domains' + version,
@@ -90,7 +91,7 @@ class BiRoute extends BaseRoute {
   };
 
   init = () => {
-    return AesirxApiInstance().post(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.BI).post(
       this.createRequestURL(
         {
           url: 'visitor' + version + 'init',

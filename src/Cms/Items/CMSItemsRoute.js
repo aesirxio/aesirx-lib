@@ -5,11 +5,12 @@
 
 import AesirxApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
+import { INTEGRATION_CONFIGS } from '../../Constant/Constant';
 
 class CmsItemsRoute extends BaseRoute {
   getList = (filters) => {
     const buildFilters = this.createFilters(filters);
-    return AesirxApiInstance().get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.MCMS).get(
       this.createRequestURL({
         option: 'reditem',
         view: 'item_with_org_check_metaverse_content_62',
@@ -19,7 +20,7 @@ class CmsItemsRoute extends BaseRoute {
   };
 
   getDetail = (id = 0) => {
-    return AesirxApiInstance().get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.MCMS).get(
       this.createRequestURL({
         option: 'reditem',
         view: 'item_with_org_check_metaverse_content_62',
@@ -29,7 +30,7 @@ class CmsItemsRoute extends BaseRoute {
   };
 
   createItem = (data) => {
-    return AesirxApiInstance().post(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.MCMS).post(
       this.createRequestURL({
         option: 'reditem',
         view: 'item_with_org_check_metaverse_content_62',
@@ -38,7 +39,7 @@ class CmsItemsRoute extends BaseRoute {
     );
   };
   updateItem = (data) => {
-    return AesirxApiInstance().put(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.MCMS).put(
       this.createRequestURL({
         option: 'reditem',
         view: 'item_with_org_check_metaverse_content_62',
@@ -47,7 +48,7 @@ class CmsItemsRoute extends BaseRoute {
     );
   };
   deleteItems = (id) => {
-    return AesirxApiInstance().delete(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.MCMS).delete(
       this.createRequestURL({
         option: 'reditem',
         view: 'item_with_org_check_metaverse_content_62',
@@ -58,7 +59,7 @@ class CmsItemsRoute extends BaseRoute {
     );
   };
   toggleFeatured = (id, isFeatured) => {
-    return AesirxApiInstance().post(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.MCMS).post(
       this.createRequestURL({
         option: this.option,
         id,

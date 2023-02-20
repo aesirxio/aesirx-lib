@@ -5,13 +5,14 @@
 
 import AesirxApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
+import { INTEGRATION_CONFIGS } from '../../Constant/Constant';
 
 class PimFieldGroupRoute extends BaseRoute {
   option = 'reditem-pim_field_group';
 
   getList = (filter = {}) => {
     const buildFilter = this.createFilters(filter);
-    return AesirxApiInstance().get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).get(
       this.createRequestURL({
         option: this.option,
         ...buildFilter,
@@ -42,7 +43,7 @@ class PimFieldGroupRoute extends BaseRoute {
   };
 
   getDetail = (id = 0, filter = {}) => {
-    return AesirxApiInstance().get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).get(
       this.createRequestURL({
         option: this.option,
         id: id,
@@ -52,7 +53,7 @@ class PimFieldGroupRoute extends BaseRoute {
   };
 
   create = (data) => {
-    return AesirxApiInstance().post(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).post(
       this.createRequestURL({
         option: this.option,
       }),
@@ -60,7 +61,7 @@ class PimFieldGroupRoute extends BaseRoute {
     );
   };
   update = (data) => {
-    return AesirxApiInstance().put(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).put(
       this.createRequestURL({
         option: this.option,
       }),
@@ -74,7 +75,7 @@ class PimFieldGroupRoute extends BaseRoute {
   };
 
   updateStatus = (listSelected) => {
-    return AesirxApiInstance().post(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).post(
       this.createRequestURL({
         option: this.option,
         task: 'bulkUpdate',
@@ -86,7 +87,7 @@ class PimFieldGroupRoute extends BaseRoute {
   };
 
   delete = (id) => {
-    return AesirxApiInstance().delete(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).delete(
       this.createRequestURL({
         option: this.option,
       }),

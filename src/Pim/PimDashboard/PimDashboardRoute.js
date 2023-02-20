@@ -5,13 +5,14 @@
 
 import AesirxApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
+import { INTEGRATION_CONFIGS } from '../../Constant/Constant';
 
 class PimTagRoute extends BaseRoute {
   option = 'reditem-pim_dashboard';
 
   getStatisticalData = (filter = {}) => {
     const buildFilter = this.createFilter(filter);
-    return AesirxApiInstance().get(
+    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).get(
       this.createRequestURL({
         option: this.option,
         task: 'getStatisticalData',

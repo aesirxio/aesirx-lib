@@ -11,6 +11,7 @@ import BaseRoute from '../Abstract/BaseRoute';
 import { logout } from '../Authentication/Logout';
 import Storage from '../Utils/Storage';
 import AesirxAuthenticationApiService from '../Authentication/Authentication';
+import { env } from '../env';
 
 const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
   {
@@ -119,6 +120,7 @@ const AesirxApiInstance = (platform = INTEGRATION_CONFIGS.DMA) => {
   const refreshToken = (failedRequest) => {
     let refresh_token = '';
     let key = {};
+    let license = '';
     switch (platform) {
       case INTEGRATION_CONFIGS.DMA:
         refresh_token =
@@ -133,6 +135,7 @@ const AesirxApiInstance = (platform = INTEGRATION_CONFIGS.DMA) => {
           ],
           [AUTHORIZATION_KEY.REFRESH_TOKEN]: [AUTHORIZATION_KEY.DMA_REFRESH_TOKEN],
         };
+         license = env.REACT_APP_DMA_LICENSE ?? env.REACT_APP_LICENSE
         break;
       case INTEGRATION_CONFIGS.DAM:
         refresh_token =
@@ -147,6 +150,8 @@ const AesirxApiInstance = (platform = INTEGRATION_CONFIGS.DMA) => {
           ],
           [AUTHORIZATION_KEY.REFRESH_TOKEN]: [AUTHORIZATION_KEY.DAM_REFRESH_TOKEN],
         };
+        license = env.REACT_APP_DAM_LICENSE ?? env.REACT_APP_LICENSE
+
         break;
 
       default:
@@ -157,13 +162,13 @@ const AesirxApiInstance = (platform = INTEGRATION_CONFIGS.DMA) => {
           [AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]: [AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER],
           [AUTHORIZATION_KEY.REFRESH_TOKEN]: [AUTHORIZATION_KEY.REFRESH_TOKEN],
         };
+        license = env.REACT_APP_LICENSE
+
         break;
     }
-    const refreshTokenFormData = new FormData();
-    refreshTokenFormData.append('grant_type', 'refresh_token');
-    refreshTokenFormData.append('client_id', clientID);
-    refreshTokenFormData.append('client_secret', clientSecret);
+    const refreshTokenFormData = new URLSearchParams();
     refreshTokenFormData.append('refresh_token', refresh_token);
+    refreshTokenFormData.append('refresh_token', license);
     const request = new AesirxAuthenticationApiService();
 
     request.refreshToken(failedRequest, AUTHORIZED_CODE_URL, refreshTokenFormData, key);
