@@ -6,5 +6,5 @@ module.exports = {
   testTimeout: 20000,
   setupFilesAfterEnv: ['<rootDir>/src/__test__/setupTests.js'],
   globalSetup: '<rootDir>/src/__test__/globalSetup.js',
-  testEnvironment: 'jsdom',
+  testEnvironment: 'node',
 };
