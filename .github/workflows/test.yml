@@ -6,7 +6,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    environment: test
     env:
       CI: false
       REACT_APP_CLIENT_ID: ${{ secrets.REACT_APP_CLIENT_ID }}
