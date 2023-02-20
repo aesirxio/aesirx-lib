@@ -22,7 +22,7 @@
     "prepublishOnly": "yarn run build",
     "format:check": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
     "format:write": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
-    "test": "jest src/Authentication/Authentication.test.js "
+    "test": "jest"
   },
   "babel": {
     "presets": [
