@@ -193,7 +193,7 @@ const AesirxApiInstance = (platform = INTEGRATION_CONFIGS.DMA) => {
       }
 
       if (process.env.NODE_ENV === 'test') {
-        accessToken = process.env.TOKEN;
+        accessToken = process.env.accessToken;
       }
 
       if (accessToken) {

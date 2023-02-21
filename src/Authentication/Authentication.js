@@ -54,7 +54,7 @@ class AesirxAuthenticationApiService {
       } = await axios(config);
 
       if (process.env.NODE_ENV === 'test') {
-        return result?.access_token;
+        return result;
       }
 
       if (AXIOS_CONFIGS.DAM_LICENSE) {

@@ -1,3 +1,5 @@
-it('Login', async () => {
-  expect(process.env.TOKEN).not.toBe('false');
+describe('Authentication', () => {
+  it('Login', async () => {
+    expect(process.env.accessToken).not.toBe('false');
+  });
 });
