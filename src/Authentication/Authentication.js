@@ -38,7 +38,7 @@ class AesirxAuthenticationApiService {
             : AXIOS_CONFIGS.CLIENT_SECRET,
         license_key: AXIOS_CONFIGS.LICENSE,
         test_mode: AXIOS_CONFIGS.TEST_MODE,
-        domain: window.location.hostname,
+        domain: AXIOS_CONFIGS.DOMAIN,
       };
 
       const config = {
@@ -53,6 +53,10 @@ class AesirxAuthenticationApiService {
       const {
         data: { result },
       } = await axios(config);
+
+      if (process.env.NODE_ENV === 'test') {
+        return result?.access_token;
+      }
 
       if (AXIOS_CONFIGS.DAM_LICENSE) {
         await this.damIntegrateLogin(email, password);

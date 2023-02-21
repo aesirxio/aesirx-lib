@@ -1,17 +1,15 @@
-import { Component } from 'react';
 import axios from 'axios';
 import { ItemsItemModel, ItemsModel } from './ContentXItemsModel';
 import ContentXItemsRoute from './ContentXItemsRoute';
 
-class AesirxContentXItemsApiService extends Component {
+class AesirxContentXItemsApiService {
   route = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new ContentXItemsRoute();
   }
   // List Page
-  getList = async (filter) => {
+  getList = async (filter = {}) => {
     try {
       const data = await this.route.getList(filter);
       let results = null;

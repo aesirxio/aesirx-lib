@@ -46,15 +46,6 @@ let reqAuthFormData = {
   password: defaultPassword,
 };
 
-if (process.env.NODE_ENV !== 'test') {
-  const reqAuthFormData = new FormData();
-  reqAuthFormData.append('grant_type', 'password');
-  reqAuthFormData.append('client_id', clientID);
-  reqAuthFormData.append('client_secret', clientSecret);
-  reqAuthFormData.append('username', defaultUsername);
-  reqAuthFormData.append('password', defaultPassword);
-}
-
 export const requestANewAccessToken = () => {
   axios.post(AUTHORIZED_CODE_URL, reqAuthFormData).then(
     (tokenRefreshResponse) => {
@@ -220,6 +211,10 @@ const AesirxApiInstance = (platform = INTEGRATION_CONFIGS.DMA) => {
       }
       if (config.method === 'post' || config.method === 'put') {
         config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+      }
+
+      if (process.env.NODE_ENV === 'test') {
+        accessToken = process.env.TOKEN;
       }
 
       if (accessToken) {

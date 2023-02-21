@@ -1,0 +1,38 @@
+name: Test
+
+on:
+  push:
+    branches: [ master, develop, develop-* ]
+  pull_request_target:
+    # The branches below must be a subset of the branches above
+    branches: [ master, develop, develop-* ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      CI: false
+      REACT_APP_CLIENT_ID: ${{ secrets.REACT_APP_CLIENT_ID }}
+      REACT_APP_CLIENT_SECRET: ${{ secrets.REACT_APP_CLIENT_SECRET }}
+      REACT_APP_ENDPOINT_URL: ${{ secrets.REACT_APP_ENDPOINT_URL }}
+      REACT_APP_ENCRYPT: ${{ secrets.REACT_APP_ENCRYPT }}
+      REACT_APP_LICENSE: ${{ secrets.REACT_APP_LICENSE }}
+      REACT_APP_TEST_MODE: ${{ secrets.REACT_APP_TEST_MODE }}
+      REACT_APP_OAUTH_DEFAULT_USERNAME: ${{ secrets.REACT_APP_OAUTH_DEFAULT_USERNAME }}
+      REACT_APP_OAUTH_DEFAULT_PASSWORD: ${{ secrets.REACT_APP_OAUTH_DEFAULT_PASSWORD }}
+      REACT_APP_TEST_DOMAIN: ${{ secrets.REACT_APP_TEST_DOMAIN }}
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run Prettier
+        run: yarn format:check
+
+      - name: Run Test
+        run: yarn test
