@@ -1,13 +1,11 @@
-import { Component } from 'react';
 import axios from 'axios';
 import { CategoriesItemModel, CategoryModel } from './CMSCategoriesModel';
 import CmsCategoriesRoute from './CMSCategoriesRoute';
 
-class AesirxCmsCategoryApiService extends Component {
+class AesirxCmsCategoryApiService {
   route = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new CmsCategoriesRoute();
   }
   getList = async (filters) => {
