@@ -5,17 +5,16 @@
 
 import { CategoryItemModel } from './PimCategoryModel';
 import PimCategoryRoute from './PimCategoryRoute';
-import { Component } from 'react';
+
 import axios from 'axios';
 
 /**
  * API Service - Category
  */
-class AesirxPimCategoryApiService extends Component {
+class AesirxPimCategoryApiService {
   route = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new PimCategoryRoute();
   }
 
