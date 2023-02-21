@@ -329,14 +329,11 @@ class AesirxAuthenticationApiService {
       .post(AUTHORIZED_CODE_URL, form, { skipAuthRefresh: true })
       .then(
         (tokenRefreshResponse) => {
-          console.log(tokenRefreshResponse);
-          let authorizationHeader = '';
-          let tokenType = '';
           let accessToken = '';
           let refreshToken = '';
           if (tokenRefreshResponse && tokenRefreshResponse.result) {
             accessToken = tokenRefreshResponse.result?.access_token ?? '';
-    
+
             refreshToken = tokenRefreshResponse.result[AUTHORIZATION_KEY.REFRESH_TOKEN] ?? '';
           }
           let setStore = {
@@ -344,29 +341,27 @@ class AesirxAuthenticationApiService {
             [key[AUTHORIZATION_KEY.REFRESH_TOKEN]]: refreshToken,
           };
 
-          if([key[AUTHORIZATION_KEY.DAM_ACCESS_TOKEN]] &&  [key[AUTHORIZATION_KEY.DAM_REFRESH_TOKEN]]) {
+          if (key[AUTHORIZATION_KEY.DAM_ACCESS_TOKEN] && key[AUTHORIZATION_KEY.DAM_REFRESH_TOKEN]) {
             setStore = {
               ...setStore,
               [key[AUTHORIZATION_KEY.DAM_ACCESS_TOKEN]]: accessToken,
               [key[AUTHORIZATION_KEY.DAM_REFRESH_TOKEN]]: refreshToken,
-
-            }
+            };
           }
 
-          if([key[AUTHORIZATION_KEY.DMA_ACCESS_TOKEN]] &&  [key[AUTHORIZATION_KEY.DMA_REFRESH_TOKEN]]) {
+          if (key[AUTHORIZATION_KEY.DMA_ACCESS_TOKEN] && key[AUTHORIZATION_KEY.DMA_REFRESH_TOKEN]) {
             setStore = {
               ...setStore,
               [key[AUTHORIZATION_KEY.DMA_ACCESS_TOKEN]]: accessToken,
               [key[AUTHORIZATION_KEY.DMA_REFRESH_TOKEN]]: refreshToken,
-            }
+            };
           }
-          
+
           this.setStore(setStore);
           window.location.reload();
           return Promise.resolve();
         },
         (error) => {
-          console.log(error);
           // Logout when token expired
           logout();
           // Do something with request error
