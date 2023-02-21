@@ -5,8 +5,8 @@
 
 // LOGOUT
 const logout = () => {
-  // localStorage.clear();
-  // window.location.reload();
+  localStorage.clear();
+  window.location.reload();
 };
 
 export { logout };

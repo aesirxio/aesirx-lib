@@ -325,30 +325,44 @@ class AesirxAuthenticationApiService {
       .post(AUTHORIZED_CODE_URL, form, { skipAuthRefresh: true })
       .then(
         (tokenRefreshResponse) => {
+          console.log(tokenRefreshResponse);
           let authorizationHeader = '';
           let tokenType = '';
           let accessToken = '';
           let refreshToken = '';
-          if (tokenRefreshResponse && tokenRefreshResponse.data) {
-            tokenType = tokenRefreshResponse.data.token_type ?? 'Bearer';
-            accessToken = tokenRefreshResponse.data.access_token ?? '';
-            authorizationHeader = authorizationHeader
-              .concat(tokenType)
-              .concat(' ')
-              .concat(accessToken);
-            refreshToken = tokenRefreshResponse.data[AUTHORIZATION_KEY.REFRESH_TOKEN] ?? '';
+          if (tokenRefreshResponse && tokenRefreshResponse.result) {
+            accessToken = tokenRefreshResponse.result?.access_token ?? '';
+    
+            refreshToken = tokenRefreshResponse.result[AUTHORIZATION_KEY.REFRESH_TOKEN] ?? '';
           }
-          const setStore = {
+          let setStore = {
             [key[AUTHORIZATION_KEY.ACCESS_TOKEN]]: accessToken,
-            [key[AUTHORIZATION_KEY.TOKEN_TYPE]]: tokenType,
-            [key[AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]]: authorizationHeader,
             [key[AUTHORIZATION_KEY.REFRESH_TOKEN]]: refreshToken,
           };
-          this.setStore(setStore);
 
+          if([key[AUTHORIZATION_KEY.DAM_ACCESS_TOKEN]] &&  [key[AUTHORIZATION_KEY.DAM_REFRESH_TOKEN]]) {
+            setStore = {
+              ...setStore,
+              [key[AUTHORIZATION_KEY.DAM_ACCESS_TOKEN]]: accessToken,
+              [key[AUTHORIZATION_KEY.DAM_REFRESH_TOKEN]]: refreshToken,
+
+            }
+          }
+
+          if([key[AUTHORIZATION_KEY.DMA_ACCESS_TOKEN]] &&  [key[AUTHORIZATION_KEY.DMA_REFRESH_TOKEN]]) {
+            setStore = {
+              ...setStore,
+              [key[AUTHORIZATION_KEY.DMA_ACCESS_TOKEN]]: accessToken,
+              [key[AUTHORIZATION_KEY.DMA_REFRESH_TOKEN]]: refreshToken,
+            }
+          }
+          
+          this.setStore(setStore);
+          window.location.reload();
           return Promise.resolve();
         },
         (error) => {
+          console.log(error);
           // Logout when token expired
           logout();
           // Do something with request error

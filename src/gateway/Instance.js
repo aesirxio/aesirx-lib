@@ -127,48 +127,64 @@ const AesirxApiInstance = (platform = INTEGRATION_CONFIGS.DMA) => {
           Storage.getItem(AUTHORIZATION_KEY.DMA_REFRESH_TOKEN) ??
           Storage.getItem(AUTHORIZATION_KEY.REFRESH_TOKEN) ??
           '';
-        key = {
-          [AUTHORIZATION_KEY.ACCESS_TOKEN]: [AUTHORIZATION_KEY.DMA_ACCESS_TOKEN],
-          [AUTHORIZATION_KEY.TOKEN_TYPE]: [AUTHORIZATION_KEY.DMA_TOKEN_TYPE],
-          [AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]: [
-            AUTHORIZATION_KEY.DMA_AUTHORIZED_TOKEN_HEADER,
-          ],
-          [AUTHORIZATION_KEY.REFRESH_TOKEN]: [AUTHORIZATION_KEY.DMA_REFRESH_TOKEN],
-        };
-         license = env.REACT_APP_DMA_LICENSE ?? env.REACT_APP_LICENSE
+          license = env.REACT_APP_DMA_LICENSE ?? env.REACT_APP_LICENSE
+          key = {
+            [AUTHORIZATION_KEY.ACCESS_TOKEN]: [AUTHORIZATION_KEY.DMA_ACCESS_TOKEN],
+            [AUTHORIZATION_KEY.DMA_ACCESS_TOKEN]: [AUTHORIZATION_KEY.DMA_ACCESS_TOKEN],
+            [AUTHORIZATION_KEY.TOKEN_TYPE]: [AUTHORIZATION_KEY.DMA_TOKEN_TYPE],
+            [AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]: [
+              AUTHORIZATION_KEY.DMA_AUTHORIZED_TOKEN_HEADER,
+            ],
+          };
+          if(env.REACT_APP_DMA_LICENSE) {
+            key = {
+              ...key,
+              [AUTHORIZATION_KEY.REFRESH_TOKEN]: [AUTHORIZATION_KEY.DMA_REFRESH_TOKEN],
+              [AUTHORIZATION_KEY.DMA_REFRESH_TOKEN]: [AUTHORIZATION_KEY.DMA_REFRESH_TOKEN],
+            }
+          }
         break;
       case INTEGRATION_CONFIGS.DAM:
         refresh_token =
           Storage.getItem(AUTHORIZATION_KEY.DAM_REFRESH_TOKEN) ??
           Storage.getItem(AUTHORIZATION_KEY.REFRESH_TOKEN) ??
           '';
+        license = env.REACT_APP_DAM_LICENSE ?? env.REACT_APP_LICENSE
+
         key = {
           [AUTHORIZATION_KEY.ACCESS_TOKEN]: [AUTHORIZATION_KEY.DAM_ACCESS_TOKEN],
+          [AUTHORIZATION_KEY.DAM_ACCESS_TOKEN]: [AUTHORIZATION_KEY.DAM_ACCESS_TOKEN],
           [AUTHORIZATION_KEY.TOKEN_TYPE]: [AUTHORIZATION_KEY.DAM_TOKEN_TYPE],
           [AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]: [
             AUTHORIZATION_KEY.DAM_AUTHORIZED_TOKEN_HEADER,
           ],
-          [AUTHORIZATION_KEY.REFRESH_TOKEN]: [AUTHORIZATION_KEY.DAM_REFRESH_TOKEN],
+         
         };
-        license = env.REACT_APP_DAM_LICENSE ?? env.REACT_APP_LICENSE
-
+        if(env.REACT_APP_DAM_LICENSE) {
+          key = {
+            ...key,
+            [AUTHORIZATION_KEY.REFRESH_TOKEN]: [AUTHORIZATION_KEY.DAM_REFRESH_TOKEN],
+            [AUTHORIZATION_KEY.DAM_REFRESH_TOKEN]: [AUTHORIZATION_KEY.DAM_REFRESH_TOKEN],
+          }
+        }
         break;
 
       default:
         refresh_token = Storage.getItem(AUTHORIZATION_KEY.REFRESH_TOKEN) ?? '';
+        license = env.REACT_APP_LICENSE
+
         key = {
           [AUTHORIZATION_KEY.ACCESS_TOKEN]: [AUTHORIZATION_KEY.ACCESS_TOKEN],
           [AUTHORIZATION_KEY.TOKEN_TYPE]: [AUTHORIZATION_KEY.TOKEN_TYPE],
           [AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]: [AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER],
           [AUTHORIZATION_KEY.REFRESH_TOKEN]: [AUTHORIZATION_KEY.REFRESH_TOKEN],
         };
-        license = env.REACT_APP_LICENSE
 
         break;
     }
     const refreshTokenFormData = new URLSearchParams();
     refreshTokenFormData.append('refresh_token', refresh_token);
-    refreshTokenFormData.append('refresh_token', license);
+    refreshTokenFormData.append('license_key', license);
     const request = new AesirxAuthenticationApiService();
 
     request.refreshToken(failedRequest, AUTHORIZED_CODE_URL, refreshTokenFormData, key);
