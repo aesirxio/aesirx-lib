@@ -5,17 +5,15 @@
 
 import { ProductItemModel } from './PimProductModel';
 import PimProductRoute from './PimProductRoute';
-import { Component } from 'react';
 import axios from 'axios';
 
 /**
  * API Service - Product
  */
-class AesirxPimProductApiService extends Component {
+class AesirxPimProductApiService {
   route = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new PimProductRoute();
   }
 
