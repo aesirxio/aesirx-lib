@@ -55,6 +55,10 @@ import AesirxContentXItemsApiService from './ContentX/Items/ContentXItems';
 // BI app
 import AesirxBiApiService from './Bi/Bi';
 
+// CRM Service
+import AesirxCrmCompanyApiService from './Crm/CrmCompany/CrmCompany';
+import AesirxCrmContactApiService from './Crm/CrmContact/CrmContact';
+
 //Utils
 import Storage from './Utils/Storage';
 
@@ -110,6 +114,10 @@ import {
   BI_METRICS_FIELD_KEY,
   BI_VISITOR_FIELD_KEY,
 } from './Constant/BiConstant';
+
+// CRM Constant
+import { CRM_COMPANY_DETAIL_FIELD_KEY, CRM_CONTACT_DETAIL_FIELD_KEY } from './Constant/CrmConstant';
+
 export {
   AesirxProjectApiService,
   AesirxCampaignApiService,
@@ -200,6 +208,12 @@ export {
   AesirxContentXCategoryApiService,
   // BI app
   AesirxBiApiService,
+  // CRM Services
+  AesirxCrmCompanyApiService,
+  AesirxCrmContactApiService,
+  // CRM Constant
+  CRM_COMPANY_DETAIL_FIELD_KEY,
+  CRM_CONTACT_DETAIL_FIELD_KEY,
   // Utils
   Storage,
 };
