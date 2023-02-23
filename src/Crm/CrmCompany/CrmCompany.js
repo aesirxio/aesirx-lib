@@ -35,7 +35,8 @@ class AesirxCrmCompanyApiService {
 
   update = async (data) => {
     try {
-      const result = await this.route.update(data);
+      const dataToSubmit = CompanyItemModel.__transformItemToApiOfUpdation(data);
+      const result = await this.route.update(dataToSubmit);
       if (result) {
         return result;
       }

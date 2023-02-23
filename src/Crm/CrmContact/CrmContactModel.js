@@ -20,37 +20,37 @@ class ContactModel extends BaseModel {
 class ContactItemModel extends BaseItemModel {
   id = null;
   crm_contact_company_id = null;
-  crm_contact_status = null;
+  crm_company_name = null;
   // crm_contact_photo = [];
-  crm_contact_contact_email = null;
+  crm_contact_email_address = null;
   crm_contact_description = null;
   crm_contact_phone_number = null;
   crm_contact_job_title = null;
   crm_contact_name = null;
-  author = null;
+  created_by = null;
   created_time = null;
   status = null;
-  modified_user_name = null;
+  modified_by = null;
+  modified_time = null;
   featured = null;
 
   constructor(entity) {
     super(entity);
     if (entity) {
       this.id = entity[CRM_CONTACT_DETAIL_FIELD_KEY.ID] ?? '';
-      this.crm_contact_company_id = entity[CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_COMPANY_ID] ?? '';
-      this.crm_contact_status = entity[CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_STATUS] ?? '';
-      // this.crm_contact_photo = entity[CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_PHOTO] ?? [];
-      this.crm_contact_contact_email =
-        entity[CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_CONTACT_EMAIL] ?? '';
-      this.crm_contact_description = entity[CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_DESCRIPTION] ?? '';
-      this.crm_contact_phone_number =
-        entity[CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_PHONE_NUMBER] ?? '';
-      this.crm_contact_job_title = entity[CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_JOB_TITLE] ?? '';
-      this.crm_contact_name = entity[CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_NAME] ?? '';
+      this.crm_contact_company_id = entity[CRM_CONTACT_DETAIL_FIELD_KEY.COMPANY_ID] ?? '';
+      this.crm_company_name = entity[CRM_CONTACT_DETAIL_FIELD_KEY.COMPANY_NAME] ?? '';
+      // this.crm_contact_photo = entity[CRM_CONTACT_DETAIL_FIELD_KEY.PHOTO] ?? [];
+      this.crm_contact_email_address = entity[CRM_CONTACT_DETAIL_FIELD_KEY.EMAIL_ADDRESS] ?? '';
+      this.crm_contact_description = entity[CRM_CONTACT_DETAIL_FIELD_KEY.DESCRIPTION] ?? '';
+      this.crm_contact_phone_number = entity[CRM_CONTACT_DETAIL_FIELD_KEY.PHONE_NUMBER] ?? '';
+      this.crm_contact_job_title = entity[CRM_CONTACT_DETAIL_FIELD_KEY.JOB_TITLE] ?? '';
+      this.crm_contact_name = entity[CRM_CONTACT_DETAIL_FIELD_KEY.NAME] ?? '';
       this.created_time = entity[CRM_CONTACT_DETAIL_FIELD_KEY.CREATED_TIME] ?? '';
-      this.author = entity[CRM_CONTACT_DETAIL_FIELD_KEY.AUTHOR] ?? '';
+      this.created_by = entity[CRM_CONTACT_DETAIL_FIELD_KEY.CREATED_BY] ?? '';
       this.status = entity[CRM_CONTACT_DETAIL_FIELD_KEY.STATUS] ?? '';
-      this.modified_user_name = entity[CRM_CONTACT_DETAIL_FIELD_KEY.MODIFIED_USER_NAME] ?? '';
+      this.modified_by = entity[CRM_CONTACT_DETAIL_FIELD_KEY.MODIFIED_BY] ?? '';
+      this.modified_time = entity[CRM_CONTACT_DETAIL_FIELD_KEY.MODIFIED_TIME] ?? '';
       this.featured = entity[CRM_CONTACT_DETAIL_FIELD_KEY.FEATURED] ?? '';
     }
   }
@@ -63,18 +63,19 @@ class ContactItemModel extends BaseItemModel {
     return {
       ...this.baseToJSON(),
       [CRM_CONTACT_DETAIL_FIELD_KEY.ID]: this.id,
-      [CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_COMPANY_ID]: this.crm_contact_company_id,
-      [CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_STATUS]: this.crm_contact_status,
-      // [CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_PHOTO]: this.crm_contact_photo,
-      [CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_CONTACT_EMAIL]: this.crm_contact_contact_email,
-      [CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_DESCRIPTION]: this.crm_contact_description,
-      [CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_PHONE_NUMBER]: this.crm_contact_phone_number,
-      [CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_JOB_TITLE]: this.crm_contact_job_title,
-      [CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_NAME]: this.crm_contact_name,
+      [CRM_CONTACT_DETAIL_FIELD_KEY.COMPANY_ID]: this.crm_contact_company_id,
+      [CRM_CONTACT_DETAIL_FIELD_KEY.COMPANY_NAME]: this.crm_company_name,
+      // [CRM_CONTACT_DETAIL_FIELD_KEY.PHOTO]: this.crm_contact_photo,
+      [CRM_CONTACT_DETAIL_FIELD_KEY.EMAIL_ADDRESS]: this.crm_contact_email_address,
+      [CRM_CONTACT_DETAIL_FIELD_KEY.DESCRIPTION]: this.crm_contact_description,
+      [CRM_CONTACT_DETAIL_FIELD_KEY.PHONE_NUMBER]: this.crm_contact_phone_number,
+      [CRM_CONTACT_DETAIL_FIELD_KEY.JOB_TITLE]: this.crm_contact_job_title,
+      [CRM_CONTACT_DETAIL_FIELD_KEY.NAME]: this.crm_contact_name,
       [CRM_CONTACT_DETAIL_FIELD_KEY.CREATED_TIME]: this.created_time,
-      [CRM_CONTACT_DETAIL_FIELD_KEY.AUTHOR]: this.author,
+      [CRM_CONTACT_DETAIL_FIELD_KEY.CREATED_BY]: this.created_by,
       [CRM_CONTACT_DETAIL_FIELD_KEY.STATUS]: this.status,
-      [CRM_CONTACT_DETAIL_FIELD_KEY.MODIFIED_USER_NAME]: this.modified_user_name,
+      [CRM_CONTACT_DETAIL_FIELD_KEY.MODIFIED_BY]: this.modified_by,
+      [CRM_CONTACT_DETAIL_FIELD_KEY.MODIFIED_TIME]: this.modified_time,
       [CRM_CONTACT_DETAIL_FIELD_KEY.FEATURED]: this.featured,
     };
   };

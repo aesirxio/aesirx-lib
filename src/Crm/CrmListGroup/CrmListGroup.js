@@ -3,24 +3,24 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { ContactItemModel } from './CrmContactModel';
-import CrmContactRoute from './CrmContactRoute';
+import { ListGroupItemModel } from './CrmListGroupModel';
+import CrmListGroupRoute from './CrmListGroupRoute';
 
 import axios from 'axios';
 
 /**
- * API Service - Contact
+ * API Service - ListGroup
  */
-class AesirxCrmContactApiService {
+class AesirxCrmListGroupApiService {
   route = null;
 
   constructor() {
-    this.route = new CrmContactRoute();
+    this.route = new CrmListGroupRoute();
   }
 
   create = async (data) => {
     try {
-      const dataToSubmit = ContactItemModel.__transformItemToApiOfCreation(data);
+      const dataToSubmit = ListGroupItemModel.__transformItemToApiOfCreation(data);
       const result = await this.route.create(dataToSubmit);
       if (result) {
         return result;
@@ -35,7 +35,7 @@ class AesirxCrmContactApiService {
 
   update = async (data) => {
     try {
-      const dataToSubmit = ContactItemModel.__transformItemToApiOfUpdation(data);
+      const dataToSubmit = ListGroupItemModel.__transformItemToApiOfUpdation(data);
       const result = await this.route.update(dataToSubmit);
       if (result) {
         return result;
@@ -53,7 +53,7 @@ class AesirxCrmContactApiService {
       const data = await this.route.getDetail(id);
       let results = null;
       if (data) {
-        results = new ContactItemModel(data);
+        results = new ListGroupItemModel(data);
       }
       if (results) {
         results = results.toJSON();
@@ -76,7 +76,7 @@ class AesirxCrmContactApiService {
       if (data?._embedded) {
         listItems = await Promise.all(
           data._embedded.item.map(async (o) => {
-            return new ContactItemModel(o);
+            return new ListGroupItemModel(o);
           })
         );
       }
@@ -154,4 +154,4 @@ class AesirxCrmContactApiService {
   };
 }
 
-export default AesirxCrmContactApiService;
+export default AesirxCrmListGroupApiService;

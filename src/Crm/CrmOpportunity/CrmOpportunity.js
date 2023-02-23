@@ -3,24 +3,24 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { ContactItemModel } from './CrmContactModel';
-import CrmContactRoute from './CrmContactRoute';
+import { OpportunityItemModel } from './CrmOpportunityModel';
+import CrmOpportunityRoute from './CrmOpportunityRoute';
 
 import axios from 'axios';
 
 /**
- * API Service - Contact
+ * API Service - Opportunity
  */
-class AesirxCrmContactApiService {
+class AesirxCrmOpportunityApiService {
   route = null;
 
   constructor() {
-    this.route = new CrmContactRoute();
+    this.route = new CrmOpportunityRoute();
   }
 
   create = async (data) => {
     try {
-      const dataToSubmit = ContactItemModel.__transformItemToApiOfCreation(data);
+      const dataToSubmit = OpportunityItemModel.__transformItemToApiOfCreation(data);
       const result = await this.route.create(dataToSubmit);
       if (result) {
         return result;
@@ -35,7 +35,7 @@ class AesirxCrmContactApiService {
 
   update = async (data) => {
     try {
-      const dataToSubmit = ContactItemModel.__transformItemToApiOfUpdation(data);
+      const dataToSubmit = OpportunityItemModel.__transformItemToApiOfUpdation(data);
       const result = await this.route.update(dataToSubmit);
       if (result) {
         return result;
@@ -53,7 +53,7 @@ class AesirxCrmContactApiService {
       const data = await this.route.getDetail(id);
       let results = null;
       if (data) {
-        results = new ContactItemModel(data);
+        results = new OpportunityItemModel(data);
       }
       if (results) {
         results = results.toJSON();
@@ -76,7 +76,7 @@ class AesirxCrmContactApiService {
       if (data?._embedded) {
         listItems = await Promise.all(
           data._embedded.item.map(async (o) => {
-            return new ContactItemModel(o);
+            return new OpportunityItemModel(o);
           })
         );
       }
@@ -154,4 +154,4 @@ class AesirxCrmContactApiService {
   };
 }
 
-export default AesirxCrmContactApiService;
+export default AesirxCrmOpportunityApiService;
