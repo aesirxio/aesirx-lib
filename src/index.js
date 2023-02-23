@@ -59,6 +59,7 @@ import AesirxBiApiService from './Bi/Bi';
 import AesirxCrmCompanyApiService from './Crm/CrmCompany/CrmCompany';
 import AesirxCrmContactApiService from './Crm/CrmContact/CrmContact';
 import AesirxCrmListGroupApiService from './Crm/CrmListGroup/CrmListGroup';
+import AesirxCrmOpportunityApiService from './Crm/CrmOpportunity/CrmOpportunity';
 
 //Utils
 import Storage from './Utils/Storage';
@@ -121,6 +122,7 @@ import {
   CRM_COMPANY_DETAIL_FIELD_KEY,
   CRM_CONTACT_DETAIL_FIELD_KEY,
   CRM_LIST_GROUP_DETAIL_FIELD_KEY,
+  CRM_OPPORTUNITY_DETAIL_FIELD_KEY,
 } from './Constant/CrmConstant';
 
 export {
@@ -217,10 +219,12 @@ export {
   AesirxCrmCompanyApiService,
   AesirxCrmContactApiService,
   AesirxCrmListGroupApiService,
+  AesirxCrmOpportunityApiService,
   // CRM Constant
   CRM_COMPANY_DETAIL_FIELD_KEY,
   CRM_CONTACT_DETAIL_FIELD_KEY,
   CRM_LIST_GROUP_DETAIL_FIELD_KEY,
+  CRM_OPPORTUNITY_DETAIL_FIELD_KEY,
   // Utils
   Storage,
 };

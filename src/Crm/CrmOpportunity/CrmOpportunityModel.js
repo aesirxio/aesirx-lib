@@ -52,7 +52,7 @@ class OpportunityItemModel extends BaseItemModel {
       this.crm_opportunity_ending_date = entity[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.ENDING_DATE] ?? '';
       this.crm_opportunity_stage = entity[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.STAGE] ?? '';
       this.crm_opportunity_close_probability =
-        entity[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CLOSE_PROBALITY] ?? '';
+        entity[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CLOSE_PROBABILITY] ?? '';
       this.crm_opportunity_next_step = entity[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.NEXT_STEP] ?? '';
       this.crm_opportunity_description = entity[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.DESCRIPTION] ?? '';
       this.created_time = entity[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CREATED_TIME] ?? '';
@@ -80,7 +80,7 @@ class OpportunityItemModel extends BaseItemModel {
       [CRM_OPPORTUNITY_DETAIL_FIELD_KEY.ESTIMATED_VALUE]: this.crm_opportunity_estimated_value,
       [CRM_OPPORTUNITY_DETAIL_FIELD_KEY.ENDING_DATE]: this.crm_opportunity_ending_date,
       [CRM_OPPORTUNITY_DETAIL_FIELD_KEY.STAGE]: this.crm_opportunity_stage,
-      [CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CLOSE_PROBALITY]: this.crm_opportunity_close_probability,
+      [CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CLOSE_PROBABILITY]: this.crm_opportunity_close_probability,
       [CRM_OPPORTUNITY_DETAIL_FIELD_KEY.NEXT_STEP]: this.crm_opportunity_next_step,
       [CRM_OPPORTUNITY_DETAIL_FIELD_KEY.DESCRIPTION]: this.crm_opportunity_close_probability,
       [CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CREATED_TIME]: this.created_time,

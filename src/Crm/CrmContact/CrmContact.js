@@ -119,9 +119,9 @@ class AesirxCrmContactApiService {
     }
   };
 
-  delete = async (id) => {
+  delete = async (ids) => {
     try {
-      const result = await this.route.delete(id);
+      const result = await this.route.delete(ids);
 
       if (result) {
         return result.result;

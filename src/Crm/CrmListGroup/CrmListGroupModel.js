@@ -100,9 +100,13 @@ class ListGroupItemModel extends BaseItemModel {
       }
     });
     if (data[CRM_LIST_GROUP_DETAIL_FIELD_KEY.CONTACTS]?.length) {
-      data[CRM_LIST_GROUP_DETAIL_FIELD_KEY.CONTACTS].map((contact) => {
-        return (formData[[CRM_LIST_GROUP_DETAIL_FIELD_KEY.CONTACTS + '[]']] = contact.id);
+      formData[CRM_LIST_GROUP_DETAIL_FIELD_KEY.CONTACTS] = data[
+        CRM_LIST_GROUP_DETAIL_FIELD_KEY.CONTACTS
+      ].map((contact) => {
+        return contact.id;
       });
+    } else {
+      formData[CRM_LIST_GROUP_DETAIL_FIELD_KEY.CONTACTS + '[]'] = '';
     }
     return formData;
   };

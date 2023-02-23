@@ -63,7 +63,7 @@ const CRM_OPPORTUNITY_DETAIL_FIELD_KEY = {
   ESTIMATED_VALUE: 'crm_opportunity_estimated_value',
   ENDING_DATE: 'crm_opportunity_ending_date',
   STAGE: 'crm_opportunity_stage',
-  CLOSE_PROBALITY: 'crm_opportunity_close_probability',
+  CLOSE_PROBABILITY: 'crm_opportunity_close_probability',
   NEXT_STEP: 'crm_opportunity_next_step',
   DESCRIPTION: 'crm_opportunity_description',
   CREATED_TIME: 'created_time',

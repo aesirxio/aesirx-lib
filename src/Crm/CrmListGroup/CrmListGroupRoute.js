@@ -92,7 +92,7 @@ class CrmListGroupRoute extends BaseRoute {
     );
   };
 
-  delete = (id) => {
+  delete = (ids) => {
     return AesirxApiInstance().delete(
       this.createRequestURL({
         option: this.option,
@@ -102,7 +102,7 @@ class CrmListGroupRoute extends BaseRoute {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        data: { id: id },
+        data: { ids: Array.isArray(ids) ? ids : [ids] },
       }
     );
   };
