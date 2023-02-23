@@ -1,13 +1,11 @@
-import { Component } from 'react';
 import axios from 'axios';
 import { ItemsItemModel, ItemsModel } from './CMSItemsModel';
 import CMSItemsRoute from './CMSItemsRoute';
 
-class AesirxCmsItemsApiService extends Component {
+class AesirxCmsItemsApiService {
   route = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new CMSItemsRoute();
   }
   // List Page
