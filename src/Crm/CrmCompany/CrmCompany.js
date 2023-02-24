@@ -7,6 +7,7 @@ import { CompanyItemModel } from './CrmCompanyModel';
 import CrmCompanyRoute from './CrmCompanyRoute';
 
 import axios from 'axios';
+import { StatusItemModel } from '../CrmContact/CrmContactModel';
 
 /**
  * API Service - Company
@@ -127,6 +128,28 @@ class AesirxCrmCompanyApiService {
         return result.result;
       }
       return { message: 'Something have problem' };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancel' };
+      } else throw error;
+    }
+  };
+
+  getStatusList = async () => {
+    try {
+      const data = await this.route.getStatusList();
+      let statusListItems = null;
+      if (data?.result) {
+        statusListItems = await Promise.all(
+          data.result.map(async (o) => {
+            return new StatusItemModel(o);
+          })
+        );
+      }
+
+      return {
+        statusListItems: statusListItems ?? [],
+      };
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancel' };

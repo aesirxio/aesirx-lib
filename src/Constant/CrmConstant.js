@@ -15,6 +15,7 @@ const CRM_COMPANY_DETAIL_FIELD_KEY = {
   WEBSITE: 'crm_company_website',
   FAX_NUMBER: 'crm_company_fax_number',
   PHONE_NUMBER: 'crm_company_phone_number',
+  COMPANY_STATUS: 'crm_company_status',
   CREATED_TIME: 'created_time',
   MODIFIED_BY: 'modified_by',
   MODIFIED_TIME: 'modified_time',
@@ -33,6 +34,8 @@ const CRM_CONTACT_DETAIL_FIELD_KEY = {
   PHONE_NUMBER: 'crm_contact_phone_number',
   JOB_TITLE: 'crm_contact_job_title',
   NAME: 'crm_contact_name',
+  LISTGROUPS: 'crm_contact_listgroups',
+  CONTACT_STATUS: 'crm_contact_status',
   CREATED_TIME: 'created_time',
   MODIFIED_BY: 'modified_by',
   MODIFIED_TIME: 'modified_time',
@@ -95,6 +98,11 @@ const CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY = {
   STATUS: 'status',
 };
 
+const CRM_STATUS_DETAIL_FIELD_KEY = {
+  ID: 'id',
+  TITLE: 'title',
+};
+
 export {
   CRM_COMPANY_DETAIL_FIELD_KEY,
   CRM_CONTACT_DETAIL_FIELD_KEY,
@@ -102,4 +110,5 @@ export {
   CRM_OPPORTUNITY_DETAIL_FIELD_KEY,
   CRM_STAGE_DETAIL_FIELD_KEY,
   CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY,
+  CRM_STATUS_DETAIL_FIELD_KEY,
 };

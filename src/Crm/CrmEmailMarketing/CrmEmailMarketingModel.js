@@ -83,7 +83,11 @@ class EmailMarketingItemModel extends BaseItemModel {
 
   static __transformItemToApiOfCreation = (data) => {
     let formData = new FormData();
-    const excluded = [CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.ID];
+    const excluded = [
+      CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.ID,
+      CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS,
+      CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CCERS,
+    ];
     Object.keys(CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY).forEach((index) => {
       if (
         !excluded.includes(CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY[index]) &&
@@ -95,6 +99,20 @@ class EmailMarketingItemModel extends BaseItemModel {
         );
       }
     });
+    if (
+      data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS] &&
+      data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS].length
+    ) {
+      data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS].map((item) => {
+        return formData.append([CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS + '[]'], item);
+      });
+    }
+    if (data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CCERS]) {
+      formData.append(
+        [CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CCERS + '[]'],
+        data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CCERS]
+      );
+    }
 
     return formData;
   };

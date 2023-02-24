@@ -105,6 +105,16 @@ class CrmCompanyRoute extends BaseRoute {
       }
     );
   };
+
+  getStatusList = () => {
+    return AesirxApiInstance().get(
+      this.createRequestURL({
+        option: this.option,
+        view: this.view,
+        task: 'getStatusList',
+      })
+    );
+  };
 }
 
 export default CrmCompanyRoute;

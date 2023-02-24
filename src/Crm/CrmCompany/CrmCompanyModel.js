@@ -29,13 +29,13 @@ class CompanyItemModel extends BaseItemModel {
   crm_company_website = null;
   crm_company_fax_number = null;
   crm_company_phone_number = null;
+  crm_company_status = null;
   created_by = null;
   created_time = null;
   status = null;
   modified_by = null;
   modified_time = null;
   featured = null;
-
   constructor(entity) {
     super(entity);
     if (entity) {
@@ -50,6 +50,7 @@ class CompanyItemModel extends BaseItemModel {
       this.crm_company_tax_number = entity[CRM_COMPANY_DETAIL_FIELD_KEY.TAX_NUMBER] ?? '';
       this.crm_company_website = entity[CRM_COMPANY_DETAIL_FIELD_KEY.WEBSITE] ?? '';
       this.crm_company_fax_number = entity[CRM_COMPANY_DETAIL_FIELD_KEY.FAX_NUMBER] ?? '';
+      this.crm_company_status = entity[CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS] ?? '';
       this.created_time = entity[CRM_COMPANY_DETAIL_FIELD_KEY.CREATED_TIME] ?? '';
       this.created_by = entity[CRM_COMPANY_DETAIL_FIELD_KEY.CREATED_BY] ?? '';
       this.status = entity[CRM_COMPANY_DETAIL_FIELD_KEY.STATUS] ?? '';
@@ -76,6 +77,7 @@ class CompanyItemModel extends BaseItemModel {
       [CRM_COMPANY_DETAIL_FIELD_KEY.TAX_NUMBER]: this.crm_company_tax_number,
       [CRM_COMPANY_DETAIL_FIELD_KEY.WEBSITE]: this.crm_company_website,
       [CRM_COMPANY_DETAIL_FIELD_KEY.FAX_NUMBER]: this.crm_company_fax_number,
+      [CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS]: this.crm_company_status,
       [CRM_COMPANY_DETAIL_FIELD_KEY.CREATED_TIME]: this.created_time,
       [CRM_COMPANY_DETAIL_FIELD_KEY.CREATED_BY]: this.created_by,
       [CRM_COMPANY_DETAIL_FIELD_KEY.STATUS]: this.status,

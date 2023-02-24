@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { ContactItemModel } from './CrmContactModel';
+import { ContactItemModel, StatusItemModel } from './CrmContactModel';
 import CrmContactRoute from './CrmContactRoute';
 
 import axios from 'axios';
@@ -127,6 +127,28 @@ class AesirxCrmContactApiService {
         return result.result;
       }
       return { message: 'Something have problem' };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancel' };
+      } else throw error;
+    }
+  };
+
+  getStatusList = async () => {
+    try {
+      const data = await this.route.getStatusList();
+      let statusListItems = null;
+      if (data?.result) {
+        statusListItems = await Promise.all(
+          data.result.map(async (o) => {
+            return new StatusItemModel(o);
+          })
+        );
+      }
+
+      return {
+        statusListItems: statusListItems ?? [],
+      };
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancel' };
