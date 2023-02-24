@@ -34,7 +34,7 @@ jobs:
       - name: Run Prettier
         run: yarn format:check
 
-      - name: Run Prettier
+      - name: Run Build
         run: CI=false yarn run build
 
       - name: Run Test
