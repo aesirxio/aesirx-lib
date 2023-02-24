@@ -97,7 +97,12 @@ class OpportunityItemModel extends BaseItemModel {
 
   static __transformItemToApiOfCreation = (data) => {
     let formData = new FormData();
-    const excluded = [CRM_OPPORTUNITY_DETAIL_FIELD_KEY.ID];
+    const excluded = [
+      CRM_OPPORTUNITY_DETAIL_FIELD_KEY.ID,
+      CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT,
+      CRM_OPPORTUNITY_DETAIL_FIELD_KEY.STAGE,
+      CRM_OPPORTUNITY_DETAIL_FIELD_KEY.COMPANY,
+    ];
     Object.keys(CRM_OPPORTUNITY_DETAIL_FIELD_KEY).forEach((index) => {
       if (
         !excluded.includes(CRM_OPPORTUNITY_DETAIL_FIELD_KEY[index]) &&
@@ -110,12 +115,37 @@ class OpportunityItemModel extends BaseItemModel {
       }
     });
 
+    if (
+      data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT] &&
+      data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT].length
+    ) {
+      data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT].map((item) => {
+        return formData.append([CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT + '[]'], item.id);
+      });
+    }
+    if (data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.STAGE]) {
+      formData.append(
+        [CRM_OPPORTUNITY_DETAIL_FIELD_KEY.STAGE],
+        data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.STAGE]?.id
+      );
+    }
+    if (data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.COMPANY]) {
+      formData.append(
+        [CRM_OPPORTUNITY_DETAIL_FIELD_KEY.COMPANY],
+        data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.COMPANY]?.id
+      );
+    }
+
     return formData;
   };
 
   static __transformItemToApiOfUpdation = (data) => {
     let formData = {};
-    const excluded = [];
+    const excluded = [
+      CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT,
+      CRM_OPPORTUNITY_DETAIL_FIELD_KEY.STAGE,
+      CRM_OPPORTUNITY_DETAIL_FIELD_KEY.COMPANY,
+    ];
     Object.keys(CRM_OPPORTUNITY_DETAIL_FIELD_KEY).forEach((index) => {
       if (
         !excluded.includes(CRM_OPPORTUNITY_DETAIL_FIELD_KEY[index]) &&
@@ -125,6 +155,24 @@ class OpportunityItemModel extends BaseItemModel {
           data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY[index]];
       }
     });
+
+    if (data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT]?.length) {
+      formData[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT] = data[
+        CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT
+      ].map((item) => {
+        return item.id;
+      });
+    } else {
+      formData[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT + '[]'] = '';
+    }
+    if (data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.STAGE]) {
+      formData[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.STAGE] =
+        data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.STAGE]?.id;
+    }
+    if (data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.COMPANY]) {
+      formData[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.COMPANY] =
+        data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.COMPANY]?.id;
+    }
     return formData;
   };
 }

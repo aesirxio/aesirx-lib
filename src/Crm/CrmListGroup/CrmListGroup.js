@@ -102,11 +102,7 @@ class AesirxCrmListGroupApiService {
 
   updateStatus = async (arr, status) => {
     try {
-      const listSelected = arr.map((o) => {
-        return { id: o, published: status };
-      });
-
-      const result = await this.route.updateStatus(listSelected);
+      const result = await this.route.updateStatus(arr, status);
 
       if (result) {
         return result.result;

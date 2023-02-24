@@ -16,6 +16,7 @@ const CRM_COMPANY_DETAIL_FIELD_KEY = {
   FAX_NUMBER: 'crm_company_fax_number',
   PHONE_NUMBER: 'crm_company_phone_number',
   COMPANY_STATUS: 'crm_company_status',
+  CONTACTS: 'crm_company_contacts',
   CREATED_TIME: 'created_time',
   MODIFIED_BY: 'modified_by',
   MODIFIED_TIME: 'modified_time',

@@ -79,7 +79,7 @@ class CrmOpportunityRoute extends BaseRoute {
     );
   };
 
-  updateStatus = (listSelected) => {
+  updateStatus = (listSelected, status) => {
     return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
@@ -87,7 +87,8 @@ class CrmOpportunityRoute extends BaseRoute {
         task: 'bulkUpdate',
       }),
       {
-        items: listSelected,
+        ids: Array.isArray(listSelected) ? listSelected : [listSelected],
+        status: status,
       }
     );
   };

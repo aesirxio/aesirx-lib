@@ -30,6 +30,7 @@ class CompanyItemModel extends BaseItemModel {
   crm_company_fax_number = null;
   crm_company_phone_number = null;
   crm_company_status = null;
+  crm_company_contacts = null;
   created_by = null;
   created_time = null;
   status = null;
@@ -51,6 +52,7 @@ class CompanyItemModel extends BaseItemModel {
       this.crm_company_website = entity[CRM_COMPANY_DETAIL_FIELD_KEY.WEBSITE] ?? '';
       this.crm_company_fax_number = entity[CRM_COMPANY_DETAIL_FIELD_KEY.FAX_NUMBER] ?? '';
       this.crm_company_status = entity[CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS] ?? '';
+      this.crm_company_contacts = entity[CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS] ?? '';
       this.created_time = entity[CRM_COMPANY_DETAIL_FIELD_KEY.CREATED_TIME] ?? '';
       this.created_by = entity[CRM_COMPANY_DETAIL_FIELD_KEY.CREATED_BY] ?? '';
       this.status = entity[CRM_COMPANY_DETAIL_FIELD_KEY.STATUS] ?? '';
@@ -78,6 +80,7 @@ class CompanyItemModel extends BaseItemModel {
       [CRM_COMPANY_DETAIL_FIELD_KEY.WEBSITE]: this.crm_company_website,
       [CRM_COMPANY_DETAIL_FIELD_KEY.FAX_NUMBER]: this.crm_company_fax_number,
       [CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS]: this.crm_company_status,
+      [CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS]: this.crm_company_contacts,
       [CRM_COMPANY_DETAIL_FIELD_KEY.CREATED_TIME]: this.created_time,
       [CRM_COMPANY_DETAIL_FIELD_KEY.CREATED_BY]: this.created_by,
       [CRM_COMPANY_DETAIL_FIELD_KEY.STATUS]: this.status,
@@ -89,7 +92,11 @@ class CompanyItemModel extends BaseItemModel {
 
   static __transformItemToApiOfCreation = (data) => {
     let formData = new FormData();
-    const excluded = [CRM_COMPANY_DETAIL_FIELD_KEY.ID];
+    const excluded = [
+      CRM_COMPANY_DETAIL_FIELD_KEY.ID,
+      CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS,
+      CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS,
+    ];
     Object.keys(CRM_COMPANY_DETAIL_FIELD_KEY).forEach((index) => {
       if (
         !excluded.includes(CRM_COMPANY_DETAIL_FIELD_KEY[index]) &&
@@ -101,12 +108,29 @@ class CompanyItemModel extends BaseItemModel {
         );
       }
     });
+    if (
+      data[CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS] &&
+      data[CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS].length
+    ) {
+      data[CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS].map((item) => {
+        return formData.append([CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS + '[]'], item.id);
+      });
+    }
+    if (data[CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS]) {
+      formData.append(
+        [CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS],
+        data[CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS]?.id
+      );
+    }
     return formData;
   };
 
   static __transformItemToApiOfUpdation = (data) => {
     let formData = {};
-    const excluded = [];
+    const excluded = [
+      CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS,
+      CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS,
+    ];
     Object.keys(CRM_COMPANY_DETAIL_FIELD_KEY).forEach((index) => {
       if (
         !excluded.includes(CRM_COMPANY_DETAIL_FIELD_KEY[index]) &&
@@ -115,6 +139,20 @@ class CompanyItemModel extends BaseItemModel {
         formData[CRM_COMPANY_DETAIL_FIELD_KEY[index]] = data[CRM_COMPANY_DETAIL_FIELD_KEY[index]];
       }
     });
+    if (data[CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS]?.length) {
+      formData[CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS] = data[
+        CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS
+      ].map((item) => {
+        return item.id;
+      });
+    } else {
+      formData[CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS + '[]'] = '';
+    }
+    if (data[CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS]) {
+      formData[CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS] =
+        data[CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS]?.id;
+    }
+
     return formData;
   };
 }
