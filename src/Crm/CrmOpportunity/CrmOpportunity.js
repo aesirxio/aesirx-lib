@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { OpportunityItemModel } from './CrmOpportunityModel';
+import { OpportunityItemModel, StageItemModel } from './CrmOpportunityModel';
 import CrmOpportunityRoute from './CrmOpportunityRoute';
 
 import axios from 'axios';
@@ -134,18 +134,21 @@ class AesirxCrmOpportunityApiService {
     }
   };
 
-  deleteCompanies = async (arr) => {
+  getStageList = async () => {
     try {
-      const listSelected = await arr.map((o) => {
-        return { id: o };
-      });
-
-      const result = await this.route.deleteCompanies(listSelected);
-
-      if (result) {
-        return result.result;
+      const data = await this.route.getStageList();
+      let stageListItems = null;
+      if (data?.result) {
+        stageListItems = await Promise.all(
+          data.result.map(async (o) => {
+            return new StageItemModel(o);
+          })
+        );
       }
-      return { message: 'Something have problem' };
+
+      return {
+        stageListItems: stageListItems ?? [],
+      };
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancel' };

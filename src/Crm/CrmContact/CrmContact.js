@@ -133,25 +133,6 @@ class AesirxCrmContactApiService {
       } else throw error;
     }
   };
-
-  deleteCompanies = async (arr) => {
-    try {
-      const listSelected = await arr.map((o) => {
-        return { id: o };
-      });
-
-      const result = await this.route.deleteCompanies(listSelected);
-
-      if (result) {
-        return result.result;
-      }
-      return { message: 'Something have problem' };
-    } catch (error) {
-      if (axios.isCancel(error)) {
-        return { message: 'isCancel' };
-      } else throw error;
-    }
-  };
 }
 
 export default AesirxCrmContactApiService;

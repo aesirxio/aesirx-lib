@@ -106,19 +106,6 @@ class CrmListGroupRoute extends BaseRoute {
       }
     );
   };
-
-  deleteCompanies = (listSelected) => {
-    return AesirxApiInstance().post(
-      this.createRequestURL({
-        option: this.option,
-        view: this.view,
-        task: 'bulkDelete',
-      }),
-      {
-        items: listSelected,
-      }
-    );
-  };
 }
 
 export default CrmListGroupRoute;

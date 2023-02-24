@@ -6,9 +6,9 @@
 import AesirxApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
-class CrmOpportunityRoute extends BaseRoute {
+class CrmEmailMarketingRoute extends BaseRoute {
   option = 'reditem';
-  view = 'crm_opportunity';
+  view = 'crm_email_marketing';
 
   getList = (filters) => {
     const buildFilters = this.createFilters(filters);
@@ -106,16 +106,6 @@ class CrmOpportunityRoute extends BaseRoute {
       }
     );
   };
-
-  getStageList = () => {
-    return AesirxApiInstance().get(
-      this.createRequestURL({
-        option: this.option,
-        view: this.view,
-        task: 'getStageList',
-      })
-    );
-  };
 }
 
-export default CrmOpportunityRoute;
+export default CrmEmailMarketingRoute;

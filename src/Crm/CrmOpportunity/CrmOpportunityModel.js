@@ -5,7 +5,10 @@
 
 import BaseItemModel from '../../Abstract/BaseItemModel';
 import BaseModel from '../../Abstract/BaseModel';
-import { CRM_OPPORTUNITY_DETAIL_FIELD_KEY } from '../../Constant/CrmConstant';
+import {
+  CRM_OPPORTUNITY_DETAIL_FIELD_KEY,
+  CRM_STAGE_DETAIL_FIELD_KEY,
+} from '../../Constant/CrmConstant';
 class OpportunityModel extends BaseModel {
   constructor(entities) {
     super(entities);
@@ -126,4 +129,29 @@ class OpportunityItemModel extends BaseItemModel {
   };
 }
 
-export { OpportunityItemModel, OpportunityModel };
+class StageItemModel extends BaseItemModel {
+  id = null;
+  title = null;
+
+  constructor(entity) {
+    super(entity);
+    if (entity) {
+      this.id = entity[CRM_STAGE_DETAIL_FIELD_KEY.ID] ?? '';
+      this.title = entity[CRM_STAGE_DETAIL_FIELD_KEY.TITLE] ?? '';
+    }
+  }
+
+  toObject = () => {
+    return {};
+  };
+
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [CRM_OPPORTUNITY_DETAIL_FIELD_KEY.ID]: this.id,
+      [CRM_OPPORTUNITY_DETAIL_FIELD_KEY.TITLE]: this.title,
+    };
+  };
+}
+
+export { OpportunityItemModel, OpportunityModel, StageItemModel };

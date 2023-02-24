@@ -3,24 +3,24 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { ListGroupItemModel } from './CrmListGroupModel';
-import CrmListGroupRoute from './CrmListGroupRoute';
+import { EmailMarketingItemModel } from './CrmEmailMarketingModel';
+import CrmEmailMarketingRoute from './CrmEmailMarketingRoute';
 
 import axios from 'axios';
 
 /**
- * API Service - ListGroup
+ * API Service - EmailMarketing
  */
-class AesirxCrmListGroupApiService {
+class AesirxCrmEmailMarketingApiService {
   route = null;
 
   constructor() {
-    this.route = new CrmListGroupRoute();
+    this.route = new CrmEmailMarketingRoute();
   }
 
   create = async (data) => {
     try {
-      const dataToSubmit = ListGroupItemModel.__transformItemToApiOfCreation(data);
+      const dataToSubmit = EmailMarketingItemModel.__transformItemToApiOfCreation(data);
       const result = await this.route.create(dataToSubmit);
       if (result) {
         return result;
@@ -35,7 +35,7 @@ class AesirxCrmListGroupApiService {
 
   update = async (data) => {
     try {
-      const dataToSubmit = ListGroupItemModel.__transformItemToApiOfUpdation(data);
+      const dataToSubmit = EmailMarketingItemModel.__transformItemToApiOfUpdation(data);
       const result = await this.route.update(dataToSubmit);
       if (result) {
         return result;
@@ -53,7 +53,7 @@ class AesirxCrmListGroupApiService {
       const data = await this.route.getDetail(id);
       let results = null;
       if (data) {
-        results = new ListGroupItemModel(data);
+        results = new EmailMarketingItemModel(data);
       }
       if (results) {
         results = results.toJSON();
@@ -76,7 +76,7 @@ class AesirxCrmListGroupApiService {
       if (data?._embedded) {
         listItems = await Promise.all(
           data._embedded.item.map(async (o) => {
-            return new ListGroupItemModel(o);
+            return new EmailMarketingItemModel(o);
           })
         );
       }
@@ -135,4 +135,4 @@ class AesirxCrmListGroupApiService {
   };
 }
 
-export default AesirxCrmListGroupApiService;
+export default AesirxCrmEmailMarketingApiService;

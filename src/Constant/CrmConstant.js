@@ -74,9 +74,32 @@ const CRM_OPPORTUNITY_DETAIL_FIELD_KEY = {
   STATUS: 'status',
 };
 
+const CRM_STAGE_DETAIL_FIELD_KEY = {
+  ID: 'id',
+  TITLE: 'title',
+};
+
+const CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY = {
+  ID: 'id',
+  NAME: 'crm_email_name',
+  SUBJECT: 'crm_email_subject',
+  SENDER: 'crm_email_sender',
+  RECEIVERS: 'crm_email_receivers',
+  CCERS: 'crm_email_ccers',
+  CONTENT: 'crm_email_content',
+  CREATED_TIME: 'created_time',
+  MODIFIED_BY: 'modified_by',
+  MODIFIED_TIME: 'modified_time',
+  FEATURED: 'featured',
+  CREATED_BY: 'created_by',
+  STATUS: 'status',
+};
+
 export {
   CRM_COMPANY_DETAIL_FIELD_KEY,
   CRM_CONTACT_DETAIL_FIELD_KEY,
   CRM_LIST_GROUP_DETAIL_FIELD_KEY,
   CRM_OPPORTUNITY_DETAIL_FIELD_KEY,
+  CRM_STAGE_DETAIL_FIELD_KEY,
+  CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY,
 };
