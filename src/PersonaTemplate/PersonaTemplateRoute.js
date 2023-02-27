@@ -4,7 +4,7 @@
  */
 
 import BaseRoute from '../Abstract/BaseRoute';
-import AesirxApiInstance from '../gateway/Instance';
+import AesirXApiInstance from '../gateway/Instance';
 
 /**
  * Class PersonaRoute extends BaseRoute
@@ -17,7 +17,7 @@ class PersonaTemplateRoute extends BaseRoute {
    */
 
   getPersonaTemplateRequest = (personaTemplateId) =>
-    AesirxApiInstance().get(
+    AesirXApiInstance.get(
       this.createRequestURL({
         option: 'persona_template',
         id: personaTemplateId,
@@ -25,7 +25,7 @@ class PersonaTemplateRoute extends BaseRoute {
     );
 
   getPersonaTemplatesRequest = (page = 1, limit = 20) => {
-    return AesirxApiInstance().get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'persona_template',
         'list[limitstart]': (page - 1) * limit,

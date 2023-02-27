@@ -1,4 +1,4 @@
-name: "npm"
+name: "release"
 
 on:
   push:
@@ -8,6 +8,8 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -15,9 +17,14 @@ jobs:
           node-version: 16
       - run: yarn install
       - run: yarn run lint
-      - run: yarn run build
+      - run: CI=false yarn run build
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
           check-version: true
 
+      - name: Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/analytics.js"
+          generateReleaseNotes: true

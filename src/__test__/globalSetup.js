@@ -1,5 +1,5 @@
-const { default: AesirxAuthenticationApiService } = require('../Authentication/Authentication');
-const { AXIOS_CONFIGS, AUTHORIZATION_KEY } = require('../Constant/Constant');
+import AesirxAuthenticationApiService from '../Authentication/Authentication';
+import { AXIOS_CONFIGS, AUTHORIZATION_KEY } from '../Constant/Constant';
 
 module.exports = async function () {
   const service = new AesirxAuthenticationApiService();

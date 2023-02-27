@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirxApiInstance from '../../gateway/Instance';
+import AesirXApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class PimTagRoute extends BaseRoute {
@@ -11,7 +11,7 @@ class PimTagRoute extends BaseRoute {
 
   getStatisticalData = (filter = {}) => {
     const buildFilter = this.createFilter(filter);
-    return AesirxApiInstance().get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: this.option,
         task: 'getStatisticalData',
