@@ -3,12 +3,12 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirxApiInstance from '../../gateway/Instance';
+import AesirXApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class UtilsRoute extends BaseRoute {
   getListPublishStatus = () => {
-    return AesirxApiInstance().get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'reditem',
         view: 'pim_select_options',
@@ -17,7 +17,7 @@ class UtilsRoute extends BaseRoute {
     );
   };
   getListContentType = () => {
-    return AesirxApiInstance().get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'reditem',
         view: 'pim_select_options',
@@ -26,7 +26,7 @@ class UtilsRoute extends BaseRoute {
     );
   };
   getListFieldType = () => {
-    return AesirxApiInstance().get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'reditem',
         view: 'pim_select_options',

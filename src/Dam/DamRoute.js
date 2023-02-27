@@ -3,12 +3,12 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirxApiInstance from '../gateway/Instance';
+import AesirXApiInstance from '../gateway/Instance';
 import BaseRoute from '../Abstract/BaseRoute';
-import { INTEGRATION_CONFIGS } from '../Constant/Constant';
+
 class DamRoute extends BaseRoute {
   getSubscription = () => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'user_subscription',
       })
@@ -16,7 +16,7 @@ class DamRoute extends BaseRoute {
   };
 
   updateDamSubscription = (data) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).put(
+    return AesirXApiInstance.put(
       this.createRequestURL({
         option: 'user_subscription',
       }),
@@ -30,7 +30,7 @@ class DamRoute extends BaseRoute {
   };
 
   getAsset = (id) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'dam_asset',
         id: id,
@@ -39,7 +39,7 @@ class DamRoute extends BaseRoute {
   };
 
   getAssets = (collectionId = 0, dataFilter = {}) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'dam_asset',
         'filter[collection_id]': collectionId,
@@ -49,7 +49,7 @@ class DamRoute extends BaseRoute {
   };
 
   searchAssets = (dataFilter = {}) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'dam_asset',
         ...dataFilter,
@@ -58,7 +58,7 @@ class DamRoute extends BaseRoute {
   };
 
   createAssets = (data) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'dam_asset',
       }),
@@ -67,7 +67,7 @@ class DamRoute extends BaseRoute {
   };
 
   updateAssets = (data) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).put(
+    return AesirXApiInstance.put(
       this.createRequestURL({
         option: 'dam_asset',
       }),
@@ -81,7 +81,7 @@ class DamRoute extends BaseRoute {
   };
 
   deleteAssets = (ids) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).delete(
+    return AesirXApiInstance.delete(
       this.createRequestURL({
         option: 'dam_asset',
       }),
@@ -95,7 +95,7 @@ class DamRoute extends BaseRoute {
   };
 
   getCollection = (id) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'dam_collection',
         id: id,
@@ -108,7 +108,7 @@ class DamRoute extends BaseRoute {
       // Todo
       // Filter single collection
     }
-    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'dam_collection',
         // 'filter[id]': collectionId,
@@ -118,7 +118,7 @@ class DamRoute extends BaseRoute {
   };
 
   searchCollections = (dataFilter = {}) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'dam_collection',
         ...dataFilter,
@@ -127,7 +127,7 @@ class DamRoute extends BaseRoute {
   };
 
   createCollections = (data) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'dam_collection',
       }),
@@ -136,7 +136,7 @@ class DamRoute extends BaseRoute {
   };
 
   updateCollections = (data) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).put(
+    return AesirXApiInstance.put(
       this.createRequestURL({
         option: 'dam_collection',
       }),
@@ -150,7 +150,7 @@ class DamRoute extends BaseRoute {
   };
 
   deleteCollections = (ids) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).delete(
+    return AesirXApiInstance.delete(
       this.createRequestURL({
         option: 'dam_collection',
       }),
@@ -164,7 +164,7 @@ class DamRoute extends BaseRoute {
   };
 
   moveToFolder = (data) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'dam_collection',
         task: 'changeParrentId',
@@ -174,7 +174,7 @@ class DamRoute extends BaseRoute {
   };
 
   downloadCollections = (ids) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.DAM).post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'dam_collection',
         task: 'downloadFiles',

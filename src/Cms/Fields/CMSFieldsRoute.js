@@ -1,11 +1,11 @@
-import AesirxApiInstance from '../../gateway/Instance';
+import AesirXApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class CmsFieldsRoute extends BaseRoute {
   option = '';
 
   getList = (dataFilter = {}) => {
-    return AesirxApiInstance().get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: this.option,
         ...dataFilter,
@@ -13,7 +13,7 @@ class CmsFieldsRoute extends BaseRoute {
     );
   };
   getDetail = (id = 0, dataFilter = {}) => {
-    return AesirxApiInstance().get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: this.option,
         id: id,
@@ -23,7 +23,7 @@ class CmsFieldsRoute extends BaseRoute {
   };
 
   create = (data) => {
-    return AesirxApiInstance().post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
       }),
@@ -31,7 +31,7 @@ class CmsFieldsRoute extends BaseRoute {
     );
   };
   update = (data) => {
-    return AesirxApiInstance().put(
+    return AesirXApiInstance.put(
       this.createRequestURL({
         option: this.option,
       }),
@@ -44,7 +44,7 @@ class CmsFieldsRoute extends BaseRoute {
     );
   };
   delete = (id) => {
-    return AesirxApiInstance().delete(
+    return AesirXApiInstance.delete(
       this.createRequestURL({
         option: this.option,
       }),
