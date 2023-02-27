@@ -1,13 +1,12 @@
-import AesirxApiInstance from '../../gateway/Instance';
+import AesirXApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
-import { INTEGRATION_CONFIGS } from '../../Constant/Constant';
 
 class CmsCategoriesRoute extends BaseRoute {
   option = '';
 
   getList = (filters) => {
     const buildFilters = this.createFilters(filters);
-    return AesirxApiInstance(INTEGRATION_CONFIGS.MCMS).get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'reditem',
         view: 'category_with_org_check_metaverse_categories_63',
@@ -16,7 +15,7 @@ class CmsCategoriesRoute extends BaseRoute {
     );
   };
   getDetail = (id = 0) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.MCMS).get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'reditem',
         view: 'category_with_org_check_metaverse_categories_63',
@@ -26,7 +25,7 @@ class CmsCategoriesRoute extends BaseRoute {
   };
 
   create = (data) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.MCMS).post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'reditem',
         view: 'category_with_org_check_metaverse_categories_63',
@@ -35,7 +34,7 @@ class CmsCategoriesRoute extends BaseRoute {
     );
   };
   update = (data) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.MCMS).put(
+    return AesirXApiInstance.put(
       this.createRequestURL({
         option: 'reditem',
         view: 'category_with_org_check_metaverse_categories_63',
@@ -49,7 +48,7 @@ class CmsCategoriesRoute extends BaseRoute {
     );
   };
   delete = (ids) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.MCMS).delete(
+    return AesirXApiInstance.delete(
       this.createRequestURL({
         option: 'reditem',
         view: 'category_with_org_check_metaverse_categories_63',

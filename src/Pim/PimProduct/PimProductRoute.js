@@ -3,16 +3,15 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirxApiInstance from '../../gateway/Instance';
+import AesirXApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
-import { INTEGRATION_CONFIGS } from '../../Constant/Constant';
 
 class PimProductRoute extends BaseRoute {
   option = 'reditem-item_pim_product_59';
 
   getList = (filters) => {
     const buildFilters = this.createFilters(filters);
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: this.option,
         ...buildFilters,
@@ -43,7 +42,7 @@ class PimProductRoute extends BaseRoute {
   };
 
   getDetail = (id = 0, dataFilter = {}) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: this.option,
         id: id,
@@ -52,7 +51,7 @@ class PimProductRoute extends BaseRoute {
     );
   };
   create = (data) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
       }),
@@ -60,7 +59,7 @@ class PimProductRoute extends BaseRoute {
     );
   };
   update = (data) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).put(
+    return AesirXApiInstance.put(
       this.createRequestURL({
         option: this.option,
       }),
@@ -73,7 +72,7 @@ class PimProductRoute extends BaseRoute {
     );
   };
   delete = (id) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).delete(
+    return AesirXApiInstance.delete(
       this.createRequestURL({
         option: this.option,
       }),
@@ -87,7 +86,7 @@ class PimProductRoute extends BaseRoute {
   };
 
   updateStatus = (listSelected) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
         task: 'bulkUpdate',
@@ -99,7 +98,7 @@ class PimProductRoute extends BaseRoute {
   };
 
   deleteProducts = (listSelected) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
         task: 'bulkDelete',

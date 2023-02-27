@@ -3,15 +3,14 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirxApiInstance from '../../gateway/Instance';
+import AesirXApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
-import { INTEGRATION_CONFIGS } from '../../Constant/Constant';
 
 class CmsFieldsGroupRoute extends BaseRoute {
   option = '';
 
   getList = (dataFilter = {}) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.MCMS).get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: this.option,
         ...dataFilter,
@@ -19,7 +18,7 @@ class CmsFieldsGroupRoute extends BaseRoute {
     );
   };
   getDetail = (id = 0, dataFilter = {}) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.MCMS).get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: this.option,
         id: id,
@@ -29,7 +28,7 @@ class CmsFieldsGroupRoute extends BaseRoute {
   };
 
   create = (data) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.MCMS).post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
       }),
@@ -37,7 +36,7 @@ class CmsFieldsGroupRoute extends BaseRoute {
     );
   };
   update = (data) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.MCMS).put(
+    return AesirXApiInstance.put(
       this.createRequestURL({
         option: this.option,
       }),
@@ -50,7 +49,7 @@ class CmsFieldsGroupRoute extends BaseRoute {
     );
   };
   delete = (id) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.MCMS).delete(
+    return AesirXApiInstance.delete(
       this.createRequestURL({
         option: this.option,
       }),

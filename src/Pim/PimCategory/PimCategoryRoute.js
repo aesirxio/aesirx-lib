@@ -3,16 +3,15 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirxApiInstance from '../../gateway/Instance';
+import AesirXApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
-import { INTEGRATION_CONFIGS } from '../../Constant/Constant';
 
 class PimCategoryRoute extends BaseRoute {
   option = 'reditem-category_product_category_60';
 
   getList = (filters) => {
     const buildFilters = this.createFilters(filters);
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: this.option,
         ...buildFilters,
@@ -43,7 +42,7 @@ class PimCategoryRoute extends BaseRoute {
   };
 
   getDetail = (id = 0, dataFilter = {}) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: this.option,
         id: id,
@@ -53,7 +52,7 @@ class PimCategoryRoute extends BaseRoute {
   };
 
   create = (data) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
       }),
@@ -62,7 +61,7 @@ class PimCategoryRoute extends BaseRoute {
   };
 
   update = (data) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).put(
+    return AesirXApiInstance.put(
       this.createRequestURL({
         option: this.option,
       }),
@@ -76,7 +75,7 @@ class PimCategoryRoute extends BaseRoute {
   };
 
   updateStatus = (listSelected) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
         task: 'bulkUpdate',
@@ -88,7 +87,7 @@ class PimCategoryRoute extends BaseRoute {
   };
 
   delete = (id) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).delete(
+    return AesirXApiInstance.delete(
       this.createRequestURL({
         option: this.option,
       }),
@@ -102,7 +101,7 @@ class PimCategoryRoute extends BaseRoute {
   };
 
   deleteCategories = (listSelected) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
         task: 'bulkDelete',

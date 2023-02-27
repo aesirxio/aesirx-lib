@@ -3,16 +3,15 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirxApiInstance from '../../gateway/Instance';
+import AesirXApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
-import { INTEGRATION_CONFIGS } from '../../Constant/Constant';
 
 class PimFieldGroupRoute extends BaseRoute {
   option = 'reditem-pim_field_group';
 
   getList = (filter = {}) => {
     const buildFilter = this.createFilters(filter);
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: this.option,
         ...buildFilter,
@@ -43,7 +42,7 @@ class PimFieldGroupRoute extends BaseRoute {
   };
 
   getDetail = (id = 0, filter = {}) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: this.option,
         id: id,
@@ -53,7 +52,7 @@ class PimFieldGroupRoute extends BaseRoute {
   };
 
   create = (data) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
       }),
@@ -61,7 +60,7 @@ class PimFieldGroupRoute extends BaseRoute {
     );
   };
   update = (data) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).put(
+    return AesirXApiInstance.put(
       this.createRequestURL({
         option: this.option,
       }),
@@ -75,7 +74,7 @@ class PimFieldGroupRoute extends BaseRoute {
   };
 
   updateStatus = (listSelected) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
         task: 'bulkUpdate',
@@ -87,7 +86,7 @@ class PimFieldGroupRoute extends BaseRoute {
   };
 
   delete = (id) => {
-    return AesirxApiInstance(INTEGRATION_CONFIGS.PIM).delete(
+    return AesirXApiInstance.delete(
       this.createRequestURL({
         option: this.option,
       }),
