@@ -165,38 +165,40 @@ class AesirxAuthenticationApiService {
    * @param {*} key
    */
   refreshToken = async (failedRequest, url, form, key) => {
-    await axios.post(url, form, { skipAuthRefresh: true }).then(
-      (tokenRefreshResponse) => {
-        let authorizationHeader = '';
-        let tokenType = '';
-        let accessToken = '';
-        let refreshToken = '';
-        if (tokenRefreshResponse && tokenRefreshResponse.data) {
-          tokenType = tokenRefreshResponse.data.token_type ?? 'Bearer';
-          accessToken = tokenRefreshResponse.data.access_token ?? '';
-          authorizationHeader = authorizationHeader
-            .concat(tokenType)
-            .concat(' ')
-            .concat(accessToken);
-          refreshToken = tokenRefreshResponse.data[AUTHORIZATION_KEY.REFRESH_TOKEN] ?? '';
+    try {
+      const tokenRefreshResponse = await axios.post(url, form, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      });
+      let authorizationHeader = '';
+      let tokenType = '';
+      let accessToken = '';
+      let refreshToken = '';
+      if (tokenRefreshResponse && tokenRefreshResponse.data) {
+        tokenType = tokenRefreshResponse.data.token_type ?? 'Bearer';
+        accessToken = tokenRefreshResponse.data.access_token ?? '';
+        authorizationHeader = authorizationHeader.concat(tokenType).concat(' ').concat(accessToken);
+        refreshToken = tokenRefreshResponse.data[AUTHORIZATION_KEY.REFRESH_TOKEN] ?? '';
+        if (process.env.NODE_ENV === 'test') {
+          return tokenRefreshResponse.data;
+        } else {
+          const setStore = {
+            [key[AUTHORIZATION_KEY.ACCESS_TOKEN]]: accessToken,
+            [key[AUTHORIZATION_KEY.TOKEN_TYPE]]: tokenType,
+            [key[AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]]: authorizationHeader,
+            [key[AUTHORIZATION_KEY.REFRESH_TOKEN]]: refreshToken,
+          };
+          this.setStore(setStore);
         }
-        const setStore = {
-          [key[AUTHORIZATION_KEY.ACCESS_TOKEN]]: accessToken,
-          [key[AUTHORIZATION_KEY.TOKEN_TYPE]]: tokenType,
-          [key[AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]]: authorizationHeader,
-          [key[AUTHORIZATION_KEY.REFRESH_TOKEN]]: refreshToken,
-        };
-        this.setStore(setStore);
-
-        return Promise.resolve();
-      },
-      (error) => {
-        // Logout when token expired
-        logout();
-        // Do something with request error
-        return Promise.reject(error);
+      } else {
+        return logout();
       }
-    );
+    } catch (error) {
+      logout();
+      // Do something with request error
+      return Promise.reject(error);
+    }
   };
 
   setStore = (key) => {

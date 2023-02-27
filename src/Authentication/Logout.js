@@ -5,7 +5,9 @@
 
 // LOGOUT
 const logout = () => {
-  if (process.env.NODE_ENV !== 'test') {
+  if (process.env.NODE_ENV === 'test') {
+    return 'logout';
+  } else {
     localStorage.clear();
     window.location.reload();
   }

@@ -29,12 +29,13 @@ const AesirXApiInstance = axios.create({
 
 const refreshToken = (failedRequest) => {
   let refresh_token;
-  const refreshTokenFormData = new URLSearchParams();
   if (process.env.NODE_ENV === 'test') {
     refresh_token = process.env.refreshToken;
   } else {
     refresh_token = Storage.getItem(AUTHORIZATION_KEY.REFRESH_TOKEN) ?? '';
   }
+  const refreshTokenFormData = new URLSearchParams();
+
   refreshTokenFormData.append('grant_type', 'refresh_token');
   refreshTokenFormData.append('client_id', clientID);
   refreshTokenFormData.append('client_secret', clientSecret);
