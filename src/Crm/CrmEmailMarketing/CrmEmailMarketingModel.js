@@ -25,6 +25,7 @@ class EmailMarketingItemModel extends BaseItemModel {
   crm_email_receivers = [];
   crm_email_ccers = [];
   crm_email_content = null;
+  preSend = null;
   created_by = null;
   created_time = null;
   status = null;
@@ -49,6 +50,7 @@ class EmailMarketingItemModel extends BaseItemModel {
       this.crm_email_receivers = entity[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS] ?? [];
       this.crm_email_ccers = entity[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CCERS] ?? [];
       this.crm_email_content = entity[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CONTENT] ?? '';
+      this.preSend = entity[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.PRESEND] ?? '';
       this.created_time = entity[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CREATED_TIME] ?? '';
       this.created_by = entity[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CREATED_BY] ?? '';
       this.status = entity[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.STATUS] ?? '';
@@ -73,6 +75,7 @@ class EmailMarketingItemModel extends BaseItemModel {
       [CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CCERS]: this.crm_email_ccers,
       [CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CONTENT]: this.crm_email_content,
       [CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CREATED_TIME]: this.created_time,
+      [CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.PRESEND]: this.preSend,
       [CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CREATED_BY]: this.created_by,
       [CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.STATUS]: this.status,
       [CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.MODIFIED_BY]: this.modified_by,
@@ -86,6 +89,7 @@ class EmailMarketingItemModel extends BaseItemModel {
     const excluded = [
       CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.ID,
       CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS,
+      CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS_TEST,
       CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CCERS,
     ];
     Object.keys(CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY).forEach((index) => {
@@ -104,15 +108,54 @@ class EmailMarketingItemModel extends BaseItemModel {
       data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS].length
     ) {
       data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS].map((item) => {
-        return formData.append([CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS + '[]'], item);
+        return formData.append(
+          [CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS + '[]'],
+          item?.value
+        );
       });
     }
     if (data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CCERS]) {
-      formData.append(
-        [CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CCERS + '[]'],
-        data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CCERS]
-      );
+      let ccersArrays = data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CCERS].split(';');
+      ccersArrays?.map((ccer) => {
+        return formData.append([CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CCERS + '[]'], ccer?.trim());
+      });
     }
+
+    return formData;
+  };
+
+  static __transformItemToApiOfSendTest = (data) => {
+    let formData = new FormData();
+    const excluded = [
+      CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.ID,
+      CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS,
+      CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS_TEST,
+      CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CCERS,
+    ];
+    Object.keys(CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY).forEach((index) => {
+      if (
+        !excluded.includes(CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY[index]) &&
+        data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY[index]]
+      ) {
+        formData.append(
+          [CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY[index]],
+          data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY[index]]
+        );
+      }
+    });
+    if (
+      data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS_TEST] &&
+      data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS_TEST].length
+    ) {
+      data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS_TEST].map((item) => {
+        return formData.append(
+          [CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS + '[]'],
+          item?.value
+        );
+      });
+    }
+
+    formData.append([CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.PRESEND], 1);
 
     return formData;
   };

@@ -33,6 +33,21 @@ class AesirxCrmEmailMarketingApiService {
     }
   };
 
+  sendTest = async (data) => {
+    try {
+      const dataToSubmit = EmailMarketingItemModel.__transformItemToApiOfSendTest(data);
+      const result = await this.route.create(dataToSubmit);
+      if (result) {
+        return result;
+      }
+      return { message: 'Something have problem' };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancel' };
+      } else throw error;
+    }
+  };
+
   update = async (data) => {
     try {
       const dataToSubmit = EmailMarketingItemModel.__transformItemToApiOfUpdation(data);
