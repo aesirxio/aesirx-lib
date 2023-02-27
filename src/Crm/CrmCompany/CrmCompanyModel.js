@@ -51,6 +51,7 @@ class CompanyItemModel extends BaseItemModel {
       this.crm_company_tax_number = entity[CRM_COMPANY_DETAIL_FIELD_KEY.TAX_NUMBER] ?? '';
       this.crm_company_website = entity[CRM_COMPANY_DETAIL_FIELD_KEY.WEBSITE] ?? '';
       this.crm_company_fax_number = entity[CRM_COMPANY_DETAIL_FIELD_KEY.FAX_NUMBER] ?? '';
+      this.crm_company_phone_number = entity[CRM_COMPANY_DETAIL_FIELD_KEY.PHONE_NUMBER] ?? '';
       this.crm_company_status = entity[CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS] ?? '';
       this.crm_company_contacts = entity[CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS] ?? '';
       this.created_time = entity[CRM_COMPANY_DETAIL_FIELD_KEY.CREATED_TIME] ?? '';
@@ -79,6 +80,7 @@ class CompanyItemModel extends BaseItemModel {
       [CRM_COMPANY_DETAIL_FIELD_KEY.TAX_NUMBER]: this.crm_company_tax_number,
       [CRM_COMPANY_DETAIL_FIELD_KEY.WEBSITE]: this.crm_company_website,
       [CRM_COMPANY_DETAIL_FIELD_KEY.FAX_NUMBER]: this.crm_company_fax_number,
+      [CRM_COMPANY_DETAIL_FIELD_KEY.PHONE_NUMBER]: this.crm_company_phone_number,
       [CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS]: this.crm_company_status,
       [CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS]: this.crm_company_contacts,
       [CRM_COMPANY_DETAIL_FIELD_KEY.CREATED_TIME]: this.created_time,
