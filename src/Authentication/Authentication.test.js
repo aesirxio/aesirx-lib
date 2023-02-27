@@ -19,10 +19,10 @@ describe('Authentication', () => {
       },
       false
     );
-    const refreshTokenFormData = new URLSearchParams();
     const clientID = AXIOS_CONFIGS.CLIENT_ID;
     const clientSecret = AXIOS_CONFIGS.CLIENT_SECRET;
     const refresh_token = process.env.refreshToken;
+    const refreshTokenFormData = new URLSearchParams();
 
     refreshTokenFormData.append('grant_type', 'refresh_token');
     refreshTokenFormData.append('client_id', clientID);
