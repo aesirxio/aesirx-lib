@@ -3,14 +3,14 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirXApiInstance from '../../gateway/Instance';
+import AesirxApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class CmsFieldsGroupRoute extends BaseRoute {
   option = '';
 
   getList = (dataFilter = {}) => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: this.option,
         ...dataFilter,
@@ -18,7 +18,7 @@ class CmsFieldsGroupRoute extends BaseRoute {
     );
   };
   getDetail = (id = 0, dataFilter = {}) => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: this.option,
         id: id,
@@ -28,7 +28,7 @@ class CmsFieldsGroupRoute extends BaseRoute {
   };
 
   create = (data) => {
-    return AesirXApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
       }),
@@ -36,7 +36,7 @@ class CmsFieldsGroupRoute extends BaseRoute {
     );
   };
   update = (data) => {
-    return AesirXApiInstance.put(
+    return AesirxApiInstance().put(
       this.createRequestURL({
         option: this.option,
       }),
@@ -49,7 +49,7 @@ class CmsFieldsGroupRoute extends BaseRoute {
     );
   };
   delete = (id) => {
-    return AesirXApiInstance.delete(
+    return AesirxApiInstance().delete(
       this.createRequestURL({
         option: this.option,
       }),

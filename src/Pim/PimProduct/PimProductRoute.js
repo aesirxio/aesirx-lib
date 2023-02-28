@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirXApiInstance from '../../gateway/Instance';
+import AesirxApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class PimProductRoute extends BaseRoute {
@@ -11,7 +11,7 @@ class PimProductRoute extends BaseRoute {
 
   getList = (filters) => {
     const buildFilters = this.createFilters(filters);
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: this.option,
         ...buildFilters,
@@ -42,7 +42,7 @@ class PimProductRoute extends BaseRoute {
   };
 
   getDetail = (id = 0, dataFilter = {}) => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: this.option,
         id: id,
@@ -51,7 +51,7 @@ class PimProductRoute extends BaseRoute {
     );
   };
   create = (data) => {
-    return AesirXApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
       }),
@@ -59,7 +59,7 @@ class PimProductRoute extends BaseRoute {
     );
   };
   update = (data) => {
-    return AesirXApiInstance.put(
+    return AesirxApiInstance().put(
       this.createRequestURL({
         option: this.option,
       }),
@@ -72,7 +72,7 @@ class PimProductRoute extends BaseRoute {
     );
   };
   delete = (id) => {
-    return AesirXApiInstance.delete(
+    return AesirxApiInstance().delete(
       this.createRequestURL({
         option: this.option,
       }),
@@ -86,7 +86,7 @@ class PimProductRoute extends BaseRoute {
   };
 
   updateStatus = (listSelected) => {
-    return AesirXApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
         task: 'bulkUpdate',
@@ -98,7 +98,7 @@ class PimProductRoute extends BaseRoute {
   };
 
   deleteProducts = (listSelected) => {
-    return AesirXApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
         task: 'bulkDelete',

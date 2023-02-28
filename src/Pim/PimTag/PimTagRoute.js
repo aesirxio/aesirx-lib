@@ -3,14 +3,14 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirXApiInstance from '../../gateway/Instance';
+import AesirxApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class PimTagRoute extends BaseRoute {
   option = 'reditem-category_tag_44';
 
   getList = (dataFilter = {}) => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: this.option,
         ...dataFilter,

@@ -5,6 +5,7 @@
 
 import { MemberItemModel } from './MemberModel';
 import MemberRoute from './MemberRoute';
+import { requestANewAccessToken } from '../gateway/Instance';
 import BaseRoute from '../Abstract/BaseRoute';
 import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
 import axios from 'axios';
@@ -114,6 +115,14 @@ class AesirxMemberApiService {
     try {
       const dataToSubmit = MemberItemModel.__transformItemToApiOfCreation(data);
       return await this.route.createMemberRequest(dataToSubmit);
+    } catch (error) {
+      return false;
+    }
+  }
+
+  async requestANewToken() {
+    try {
+      return await requestANewAccessToken();
     } catch (error) {
       return false;
     }

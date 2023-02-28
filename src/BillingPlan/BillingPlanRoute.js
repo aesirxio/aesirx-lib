@@ -3,13 +3,13 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirXApiInstance from '../gateway/Instance';
+import AesirxApiInstance from '../gateway/Instance';
 import AesirxPricingPlanApiInstance from '../gateway/InstanceBillingPlan';
 import BaseRoute from '../Abstract/BaseRoute';
 
 class BillingPlanRoute extends BaseRoute {
   createSubscriptionRequest = (planName) => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance.get(
       this.createRequestURL({
         option: 'payment_paddle',
         task: 'getPayLink',
@@ -19,7 +19,7 @@ class BillingPlanRoute extends BaseRoute {
   };
 
   getMemberInvoices = () => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance.get(
       this.createRequestURL({
         option: 'payment_paddle',
         task: 'getMemberInvoices',
@@ -28,7 +28,7 @@ class BillingPlanRoute extends BaseRoute {
   };
 
   getMemberSubscriptionDetail = () => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance.get(
       this.createRequestURL({
         option: 'payment_paddle',
         task: 'getMemberSubscriptionDetail',
@@ -37,7 +37,7 @@ class BillingPlanRoute extends BaseRoute {
   };
 
   changeSubscriptionPlan = (data) => {
-    return AesirXApiInstance.post(
+    return AesirxApiInstance.post(
       this.createRequestURL({
         option: 'payment_paddle',
         task: 'changeSubscriptionPlan',
@@ -47,7 +47,7 @@ class BillingPlanRoute extends BaseRoute {
   };
 
   cancelSubscription = () => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance.get(
       this.createRequestURL({
         option: 'payment_paddle',
         task: 'cancelSubscription',
