@@ -12,7 +12,7 @@ class CrmCompanyRoute extends BaseRoute {
 
   getList = (filters) => {
     const buildFilters = this.createFilters(filters);
-    return AesirxApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: this.option,
         view: this.view,
@@ -44,7 +44,7 @@ class CrmCompanyRoute extends BaseRoute {
   };
 
   getDetail = (id = 0, dataFilter = {}) => {
-    return AesirxApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: this.option,
         view: this.view,
@@ -55,7 +55,7 @@ class CrmCompanyRoute extends BaseRoute {
   };
 
   create = (data) => {
-    return AesirxApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
         view: this.view,
@@ -65,7 +65,7 @@ class CrmCompanyRoute extends BaseRoute {
   };
 
   update = (data) => {
-    return AesirxApiInstance.put(
+    return AesirxApiInstance().put(
       this.createRequestURL({
         option: this.option,
         view: this.view,
@@ -80,7 +80,7 @@ class CrmCompanyRoute extends BaseRoute {
   };
 
   updateStatus = (listSelected, status) => {
-    return AesirxApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
         view: this.view,
@@ -93,7 +93,7 @@ class CrmCompanyRoute extends BaseRoute {
     );
   };
   delete = (ids) => {
-    return AesirxApiInstance.delete(
+    return AesirxApiInstance().delete(
       this.createRequestURL({
         option: this.option,
         view: this.view,
@@ -108,7 +108,7 @@ class CrmCompanyRoute extends BaseRoute {
   };
 
   getStatusList = () => {
-    return AesirxApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: this.option,
         view: this.view,
