@@ -4,7 +4,7 @@
  */
 
 import BaseRoute from '../Abstract/BaseRoute';
-import AesirXApiInstance from '../gateway/Instance';
+import AesirxApiInstance from '../gateway/Instance';
 
 /**
  * Class PersonaRoute extends BaseRoute
@@ -17,7 +17,7 @@ class PersonaRoute extends BaseRoute {
    */
 
   getPersonaRequest = (personaId) =>
-    AesirXApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'persona',
         id: personaId,
@@ -29,7 +29,7 @@ class PersonaRoute extends BaseRoute {
    * @param data
    */
   createPersonaRequest = (data) =>
-    AesirXApiInstance.post(
+    AesirxApiInstance().post(
       this.createRequestURL({
         option: 'persona',
       }),
@@ -41,7 +41,7 @@ class PersonaRoute extends BaseRoute {
    * @param data
    */
   updatePersonaRequest = (data) =>
-    AesirXApiInstance.put(
+    AesirxApiInstance().put(
       this.createRequestURL({
         option: 'persona',
       }),
@@ -57,14 +57,14 @@ class PersonaRoute extends BaseRoute {
     const ids = personaId.split(',');
 
     if (ids.length < 2) {
-      return AesirXApiInstance.delete(
+      return AesirxApiInstance().delete(
         this.createRequestURL({
           option: 'persona',
           id: personaId,
         })
       );
     } else {
-      return AesirXApiInstance.post(
+      return AesirxApiInstance().post(
         this.createRequestURL({
           option: 'persona',
           task: 'deleteAll',
@@ -77,7 +77,7 @@ class PersonaRoute extends BaseRoute {
   };
 
   getPersonasRequest = (page = 1, limit = 20) =>
-    AesirXApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'persona',
         'list[limitstart]': (page - 1) * limit,
@@ -86,7 +86,7 @@ class PersonaRoute extends BaseRoute {
     );
 
   getPersonaMasterDataRequest = () => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'persona',
         task: 'getMasterData',
@@ -95,7 +95,7 @@ class PersonaRoute extends BaseRoute {
   };
 
   getConnectedChannelByOrganisationIdRequest = (organisationId) => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'persona',
         task: 'getConnectedChannelByOrganisationId',
@@ -110,7 +110,7 @@ class PersonaRoute extends BaseRoute {
    * @return JSON
    */
   getConnectedChannelByPersonaIdsRequest = (personaIds) => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'persona',
         task: 'getConnectedChannelByPersonaIds',
@@ -120,7 +120,7 @@ class PersonaRoute extends BaseRoute {
   };
 
   searchPersonasRequest = (dataFilter, page = 1, limit = 20) => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'persona',
         task: 'filterPersona',
@@ -132,7 +132,7 @@ class PersonaRoute extends BaseRoute {
   };
 
   getMemberInfoRequest = () => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'persona',
         task: 'getMemberInfo',

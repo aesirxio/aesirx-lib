@@ -1,11 +1,11 @@
-import AesirXApiInstance from '../../gateway/Instance';
+import AesirxApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class CmsContentTypeRoute extends BaseRoute {
   option = '';
 
   getList = () => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'reditem',
         view: 'item',
@@ -13,7 +13,7 @@ class CmsContentTypeRoute extends BaseRoute {
     );
   };
   getDetail = (id = 0, dataFilter = {}) => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: this.option,
         id: id,
@@ -23,7 +23,7 @@ class CmsContentTypeRoute extends BaseRoute {
   };
 
   create = (data) => {
-    return AesirXApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
       }),
@@ -31,7 +31,7 @@ class CmsContentTypeRoute extends BaseRoute {
     );
   };
   update = (data) => {
-    return AesirXApiInstance.put(
+    return AesirxApiInstance().put(
       this.createRequestURL({
         option: this.option,
       }),
@@ -44,7 +44,7 @@ class CmsContentTypeRoute extends BaseRoute {
     );
   };
   delete = (id) => {
-    return AesirXApiInstance.delete(
+    return AesirxApiInstance().delete(
       this.createRequestURL({
         option: this.option,
       }),

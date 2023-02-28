@@ -5,10 +5,8 @@
 
 // LOGOUT
 const logout = () => {
-  if (process.env.NODE_ENV !== 'test') {
-    localStorage.clear();
-    window.location.reload();
-  }
+  // localStorage.clear();
+  // window.location.reload();
 };
 
 export { logout };

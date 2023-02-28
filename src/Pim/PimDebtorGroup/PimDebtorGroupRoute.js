@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirXApiInstance from '../../gateway/Instance';
+import AesirxApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class PimDebtorGroupRoute extends BaseRoute {
@@ -11,7 +11,7 @@ class PimDebtorGroupRoute extends BaseRoute {
 
   getList = (filters = {}) => {
     const buildFilters = this.createFilters(filters);
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: this.option,
         ...buildFilters,
@@ -42,7 +42,7 @@ class PimDebtorGroupRoute extends BaseRoute {
   };
 
   getDetail = (id = 0, filter = {}) => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: this.option,
         id: id,
@@ -52,7 +52,7 @@ class PimDebtorGroupRoute extends BaseRoute {
   };
 
   create = (data) => {
-    return AesirXApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
       }),
@@ -61,7 +61,7 @@ class PimDebtorGroupRoute extends BaseRoute {
   };
 
   update = (data) => {
-    return AesirXApiInstance.put(
+    return AesirxApiInstance().put(
       this.createRequestURL({
         option: this.option,
       }),
@@ -75,7 +75,7 @@ class PimDebtorGroupRoute extends BaseRoute {
   };
 
   updateStatus = (listSelected) => {
-    return AesirXApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
         task: 'bulkUpdate',
@@ -87,7 +87,7 @@ class PimDebtorGroupRoute extends BaseRoute {
   };
 
   delete = (id) => {
-    return AesirXApiInstance.delete(
+    return AesirxApiInstance().delete(
       this.createRequestURL({
         option: this.option,
       }),
@@ -101,7 +101,7 @@ class PimDebtorGroupRoute extends BaseRoute {
   };
 
   deleteDebtorGroups = (listSelected) => {
-    return AesirXApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
         task: 'bulkDelete',
