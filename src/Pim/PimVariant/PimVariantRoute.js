@@ -3,14 +3,14 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirXApiInstance from '../../gateway/Instance';
+import AesirxApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class PimVariantRoute extends BaseRoute {
   option = 'reditem-item_variant_53';
 
   create = (data) => {
-    return AesirXApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
       }),
@@ -19,7 +19,7 @@ class PimVariantRoute extends BaseRoute {
   };
 
   update = (data) => {
-    return AesirXApiInstance.put(
+    return AesirxApiInstance().put(
       this.createRequestURL({
         option: this.option,
       }),
@@ -33,7 +33,7 @@ class PimVariantRoute extends BaseRoute {
   };
 
   getVariantDetail = (id = 0) => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: this.option,
         id: id,

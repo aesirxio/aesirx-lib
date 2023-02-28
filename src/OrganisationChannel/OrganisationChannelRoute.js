@@ -3,12 +3,12 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirXApiInstance from '../gateway/Instance';
+import AesirxApiInstance from '../gateway/Instance';
 import BaseRoute from '../Abstract/BaseRoute';
 
 class OrganisationChannelRoute extends BaseRoute {
   getProjectChannelItemRequest = (itemId) =>
-    AesirXApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'organisation_channel',
         id: itemId,
@@ -16,7 +16,7 @@ class OrganisationChannelRoute extends BaseRoute {
     );
 
   getProjectChannelsRequest = (page = 1, limit = 20) =>
-    AesirXApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'organisation_channel',
         'list[limitstart]': (page - 1) * limit,
@@ -29,7 +29,7 @@ class OrganisationChannelRoute extends BaseRoute {
    * @param data
    */
   createProjectChannelRequest = (data) =>
-    AesirXApiInstance.post(
+    AesirxApiInstance().post(
       this.createRequestURL({
         option: 'organisation_channel',
       }),
@@ -37,7 +37,7 @@ class OrganisationChannelRoute extends BaseRoute {
     );
 
   postToFanpageRequest = (itemId, content, channelType) => {
-    return AesirXApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: 'organisation_channel',
         organisationId: itemId,
@@ -58,7 +58,7 @@ class OrganisationChannelRoute extends BaseRoute {
    * @param data
    */
   updateProjectChannelRequest = (data) =>
-    AesirXApiInstance.put(
+    AesirxApiInstance().put(
       this.createRequestURL({
         option: 'organisation_channel',
       }),
@@ -72,14 +72,14 @@ class OrganisationChannelRoute extends BaseRoute {
     const ids = itemId.split(',');
 
     if (ids.length < 2) {
-      return AesirXApiInstance.delete(
+      return AesirxApiInstance().delete(
         this.createRequestURL({
           option: 'projectpersona',
           id: itemId,
         })
       );
     } else {
-      return AesirXApiInstance.post(
+      return AesirxApiInstance().post(
         this.createRequestURL({
           option: 'projectpersona',
           task: 'deleteAll',
@@ -98,11 +98,11 @@ class OrganisationChannelRoute extends BaseRoute {
       task: 'getLoginUrl',
     });
 
-    return AesirXApiInstance.get(url);
+    return AesirxApiInstance().get(url);
   };
 
   checkConnectStatusChannel = (channelType) => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'organisation_channel',
         channelType: channelType,
@@ -113,7 +113,7 @@ class OrganisationChannelRoute extends BaseRoute {
 
   getListFanpageRequest = (channelType) => {
     // getListFanPages
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'organisation_channel',
         task: 'getListFanPages',
@@ -124,7 +124,7 @@ class OrganisationChannelRoute extends BaseRoute {
 
   connectFanpageRequest = (channelUniqueName, pageId) => {
     // connectFanpageRequest
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'organisation_channel',
         pageId: pageId,
@@ -139,7 +139,7 @@ class OrganisationChannelRoute extends BaseRoute {
 
   disconnectFanpageRequest = (channelUniqueName, pageId) => {
     // connectFanpageRequest
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'organisation_channel',
         pageId: pageId,
@@ -159,12 +159,12 @@ class OrganisationChannelRoute extends BaseRoute {
       task: 'getListAdAccounts',
     });
 
-    return AesirXApiInstance.get(url);
+    return AesirxApiInstance().get(url);
   };
 
   connectAdAccountRequest = (accountId) => {
     // connectAdAccountRequest
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'organisation_channel',
         accountId: accountId,
@@ -177,7 +177,7 @@ class OrganisationChannelRoute extends BaseRoute {
   };
 
   doLoginCMSRequest = (dataPost) => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'organisation_channel',
         task: 'doLoginCMS',
@@ -187,7 +187,7 @@ class OrganisationChannelRoute extends BaseRoute {
   };
 
   doPostContentToCMSRequest = (dataPost) => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'organisation_channel',
         task: 'post',
@@ -197,7 +197,7 @@ class OrganisationChannelRoute extends BaseRoute {
   };
 
   getProjectChannelsByorganisationIdRequest = (organisationId) => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'organisation_channel',
         task: 'getProjectChannelByorganisationId',
@@ -207,7 +207,7 @@ class OrganisationChannelRoute extends BaseRoute {
   };
 
   onConnectChannelSuccessRequest = (channelType, tokenData) => {
-    return AesirXApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: 'organisation_channel',
         task: 'onConnectChannelSuccess',
@@ -217,7 +217,7 @@ class OrganisationChannelRoute extends BaseRoute {
   };
 
   disconnectChannelRequest = (channelName) => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: 'organisation_channel',
         task: 'disconnectChannel',
@@ -227,7 +227,7 @@ class OrganisationChannelRoute extends BaseRoute {
   };
 
   getChannels = () =>
-    AesirXApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'organisation_channel',
         task: 'getChannels',
@@ -235,7 +235,7 @@ class OrganisationChannelRoute extends BaseRoute {
     );
 
   reconnectChannel = (channelName, channelId) =>
-    AesirXApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'organisation_channel',
         task: 'reconnectChannel',
@@ -245,7 +245,7 @@ class OrganisationChannelRoute extends BaseRoute {
     );
 
   disconnectChannel = (channelName, channelId) =>
-    AesirXApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'organisation_channel',
         task: 'disconnectChannel',
@@ -255,7 +255,7 @@ class OrganisationChannelRoute extends BaseRoute {
     );
 
   removeChannel = (channelName, channelId) =>
-    AesirXApiInstance.post(
+    AesirxApiInstance().post(
       this.createRequestURL({
         option: 'organisation_channel',
         task: 'removeChannel',

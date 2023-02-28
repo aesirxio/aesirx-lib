@@ -4,11 +4,11 @@
  */
 
 import BaseRoute from '../Abstract/BaseRoute';
-import AesirXApiInstance from '../gateway/Instance';
+import AesirxApiInstance from '../gateway/Instance';
 
 class ContentThemeRoute extends BaseRoute {
   getContentThemeItemRequest = (id) =>
-    AesirXApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'content_theme',
         id: id,
@@ -16,7 +16,7 @@ class ContentThemeRoute extends BaseRoute {
     );
 
   getContentThemesRequest = (page = 1, limit = 20) =>
-    AesirXApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'content_theme',
         'list[limitstart]': (page - 1) * limit,
@@ -29,7 +29,7 @@ class ContentThemeRoute extends BaseRoute {
    * @param data
    */
   createContentThemeRequest = (data) => {
-    return AesirXApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: 'content_theme',
       }),
@@ -42,7 +42,7 @@ class ContentThemeRoute extends BaseRoute {
    * @param data
    */
   updateContentThemeRequest = (data) =>
-    AesirXApiInstance.put(
+    AesirxApiInstance().put(
       this.createRequestURL({
         option: 'content_theme',
       }),
@@ -61,14 +61,14 @@ class ContentThemeRoute extends BaseRoute {
     }
 
     if (ids === null) {
-      return AesirXApiInstance.delete(
+      return AesirxApiInstance().delete(
         this.createRequestURL({
           option: 'content_theme',
           id: id,
         })
       );
     } else {
-      return AesirXApiInstance.post(
+      return AesirxApiInstance().post(
         this.createRequestURL({
           option: 'content_theme',
           task: 'deleteAll',
@@ -81,7 +81,7 @@ class ContentThemeRoute extends BaseRoute {
   };
 
   getContentThemeByDesignIdRequest = (designId) =>
-    AesirXApiInstance.get(
+    AesirxApiInstance().get(
       this.createRequestURL({
         option: 'content_theme',
         task: 'getContentThemeByDesignId',

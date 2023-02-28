@@ -3,14 +3,14 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirXApiInstance from '../../gateway/Instance';
+import AesirxApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class PimProductPriceRoute extends BaseRoute {
   option = 'reditem-item_price_51';
 
   getDetail = (id = 0, filter = {}) => {
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: this.option,
         id: id,
@@ -20,7 +20,7 @@ class PimProductPriceRoute extends BaseRoute {
   };
 
   create = (data) => {
-    return AesirXApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
       }),
@@ -28,7 +28,7 @@ class PimProductPriceRoute extends BaseRoute {
     );
   };
   update = (data) => {
-    return AesirXApiInstance.put(
+    return AesirxApiInstance().put(
       this.createRequestURL({
         option: this.option,
       }),
@@ -41,7 +41,7 @@ class PimProductPriceRoute extends BaseRoute {
     );
   };
   delete = (id) => {
-    return AesirXApiInstance.delete(
+    return AesirxApiInstance().delete(
       this.createRequestURL({
         option: this.option,
       }),
@@ -56,7 +56,7 @@ class PimProductPriceRoute extends BaseRoute {
 
   getList = (filters) => {
     const buildFilters = this.createFilters(filters);
-    return AesirXApiInstance.get(
+    return AesirxApiInstance().get(
       this.createRequestURL({
         option: this.option,
         'list[ordering]': 'id',
@@ -89,7 +89,7 @@ class PimProductPriceRoute extends BaseRoute {
   };
 
   updateStatus = (listSelected) => {
-    return AesirXApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
         task: 'bulkUpdate',
@@ -101,7 +101,7 @@ class PimProductPriceRoute extends BaseRoute {
   };
 
   updatePrices = (listPrices) => {
-    return AesirXApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
         task: 'bulkUpdate',
@@ -113,7 +113,7 @@ class PimProductPriceRoute extends BaseRoute {
   };
 
   deleteProductPrices = (listSelected) => {
-    return AesirXApiInstance.post(
+    return AesirxApiInstance().post(
       this.createRequestURL({
         option: this.option,
         task: 'bulkDelete',
