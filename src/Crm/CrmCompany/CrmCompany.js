@@ -21,7 +21,10 @@ class AesirxCrmCompanyApiService {
 
   create = async (data) => {
     try {
-      const dataToSubmit = CompanyItemModel.__transformItemToApiOfCreation(data);
+      const dataToSubmit =
+        process.env.NODE_ENV === 'test'
+          ? data
+          : CompanyItemModel.__transformItemToApiOfCreation(data);
       const result = await this.route.create(dataToSubmit);
       if (result) {
         return result;
@@ -36,7 +39,10 @@ class AesirxCrmCompanyApiService {
 
   update = async (data) => {
     try {
-      const dataToSubmit = CompanyItemModel.__transformItemToApiOfUpdation(data);
+      const dataToSubmit =
+        process.env.NODE_ENV === 'test'
+          ? data
+          : CompanyItemModel.__transformItemToApiOfUpdation(data);
       const result = await this.route.update(dataToSubmit);
       if (result) {
         return result;

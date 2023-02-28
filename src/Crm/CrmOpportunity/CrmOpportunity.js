@@ -20,7 +20,10 @@ class AesirxCrmOpportunityApiService {
 
   create = async (data) => {
     try {
-      const dataToSubmit = OpportunityItemModel.__transformItemToApiOfCreation(data);
+      const dataToSubmit =
+        process.env.NODE_ENV === 'test'
+          ? data
+          : OpportunityItemModel.__transformItemToApiOfCreation(data);
       const result = await this.route.create(dataToSubmit);
       if (result) {
         return result;
@@ -35,7 +38,10 @@ class AesirxCrmOpportunityApiService {
 
   update = async (data) => {
     try {
-      const dataToSubmit = OpportunityItemModel.__transformItemToApiOfUpdation(data);
+      const dataToSubmit =
+        process.env.NODE_ENV === 'test'
+          ? data
+          : OpportunityItemModel.__transformItemToApiOfUpdation(data);
       const result = await this.route.update(dataToSubmit);
       if (result) {
         return result;

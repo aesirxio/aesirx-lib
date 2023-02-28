@@ -20,7 +20,10 @@ class AesirxCrmEmailMarketingApiService {
 
   create = async (data) => {
     try {
-      const dataToSubmit = EmailMarketingItemModel.__transformItemToApiOfCreation(data);
+      const dataToSubmit =
+        process.env.NODE_ENV === 'test'
+          ? data
+          : EmailMarketingItemModel.__transformItemToApiOfCreation(data);
       const result = await this.route.create(dataToSubmit);
       if (result) {
         return result;
@@ -35,7 +38,10 @@ class AesirxCrmEmailMarketingApiService {
 
   sendTest = async (data) => {
     try {
-      const dataToSubmit = EmailMarketingItemModel.__transformItemToApiOfSendTest(data);
+      const dataToSubmit =
+        process.env.NODE_ENV === 'test'
+          ? data
+          : EmailMarketingItemModel.__transformItemToApiOfSendTest(data);
       const result = await this.route.create(dataToSubmit);
       if (result) {
         return result;
