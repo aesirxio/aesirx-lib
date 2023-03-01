@@ -12,7 +12,7 @@ import Storage from '../Utils/Storage';
 import { logout } from './Logout';
 
 class AesirxAuthenticationApiService {
-  login = async (email, password) => {
+  loginTest = async (email, password) => {
     try {
       if (!email || !password) return false;
       const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
@@ -56,6 +56,195 @@ class AesirxAuthenticationApiService {
       if (process.env.NODE_ENV === 'test') {
         return result;
       }
+
+      if (AXIOS_CONFIGS.DAM_LICENSE) {
+        await this.damIntegrateLogin(email, password);
+      }
+      if (AXIOS_CONFIGS.DMA_LICENSE) {
+        await this.dmaIntegrateLogin(email, password);
+      }
+      if (result?.access_token) {
+        return await this.setTokenUser(result, false);
+      }
+
+      return false;
+    } catch (error) {
+      return false;
+    }
+  };
+
+  damIntegrateLogin = async (email, password) => {
+    try {
+      if (!email || !password) return false;
+      const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
+        {
+          option: 'member',
+          api: 'hal',
+          task: 'login',
+        },
+        false
+      );
+
+      const reqAuthFormData = {
+        email: email,
+        password: password,
+        client_id:
+          process.env.OAUTH_CLIENT_ID !== undefined && process.env.OAUTH_CLIENT_ID !== ''
+            ? process.env.OAUTH_CLIENT_ID
+            : AXIOS_CONFIGS.CLIENT_ID,
+        secret:
+          process.env.OAUTH_CLIENT_SECRET !== undefined && process.env.OAUTH_CLIENT_SECRET !== ''
+            ? process.env.OAUTH_CLIENT_SECRET
+            : AXIOS_CONFIGS.CLIENT_SECRET,
+        license_key: AXIOS_CONFIGS.DAM_LICENSE,
+        test_mode: AXIOS_CONFIGS.TEST_MODE,
+        domain: window.location.hostname,
+      };
+
+      const config = {
+        method: 'post',
+        url: AUTHORIZED_CODE_URL,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        data: qs.stringify(reqAuthFormData),
+      };
+
+      const {
+        data: { result },
+      } = await axios(config);
+
+      if (result?.[AUTHORIZATION_KEY.ACCESS_TOKEN]) {
+        let authorizationHeader = '';
+        let tokenType = '';
+        let accessToken = '';
+        let refreshToken = '';
+        tokenType = result?.[AUTHORIZATION_KEY.TOKEN_TYPE] ?? 'Bearer';
+        accessToken = result?.[AUTHORIZATION_KEY.ACCESS_TOKEN] ?? '';
+        authorizationHeader = authorizationHeader.concat(tokenType).concat(' ').concat(accessToken);
+        refreshToken = result?.[AUTHORIZATION_KEY.REFRESH_TOKEN] ?? '';
+        const setStore = {
+          [AUTHORIZATION_KEY.DAM_ACCESS_TOKEN]: accessToken,
+          [AUTHORIZATION_KEY.DAM_TOKEN_TYPE]: tokenType,
+          [AUTHORIZATION_KEY.DAM_AUTHORIZED_TOKEN_HEADER]: authorizationHeader,
+          [AUTHORIZATION_KEY.DAM_REFRESH_TOKEN]: refreshToken,
+        };
+
+        this.setStore(setStore);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      return false;
+    }
+  };
+
+  dmaIntegrateLogin = async (email, password) => {
+    try {
+      if (!email || !password) return false;
+      const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
+        {
+          option: 'member',
+          api: 'hal',
+          task: 'login',
+        },
+        false
+      );
+
+      const reqAuthFormData = {
+        email: email,
+        password: password,
+        client_id:
+          process.env.OAUTH_CLIENT_ID !== undefined && process.env.OAUTH_CLIENT_ID !== ''
+            ? process.env.OAUTH_CLIENT_ID
+            : AXIOS_CONFIGS.CLIENT_ID,
+        secret:
+          process.env.OAUTH_CLIENT_SECRET !== undefined && process.env.OAUTH_CLIENT_SECRET !== ''
+            ? process.env.OAUTH_CLIENT_SECRET
+            : AXIOS_CONFIGS.CLIENT_SECRET,
+        license_key: AXIOS_CONFIGS.DMA_LICENSE,
+        test_mode: AXIOS_CONFIGS.TEST_MODE,
+        domain: window.location.hostname,
+      };
+
+      const config = {
+        method: 'post',
+        url: AUTHORIZED_CODE_URL,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        data: qs.stringify(reqAuthFormData),
+      };
+
+      const {
+        data: { result },
+      } = await axios(config);
+
+      if (result?.[AUTHORIZATION_KEY.ACCESS_TOKEN]) {
+        let authorizationHeader = '';
+        let tokenType = '';
+        let accessToken = '';
+        let refreshToken = '';
+        tokenType = result?.[AUTHORIZATION_KEY.TOKEN_TYPE] ?? 'Bearer';
+        accessToken = result?.[AUTHORIZATION_KEY.ACCESS_TOKEN] ?? '';
+        authorizationHeader = authorizationHeader.concat(tokenType).concat(' ').concat(accessToken);
+        refreshToken = result?.[AUTHORIZATION_KEY.REFRESH_TOKEN] ?? '';
+        const setStore = {
+          [AUTHORIZATION_KEY.DMA_ACCESS_TOKEN]: accessToken,
+          [AUTHORIZATION_KEY.DMA_TOKEN_TYPE]: tokenType,
+          [AUTHORIZATION_KEY.DMA_AUTHORIZED_TOKEN_HEADER]: authorizationHeader,
+          [AUTHORIZATION_KEY.DMA_REFRESH_TOKEN]: refreshToken,
+        };
+
+        this.setStore(setStore);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      return false;
+    }
+  };
+
+  login = async (email, password) => {
+    try {
+      if (!email || !password) return false;
+      const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
+        {
+          option: 'member',
+          api: 'hal',
+          task: 'login',
+        },
+        false
+      );
+
+      const reqAuthFormData = {
+        email: email,
+        password: password,
+        client_id:
+          process.env.OAUTH_CLIENT_ID !== undefined && process.env.OAUTH_CLIENT_ID !== ''
+            ? process.env.OAUTH_CLIENT_ID
+            : AXIOS_CONFIGS.CLIENT_ID,
+        secret:
+          process.env.OAUTH_CLIENT_SECRET !== undefined && process.env.OAUTH_CLIENT_SECRET !== ''
+            ? process.env.OAUTH_CLIENT_SECRET
+            : AXIOS_CONFIGS.CLIENT_SECRET,
+        license_key: AXIOS_CONFIGS.LICENSE,
+        test_mode: AXIOS_CONFIGS.TEST_MODE,
+        domain: window.location.hostname,
+      };
+
+      const config = {
+        method: 'post',
+        url: AUTHORIZED_CODE_URL,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        data: qs.stringify(reqAuthFormData),
+      };
+
+      const {
+        data: { result },
+      } = await axios(config);
 
       if (AXIOS_CONFIGS.DAM_LICENSE) {
         await this.damIntegrateLogin(email, password);
@@ -316,38 +505,40 @@ class AesirxAuthenticationApiService {
    * @param {*} key
    */
   refreshToken = async (failedRequest, url, form, key) => {
-    await axios.post(url, form, { skipAuthRefresh: true }).then(
-      (tokenRefreshResponse) => {
-        let authorizationHeader = '';
-        let tokenType = '';
-        let accessToken = '';
-        let refreshToken = '';
-        if (tokenRefreshResponse && tokenRefreshResponse.data) {
-          tokenType = tokenRefreshResponse.data.token_type ?? 'Bearer';
-          accessToken = tokenRefreshResponse.data.access_token ?? '';
-          authorizationHeader = authorizationHeader
-            .concat(tokenType)
-            .concat(' ')
-            .concat(accessToken);
-          refreshToken = tokenRefreshResponse.data[AUTHORIZATION_KEY.REFRESH_TOKEN] ?? '';
+    try {
+      const tokenRefreshResponse = await axios.post(url, form, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      });
+      let authorizationHeader = '';
+      let tokenType = '';
+      let accessToken = '';
+      let refreshToken = '';
+      if (tokenRefreshResponse && tokenRefreshResponse.data) {
+        tokenType = tokenRefreshResponse.data.token_type ?? 'Bearer';
+        accessToken = tokenRefreshResponse.data.access_token ?? '';
+        authorizationHeader = authorizationHeader.concat(tokenType).concat(' ').concat(accessToken);
+        refreshToken = tokenRefreshResponse.data[AUTHORIZATION_KEY.REFRESH_TOKEN] ?? '';
+        if (process.env.NODE_ENV === 'test') {
+          return tokenRefreshResponse.data;
+        } else {
+          const setStore = {
+            [key[AUTHORIZATION_KEY.ACCESS_TOKEN]]: accessToken,
+            [key[AUTHORIZATION_KEY.TOKEN_TYPE]]: tokenType,
+            [key[AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]]: authorizationHeader,
+            [key[AUTHORIZATION_KEY.REFRESH_TOKEN]]: refreshToken,
+          };
+          this.setStore(setStore);
         }
-        const setStore = {
-          [key[AUTHORIZATION_KEY.ACCESS_TOKEN]]: accessToken,
-          [key[AUTHORIZATION_KEY.TOKEN_TYPE]]: tokenType,
-          [key[AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]]: authorizationHeader,
-          [key[AUTHORIZATION_KEY.REFRESH_TOKEN]]: refreshToken,
-        };
-        this.setStore(setStore);
-
-        return Promise.resolve();
-      },
-      (error) => {
-        // Logout when token expired
-        logout();
-        // Do something with request error
-        return Promise.reject(error);
+      } else {
+        return logout();
       }
-    );
+    } catch (error) {
+      logout();
+      // Do something with request error
+      return Promise.reject(error);
+    }
   };
 
   setStore = (key) => {
