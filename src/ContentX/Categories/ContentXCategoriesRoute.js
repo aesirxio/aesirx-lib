@@ -47,14 +47,14 @@ class ContentXCategoriesRoute extends BaseRoute {
       }
     );
   };
-  delete = (id) => {
+  delete = (ids) => {
     return AesirxApiInstance().delete(
       this.createRequestURL({
         option: 'reditem',
         view: 'category_with_org_check_aesirx_categories_69',
       }),
       {
-        data: { id: id },
+        data: { ids: Array.isArray(ids) ? ids : [ids] },
       }
     );
   };
