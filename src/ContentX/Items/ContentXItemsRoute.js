@@ -46,14 +46,14 @@ class CmsItemsRoute extends BaseRoute {
       data
     );
   };
-  deleteItems = (id) => {
+  deleteItems = (ids) => {
     return AesirxApiInstance().delete(
       this.createRequestURL({
         option: 'reditem',
         view: 'item_with_org_check_aesirx_content_68',
       }),
       {
-        data: { id: id },
+        data: { ids: Array.isArray(ids) ? ids : [ids] },
       }
     );
   };
