@@ -17,25 +17,18 @@ class AesirxAuthenticationApiService {
       if (!email || !password) return false;
       const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
         {
-          option: 'member',
-          api: 'hal',
-          task: 'login',
+          option: 'token',
+          api: 'oauth2',
         },
         false
       );
 
       const reqAuthFormData = {
-        email: email,
+        username: email,
         password: password,
-        client_id:
-          process.env.OAUTH_CLIENT_ID !== undefined && process.env.OAUTH_CLIENT_ID !== ''
-            ? process.env.OAUTH_CLIENT_ID
-            : AXIOS_CONFIGS.CLIENT_ID,
-        secret:
-          process.env.OAUTH_CLIENT_SECRET !== undefined && process.env.OAUTH_CLIENT_SECRET !== ''
-            ? process.env.OAUTH_CLIENT_SECRET
-            : AXIOS_CONFIGS.CLIENT_SECRET,
-        license_key: AXIOS_CONFIGS.LICENSE,
+        client_id: AXIOS_CONFIGS.CLIENT_ID,
+        client_secret: AXIOS_CONFIGS.CLIENT_SECRET,
+        grant_type: 'password',
         test_mode: AXIOS_CONFIGS.TEST_MODE,
         domain: AXIOS_CONFIGS.DOMAIN,
       };
@@ -46,30 +39,18 @@ class AesirxAuthenticationApiService {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        data: qs.stringify(reqAuthFormData),
+        data: reqAuthFormData,
       };
 
-      const {
-        data: { result },
-      } = await axios(config);
-
+      const { data: result } = await axios(config);
       if (process.env.NODE_ENV === 'test') {
         return result;
-      }
-
-      if (AXIOS_CONFIGS.DAM_LICENSE) {
-        await this.damIntegrateLogin(email, password);
-      }
-      if (AXIOS_CONFIGS.DMA_LICENSE) {
-        await this.dmaIntegrateLogin(email, password);
       }
       if (result?.access_token) {
         return await this.setTokenUser(result, false);
       }
-
-      return false;
     } catch (error) {
-      return false;
+      return error;
     }
   };
 
