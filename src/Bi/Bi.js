@@ -26,25 +26,6 @@ class AesirxBiApiService extends Component {
     this.route = new BiRoute();
   }
 
-  getDashboard = async () => {
-    try {
-      const data = await this.route.getDashboard();
-
-      let results = null;
-      if (data) {
-        results = new DashboardModel(data.result);
-      }
-      if (results) {
-        results = results.toJSON();
-      }
-      return results;
-    } catch (error) {
-      if (axios.isCancel(error)) {
-        return { message: 'isCancle' };
-      } else throw error;
-    }
-  };
-
   getListDomain = async (dataFilter, listDomains) => {
     try {
       const data = await this.route.getListDomain(dataFilter, listDomains);
