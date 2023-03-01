@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirxApiInstance from '../gateway/Instance';
+import AesirXApiInstance from '../gateway/Instance';
 import AesirxPricingPlanApiInstance from '../gateway/InstanceBillingPlan';
 import BaseRoute from '../Abstract/BaseRoute';
 
