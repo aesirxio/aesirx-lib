@@ -9,8 +9,8 @@ describe('CrmEmailMarketing', () => {
       crm_email_name: 'CRM EmailMarketing 0000',
       crm_email_content: 'CRM EmailMarketing',
       crm_email_subject: 'CRM EmailMarketing',
-      'crm_email_receivers[]': 'receiver1@aesirx.io',
-      'crm_email_receivers[]': 'receiver2@aesirx.io',
+      'crm_email_receivers[0]': 'receiver1@aesirx.io',
+      'crm_email_receivers[1]': 'receiver2@aesirx.io',
       crm_email_sender: 'sender@aesirx.io',
     };
 

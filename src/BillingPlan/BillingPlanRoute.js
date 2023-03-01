@@ -9,7 +9,7 @@ import BaseRoute from '../Abstract/BaseRoute';
 
 class BillingPlanRoute extends BaseRoute {
   createSubscriptionRequest = (planName) => {
-    return AesirxApiInstance.get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'payment_paddle',
         task: 'getPayLink',
@@ -19,7 +19,7 @@ class BillingPlanRoute extends BaseRoute {
   };
 
   getMemberInvoices = () => {
-    return AesirxApiInstance.get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'payment_paddle',
         task: 'getMemberInvoices',
@@ -28,7 +28,7 @@ class BillingPlanRoute extends BaseRoute {
   };
 
   getMemberSubscriptionDetail = () => {
-    return AesirxApiInstance.get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'payment_paddle',
         task: 'getMemberSubscriptionDetail',
@@ -37,7 +37,7 @@ class BillingPlanRoute extends BaseRoute {
   };
 
   changeSubscriptionPlan = (data) => {
-    return AesirxApiInstance.post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'payment_paddle',
         task: 'changeSubscriptionPlan',
@@ -47,7 +47,7 @@ class BillingPlanRoute extends BaseRoute {
   };
 
   cancelSubscription = () => {
-    return AesirxApiInstance.get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'payment_paddle',
         task: 'cancelSubscription',

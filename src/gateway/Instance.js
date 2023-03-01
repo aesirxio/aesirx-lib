@@ -9,6 +9,7 @@ import createAuthRefreshInterceptor from 'axios-auth-refresh';
 import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
 import BaseRoute from '../Abstract/BaseRoute';
 import Storage from '../Utils/Storage';
+import AesirXAuthenticationApiService from '../Authentication/Authentication';
 
 const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
   {
