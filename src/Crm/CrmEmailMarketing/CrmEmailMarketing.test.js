@@ -1,3 +1,4 @@
+import { env } from '../../env';
 import AesirxCrmEmailMarketingApiService from './CrmEmailMarketing';
 
 let createID = '';
@@ -9,9 +10,8 @@ describe('CrmEmailMarketing', () => {
       crm_email_name: 'CRM EmailMarketing 0000',
       crm_email_content: 'CRM EmailMarketing',
       crm_email_subject: 'CRM EmailMarketing',
-      'crm_email_receivers[]': 'receiver1@aesirx.io',
-      'crm_email_receivers[]': 'receiver2@aesirx.io',
-      crm_email_sender: 'sender@aesirx.io',
+      crm_email_receivers: [env.REACT_APP_TEST_EMAIL_RECEIVER],
+      crm_email_sender: env.REACT_APP_TEST_EMAIL_SENDER,
     };
 
     const response = await service.create(data);
@@ -22,6 +22,26 @@ describe('CrmEmailMarketing', () => {
     expect(createID).toBeDefined();
     expect(createID).not.toBeUndefined();
     expect(createID).not.toBe('false');
+  });
+
+  it('Send a Test', async () => {
+    const service = new AesirxCrmEmailMarketingApiService();
+
+    const data = {
+      crm_email_name: 'CRM EmailMarketing 0000',
+      crm_email_content: 'CRM EmailMarketing Test',
+      crm_email_subject: 'CRM EmailMarketing Test',
+      crm_email_receivers: [env.REACT_APP_TEST_RECEIVER],
+      crm_email_sender: env.REACT_APP_TEST_SENDER,
+      preSend: 1,
+    };
+
+    const response = await service.create(data);
+
+    expect(response?.result).not.toBeNull();
+    expect(response?.result).toBeDefined();
+    expect(response?.result).not.toBeUndefined();
+    expect(response?.result).not.toBe('false');
   });
 
   it('Get List', async () => {
