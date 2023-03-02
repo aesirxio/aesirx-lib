@@ -31,8 +31,8 @@ describe('CrmEmailMarketing', () => {
       crm_email_name: 'CRM EmailMarketing 0000',
       crm_email_content: 'CRM EmailMarketing Test',
       crm_email_subject: 'CRM EmailMarketing Test',
-      crm_email_receivers: [env.REACT_APP_TEST_RECEIVER],
-      crm_email_sender: env.REACT_APP_TEST_SENDER,
+      crm_email_receivers: [env.REACT_APP_TEST_EMAIL_RECEIVER],
+      crm_email_sender: env.REACT_APP_TEST_EMAIL_SENDER,
       preSend: 1,
     };
 
