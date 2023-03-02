@@ -3,13 +3,13 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirxApiInstance from '../../gateway/Instance';
+import AesirXApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class CmsItemsRoute extends BaseRoute {
   getList = (filters) => {
     const buildFilters = this.createFilters(filters);
-    return AesirxApiInstance().get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'reditem',
         view: 'item_with_org_check_metaverse_content_62',
@@ -19,7 +19,7 @@ class CmsItemsRoute extends BaseRoute {
   };
 
   getDetail = (id = 0) => {
-    return AesirxApiInstance().get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'reditem',
         view: 'item_with_org_check_metaverse_content_62',
@@ -29,7 +29,7 @@ class CmsItemsRoute extends BaseRoute {
   };
 
   createItem = (data) => {
-    return AesirxApiInstance().post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'reditem',
         view: 'item_with_org_check_metaverse_content_62',
@@ -38,7 +38,7 @@ class CmsItemsRoute extends BaseRoute {
     );
   };
   updateItem = (data) => {
-    return AesirxApiInstance().put(
+    return AesirXApiInstance.put(
       this.createRequestURL({
         option: 'reditem',
         view: 'item_with_org_check_metaverse_content_62',
@@ -47,7 +47,7 @@ class CmsItemsRoute extends BaseRoute {
     );
   };
   deleteItems = (ids) => {
-    return AesirxApiInstance().delete(
+    return AesirXApiInstance.delete(
       this.createRequestURL({
         option: 'reditem',
         view: 'item_with_org_check_metaverse_content_62',
@@ -58,7 +58,7 @@ class CmsItemsRoute extends BaseRoute {
     );
   };
   toggleFeatured = (id, isFeatured) => {
-    return AesirxApiInstance().post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
         id,

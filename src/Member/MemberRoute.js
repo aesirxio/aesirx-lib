@@ -4,7 +4,7 @@
  */
 
 import AesirxServiceApiInstance from '../gateway/InstanceServiceApi';
-import AesirxApiInstance from '../gateway/Instance';
+import AesirXApiInstance from '../gateway/Instance';
 import BaseRoute from '../Abstract/BaseRoute';
 
 class MemberRoute extends BaseRoute {
@@ -25,7 +25,7 @@ class MemberRoute extends BaseRoute {
   };
 
   getTokenByUserRequest = () => {
-    return AesirxApiInstance().get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'persona',
         task: 'getTokenByUser',
@@ -34,7 +34,7 @@ class MemberRoute extends BaseRoute {
   };
 
   getFacebookAdsAppAccessToken = () => {
-    return AesirxApiInstance().get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'member',
         task: 'getFacebookAdsAppAccessToken',
@@ -47,7 +47,7 @@ class MemberRoute extends BaseRoute {
    * @param data
    */
   updateMemberRequest = (data) => {
-    return AesirxApiInstance().put(
+    return AesirXApiInstance.put(
       this.createRequestURL({
         option: 'member',
       }),
@@ -60,7 +60,7 @@ class MemberRoute extends BaseRoute {
    * @param memberId
    */
   getMemberInfoRequest = (memberId) =>
-    AesirxApiInstance().get(
+    AesirXApiInstance.get(
       this.createRequestURL({
         option: 'member',
         id: memberId,
@@ -72,7 +72,7 @@ class MemberRoute extends BaseRoute {
    * @param memberId
    */
   resendActivationEmailRequest = (memberId) => {
-    return AesirxApiInstance().post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'member',
         task: 'resendActivationEmail',
@@ -84,7 +84,7 @@ class MemberRoute extends BaseRoute {
   };
 
   processResetRequest = (data) => {
-    return AesirxApiInstance().post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'member',
         task: 'processResetRequest',
@@ -96,7 +96,7 @@ class MemberRoute extends BaseRoute {
   };
 
   processResetConfirm = (data) => {
-    return AesirxApiInstance().post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'member',
         task: 'processResetConfirm',
@@ -108,7 +108,7 @@ class MemberRoute extends BaseRoute {
   };
 
   processResetComplete = (data) => {
-    return AesirxApiInstance().post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'member',
         task: 'processResetComplete',
@@ -120,7 +120,7 @@ class MemberRoute extends BaseRoute {
   };
 
   checkUsername = (data) => {
-    return AesirxApiInstance().post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'member',
         task: 'checkUsername',
@@ -132,7 +132,7 @@ class MemberRoute extends BaseRoute {
   };
 
   checkEmail = (data) => {
-    return AesirxApiInstance().post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'member',
         task: 'checkEmail',

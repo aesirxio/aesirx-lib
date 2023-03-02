@@ -39,6 +39,9 @@ class AesirxCmsCategoryApiService {
       }
       return { message: 'Something have problem' };
     } catch (error) {
+      if (process.env.NODE_ENV !== 'test') {
+        return error;
+      }
       if (axios.isCancel(error)) {
         return { message: 'isCancel' };
       } else throw error;

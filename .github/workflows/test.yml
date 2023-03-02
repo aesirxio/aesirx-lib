@@ -14,6 +14,8 @@ jobs:
       CI: false
       REACT_APP_CLIENT_ID: ${{ secrets.REACT_APP_CLIENT_ID }}
       REACT_APP_CLIENT_SECRET: ${{ secrets.REACT_APP_CLIENT_SECRET }}
+      REACT_APP_SSO_CLIENT_ID: ${{ secrets.REACT_APP_SSO_CLIENT_ID }}
+      REACT_APP_SSO_CLIENT_SECRET: ${{ secrets.REACT_APP_SSO_CLIENT_SECRET }}
       REACT_APP_ENDPOINT_URL: ${{ secrets.REACT_APP_ENDPOINT_URL }}
       REACT_APP_ENCRYPT: ${{ secrets.REACT_APP_ENCRYPT }}
       REACT_APP_LICENSE: ${{ secrets.REACT_APP_LICENSE }}
@@ -21,6 +23,8 @@ jobs:
       REACT_APP_OAUTH_DEFAULT_USERNAME: ${{ secrets.REACT_APP_OAUTH_DEFAULT_USERNAME }}
       REACT_APP_OAUTH_DEFAULT_PASSWORD: ${{ secrets.REACT_APP_OAUTH_DEFAULT_PASSWORD }}
       REACT_APP_TEST_DOMAIN: ${{ secrets.REACT_APP_TEST_DOMAIN }}
+      REACT_APP_TEST_EMAIL_RECEIVER: ${{ secrets.REACT_APP_TEST_EMAIL_RECEIVER }}
+      REACT_APP_TEST_EMAIL_SENDER: ${{ secrets.REACT_APP_TEST_EMAIL_SENDER }}
 
     steps:
       - uses: actions/checkout@v3
@@ -35,7 +39,7 @@ jobs:
         run: yarn format:check
 
       - name: Run Build
-        run: CI=false yarn run build
+        run: CI=false yarn build
 
       - name: Run Test
         run: yarn test
