@@ -3,12 +3,12 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirxApiInstance from '../gateway/Instance';
+import AesirXApiInstance from '../gateway/Instance';
 import BaseRoute from '../Abstract/BaseRoute';
 
 class ProjectRoute extends BaseRoute {
   getProjetItemRequest = (projectId) =>
-    AesirxApiInstance().get(
+    AesirXApiInstance.get(
       this.createRequestURL({
         option: 'project',
         id: projectId,
@@ -16,7 +16,7 @@ class ProjectRoute extends BaseRoute {
     );
 
   getProjectsRequest = (page = 1, limit = 20) =>
-    AesirxApiInstance().get(
+    AesirXApiInstance.get(
       this.createRequestURL({
         option: 'project',
         'list[limitstart]': (page - 1) * limit,
@@ -25,7 +25,7 @@ class ProjectRoute extends BaseRoute {
     );
 
   searchProjectsRequest = (dataFilter, page = 1, limit = 20) => {
-    return AesirxApiInstance().get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'project',
         task: 'filterProject',
@@ -41,7 +41,7 @@ class ProjectRoute extends BaseRoute {
    * @param data
    */
   createProjectRequest = (data) =>
-    AesirxApiInstance().post(
+    AesirXApiInstance.post(
       this.createRequestURL({
         option: 'project',
       }),
@@ -53,7 +53,7 @@ class ProjectRoute extends BaseRoute {
    * @param data
    */
   updateProjectRequest = (data) =>
-    AesirxApiInstance().put(
+    AesirXApiInstance.put(
       this.createRequestURL({
         option: 'project',
       }),
@@ -67,14 +67,14 @@ class ProjectRoute extends BaseRoute {
     const ids = projectId.split(',');
 
     if (ids.length < 2) {
-      return AesirxApiInstance().delete(
+      return AesirXApiInstance.delete(
         this.createRequestURL({
           option: 'project',
           id: projectId,
         })
       );
     } else {
-      return AesirxApiInstance().post(
+      return AesirXApiInstance.post(
         this.createRequestURL({
           option: 'project',
           task: 'deleteAll',
@@ -87,7 +87,7 @@ class ProjectRoute extends BaseRoute {
   };
 
   getProjectMasterDataRequest = () => {
-    return AesirxApiInstance().get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'project',
         task: 'getMasterData',

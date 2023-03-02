@@ -1,4 +1,4 @@
-import AesirxApiInstance from '../../gateway/Instance';
+import AesirXApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class ContentXCategoriesRoute extends BaseRoute {
@@ -6,7 +6,7 @@ class ContentXCategoriesRoute extends BaseRoute {
 
   getList = (filters) => {
     const buildFilters = this.createFilters(filters);
-    return AesirxApiInstance().get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'reditem',
         view: 'category_with_org_check_aesirx_categories_69',
@@ -15,7 +15,7 @@ class ContentXCategoriesRoute extends BaseRoute {
     );
   };
   getDetail = (id = 0) => {
-    return AesirxApiInstance().get(
+    return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'reditem',
         view: 'category_with_org_check_aesirx_categories_69',
@@ -25,7 +25,7 @@ class ContentXCategoriesRoute extends BaseRoute {
   };
 
   create = (data) => {
-    return AesirxApiInstance().post(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'reditem',
         view: 'category_with_org_check_aesirx_categories_69',
@@ -34,7 +34,7 @@ class ContentXCategoriesRoute extends BaseRoute {
     );
   };
   update = (data) => {
-    return AesirxApiInstance().put(
+    return AesirXApiInstance.put(
       this.createRequestURL({
         option: 'reditem',
         view: 'category_with_org_check_aesirx_categories_69',
@@ -48,7 +48,7 @@ class ContentXCategoriesRoute extends BaseRoute {
     );
   };
   delete = (ids) => {
-    return AesirxApiInstance().delete(
+    return AesirXApiInstance.delete(
       this.createRequestURL({
         option: 'reditem',
         view: 'category_with_org_check_aesirx_categories_69',
