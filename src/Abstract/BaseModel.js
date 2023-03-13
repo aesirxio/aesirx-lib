@@ -40,6 +40,17 @@ class BaseModel {
       totalPages: this.pureEntities.totalPages ? parseInt(this.pureEntities.totalPages) : null,
     };
   };
+
+  getBiPagination = () => {
+    return {
+      page: this.pureEntities.page ? parseInt(this.pureEntities.page) : null,
+      page_size: this.pureEntities.page_size ? parseInt(this.pureEntities.page_size) : null,
+      total_pages: this.pureEntities.total_pages ? parseInt(this.pureEntities.total_pages) : null,
+      total_elements: this.pureEntities.total_elements
+        ? parseInt(this.pureEntities.total_elements)
+        : null,
+    };
+  };
 }
 
 export default BaseModel;

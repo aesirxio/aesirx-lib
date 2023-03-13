@@ -9,13 +9,6 @@ import BaseRoute from '../Abstract/BaseRoute';
 const version = '/v1/';
 
 class BiRoute extends BaseRoute {
-  getDashboard = () => {
-    return;
-  };
-  getListDomain = (dataFilter, listDomains) => {
-    return listDomains;
-  };
-
   getVisitor = (dataFilter, dateFilter) => {
     return AesirXApiInstance.get(
       this.createRequestURL(

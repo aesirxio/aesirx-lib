@@ -26,25 +26,6 @@ class AesirxBiApiService extends Component {
     this.route = new BiRoute();
   }
 
-  getDashboard = async () => {
-    try {
-      const data = await this.route.getDashboard();
-
-      let results = null;
-      if (data) {
-        results = new DashboardModel(data.result);
-      }
-      if (results) {
-        results = results.toJSON();
-      }
-      return results;
-    } catch (error) {
-      if (axios.isCancel(error)) {
-        return { message: 'isCancle' };
-      } else throw error;
-    }
-  };
-
   getListDomain = async (dataFilter, listDomains) => {
     try {
       const data = await this.route.getListDomain(dataFilter, listDomains);
@@ -71,14 +52,22 @@ class AesirxBiApiService extends Component {
       const data = await this.route.getVisitors(dataFilter, dateFilter);
 
       let results = null;
+      let pagination = null;
       if (data) {
         results = new VisitorsModel(data);
+        pagination = results.getBiPagination();
       }
       if (results) {
         results = results.toJSON();
       }
-      return results;
+      return {
+        list: results,
+        pagination: pagination,
+      };
     } catch (error) {
+      if (process.env.NODE_ENV !== 'test') {
+        return error;
+      }
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
       } else throw error;
@@ -128,14 +117,22 @@ class AesirxBiApiService extends Component {
       const data = await this.route.getSummary(dataFilter, dateFilter);
 
       let results = null;
+      let pagination = null;
       if (data) {
         results = new SummaryModel(data);
+        pagination = results.getBiPagination();
       }
       if (results) {
         results = results.toJSON();
       }
-      return results;
+      return {
+        list: results,
+        pagination: pagination,
+      };
     } catch (error) {
+      if (process.env.NODE_ENV !== 'test') {
+        return error;
+      }
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
       } else throw error;

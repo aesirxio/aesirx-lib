@@ -124,7 +124,7 @@ class DomainModel extends BaseModel {
       this.items = entities.result.map((element) => {
         return new DomainItemModel(element);
       });
-      this.items.pagination = this.getPagination();
+      this.items.pagination = this.getBiPagination();
     }
   }
 }
@@ -156,7 +156,7 @@ class VisitorsModel extends BaseModel {
       this.items = entities.collection.map((element) => {
         return new VisitorsItemModel(element);
       });
-      this.items.pagination = this.getPagination();
+      this.items.pagination = this.getBiPagination();
     }
   }
 }
@@ -188,7 +188,7 @@ class SummaryModel extends BaseModel {
       this.items = entities.collection.map((element) => {
         return new SummaryItemModel(element);
       });
-      this.items.pagination = this.getPagination();
+      this.items.pagination = this.getBiPagination();
     }
   }
 }
@@ -270,7 +270,7 @@ class VisitorModel extends BaseModel {
       this.items = entities.collection.map((element) => {
         return new VisitorItemModel(element);
       });
-      this.items.pagination = this.getPagination();
+      this.items.pagination = this.getBiPagination();
     }
   }
 }
