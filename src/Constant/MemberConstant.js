@@ -20,6 +20,7 @@ const MEMBER_FIELD_KEY = {
   COUNTRY: 'country',
   CREATED_DATE: 'registerDate',
   TIMEZONE: 'timezone',
+  LOGO: 'member_logo',
 };
 
 const MEMBER_GET_FIELD_KEY = {
@@ -40,6 +41,7 @@ const MEMBER_GET_FIELD_KEY = {
   TIMEZONE: 'timezone',
   ALLOW_CREATE_ITEM: 'allow_create_item',
   ORGANIZATION: 'organization',
+  LOGO: 'member_logo',
 };
 
 const MEMBER_CREATE_FIELD_KEY = {
