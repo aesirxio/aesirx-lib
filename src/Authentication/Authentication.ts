@@ -14,6 +14,7 @@ import { logout } from './Logout';
 
 class AesirxAuthenticationApiService {
   login = async (email: string, password: string) => {
+    console.log('bbb', email, password);
     try {
       if (!email || !password) return false;
       const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(

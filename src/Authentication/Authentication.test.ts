@@ -1,6 +1,7 @@
 import BaseRoute from '../Abstract/BaseRoute';
 import { AXIOS_CONFIGS } from '../Constant/Constant';
 import AesirxAuthenticationApiService from './Authentication';
+import { describe, expect } from '@jest/globals';
 
 describe('Authentication', () => {
   it('Login', async () => {
@@ -21,7 +22,7 @@ describe('Authentication', () => {
     );
     const clientID = AXIOS_CONFIGS.CLIENT_ID;
     const clientSecret = AXIOS_CONFIGS.CLIENT_SECRET;
-    const refresh_token = process.env.refreshToken;
+    const refresh_token: any = process.env.refreshToken;
     const refreshTokenFormData = new URLSearchParams();
 
     refreshTokenFormData.append('grant_type', 'refresh_token');
@@ -29,7 +30,7 @@ describe('Authentication', () => {
     refreshTokenFormData.append('client_secret', clientSecret);
     refreshTokenFormData.append('refresh_token', refresh_token);
 
-    const response = await service.refreshToken('', AUTHORIZED_CODE_URL, refreshTokenFormData);
+    const response = await service.refreshToken('', AUTHORIZED_CODE_URL, refreshTokenFormData, '');
 
     expect(response.access_token).not.toBe('');
     expect(response.refreshToken).not.toBe('');
