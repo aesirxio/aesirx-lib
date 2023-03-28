@@ -11,13 +11,13 @@ import axios from 'axios';
  * API Service - Tags
  */
 class AesirxPimTagApiService {
-  route = null;
+  route: any = null;
 
   constructor() {
     this.route = new PimTagRoute();
   }
 
-  getList = async (filter) => {
+  getList = async (filter: any) => {
     try {
       const data = await this.route.getList(filter);
       let results = null;

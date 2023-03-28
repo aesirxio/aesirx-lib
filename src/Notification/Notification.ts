@@ -4,31 +4,26 @@
  */
 
 import NotificationRoute from './NotificationRoute';
-import { Component } from 'react';
 
 /**
  * API Service - Notification
  */
-class AesirxNotificationApiService extends Component {
-  route = null;
+class AesirxNotificationApiService {
+  route: any = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new NotificationRoute();
-    if (props) {
-      this.mode = props.mode ?? null;
-    }
   }
 
-  getNotifications = async (memberId) => {
+  getNotifications = async (memberId: any) => {
     return await this.route.getNotificationsRequest(memberId);
   };
 
-  markRead = async (notificationId, memberId) => {
+  markRead = async (notificationId: any, memberId: any) => {
     return await this.route.markReadRequest(notificationId, memberId);
   };
 
-  markReadAll = async (memberId) => {
+  markReadAll = async (memberId: any) => {
     return await this.route.markReadAllRequest(memberId);
   };
 

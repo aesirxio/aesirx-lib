@@ -5,28 +5,23 @@
 
 import FacebookDataRoute from './FacebookDataRoute';
 import axios from 'axios';
-import { Component } from 'react';
 import { AUTHORIZATION_KEY } from '../Constant/Constant';
 import Storage from '../Utils/Storage';
 
 /**
  * Laravel Service - Facebook Data
  */
-class FacebookData extends Component {
-  route = null;
+class FacebookData {
+  route: any = null;
   accessToken = Storage.getItem(AUTHORIZATION_KEY.FACEBOOK_ADS_APP_ACCESS_TOKEN);
   facebookGraphApiDomain = 'graph.facebook.com';
   facebookGraphApiVersion = 'v11.0';
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new FacebookDataRoute();
-    if (props) {
-      this.mode = props.mode ?? null;
-    }
   }
 
-  async getAdPreviewFromFacebookData(creative, pageId, organisationId) {
+  async getAdPreviewFromFacebookData(creative: any, pageId: any, organisationId: any) {
     try {
       return await this.route.getAdPreviewFromFacebookDataRequest(creative, pageId, organisationId);
     } catch (error) {

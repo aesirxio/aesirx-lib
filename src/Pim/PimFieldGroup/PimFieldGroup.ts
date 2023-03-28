@@ -11,13 +11,13 @@ import axios from 'axios';
  * API Service - FieldGroup
  */
 class AesirxPimFieldGroupApiService {
-  route = null;
+  route: any = null;
 
   constructor() {
     this.route = new PimFieldGroupRoute();
   }
 
-  create = async (data) => {
+  create = async (data: any) => {
     try {
       const result = await this.route.create(data);
       if (result) {
@@ -31,7 +31,7 @@ class AesirxPimFieldGroupApiService {
     }
   };
 
-  update = async (data) => {
+  update = async (data: any) => {
     try {
       const result = await this.route.update(data);
       if (result) {
@@ -64,7 +64,7 @@ class AesirxPimFieldGroupApiService {
     }
   };
 
-  getList = async (filter) => {
+  getList = async (filter: any) => {
     try {
       const data = await this.route.getList(filter);
       let listItems = null;
@@ -72,7 +72,7 @@ class AesirxPimFieldGroupApiService {
 
       if (data?._embedded) {
         listItems = await Promise.all(
-          data._embedded.item.map(async (o) => {
+          data._embedded.item.map(async (o: any) => {
             return new FieldGroupItemModel(o);
           })
         );
@@ -97,9 +97,9 @@ class AesirxPimFieldGroupApiService {
     }
   };
 
-  updateStatus = async (arr, status) => {
+  updateStatus = async (arr: any, status: any) => {
     try {
-      const listSelected = arr.map((o) => {
+      const listSelected = arr.map((o: any) => {
         return { id: o, state: status };
       });
 
@@ -116,9 +116,9 @@ class AesirxPimFieldGroupApiService {
     }
   };
 
-  deleteFieldGroups = async (arr) => {
+  deleteFieldGroups = async (arr: any) => {
     try {
-      const listSelected = await arr.map((o) => {
+      const listSelected = await arr.map((o: any) => {
         return { id: o };
       });
 

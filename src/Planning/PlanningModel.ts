@@ -8,11 +8,12 @@ import BaseItemModel from '../Abstract/BaseItemModel';
 import BaseModel from '../Abstract/BaseModel';
 
 class PlanningModel extends BaseModel {
-  constructor(entities) {
+  items: any;
+  constructor(entities: any) {
     super(entities);
     if (entities) {
       this.unTransformedItems = entities._embedded.item;
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new PlanningItemModel(element);
       });
 
@@ -22,11 +23,12 @@ class PlanningModel extends BaseModel {
 }
 
 class PlanningFilterModel extends BaseModel {
-  constructor(entities) {
+  items: any;
+  constructor(entities: any) {
     super(entities);
     if (entities) {
       this.unTransformedItems = entities.result.data;
-      this.items = entities.result.data.map((element) => {
+      this.items = entities.result.data.map((element: any) => {
         return new PlanningItemModel(element);
       });
 
@@ -55,7 +57,7 @@ class PlanningItemModel extends BaseItemModel {
   background = '';
   desc = '';
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[PLANNING_FIELD_KEY.ID] ?? this.id;

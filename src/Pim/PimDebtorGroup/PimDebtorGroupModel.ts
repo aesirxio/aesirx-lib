@@ -7,18 +7,18 @@ import BaseItemModel from '../../Abstract/BaseItemModel';
 import BaseModel from '../../Abstract/BaseModel';
 import { PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY } from '../../Constant/PimConstant';
 class DebtorGroupModel extends BaseModel {
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new DebtorGroupItemModel(element);
       });
     }
   }
 }
 class DebtorGroupItemModel extends BaseItemModel {
-  id = null;
-  title = null;
+  id: any = null;
+  title: any = null;
   published = 0;
   featured = 0;
   created_user_name = null;
@@ -28,7 +28,7 @@ class DebtorGroupItemModel extends BaseItemModel {
   organisation_name = null;
   modified_time = null;
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY.ID] ?? '';
@@ -64,7 +64,7 @@ class DebtorGroupItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     let formData = new FormData();
     const excluded = [
       PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY.ID,
@@ -95,7 +95,7 @@ class DebtorGroupItemModel extends BaseItemModel {
     return formData;
   };
 
-  static __transformItemToApiOfUpdation = (data) => {
+  static __transformItemToApiOfUpdation = (data: any) => {
     let formData = {};
     const excluded = [PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY.CUSTOM_FIELDS];
     Object.keys(PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY).forEach((index) => {

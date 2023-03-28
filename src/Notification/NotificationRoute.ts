@@ -3,25 +3,25 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirxServiceApiInstance from '../gateway/InstanceServiceApi';
+import AesirxServiceApiInstance from '../Gateway/InstanceServiceApi';
 import BaseRoute from '../Abstract/BaseRoute';
 
 /**
  * Class NotificationRoute extends BaseRoute
  */
 class NotificationRoute extends BaseRoute {
-  getNotificationsRequest = (memberId) => {
+  getNotificationsRequest = (memberId: any) => {
     return AesirxServiceApiInstance.get('/api/notification/' + memberId);
   };
 
-  markReadRequest = (notificationId, memberId) => {
+  markReadRequest = (notificationId: any, memberId: any) => {
     return AesirxServiceApiInstance.put('/api/notification-mark-read', {
       notification_id: notificationId,
       member_id: memberId,
     });
   };
 
-  markReadAllRequest = (memberId) => {
+  markReadAllRequest = (memberId: any => {
     return AesirxServiceApiInstance.put('/api/notification-mark-read-all', { member_id: memberId });
   };
 }

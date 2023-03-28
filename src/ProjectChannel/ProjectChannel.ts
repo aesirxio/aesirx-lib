@@ -9,33 +9,20 @@ import {
   ProjectChannelByProjectIdModel,
 } from './ProjectChannelModel';
 import ProjectChannelRoute from './ProjectChannelRoute';
-import { Component } from 'react';
 
 /**
  * API Service - Project
  */
-class AesirxProjectChannelApiService extends Component {
-  route = null;
+class AesirxProjectChannelApiService {
+  route: any = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new ProjectChannelRoute();
-    if (props) {
-      this.mode = props.mode ?? null;
-    }
   }
 
   /**
    * Get 20 first Projects are sorted by ID
-   * @param page (default: 1)
-   * @param limit (default: 20)
-   * @returns {ARRAY|NULL}
-   * - ARRAY: List of project in JSON format
-   *     - Ex:
-   *     - To access field name within each project item correctly, use `ESI_PROJECT_FIELD_KEY`.
-   * - NULL: List of project is EMPTY
    *  */
-
   async getProjectChannels(page = 1, limit = 20, returnAsJSON = true) {
     try {
       const data = await this.route.getProjectChannelsRequest(page, limit);
@@ -54,10 +41,6 @@ class AesirxProjectChannelApiService extends Component {
 
   /**
    * Call this function once you need the detail inforamtion of a Project Item by passing a ProjectID
-   * @param projectID (default: null)
-   * @returns {JSON|NULL}
-   * - JSON: Project item information is in JSON format
-   * - NULL: Project item is NOT found
    *  */
   async getProjectChannelItem(projectID = 0, returnAsJSON = true) {
     try {
@@ -80,7 +63,7 @@ class AesirxProjectChannelApiService extends Component {
     return true;
   }
 
-  async postToFanpage(itemId, content, channelType) {
+  async postToFanpage(itemId: any, content: any, channelType: any) {
     try {
       if (!itemId || itemId === 0) return false;
       return await this.route.postToFanpageRequest(itemId, content, channelType);
@@ -91,18 +74,8 @@ class AesirxProjectChannelApiService extends Component {
 
   /**
    * Create a Project
-   * @param JSON data
-   * - Fields structure:
-   * {
-   *    title: '',
-   *    start_date: '',
-   *    end_date: '',
-   *    logo:
-   *    short_description: '',
-   * }
-   * @returns {Boolean}
    */
-  async createProjectChannel(data) {
+  async createProjectChannel(data: any) {
     try {
       // if (!data) return false;
       const dataToSubmit = ProjectChannelItemModel.__transformItemToApiOfCreation(data);
@@ -118,19 +91,8 @@ class AesirxProjectChannelApiService extends Component {
 
   /**
    * Update data of the Project with specified Project ID
-   * @param JSON data
-   * - Fields structure:
-   * {
-   *    id:''
-   *    title: '',
-   *    start_date: '',
-   *    end_date: '',
-   *    logo:
-   *    short_description: '',
-   * }
-   * @returns {Boolean}
    */
-  async updateProjectChannel(data) {
+  async updateProjectChannel(data: any) {
     try {
       if (!data) return false;
       if (data.id === null || data.id === 0 || data.id === undefined) return false;
@@ -147,10 +109,8 @@ class AesirxProjectChannelApiService extends Component {
 
   /**
    * Delete a Project
-   * @param integer projectId
-   * @returns {Boolean}
    */
-  async deleteProjectChannel(itemId) {
+  async deleteProjectChannel(itemId: any) {
     try {
       if (!itemId || itemId === 0) return false;
       return await this.route.deleteProjectChannelRequest(itemId);
@@ -159,7 +119,7 @@ class AesirxProjectChannelApiService extends Component {
     }
   }
 
-  async getLoginUrl(itemId, channelType) {
+  async getLoginUrl(itemId: any, channelType: any) {
     try {
       if (!itemId || itemId === 0) return false;
       return await this.route.loginProjectChannelRequert(itemId, channelType);
@@ -168,7 +128,7 @@ class AesirxProjectChannelApiService extends Component {
     }
   }
 
-  async getCheckConnectStatusChannel(itemId, channelType) {
+  async getCheckConnectStatusChannel(itemId: any, channelType: any) {
     try {
       if (!itemId || itemId === 0) return false;
       return await this.route.checkConnectStatusChannel(itemId, channelType);
@@ -178,7 +138,7 @@ class AesirxProjectChannelApiService extends Component {
   }
 
   //getListFanpageRequest
-  async getListFanpage(itemId) {
+  async getListFanpage(itemId: any) {
     try {
       if (!itemId || itemId === 0) return false;
 
@@ -188,10 +148,10 @@ class AesirxProjectChannelApiService extends Component {
     }
   }
 
-  async connectMultiFanpage(itemId, pageIds) {
+  async connectMultiFanpage(itemId: any, pageIds: any) {
     try {
       return await Promise.all(
-        pageIds.map(async (pid) => {
+        pageIds.map(async (pid: any) => {
           return await this.connectFanpage(itemId, pid);
         })
       );
@@ -200,7 +160,7 @@ class AesirxProjectChannelApiService extends Component {
     }
   }
 
-  async connectFanpage(itemId, pageId) {
+  async connectFanpage(itemId: any, pageId: any) {
     try {
       if (!itemId || itemId === 0) return false;
       return await this.route.connectFanpageRequest(itemId, pageId);
@@ -209,7 +169,7 @@ class AesirxProjectChannelApiService extends Component {
     }
   }
 
-  async checkConnectionStatusFacebook(itemId) {
+  async checkConnectionStatusFacebook(itemId: any) {
     let response = { result: false };
 
     response = await this.getListFanpage(itemId);
@@ -219,42 +179,22 @@ class AesirxProjectChannelApiService extends Component {
 
   /**
    * Do Login Cms
-   * @param JSON dataPost
-   * - Fields structure:
-   * {
-   *    projectId: 10,
-   *    channelType: "wordpress",
-   *    endpoint_url: "https://testwp.aesirx.io",
-   *    username: "admin",
-   *    password: "(xU3Y9PE81)SuyR5i8",
-   * }
-   * @param Boolean returnAsJSON
-   * @returns {Boolean}
    */
-  doLoginCMS = async (dataPost) => {
+  doLoginCMS = async (dataPost: any) => {
     const result = await this.route.doLoginCMSRequest(dataPost);
     return result.result;
   };
 
   /**
    * Do Post Content To CMS
-   * @param JSON dataPost
-   * - Fields structure:
-   * {
-   *    projectId: 10,
-   *    channelType: "wordpress",
-   *    content: '{"headline":"hung-test","content":"hung-test-content"}'
-   * }
-   * @param Boolean returnAsJSON
-   * @returns {Boolean}
    */
-  doPostContentToCMS = async (dataPost) => {
+  doPostContentToCMS = async (dataPost: any) => {
     const result = await this.route.doPostContentToCMSRequest(dataPost);
 
     return result.result;
   };
 
-  async getProjectChannelsByProjectId(projectId, returnAsJSON = true) {
+  async getProjectChannelsByProjectId(projectId: any, returnAsJSON = true) {
     const data = await this.route.getProjectChannelsByProjectIdRequest(projectId);
 
     let results = null;
@@ -267,10 +207,6 @@ class AesirxProjectChannelApiService extends Component {
     }
 
     return results;
-  }
-
-  render() {
-    return {};
   }
 }
 

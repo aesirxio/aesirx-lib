@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirXApiInstance from '../../gateway/Instance';
+import AesirXApiInstance from '../../Gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class PimTagRoute extends BaseRoute {
@@ -20,9 +20,9 @@ class PimTagRoute extends BaseRoute {
     );
   };
 
-  createFilter = (filter) => {
-    let buildFilter = {};
-    for (const [key, value] of Object.entries(filter)) {
+  createFilter = (filter: any) => {
+    let buildFilter: any = {};
+    for (const [key, value] of Object.entries<any>(filter)) {
       if (Array.isArray(value)) {
         buildFilter[key + '[]'] = value;
       } else {

@@ -13,11 +13,11 @@ import BaseModel from '../Abstract/BaseModel';
 class ProjectChannelModel extends BaseModel {
   items = [];
   unTransformedItems = [];
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
       this.unTransformedItems = entities._embedded.item;
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new ProjectChannelItemModel(element);
       });
     }
@@ -27,12 +27,12 @@ class ProjectChannelModel extends BaseModel {
 class ProjectChannelByProjectIdModel extends BaseModel {
   items = [];
   unTransformedItems = [];
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
       const projectChannels = entities.result;
       this.unTransformedItems = projectChannels;
-      this.items = projectChannels.map((element) => {
+      this.items = projectChannels.map((element: any) => {
         return new ProjectChannelItemModel(element);
       });
     }
@@ -45,7 +45,7 @@ class ProjectChannelItemModel extends BaseItemModel {
   handle = '';
   channelName = null;
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.channel = entity[ESI_PROJECT_CHANNEL_API_RESPONSE_FIELD_KEY.CHANNEL] ?? [0];
@@ -78,7 +78,7 @@ class ProjectChannelItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     return {
       [ESI_PROJECT_CHANNEL_API_RESPONSE_FIELD_KEY.CHANNEL]:
         data[ESI_PROJECT_CHANNEL_FIELD_KEY.CHANNEL] ?? '',
@@ -89,7 +89,7 @@ class ProjectChannelItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfUpdation = (data) => {
+  static __transformItemToApiOfUpdation = (data: any) => {
     return {
       [ESI_PROJECT_CHANNEL_API_RESPONSE_FIELD_KEY.CHANNEL]:
         data[ESI_PROJECT_CHANNEL_FIELD_KEY.CHANNEL],
@@ -100,7 +100,7 @@ class ProjectChannelItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfPostToFB = (postContent) => {
+  static __transformItemToApiOfPostToFB = (postContent: any) => {
     return {
       [ESI_PROJECT_CHANNEL_API_RESPONSE_FIELD_KEY.FBCONTENT]: postContent,
     };

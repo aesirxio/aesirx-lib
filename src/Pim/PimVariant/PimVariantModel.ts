@@ -1,8 +1,8 @@
 import BaseItemModel from '../../Abstract/BaseItemModel';
 import { PIM_VARIANT_DETAIL_FIELD_KEY } from '../../Constant/PimConstant';
 class VariantItemModel extends BaseItemModel {
-  id = null;
-  title = null;
+  id: any = null;
+  title: any = null;
   published = 0;
   featured = 0;
   created_user_name = null;
@@ -11,7 +11,7 @@ class VariantItemModel extends BaseItemModel {
   modified_time = null;
   created_time = null;
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[PIM_VARIANT_DETAIL_FIELD_KEY.ID] ?? '';
@@ -54,7 +54,7 @@ class VariantItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     let formData = new FormData();
 
     const excluded = [PIM_VARIANT_DETAIL_FIELD_KEY.ID];

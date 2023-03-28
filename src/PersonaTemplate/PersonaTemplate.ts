@@ -5,20 +5,15 @@
 
 import { PersonaTemplateItemModel, PersonaTemplateModel } from './PersonaTemplateModel';
 import PersonaTemplateRoute from './PersonaTemplateRoute';
-import { Component } from 'react';
 
 /**
  * API Service - Persona Template
  */
-class AesirxPersonaTemplateApiService extends Component {
-  route = null;
+class AesirxPersonaTemplateApiService {
+  route: any = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new PersonaTemplateRoute();
-    if (props) {
-      this.mode = props.mode ?? null;
-    }
   }
 
   /**

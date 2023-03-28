@@ -4,7 +4,7 @@
  */
 
 import BaseRoute from '../Abstract/BaseRoute';
-import AesirXApiInstance from '../gateway/Instance';
+import AesirXApiInstance from '../Gateway/Instance';
 
 /**
  * Class PersonaRoute extends BaseRoute
@@ -16,7 +16,7 @@ class PersonaRoute extends BaseRoute {
    * @return JSON
    */
 
-  getPersonaRequest = (personaId) =>
+  getPersonaRequest = (personaId: any) =>
     AesirXApiInstance.get(
       this.createRequestURL({
         option: 'persona',
@@ -28,7 +28,7 @@ class PersonaRoute extends BaseRoute {
    *
    * @param data
    */
-  createPersonaRequest = (data) =>
+  createPersonaRequest = (data: any) =>
     AesirXApiInstance.post(
       this.createRequestURL({
         option: 'persona',
@@ -40,7 +40,7 @@ class PersonaRoute extends BaseRoute {
    *
    * @param data
    */
-  updatePersonaRequest = (data) =>
+  updatePersonaRequest = (data: any) =>
     AesirXApiInstance.put(
       this.createRequestURL({
         option: 'persona',
@@ -53,7 +53,7 @@ class PersonaRoute extends BaseRoute {
    * @param personaId
    */
 
-  deletePersonaRequest = (personaId) => {
+  deletePersonaRequest = (personaId: any) => {
     const ids = personaId.split(',');
 
     if (ids.length < 2) {
@@ -94,7 +94,7 @@ class PersonaRoute extends BaseRoute {
     );
   };
 
-  getConnectedChannelByOrganisationIdRequest = (organisationId) => {
+  getConnectedChannelByOrganisationIdRequest = (organisationId: any) => {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'persona',
@@ -109,7 +109,7 @@ class PersonaRoute extends BaseRoute {
    * @param  personaIds = '123, 456'
    * @return JSON
    */
-  getConnectedChannelByPersonaIdsRequest = (personaIds) => {
+  getConnectedChannelByPersonaIdsRequest = (personaIds: any) => {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'persona',
@@ -119,7 +119,7 @@ class PersonaRoute extends BaseRoute {
     );
   };
 
-  searchPersonasRequest = (dataFilter, page = 1, limit = 20) => {
+  searchPersonasRequest = (dataFilter: any, page = 1, limit = 20) => {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'persona',

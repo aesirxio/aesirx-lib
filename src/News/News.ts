@@ -6,15 +6,13 @@
 import { NewsModel } from './NewsModel';
 import NewsRoute from './NewsRoute';
 
-import { Component } from 'react';
 import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
 import Storage from '../Utils/Storage';
 import AesirxAuthenticationApiService from '../Authentication/Authentication';
 import BaseRoute from '../Abstract/BaseRoute';
-class AesirxNewsApiService extends Component {
-  route = null;
-  constructor(props) {
-    super(props);
+class AesirxNewsApiService {
+  route: any = null;
+  constructor() {
     this.route = new NewsRoute();
   }
   init = async () => {

@@ -11,13 +11,13 @@ import { ProductPriceItemModel } from './PimProductPriceModel';
  * API Service - Product
  */
 class AesirxPimProductPriceApiService {
-  route = null;
+  route: any = null;
 
   constructor() {
     this.route = new PimProductPriceRoute();
   }
 
-  create = async (data) => {
+  create = async (data: any) => {
     try {
       const result = await this.route.create(data);
       if (result) {
@@ -31,7 +31,7 @@ class AesirxPimProductPriceApiService {
     }
   };
 
-  update = async (data) => {
+  update = async (data: any) => {
     try {
       const result = await this.route.update(data);
       if (result) {
@@ -64,7 +64,7 @@ class AesirxPimProductPriceApiService {
     }
   };
 
-  getList = async (filter) => {
+  getList = async (filter: any) => {
     try {
       const data = await this.route.getList(filter);
       let listItems = null;
@@ -97,9 +97,9 @@ class AesirxPimProductPriceApiService {
     }
   };
 
-  updateStatus = async (arr, status) => {
+  updateStatus = async (arr: any, status: any) => {
     try {
-      const listSelected = arr.map((o) => {
+      const listSelected = arr.map((o: any) => {
         return { id: o, published: status };
       });
 
@@ -116,7 +116,7 @@ class AesirxPimProductPriceApiService {
     }
   };
 
-  updatePrices = async (arr) => {
+  updatePrices = async (arr: any) => {
     try {
       const result = await this.route.updatePrices(arr);
       if (result) {
@@ -130,9 +130,9 @@ class AesirxPimProductPriceApiService {
     }
   };
 
-  deleteProductPrices = async (arr) => {
+  deleteProductPrices = async (arr: any) => {
     try {
-      const listSelected = await arr.map((o) => {
+      const listSelected = await arr.map((o: any) => {
         return { id: o };
       });
 

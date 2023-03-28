@@ -4,22 +4,20 @@
  */
 
 import PimVariantRoute from './PimVariantRoute';
-import { Component } from 'react';
 import axios from 'axios';
 import { VariantItemModel } from './PimVariantModel';
 
 /**
  * API Service - Product
  */
-class AesirxPimVariantApiService extends Component {
-  route = null;
+class AesirxPimVariantApiService {
+  route: any = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new PimVariantRoute();
   }
 
-  create = async (data) => {
+  create = async (data: any) => {
     try {
       const result = await this.route.create(data);
 
@@ -34,7 +32,7 @@ class AesirxPimVariantApiService extends Component {
     }
   };
 
-  update = async (data) => {
+  update = async (data: any) => {
     try {
       const result = await this.route.update(data);
       if (result) {

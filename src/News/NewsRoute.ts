@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirxWebServiceApiInstance from '../gateway/IntanceWebServiceApi';
+import AesirxWebServiceApiInstance from '../Gateway/IntanceWebServiceApi';
 import BaseRoute from '../Abstract/BaseRoute';
 import { AXIOS_CONFIGS } from '../Constant/Constant';
 

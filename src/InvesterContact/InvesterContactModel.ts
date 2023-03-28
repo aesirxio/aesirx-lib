@@ -12,11 +12,12 @@ import BaseModel from '../Abstract/BaseModel';
 import { PersonaItemModel } from '../Persona/PersonaModel';
 
 class InvesterContactModel extends BaseModel {
-  constructor(entities) {
+  items: any;
+  constructor(entities: any) {
     super(entities);
     if (entities) {
       this.unTransformedItems = entities._embedded.item;
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new PersonaItemModel(element);
       });
 
@@ -31,7 +32,7 @@ class InvesterContactItemModel extends BaseItemModel {
   email = '';
   phoneNumber = '';
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.organizationName =
@@ -42,7 +43,7 @@ class InvesterContactItemModel extends BaseItemModel {
     }
   }
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     return {
       [ESI_INVESTER_CONTACT_API_RESPONSE_FIELD_KEY.ORGANIZATION_NAME]:
         data[ESI_INVESTER_CONTACT_FIELD_KEY.ORGANIZATION_NAME] ?? '',

@@ -12,6 +12,7 @@ import UtilsRoute from './PimUtilsRoute';
  */
 class AesirxPimUtilApiService {
   route = null;
+  utilsRoute: any;
 
   constructor() {
     this.utilsRoute = new UtilsRoute();
@@ -25,7 +26,7 @@ class AesirxPimUtilApiService {
 
       if (data?.result) {
         results = await Promise.all(
-          data.result.map(async (o) => {
+          data.result.map(async (o: any) => {
             return new PublishStatusModel(o).toJSON();
           })
         );
@@ -49,7 +50,7 @@ class AesirxPimUtilApiService {
 
       if (data?.result) {
         results = await Promise.all(
-          data.result.map(async (o) => {
+          data.result.map(async (o: any) => {
             return new PublishStatusModel(o).toJSON();
           })
         );
@@ -73,7 +74,7 @@ class AesirxPimUtilApiService {
 
       if (data?.result) {
         results = await Promise.all(
-          data.result.map(async (o) => {
+          data.result.map(async (o: any) => {
             return new PublishStatusModel(o).toJSON();
           })
         );

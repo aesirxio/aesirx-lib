@@ -3,8 +3,8 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirxServiceApiInstance from '../gateway/InstanceServiceApi';
-import AesirXApiInstance from '../gateway/Instance';
+import AesirxServiceApiInstance from '../Gateway/InstanceServiceApi';
+import AesirXApiInstance from '../Gateway/Instance';
 import BaseRoute from '../Abstract/BaseRoute';
 
 class MemberRoute extends BaseRoute {

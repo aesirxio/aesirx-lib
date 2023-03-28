@@ -4,23 +4,18 @@
  */
 
 import GoogleDataRoute from './GoogleDataRoute';
-import { Component } from 'react';
 
 /**
  * Laravel Service - Google Data
  */
-class GoogleData extends Component {
-  route = null;
+class GoogleData {
+  route: any = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new GoogleDataRoute();
-    if (props) {
-      this.mode = props.mode ?? null;
-    }
   }
 
-  async getSearchLocationFromGoogleData(key) {
+  async getSearchLocationFromGoogleData(key: any) {
     try {
       return await this.route.getSearchLocationFromGoogleDataRequest(key);
     } catch (error) {
@@ -28,7 +23,7 @@ class GoogleData extends Component {
     }
   }
 
-  async getInterestsFromGoogleData(key) {
+  async getInterestsFromGoogleData(key: any) {
     try {
       return await this.route.getInterestsFromGoogleDataRequest(key);
     } catch (error) {

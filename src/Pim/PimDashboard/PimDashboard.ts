@@ -11,13 +11,13 @@ import axios from 'axios';
  * API Service - Dashboards
  */
 class AesirxPimDashboardApiService {
-  route = null;
+  route: any = null;
 
   constructor() {
     this.route = new PimDashboardRoute();
   }
 
-  getStatisticalData = async (filter) => {
+  getStatisticalData = async (filter: any) => {
     try {
       const data = await this.route.getStatisticalData(filter);
       let results = null;

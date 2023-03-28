@@ -12,13 +12,13 @@ import axios from 'axios';
  * API Service - Category
  */
 class AesirxPimCategoryApiService {
-  route = null;
+  route: any = null;
 
   constructor() {
     this.route = new PimCategoryRoute();
   }
 
-  create = async (data) => {
+  create = async (data: any) => {
     try {
       const result = await this.route.create(data);
       if (result) {
@@ -32,7 +32,7 @@ class AesirxPimCategoryApiService {
     }
   };
 
-  update = async (data) => {
+  update = async (data: any) => {
     try {
       const result = await this.route.update(data);
       if (result) {
@@ -65,7 +65,7 @@ class AesirxPimCategoryApiService {
     }
   };
 
-  getList = async (filter) => {
+  getList = async (filter: any) => {
     try {
       const data = await this.route.getList(filter);
       let listItems = null;
@@ -98,9 +98,9 @@ class AesirxPimCategoryApiService {
     }
   };
 
-  updateStatus = async (arr, status) => {
+  updateStatus = async (arr: any, status: any) => {
     try {
-      const listSelected = arr.map((o) => {
+      const listSelected = arr.map((o: any) => {
         return { id: o, published: status };
       });
 
@@ -117,9 +117,9 @@ class AesirxPimCategoryApiService {
     }
   };
 
-  deleteCategories = async (arr) => {
+  deleteCategories = async (arr: any) => {
     try {
-      const listSelected = await arr.map((o) => {
+      const listSelected = await arr.map((o: any) => {
         return { id: o };
       });
 

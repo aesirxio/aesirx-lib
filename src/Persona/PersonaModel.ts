@@ -8,11 +8,12 @@ import BaseItemModel from '../Abstract/BaseItemModel';
 import BaseModel from '../Abstract/BaseModel';
 
 class PersonaModel extends BaseModel {
-  constructor(entities) {
+  items: any;
+  constructor(entities: any) {
     super(entities);
     if (entities) {
       this.unTransformedItems = entities._embedded.item;
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new PersonaItemModel(element);
       });
 
@@ -22,11 +23,12 @@ class PersonaModel extends BaseModel {
 }
 
 class PersonaFilterModel extends BaseModel {
-  constructor(entities) {
+  items: any;
+  constructor(entities: any) {
     super(entities);
     if (entities) {
       this.unTransformedItems = entities.result.data;
-      this.items = entities.result.data.map((element) => {
+      this.items = entities.result.data.map((element: any) => {
         return new PersonaItemModel(element);
       });
 
@@ -64,7 +66,7 @@ class PersonaItemModel extends BaseItemModel {
   behaviors_select = '';
   location_all_contries = '';
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.name = entity[PERSONA_RESPONSE_FIELD_KEY.NAME] ?? '';
@@ -128,7 +130,7 @@ class PersonaItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     return {
       [PERSONA_RESPONSE_FIELD_KEY.NAME]: data[PERSONA_FIELD_KEY.NAME] ?? '',
       [PERSONA_RESPONSE_FIELD_KEY.AVATAR]: data[PERSONA_FIELD_KEY.AVATAR] ?? '',
@@ -152,7 +154,7 @@ class PersonaItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfUpdation = (data) => {
+  static __transformItemToApiOfUpdation = (data: any) => {
     return {
       [PERSONA_RESPONSE_FIELD_KEY.ID]: data[PERSONA_FIELD_KEY.ID] ?? '',
       [PERSONA_RESPONSE_FIELD_KEY.NAME]: data[PERSONA_FIELD_KEY.NAME] ?? '',

@@ -4,7 +4,7 @@
  */
 
 import BaseRoute from '../Abstract/BaseRoute';
-import AesirXApiInstance from '../gateway/Instance';
+import AesirXApiInstance from '../Gateway/Instance';
 
 /**
  * Class PersonaRoute extends BaseRoute
@@ -16,7 +16,7 @@ class PersonaTemplateRoute extends BaseRoute {
    * @return JSON
    */
 
-  getPersonaTemplateRequest = (personaTemplateId) =>
+  getPersonaTemplateRequest = (personaTemplateId: any) =>
     AesirXApiInstance.get(
       this.createRequestURL({
         option: 'persona_template',

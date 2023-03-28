@@ -4,7 +4,7 @@
  */
 
 import BaseRoute from '../Abstract/BaseRoute';
-import AesirXApiInstance from '../gateway/Instance';
+import AesirXApiInstance from '../Gateway/Instance';
 
 /**
  * Class InvesterContactRoute extends BaseRoute
@@ -14,7 +14,7 @@ class InvesterContactRoute extends BaseRoute {
    *
    * @param data
    */
-  createInvesterContactRequest = (data) =>
+  createInvesterContactRequest = (data: any) =>
     AesirXApiInstance.post(
       this.createRequestURL({
         option: 'invester_contact',

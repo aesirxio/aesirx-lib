@@ -7,24 +7,24 @@ import BaseItemModel from '../Abstract/BaseItemModel';
 import BaseModel from '../Abstract/BaseModel';
 import { NEWS_FIELD_KEY } from '../Constant/NewsConstant';
 class NewsModel extends BaseModel {
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new NewsItemModel(element);
       });
     }
   }
 }
 class NewsItemModel extends BaseItemModel {
-  id = '';
+  id: any = '';
   title = '';
   intro_image = '';
   link = '';
   publish_date = '';
   category = '';
   category_link = '';
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[NEWS_FIELD_KEY.ID] ?? '';

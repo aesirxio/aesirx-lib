@@ -10,34 +10,20 @@ import {
   ProjectFilterModel,
 } from './ProjectModel';
 import ProjectRoute from './ProjectRoute';
-import { Component } from 'react';
 
 /**
  * API Service - Project
  */
-class AesirxProjectApiService extends Component {
+class AesirxProjectApiService {
   route: any = null;
-  mode: any;
 
-  constructor(props: any) {
-    super(props);
+  constructor() {
     this.route = new ProjectRoute();
-    if (props) {
-      this.mode = props.mode ?? null;
-    }
   }
 
   /**
    * Get 20 first Projects are sorted by ID
-   * @param page (default: 1)
-   * @param limit (default: 20)
-   * @returns {ARRAY|NULL}
-   * - ARRAY: List of project in JSON format
-   *     - Ex:
-   *     - To access field name within each project item correctly, use `ESI_PROJECT_FIELD_KEY`.
-   * - NULL: List of project is EMPTY
    *  */
-
   async getProjects(page = 1, limit = 20, returnAsJSON = true) {
     try {
       const data = await this.route.getProjectsRequest(page, limit);

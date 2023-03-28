@@ -11,13 +11,13 @@ class DashboardModel extends BaseItemModel {
   total_categories = null;
   percent_new_product = null;
   percent_new_categories = null;
-  percent_product_publish = null;
-  percent_product_unPublish = null;
-  percent_product_draft = null;
-  percent_product_Archived = null;
-  percent_product_trash = null;
+  percent_product_publish: any = null;
+  percent_product_unPublish: any = null;
+  percent_product_draft: any = null;
+  percent_product_Archived: any = null;
+  percent_product_trash: any = null;
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.total_product = entity[PIM_DASH_BOARD_DETAIL_FIELD_KEY.TOTAL_PRODUCT] ?? '';

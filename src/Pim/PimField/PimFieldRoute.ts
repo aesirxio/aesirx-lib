@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirXApiInstance from '../../gateway/Instance';
+import AesirXApiInstance from '../../Gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class PimFieldRoute extends BaseRoute {
@@ -21,9 +21,9 @@ class PimFieldRoute extends BaseRoute {
     );
   };
 
-  createFilters = (filters) => {
-    let buildFilter = {};
-    for (const [key, value] of Object.entries(filters)) {
+  createFilters = (filters: any) => {
+    let buildFilter: any = {};
+    for (const [key, value] of Object.entries<any>(filters)) {
       if (typeof value === 'object') {
         switch (value.type) {
           case 'custom_fields':
@@ -43,9 +43,9 @@ class PimFieldRoute extends BaseRoute {
     return buildFilter;
   };
 
-  createFilterList = (filter) => {
-    let buildFilterList = {};
-    for (const [key, value] of Object.entries(filter)) {
+  createFilterList = (filter: any) => {
+    let buildFilterList: any = {};
+    for (const [key, value] of Object.entries<any>(filter)) {
       if (Array.isArray(value)) {
         buildFilterList['list[' + key + '][]'] = value;
       } else {
@@ -65,7 +65,7 @@ class PimFieldRoute extends BaseRoute {
     );
   };
 
-  create = (data) => {
+  create = (data: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
@@ -74,7 +74,7 @@ class PimFieldRoute extends BaseRoute {
     );
   };
 
-  update = (data) => {
+  update = (data: any) => {
     return AesirXApiInstance.put(
       this.createRequestURL({
         option: this.option,
@@ -88,7 +88,7 @@ class PimFieldRoute extends BaseRoute {
     );
   };
 
-  updateStatus = (listSelected) => {
+  updateStatus = (listSelected: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
@@ -100,7 +100,7 @@ class PimFieldRoute extends BaseRoute {
     );
   };
 
-  delete = (id) => {
+  delete = (id: any) => {
     return AesirXApiInstance.delete(
       this.createRequestURL({
         option: this.option,
@@ -114,7 +114,7 @@ class PimFieldRoute extends BaseRoute {
     );
   };
 
-  deleteFields = (listSelected) => {
+  deleteFields = (listSelected: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,

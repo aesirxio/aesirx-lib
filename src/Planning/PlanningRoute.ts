@@ -3,14 +3,14 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirXApiInstance from '../gateway/Instance';
+import AesirXApiInstance from '../Gateway/Instance';
 import BaseRoute from '../Abstract/BaseRoute';
 
 /**
  * Class PlanningRoute extends BaseRoute
  */
 class PlanningRoute extends BaseRoute {
-  searchPlanningRequest = (dataFilter, page = 1, limit = 20) => {
+  searchPlanningRequest = (dataFilter: any, page = 1, limit = 20) => {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'planning',

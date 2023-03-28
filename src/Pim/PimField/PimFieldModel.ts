@@ -7,17 +7,17 @@ import BaseItemModel from '../../Abstract/BaseItemModel';
 import BaseModel from '../../Abstract/BaseModel';
 import { PIM_FIELD_DETAIL_FIELD_KEY } from '../../Constant/PimConstant';
 class FieldModel extends BaseModel {
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new FieldItemModel(element);
       });
     }
   }
 }
 class FieldItemModel extends BaseItemModel {
-  id = null;
+  id: any = null;
   name = null;
   published = 0;
   featured = 0;
@@ -35,7 +35,7 @@ class FieldItemModel extends BaseItemModel {
   content_types = null;
   unique = null;
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[PIM_FIELD_DETAIL_FIELD_KEY.ID] ?? '';
@@ -86,7 +86,7 @@ class FieldItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     let formData = new FormData();
     const excluded = [PIM_FIELD_DETAIL_FIELD_KEY.ID, PIM_FIELD_DETAIL_FIELD_KEY.PARAMS];
     Object.keys(PIM_FIELD_DETAIL_FIELD_KEY).forEach((index) => {
@@ -126,7 +126,7 @@ class FieldItemModel extends BaseItemModel {
     return formData;
   };
 
-  static __transformItemToApiOfUpdation = (data) => {
+  static __transformItemToApiOfUpdation = (data: any) => {
     let formData = {};
     const excluded = [];
     Object.keys(PIM_FIELD_DETAIL_FIELD_KEY).forEach((index) => {

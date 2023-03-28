@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirXApiInstance from '../../gateway/Instance';
+import AesirXApiInstance from '../../Gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class PimDebtorGroupRoute extends BaseRoute {
@@ -19,9 +19,9 @@ class PimDebtorGroupRoute extends BaseRoute {
     );
   };
 
-  createFilters = (filters) => {
-    let buildFilter = {};
-    for (const [key, value] of Object.entries(filters)) {
+  createFilters = (filters: any) => {
+    let buildFilter: any = {};
+    for (const [key, value] of Object.entries<any>(filters)) {
       if (typeof value === 'object') {
         switch (value.type) {
           case 'custom_fields':

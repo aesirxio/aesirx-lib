@@ -4,29 +4,23 @@
  */
 
 import InvesterContactRoute from './InvesterContactRoute';
-import { Component } from 'react';
+
 import { InvesterContactItemModel } from './InvesterContactModel';
 
 /**
  * API Service - Persona
  */
-class AesirxInvesterContactApiService extends Component {
-  route = null;
+class AesirxInvesterContactApiService {
+  route: any = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new InvesterContactRoute();
-    if (props) {
-      this.mode = props.mode ?? null;
-    }
   }
 
   /**
    * Create a Persona
-   * @param data (Object PersonaModelItem with ID is 0 or null)
-   * @returns {*}
    */
-  async createInvesterContact(data) {
+  async createInvesterContact(data: any) {
     try {
       // if (!data) return false;
       const dataToSubmit = InvesterContactItemModel.__transformItemToApiOfCreation(data);

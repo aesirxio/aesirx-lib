@@ -13,11 +13,11 @@ import BaseModel from '../Abstract/BaseModel';
 class OrganisationChannelModel extends BaseModel {
   items = [];
   unTransformedItems = [];
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
       this.unTransformedItems = entities._embedded.item;
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new OrganisationChannelItemModel(element);
       });
     }
@@ -27,12 +27,12 @@ class OrganisationChannelModel extends BaseModel {
 class OrganisationChannelByOrganisationIdModel extends BaseModel {
   items = [];
   unTransformedItems = [];
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
       const organisationChannels = entities.result;
       this.unTransformedItems = organisationChannels;
-      this.items = organisationChannels.map((element) => {
+      this.items = organisationChannels.map((element: any) => {
         return new OrganisationChannelItemModel(element);
       });
     }
@@ -45,7 +45,7 @@ class OrganisationChannelItemModel extends BaseItemModel {
   handle = '';
   channelName = null;
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.channel = entity[ESI_ORGANISATION_CHANNEL_API_RESPONSE_FIELD_KEY.CHANNEL] ?? [0];
@@ -80,7 +80,7 @@ class OrganisationChannelItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     return {
       [ESI_ORGANISATION_CHANNEL_API_RESPONSE_FIELD_KEY.CHANNEL]:
         data[ESI_ORGANISATION_CHANNEL_FIELD_KEY.CHANNEL] ?? '',
@@ -91,7 +91,7 @@ class OrganisationChannelItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfUpdation = (data) => {
+  static __transformItemToApiOfUpdation = (data: any) => {
     return {
       [ESI_ORGANISATION_CHANNEL_API_RESPONSE_FIELD_KEY.CHANNEL]:
         data[ESI_ORGANISATION_CHANNEL_FIELD_KEY.CHANNEL],
@@ -99,12 +99,6 @@ class OrganisationChannelItemModel extends BaseItemModel {
         data[ESI_ORGANISATION_CHANNEL_FIELD_KEY.ORGANISATION],
       [ESI_ORGANISATION_CHANNEL_API_RESPONSE_FIELD_KEY.HANDLE]:
         data[ESI_ORGANISATION_CHANNEL_FIELD_KEY.HANDLE],
-    };
-  };
-
-  static __transformItemToApiOfPostToFB = (postContent) => {
-    return {
-      [ESI_ORGANISATION_CHANNEL_API_RESPONSE_FIELD_KEY.FBCONTENT]: postContent,
     };
   };
 }

@@ -3,11 +3,11 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirXApiInstance from '../gateway/Instance';
+import AesirXApiInstance from '../Gateway/Instance';
 import BaseRoute from '../Abstract/BaseRoute';
 
 class ProjectChannelRoute extends BaseRoute {
-  getProjectChannelItemRequest = (itemId) =>
+  getProjectChannelItemRequest = (itemId: any) =>
     AesirXApiInstance.get(
       this.createRequestURL({
         option: 'projectchannel',
@@ -28,7 +28,7 @@ class ProjectChannelRoute extends BaseRoute {
    *
    * @param data
    */
-  createProjectChannelRequest = (data) =>
+  createProjectChannelRequest = (data: any) =>
     AesirXApiInstance.post(
       this.createRequestURL({
         option: 'projectchannel',
@@ -36,7 +36,7 @@ class ProjectChannelRoute extends BaseRoute {
       data
     );
 
-  postToFanpageRequest = (itemId, content, channelType) => {
+  postToFanpageRequest = (itemId: any, content: any, channelType: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'projectchannel',
@@ -57,7 +57,7 @@ class ProjectChannelRoute extends BaseRoute {
    *
    * @param data
    */
-  updateProjectChannelRequest = (data) =>
+  updateProjectChannelRequest = (data: any) =>
     AesirXApiInstance.put(
       this.createRequestURL({
         option: 'projectchannel',
@@ -68,7 +68,7 @@ class ProjectChannelRoute extends BaseRoute {
    *
    * @param projectId
    */
-  deleteProjectChannelRequest = (itemId) => {
+  deleteProjectChannelRequest = (itemId: any) => {
     const ids = itemId.split(',');
 
     if (ids.length < 2) {
@@ -91,7 +91,7 @@ class ProjectChannelRoute extends BaseRoute {
     }
   };
 
-  loginProjectChannelRequert = (itemId, channelType) => {
+  loginProjectChannelRequert = (itemId: any, channelType: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'projectchannel',
@@ -106,7 +106,7 @@ class ProjectChannelRoute extends BaseRoute {
     );
   };
 
-  checkConnectStatusChannel = (itemId, channelType) => {
+  checkConnectStatusChannel = (itemId: any, channelType: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'projectchannel',
@@ -121,7 +121,7 @@ class ProjectChannelRoute extends BaseRoute {
     );
   };
 
-  getListFanpageRequest = (itemId) => {
+  getListFanpageRequest = (itemId: any) => {
     // getListFanPages
     return AesirXApiInstance.post(
       this.createRequestURL({
@@ -135,7 +135,7 @@ class ProjectChannelRoute extends BaseRoute {
     );
   };
 
-  connectFanpageRequest = (itemId, pageId) => {
+  connectFanpageRequest = (itemId: any, pageId: any) => {
     // connectFanpageRequest
     return AesirXApiInstance.post(
       this.createRequestURL({
@@ -151,7 +151,7 @@ class ProjectChannelRoute extends BaseRoute {
     );
   };
 
-  doLoginCMSRequest = (dataPost) => {
+  doLoginCMSRequest = (dataPost: any) => {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'projectchannel',
@@ -161,7 +161,7 @@ class ProjectChannelRoute extends BaseRoute {
     );
   };
 
-  doPostContentToCMSRequest = (dataPost) => {
+  doPostContentToCMSRequest = (dataPost: any) => {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'projectchannel',
@@ -171,7 +171,7 @@ class ProjectChannelRoute extends BaseRoute {
     );
   };
 
-  getProjectChannelsByProjectIdRequest = (projectId) => {
+  getProjectChannelsByProjectIdRequest = (projectId: any) => {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'projectchannel',

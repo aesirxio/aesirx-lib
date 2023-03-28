@@ -5,31 +5,19 @@
 
 import { PlanningModel, PlanningFilterModel } from './PlanningModel';
 import PlanningRoute from './PlanningRoute';
-import { Component } from 'react';
 
 /**
  * API Service - Planning
  */
-class AesirxPlanningApiService extends Component {
-  route = null;
+class AesirxPlanningApiService {
+  route: any = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new PlanningRoute();
-    if (props) {
-      this.mode = props.mode ?? null;
-    }
   }
 
   /**
    * Get 20 first campaign are sorted by ID
-   * @param page (default: 1)
-   * @param limit (default: 20)
-   * @returns {ARRAY|NULL}
-   * - ARRAY: List of campaign in JSON format
-   *     - Ex:
-   *     - To access field name within each campaign item correctly, use `CAMPAIGN_FIELD_KEY`.
-   * - NULL: List of campaign is EMPTY
    *  */
   async getPlannings(page = 1, limit = 20, returnAsJSON = true) {
     try {
@@ -58,15 +46,6 @@ class AesirxPlanningApiService extends Component {
 
   /**
    * Search Planning
-   * @param JSON dataFilter
-   * - Fields structure:
-   * {
-   *    data: '',
-   * }
-   * @param integer page
-   * @param integer limit
-   * @param Boolean returnAsJSON
-   * @returns {Boolean}
    */
   async searchPlanning(dataFilter = {}, page = 1, limit = 20, returnAsJSON = true) {
     try {
@@ -91,10 +70,6 @@ class AesirxPlanningApiService extends Component {
     } catch (error) {
       return null;
     }
-  }
-
-  render() {
-    return {};
   }
 }
 

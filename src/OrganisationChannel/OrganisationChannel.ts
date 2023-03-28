@@ -5,39 +5,20 @@
 
 import { OrganisationChannelItemModel } from './OrganisationChannelModel';
 import OrganisationChannelRoute from './OrganisationChannelRoute';
-import { Component } from 'react';
 
 /**
  * API Service - Project
  */
-class AesirxOrganisationChannelApiService extends Component {
-  route = null;
+class AesirxOrganisationChannelApiService {
+  route: any = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new OrganisationChannelRoute();
-    if (props) {
-      this.mode = props.mode ?? null;
-    }
   }
 
   /**
-   * Get 20 first Projects are sorted by ID
-   * @param page (default: 1)
-   * @param limit (default: 20)
-   * @returns {ARRAY|NULL}
-   * - ARRAY: List of project in JSON format
-   *     - Ex:
-   *     - To access field name within each project item correctly, use `ESI_PROJECT_FIELD_KEY`.
-   * - NULL: List of project is EMPTY
-   *  */
-
-  /**
    * Call this function once you need the detail inforamtion of a Project Item by passing a ProjectID
-   * @param projectID (default: null)
-   * @returns {JSON|NULL}
-   * - JSON: Project item information is in JSON format
-   * - NULL: Project item is NOT found
+
    *  */
   async getProjectChannelItem(projectID = 0, returnAsJSON = true) {
     try {
@@ -60,7 +41,7 @@ class AesirxOrganisationChannelApiService extends Component {
     return true;
   }
 
-  async postToFanpage(itemId, content, channelType) {
+  async postToFanpage(itemId: any, content: any, channelType: any) {
     try {
       if (!itemId || itemId === 0) return false;
       return await this.route.postToFanpageRequest(itemId, content, channelType);
@@ -71,18 +52,8 @@ class AesirxOrganisationChannelApiService extends Component {
 
   /**
    * Create a Project
-   * @param JSON data
-   * - Fields structure:
-   * {
-   *    title: '',
-   *    start_date: '',
-   *    end_date: '',
-   *    logo:
-   *    short_description: '',
-   * }
-   * @returns {Boolean}
    */
-  async createProjectChannel(data) {
+  async createProjectChannel(data: any) {
     try {
       // if (!data) return false;
       const dataToSubmit = OrganisationChannelItemModel.__transformItemToApiOfCreation(data);
@@ -98,19 +69,8 @@ class AesirxOrganisationChannelApiService extends Component {
 
   /**
    * Update data of the Project with specified Project ID
-   * @param JSON data
-   * - Fields structure:
-   * {
-   *    id:''
-   *    title: '',
-   *    start_date: '',
-   *    end_date: '',
-   *    logo:
-   *    short_description: '',
-   * }
-   * @returns {Boolean}
    */
-  async updateProjectChannel(data) {
+  async updateProjectChannel(data: any) {
     try {
       if (!data) return false;
       if (data.id === null || data.id === 0 || data.id === undefined) return false;
@@ -127,10 +87,8 @@ class AesirxOrganisationChannelApiService extends Component {
 
   /**
    * Delete a Project
-   * @param integer projectId
-   * @returns {Boolean}
    */
-  async deleteProjectChannel(itemId) {
+  async deleteProjectChannel(itemId: any) {
     try {
       if (!itemId || itemId === 0) return false;
       return await this.route.deleteProjectChannelRequest(itemId);
@@ -139,7 +97,7 @@ class AesirxOrganisationChannelApiService extends Component {
     }
   }
 
-  async getLoginUrl(channelType) {
+  async getLoginUrl(channelType: any) {
     try {
       return await this.route.getLoginUrl(channelType);
     } catch (error) {
@@ -147,7 +105,7 @@ class AesirxOrganisationChannelApiService extends Component {
     }
   }
 
-  async getCheckConnectStatusChannel(channelType) {
+  async getCheckConnectStatusChannel(channelType: any) {
     try {
       return await this.route.checkConnectStatusChannel(channelType);
     } catch (error) {
@@ -164,13 +122,13 @@ class AesirxOrganisationChannelApiService extends Component {
     }
   }
 
-  async connectMultiFanpage(pageIds) {
+  async connectMultiFanpage(pageIds: any) {
     try {
       //const pids = pageIds.split(',');
 
       return await Promise.all(
-        pageIds.map(async (pid) => {
-          return await this.connectFanpage(pid);
+        pageIds.map(async (pid: any) => {
+          return await this.connectFanpage('', pid);
         })
       );
     } catch (error) {
@@ -178,7 +136,7 @@ class AesirxOrganisationChannelApiService extends Component {
     }
   }
 
-  async connectFanpage(channelUniqueName, pageId) {
+  async connectFanpage(channelUniqueName: any, pageId: any) {
     try {
       return await this.route.connectFanpageRequest(channelUniqueName, pageId);
     } catch (error) {
@@ -186,7 +144,7 @@ class AesirxOrganisationChannelApiService extends Component {
     }
   }
 
-  async disconnectFanpage(channelUniqueName, pageId) {
+  async disconnectFanpage(channelUniqueName: any, pageId: any) {
     try {
       return await this.route.disconnectFanpageRequest(channelUniqueName, pageId);
     } catch (error) {
@@ -194,7 +152,7 @@ class AesirxOrganisationChannelApiService extends Component {
     }
   }
 
-  async checkConnectionStatusAd(channelType) {
+  async checkConnectionStatusAd(channelType: any) {
     let response = { result: false };
 
     response = await this.getListAdAccounts(channelType);
@@ -203,7 +161,7 @@ class AesirxOrganisationChannelApiService extends Component {
   }
 
   //getListFanpageRequest
-  async getListAdAccounts(channelType) {
+  async getListAdAccounts(channelType: any) {
     try {
       const test = await this.route.getListAdAccountsRequest(channelType);
       return test;
@@ -212,12 +170,12 @@ class AesirxOrganisationChannelApiService extends Component {
     }
   }
 
-  async connectMultiAdAccount(accountIds) {
+  async connectMultiAdAccount(accountIds: any) {
     try {
       //const pids = pageIds.split(',');
 
       return await Promise.all(
-        accountIds.map(async (aid) => {
+        accountIds.map(async (aid: any) => {
           return await this.connectAdAccount(aid);
         })
       );
@@ -226,7 +184,7 @@ class AesirxOrganisationChannelApiService extends Component {
     }
   }
 
-  async connectAdAccount(accountId) {
+  async connectAdAccount(accountId: any) {
     try {
       return await this.route.connectAdAccountRequest(accountId);
     } catch (error) {
@@ -234,53 +192,25 @@ class AesirxOrganisationChannelApiService extends Component {
     }
   }
 
-  async checkConnectionStatusAdAccount() {
-    let response = { result: false };
-
-    response = await this.getListAdAccount();
-
-    return response;
-  }
-
   /**
    * Do Login Cms
-   * @param JSON dataPost
-   * - Fields structure:
-   * {
-   *    projectId: 10,
-   *    channelType: "wordpress",
-   *    endpoint_url: "https://testwp.aesirx.io",
-   *    username: "admin",
-   *    password: "(xU3Y9PE81)SuyR5i8",
-   * }
-   * @param Boolean returnAsJSON
-   * @returns {Boolean}
    */
-  doLoginCMS = async (dataPost) => {
+  doLoginCMS = async (dataPost: any) => {
     const result = await this.route.doLoginCMSRequest(dataPost);
     return result.result;
   };
 
   /**
    * Do Post Content To CMS
-   * @param JSON dataPost
-   * - Fields structure:
-   * {
-   *    projectId: 10,
-   *    channelType: "wordpress",
-   *    content: '{"headline":"hung-test","content":"hung-test-content"}'
-   * }
-   * @param Boolean returnAsJSON
-   * @returns {Boolean}
    */
 
-  doPostContentToCMS = async (dataPost) => {
+  doPostContentToCMS = async (dataPost: any) => {
     const result = await this.route.doPostContentToCMSRequest(dataPost);
 
     return result.result;
   };
 
-  onConnectChannelSuccess = async (channelType, tokenData) => {
+  onConnectChannelSuccess = async (channelType: any, tokenData: any) => {
     const result = await this.route.onConnectChannelSuccessRequest(channelType, tokenData);
 
     return result.result;
@@ -292,27 +222,23 @@ class AesirxOrganisationChannelApiService extends Component {
     return result.result;
   };
 
-  reconnectChannel = async (channelName, channelId) => {
+  reconnectChannel = async (channelName: any, channelId: any) => {
     const result = await this.route.reconnectChannel(channelName, channelId);
 
     return result.result;
   };
 
-  disconnectChannel = async (channelName, channelId) => {
+  disconnectChannel = async (channelName: any, channelId: any) => {
     const result = await this.route.disconnectChannel(channelName, channelId);
 
     return result.result;
   };
 
-  removeChannel = async (channelName, channelId) => {
+  removeChannel = async (channelName: any, channelId: any) => {
     const result = await this.route.removeChannel(channelName, channelId);
 
     return result.result;
   };
-
-  render() {
-    return {};
-  }
 }
 
 export default AesirxOrganisationChannelApiService;

@@ -4,7 +4,7 @@
  */
 
 import BaseRoute from '../Abstract/BaseRoute';
-import AesirXApiInstance from '../gateway/Instance';
+import AesirXApiInstance from '../Gateway/Instance';
 
 class ContentThemeRoute extends BaseRoute {
   getContentThemeItemRequest = (id: any) =>

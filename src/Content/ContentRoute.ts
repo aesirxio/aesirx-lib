@@ -4,8 +4,8 @@
  */
 
 import BaseRoute from '../Abstract/BaseRoute';
-import AesirXApiInstance from '../gateway/Instance';
-import AesirxServiceApiInstance from '../gateway/InstanceServiceApi';
+import AesirXApiInstance from '../Gateway/Instance';
+import AesirxServiceApiInstance from '../Gateway/InstanceServiceApi';
 
 class ContentRoute extends BaseRoute {
   getContentItemRequest = (ContentID: any) =>

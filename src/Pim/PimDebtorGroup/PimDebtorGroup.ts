@@ -11,13 +11,13 @@ import axios from 'axios';
  * API Service - DebtorGroups
  */
 class AesirxPimDebtorGroupApiService {
-  route = null;
+  route: any = null;
 
   constructor() {
     this.route = new PimDebtorGroupRoute();
   }
 
-  create = async (data) => {
+  create = async (data: any) => {
     try {
       const result = await this.route.create(data);
       if (result) {
@@ -31,7 +31,7 @@ class AesirxPimDebtorGroupApiService {
     }
   };
 
-  update = async (data) => {
+  update = async (data: any) => {
     try {
       const result = await this.route.update(data);
       if (result) {
@@ -64,7 +64,7 @@ class AesirxPimDebtorGroupApiService {
     }
   };
 
-  getList = async (filter) => {
+  getList = async (filter: any) => {
     try {
       const data = await this.route.getList(filter);
       let listItems = null;
@@ -97,9 +97,9 @@ class AesirxPimDebtorGroupApiService {
     }
   };
 
-  updateStatus = async (arr, status) => {
+  updateStatus = async (arr: any, status: any) => {
     try {
-      const listSelected = arr.map((o) => {
+      const listSelected = arr.map((o: any) => {
         return { id: o, published: status };
       });
 
@@ -116,9 +116,9 @@ class AesirxPimDebtorGroupApiService {
     }
   };
 
-  deleteDebtorGroups = async (arr) => {
+  deleteDebtorGroups = async (arr: any) => {
     try {
-      const listSelected = await arr.map((o) => {
+      const listSelected = await arr.map((o: any) => {
         return { id: o };
       });
 

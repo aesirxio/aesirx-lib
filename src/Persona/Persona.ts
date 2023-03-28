@@ -5,20 +5,15 @@
 
 import { PersonaItemModel, PersonaModel, PersonaFilterModel } from './PersonaModel';
 import PersonaRoute from './PersonaRoute';
-import { Component } from 'react';
 
 /**
  * API Service - Persona
  */
-class AesirxPersonaApiService extends Component {
-  route = null;
+class AesirxPersonaApiService {
+  route: any = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new PersonaRoute();
-    if (props) {
-      this.mode = props.mode ?? null;
-    }
   }
 
   /**
@@ -81,10 +76,8 @@ class AesirxPersonaApiService extends Component {
 
   /**
    * Create a Persona
-   * @param data (Object PersonaModelItem with ID is 0 or null)
-   * @returns {*}
    */
-  async createPersona(data) {
+  async createPersona(data: any) {
     try {
       // if (!data) return false;
       const dataToSubmit = PersonaItemModel.__transformItemToApiOfCreation(data);
@@ -103,10 +96,8 @@ class AesirxPersonaApiService extends Component {
 
   /**
    * Update data of the Persona with specified Persona ID
-   * @param data (Object PersonaModelItem)
-   * @returns {*}
    */
-  async updatePersona(data) {
+  async updatePersona(data: any) {
     try {
       if (!data) return false;
       if (data.id === null || data.id === 0 || data.id === undefined) return false;
@@ -124,10 +115,8 @@ class AesirxPersonaApiService extends Component {
 
   /**
    * Delete a Persona
-   * @param personaId (integer)
-   * @returns {*}
    */
-  async deletePersona(personaId) {
+  async deletePersona(personaId: any) {
     try {
       return await this.route.deletePersonaRequest(personaId);
     } catch (error) {
@@ -160,15 +149,6 @@ class AesirxPersonaApiService extends Component {
 
   /**
    * Search Personas
-   * @param JSON dataFilter
-   * - Fields structure:
-   * {
-   *    keyword:''
-   * }
-   * @param integer page
-   * @param integer limit
-   * @param Boolean returnAsJSON
-   * @returns {Boolean}
    */
   async searchPersonas(dataFilter = {}, page = 1, limit = 20, returnAsJSON = true) {
     try {
@@ -197,7 +177,7 @@ class AesirxPersonaApiService extends Component {
   /**
    * get master data for persona
    */
-  async getConnectedChannelByPersonaIds(personaIds) {
+  async getConnectedChannelByPersonaIds(personaIds: any) {
     try {
       return await this.route.getConnectedChannelByPersonaIdsRequest(personaIds);
     } catch (error) {
@@ -214,10 +194,6 @@ class AesirxPersonaApiService extends Component {
     } catch (error) {
       return error;
     }
-  }
-
-  render() {
-    return {};
   }
 }
 

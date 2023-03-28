@@ -7,19 +7,19 @@ import BaseItemModel from '../../Abstract/BaseItemModel';
 import BaseModel from '../../Abstract/BaseModel';
 import { PIM_TAG_DETAIL_FIELD_KEY } from '../../Constant/PimConstant';
 class TagModel extends BaseModel {
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new TagItemModel(element);
       });
     }
   }
 }
 class TagItemModel extends BaseItemModel {
-  id = null;
-  title = null;
-  alias = null;
+  id: any = null;
+  title: any = null;
+  alias: any = null;
   published = 0;
   featured = 0;
   parent_id = null;
@@ -29,7 +29,7 @@ class TagItemModel extends BaseItemModel {
   created_time = null;
   publish_up = null;
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[PIM_TAG_DETAIL_FIELD_KEY.ID] ?? '';
@@ -65,7 +65,7 @@ class TagItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     let formData = new FormData();
     const excluded = [PIM_TAG_DETAIL_FIELD_KEY.ID];
     Object.keys(PIM_TAG_DETAIL_FIELD_KEY).forEach((index) => {
@@ -77,7 +77,7 @@ class TagItemModel extends BaseItemModel {
     return formData;
   };
 
-  static __transformItemToApiOfUpdation = (data) => {
+  static __transformItemToApiOfUpdation = (data: any) => {
     let formData = {};
     const excluded = [];
     Object.keys(PIM_TAG_DETAIL_FIELD_KEY).forEach((index) => {

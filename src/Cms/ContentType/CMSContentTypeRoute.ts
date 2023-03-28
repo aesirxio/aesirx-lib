@@ -1,4 +1,4 @@
-import AesirXApiInstance from '../../gateway/Instance';
+import AesirXApiInstance from '../../Gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class CmsContentTypeRoute extends BaseRoute {

@@ -7,19 +7,19 @@ import BaseItemModel from '../../Abstract/BaseItemModel';
 import BaseModel from '../../Abstract/BaseModel';
 import { PIM_CATEGORY_DETAIL_FIELD_KEY } from '../../Constant/PimConstant';
 class CategoryModel extends BaseModel {
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new CategoryItemModel(element);
       });
     }
   }
 }
 class CategoryItemModel extends BaseItemModel {
-  id = null;
-  title = null;
-  alias = null;
+  id: any = null;
+  title: any = null;
+  alias: any = null;
   published = 0;
   featured = 0;
   parent_id = null;
@@ -36,7 +36,7 @@ class CategoryItemModel extends BaseItemModel {
   product_quantity = null;
   parent_name = null;
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[PIM_CATEGORY_DETAIL_FIELD_KEY.ID] ?? '';
@@ -86,7 +86,7 @@ class CategoryItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     let formData = new FormData();
     const excluded = [
       PIM_CATEGORY_DETAIL_FIELD_KEY.ID,
@@ -129,7 +129,7 @@ class CategoryItemModel extends BaseItemModel {
     return formData;
   };
 
-  static __transformItemToApiOfUpdation = (data) => {
+  static __transformItemToApiOfUpdation = (data: any) => {
     let formData = {};
     const excluded = [
       PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS,

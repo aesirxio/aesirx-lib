@@ -4,14 +4,14 @@
  */
 
 import BaseRoute from '../Abstract/BaseRoute';
-import AesirxServiceApiInstance from '../gateway/InstanceServiceApi';
+import AesirxServiceApiInstance from '../Gateway/InstanceServiceApi';
 
 class GoogleDataRoute extends BaseRoute {
-  getSearchLocationFromGoogleDataRequest = (key) => {
+  getSearchLocationFromGoogleDataRequest = (key: any) => {
     return AesirxServiceApiInstance.get('/api/google-ad/search-locations?q=' + key);
   };
 
-  getInterestsFromGoogleDataRequest = (key) => {
+  getInterestsFromGoogleDataRequest = (key: any) => {
     return AesirxServiceApiInstance.get('/api/google-ad/search-interests?q=' + key);
   };
 }

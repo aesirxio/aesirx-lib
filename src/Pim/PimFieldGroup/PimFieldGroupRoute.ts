@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import AesirXApiInstance from '../../gateway/Instance';
+import AesirXApiInstance from '../../Gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class PimFieldGroupRoute extends BaseRoute {
@@ -19,9 +19,9 @@ class PimFieldGroupRoute extends BaseRoute {
     );
   };
 
-  createFilters = (filters) => {
-    let buildFilter = {};
-    for (const [key, value] of Object.entries(filters)) {
+  createFilters = (filters: any) => {
+    let buildFilter: any = {};
+    for (const [key, value] of Object.entries<any>(filters)) {
       if (typeof value === 'object') {
         switch (value.type) {
           case 'custom_fields':
@@ -51,7 +51,7 @@ class PimFieldGroupRoute extends BaseRoute {
     );
   };
 
-  create = (data) => {
+  create = (data: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
@@ -59,7 +59,7 @@ class PimFieldGroupRoute extends BaseRoute {
       data
     );
   };
-  update = (data) => {
+  update = (data: any) => {
     return AesirXApiInstance.put(
       this.createRequestURL({
         option: this.option,
@@ -73,7 +73,7 @@ class PimFieldGroupRoute extends BaseRoute {
     );
   };
 
-  updateStatus = (listSelected) => {
+  updateStatus = (listSelected: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
@@ -85,7 +85,7 @@ class PimFieldGroupRoute extends BaseRoute {
     );
   };
 
-  delete = (id) => {
+  delete = (id: any) => {
     return AesirXApiInstance.delete(
       this.createRequestURL({
         option: this.option,
@@ -98,7 +98,7 @@ class PimFieldGroupRoute extends BaseRoute {
       }
     );
   };
-  deleteFieldGroups = (listSelected) => {
+  deleteFieldGroups = (listSelected: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,

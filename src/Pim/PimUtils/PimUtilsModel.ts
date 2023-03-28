@@ -9,7 +9,7 @@ class PublishStatusModel extends BaseItemModel {
   label = null;
   value = null;
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.label = entity['label'] ?? '';

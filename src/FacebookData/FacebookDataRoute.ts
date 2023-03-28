@@ -4,16 +4,16 @@
  */
 
 import BaseRoute from '../Abstract/BaseRoute';
-import AesirxServiceApiInstance from '../gateway/InstanceServiceApi';
+import AesirxServiceApiInstance from '../Gateway/InstanceServiceApi';
 
 class FacebookDataRoute extends BaseRoute {
-  getUserAccountDataFromFacebookDataRequest = (organisationId) => {
+  getUserAccountDataFromFacebookDataRequest = (organisationId: any) => {
     return AesirxServiceApiInstance.get(
       '/api/facebook-data/user-account-data?organisation_id=' + organisationId
     );
   };
 
-  getAdPreviewFromFacebookDataRequest = (creative, pageId, organisationId) => {
+  getAdPreviewFromFacebookDataRequest = (creative: any, pageId: any, organisationId: any) => {
     return AesirxServiceApiInstance.get(
       '/api/facebook-ad-preview?creative=' +
         creative +
@@ -24,7 +24,7 @@ class FacebookDataRoute extends BaseRoute {
     );
   };
 
-  getSearchLocationFromFacebookDataRequest = (key) => {
+  getSearchLocationFromFacebookDataRequest = (key: any) => {
     return AesirxServiceApiInstance.get(
       '/api/facebook-data/search-locations?q=' + key + '&location_types=["country","city"]'
     );
