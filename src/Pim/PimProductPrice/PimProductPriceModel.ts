@@ -43,15 +43,17 @@ class ProductPriceItemModel extends BaseItemModel {
       this.modified_user_name = entity[PIM_PRICES_DETAIL_FIELD_KEY.MODIFIED_USER_NAME] ?? [];
       this.created_time = entity[PIM_PRICES_DETAIL_FIELD_KEY.CREATED_TIME] ?? [];
       this.debtor_groups = entity[PIM_PRICES_DETAIL_FIELD_KEY.DEBTOR_GROUPS] ?? [];
-      this.thumbImageUrl = entity[PIM_PRICES_DETAIL_FIELD_KEY.PRODUCTS][0][
-        PIM_PRICES_DETAIL_FIELD_KEY.CUSTOM_FIELDS
-      ][PIM_PRICES_DETAIL_FIELD_KEY.THUMB_IMAGE]
-        ? JSON.parse(
-            entity[PIM_PRICES_DETAIL_FIELD_KEY.PRODUCTS][0][
-              PIM_PRICES_DETAIL_FIELD_KEY.CUSTOM_FIELDS
-            ][PIM_PRICES_DETAIL_FIELD_KEY.THUMB_IMAGE][0]
-          )[PIM_PRICES_DETAIL_FIELD_KEY.DOWNLOAD_URL]
-        : '';
+      this.thumbImageUrl =
+        entity[PIM_PRICES_DETAIL_FIELD_KEY.PRODUCTS]?.length &&
+        entity[PIM_PRICES_DETAIL_FIELD_KEY.PRODUCTS][0][PIM_PRICES_DETAIL_FIELD_KEY.CUSTOM_FIELDS][
+          PIM_PRICES_DETAIL_FIELD_KEY.THUMB_IMAGE
+        ]
+          ? JSON.parse(
+              entity[PIM_PRICES_DETAIL_FIELD_KEY.PRODUCTS][0][
+                PIM_PRICES_DETAIL_FIELD_KEY.CUSTOM_FIELDS
+              ][PIM_PRICES_DETAIL_FIELD_KEY.THUMB_IMAGE][0]
+            )[PIM_PRICES_DETAIL_FIELD_KEY.DOWNLOAD_URL]
+          : '';
     }
   }
 

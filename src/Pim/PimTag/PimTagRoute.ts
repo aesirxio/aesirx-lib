@@ -7,13 +7,14 @@ import AesirXApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class PimTagRoute extends BaseRoute {
-  option = 'reditem-category_tag_44';
+  option = 'reditem-item_tag_44';
 
-  getList = (dataFilter = {}) => {
+  getList = (filters) => {
+    const buildFilters = this.createFilters(filters);
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: this.option,
-        ...dataFilter,
+        ...buildFilters,
       })
     );
   };
@@ -36,12 +37,20 @@ class PimTagRoute extends BaseRoute {
 
   createFilters = (filters) => {
     let buildFilter = {};
-
     for (const [key, value] of Object.entries(filters)) {
-      if (Array.isArray(value)) {
-        buildFilter['filter[' + key + '][]'] = value;
+      if (typeof value === 'object') {
+        switch (value.type) {
+          case 'custom_fields':
+            buildFilter['filter[' + value.type + '][' + key + '][]'] = value.value;
+            break;
+          case 'filter':
+            buildFilter['filter[' + key + ']'] = value.value;
+            break;
+          default:
+            break;
+        }
       } else {
-        buildFilter['filter[' + key + ']'] = value;
+        buildFilter[key] = value;
       }
     }
 

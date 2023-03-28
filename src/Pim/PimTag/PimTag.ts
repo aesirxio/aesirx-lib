@@ -5,23 +5,21 @@
 
 import { TagModel } from './PimTagModel';
 import PimTagRoute from './PimTagRoute';
-import { Component } from 'react';
 import axios from 'axios';
 
 /**
  * API Service - Tags
  */
-class AesirxPimTagApiService extends Component {
+class AesirxPimTagApiService {
   route = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new PimTagRoute();
   }
 
-  getList = async () => {
+  getList = async (filter) => {
     try {
-      const data = await this.route.getList();
+      const data = await this.route.getList(filter);
       let results = null;
       if (data) {
         results = new TagModel(data);

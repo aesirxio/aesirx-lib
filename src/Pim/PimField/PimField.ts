@@ -5,17 +5,15 @@
 
 import { FieldItemModel } from './PimFieldModel';
 import PimFieldRoute from './PimFieldRoute';
-import { Component } from 'react';
 import axios from 'axios';
 
 /**
  * API Service - Field
  */
-class AesirxPimFieldApiService extends Component {
+class AesirxPimFieldApiService {
   route = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new PimFieldRoute();
   }
 

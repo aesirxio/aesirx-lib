@@ -5,17 +5,15 @@
 
 import { DebtorGroupItemModel } from './PimDebtorGroupModel';
 import PimDebtorGroupRoute from './PimDebtorGroupRoute';
-import { Component } from 'react';
 import axios from 'axios';
 
 /**
  * API Service - DebtorGroups
  */
-class AesirxPimDebtorGroupApiService extends Component {
+class AesirxPimDebtorGroupApiService {
   route = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new PimDebtorGroupRoute();
   }
 
