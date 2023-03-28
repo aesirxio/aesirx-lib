@@ -130,10 +130,7 @@ class OrganisationChannelRoute extends BaseRoute {
         pageId: pageId,
         task: 'selectPageToConnect',
         channelType: channelUniqueName,
-      }),
-      {
-        pageId: pageId,
-      }
+      })
     );
   };
 
@@ -145,10 +142,7 @@ class OrganisationChannelRoute extends BaseRoute {
         pageId: pageId,
         task: 'selectPageToDisconnect',
         channelType: channelUniqueName,
-      }),
-      {
-        pageId: pageId,
-      }
+      })
     );
   };
 
@@ -169,10 +163,7 @@ class OrganisationChannelRoute extends BaseRoute {
         option: 'organisation_channel',
         accountId: accountId,
         task: 'selectAdAccountToConnect',
-      }),
-      {
-        accountId: accountId,
-      }
+      })
     );
   };
 

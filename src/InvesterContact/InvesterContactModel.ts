@@ -12,7 +12,6 @@ import BaseModel from '../Abstract/BaseModel';
 import { PersonaItemModel } from '../Persona/PersonaModel';
 
 class InvesterContactModel extends BaseModel {
-  items: any;
   constructor(entities: any) {
     super(entities);
     if (entities) {

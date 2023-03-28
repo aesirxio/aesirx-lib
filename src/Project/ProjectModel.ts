@@ -14,8 +14,6 @@ import BaseMasterDataItemModel from '../Abstract/BaseMasterDataItemModel';
 import BaseMasterDataModel from '../Abstract/BaseMasterDataModel';
 
 class ProjectModel extends BaseModel {
-  items: any;
-
   constructor(entities: any) {
     super(entities);
     if (entities) {
@@ -30,7 +28,6 @@ class ProjectModel extends BaseModel {
 }
 
 class ProjectFilterModel extends BaseModel {
-  items: any;
   constructor(entities: any) {
     super(entities);
     if (entities) {
@@ -108,7 +105,7 @@ class ProjectItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     return {
       [ESI_PROJECT_API_RESPONSE_FIELD_KEY.TITLE]: data[ESI_PROJECT_FIELD_KEY.TITLE] ?? '',
       [ESI_PROJECT_API_RESPONSE_FIELD_KEY.START_DATE]: data[ESI_PROJECT_FIELD_KEY.START_DATE] ?? '',
@@ -121,7 +118,7 @@ class ProjectItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfUpdation = (data) => {
+  static __transformItemToApiOfUpdation = (data: any) => {
     return {
       [ESI_PROJECT_API_RESPONSE_FIELD_KEY.ID]: data[ESI_PROJECT_FIELD_KEY.ID],
       [ESI_PROJECT_API_RESPONSE_FIELD_KEY.TITLE]: data[ESI_PROJECT_FIELD_KEY.TITLE],
@@ -149,11 +146,11 @@ class ProjectMasterDataItemModel extends BaseMasterDataItemModel {
 }
 
 class ProjectMasterDataModel extends BaseMasterDataModel {
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
       this.unTransformedItems = entities.result;
-      this.items = entities.result.map((element) => {
+      this.items = entities.result.map((element: any) => {
         return new ProjectMasterDataItemModel(element);
       });
     }

@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-const CRM_COMPANY_DETAIL_FIELD_KEY = {
+const CRM_COMPANY_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   NAME: 'crm_company_name',
   ADDRESS: 'crm_company_address',
@@ -25,7 +25,7 @@ const CRM_COMPANY_DETAIL_FIELD_KEY = {
   STATUS: 'status',
 };
 
-const CRM_CONTACT_DETAIL_FIELD_KEY = {
+const CRM_CONTACT_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   COMPANY_ID: 'crm_contact_company_id',
   COMPANY_NAME: 'crm_company_name',
@@ -45,7 +45,7 @@ const CRM_CONTACT_DETAIL_FIELD_KEY = {
   STATUS: 'status',
 };
 
-const CRM_LIST_GROUP_DETAIL_FIELD_KEY = {
+const CRM_LIST_GROUP_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   NAME: 'crm_listgroup_name',
   CONTACTS: 'crm_list_group_contacts',
@@ -57,7 +57,7 @@ const CRM_LIST_GROUP_DETAIL_FIELD_KEY = {
   STATUS: 'status',
 };
 
-const CRM_OPPORTUNITY_DETAIL_FIELD_KEY = {
+const CRM_OPPORTUNITY_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   NAME: 'crm_opportunity_name',
   COMPANY: 'crm_opportunity_company',
@@ -83,7 +83,7 @@ const CRM_STAGE_DETAIL_FIELD_KEY = {
   TITLE: 'title',
 };
 
-const CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY = {
+const CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   NAME: 'crm_email_name',
   SUBJECT: 'crm_email_subject',

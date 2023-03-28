@@ -6,7 +6,7 @@
 
 import { DomainModel, MetricsModel, SummaryModel, VisitorModel, VisitorsModel } from './BiModel';
 import BiRoute from './BiRoute';
-import { Component } from 'react';
+
 import axios from 'axios';
 
 /**

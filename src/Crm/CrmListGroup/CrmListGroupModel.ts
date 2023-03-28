@@ -71,7 +71,7 @@ class ListGroupItemModel extends BaseItemModel {
         data[CRM_LIST_GROUP_DETAIL_FIELD_KEY[index]]
       ) {
         formData.append(
-          [CRM_LIST_GROUP_DETAIL_FIELD_KEY[index]],
+          CRM_LIST_GROUP_DETAIL_FIELD_KEY[index],
           data[CRM_LIST_GROUP_DETAIL_FIELD_KEY[index]]
         );
       }
@@ -80,15 +80,15 @@ class ListGroupItemModel extends BaseItemModel {
       data[CRM_LIST_GROUP_DETAIL_FIELD_KEY.CONTACTS] &&
       data[CRM_LIST_GROUP_DETAIL_FIELD_KEY.CONTACTS].length
     ) {
-      data[CRM_LIST_GROUP_DETAIL_FIELD_KEY.CONTACTS].map((contact) => {
-        return formData.append([CRM_LIST_GROUP_DETAIL_FIELD_KEY.CONTACTS + '[]'], contact.id);
+      data[CRM_LIST_GROUP_DETAIL_FIELD_KEY.CONTACTS].map((contact: any) => {
+        return formData.append(CRM_LIST_GROUP_DETAIL_FIELD_KEY.CONTACTS + '[]', contact.id);
       });
     }
     return formData;
   };
 
   static __transformItemToApiOfUpdation = (data: any) => {
-    let formData = {};
+    let formData: any = {};
     const excluded = [CRM_LIST_GROUP_DETAIL_FIELD_KEY.CONTACTS];
     Object.keys(CRM_LIST_GROUP_DETAIL_FIELD_KEY).forEach((index) => {
       if (
@@ -102,7 +102,7 @@ class ListGroupItemModel extends BaseItemModel {
     if (data[CRM_LIST_GROUP_DETAIL_FIELD_KEY.CONTACTS]?.length) {
       formData[CRM_LIST_GROUP_DETAIL_FIELD_KEY.CONTACTS] = data[
         CRM_LIST_GROUP_DETAIL_FIELD_KEY.CONTACTS
-      ].map((contact) => {
+      ].map((contact: any) => {
         return contact.id;
       });
     } else {

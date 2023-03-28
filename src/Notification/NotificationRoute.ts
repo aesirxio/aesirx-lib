@@ -21,7 +21,7 @@ class NotificationRoute extends BaseRoute {
     });
   };
 
-  markReadAllRequest = (memberId: any => {
+  markReadAllRequest = (memberId: any) => {
     return AesirxServiceApiInstance.put('/api/notification-mark-read-all', { member_id: memberId });
   };
 }

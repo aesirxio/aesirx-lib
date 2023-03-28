@@ -83,7 +83,7 @@ class ProductPriceItemModel extends BaseItemModel {
         data[PIM_PRICES_DETAIL_FIELD_KEY[index]]
       ) {
         formData.append(
-          [PIM_PRICES_DETAIL_FIELD_KEY[index]],
+          PIM_PRICES_DETAIL_FIELD_KEY[index],
           data[PIM_PRICES_DETAIL_FIELD_KEY[index]]
         );
       }
@@ -112,7 +112,7 @@ class ProductPriceItemModel extends BaseItemModel {
   };
 
   static __transformItemToApiOfUpdation = (data: any) => {
-    let formData = {};
+    let formData: any = {};
     const excluded = [PIM_PRICES_DETAIL_FIELD_KEY.CUSTOM_FIELDS];
     Object.keys(PIM_PRICES_DETAIL_FIELD_KEY).forEach((index) => {
       if (

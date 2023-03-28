@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-const DAM_COLLECTION_FIELD_KEY = {
+const DAM_COLLECTION_FIELD_KEY: any = {
   IDS: 'ids',
   ID: 'id',
   PARENT_ID: 'parent_id',
@@ -16,7 +16,7 @@ const DAM_COLLECTION_FIELD_KEY = {
   COLLECTIONIDS: 'collectionIds',
 };
 
-const DAM_COLLECTION_API_RESPONSE_FIELD_KEY = {
+const DAM_COLLECTION_API_RESPONSE_FIELD_KEY: any = {
   ID: 'id',
   PARENT_ID: 'parent_id',
   NAME: 'name',
@@ -29,7 +29,7 @@ const DAM_COLLECTION_API_RESPONSE_FIELD_KEY = {
   IDS: 'ids',
 };
 
-const DAM_ASSETS_FIELD_KEY = {
+const DAM_ASSETS_FIELD_KEY: any = {
   ID: 'id',
   NAME: 'name',
   ALIAS: 'alias',
@@ -47,7 +47,7 @@ const DAM_ASSETS_FIELD_KEY = {
   FILE_NAME: 'file_name',
   FILE: 'file',
 };
-const DAM_ASSETS_API_FIELD_KEY = {
+const DAM_ASSETS_API_FIELD_KEY: any = {
   ID: 'id',
   IDS: 'ids',
   NAME: 'name',

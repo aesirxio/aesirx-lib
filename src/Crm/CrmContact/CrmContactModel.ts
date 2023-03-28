@@ -101,7 +101,7 @@ class ContactItemModel extends BaseItemModel {
         data[CRM_CONTACT_DETAIL_FIELD_KEY[index]]
       ) {
         formData.append(
-          [CRM_CONTACT_DETAIL_FIELD_KEY[index]],
+          CRM_CONTACT_DETAIL_FIELD_KEY[index],
           data[CRM_CONTACT_DETAIL_FIELD_KEY[index]]
         );
       }
@@ -110,21 +110,21 @@ class ContactItemModel extends BaseItemModel {
       data[CRM_CONTACT_DETAIL_FIELD_KEY.LISTGROUPS] &&
       data[CRM_CONTACT_DETAIL_FIELD_KEY.LISTGROUPS].length
     ) {
-      data[CRM_CONTACT_DETAIL_FIELD_KEY.LISTGROUPS].map((item) => {
-        return formData.append([CRM_CONTACT_DETAIL_FIELD_KEY.LISTGROUPS + '[]'], item.id);
+      data[CRM_CONTACT_DETAIL_FIELD_KEY.LISTGROUPS].map((item: any) => {
+        return formData.append(CRM_CONTACT_DETAIL_FIELD_KEY.LISTGROUPS + '[]', item.id);
       });
     }
     if (data[CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_STATUS]) {
       formData.append(
-        [CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_STATUS],
+        CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_STATUS,
         data[CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_STATUS]?.id
       );
     }
     return formData;
   };
 
-  static __transformItemToApiOfUpdation = (data) => {
-    let formData = {};
+  static __transformItemToApiOfUpdation = (data: any) => {
+    let formData: any = {};
     const excluded = [
       CRM_CONTACT_DETAIL_FIELD_KEY.LISTGROUPS,
       CRM_CONTACT_DETAIL_FIELD_KEY.CONTACT_STATUS,
@@ -140,7 +140,7 @@ class ContactItemModel extends BaseItemModel {
     if (data[CRM_CONTACT_DETAIL_FIELD_KEY.LISTGROUPS]?.length) {
       formData[CRM_CONTACT_DETAIL_FIELD_KEY.LISTGROUPS] = data[
         CRM_CONTACT_DETAIL_FIELD_KEY.LISTGROUPS
-      ].map((item) => {
+      ].map((item: any) => {
         return item.id;
       });
     } else {

@@ -19,21 +19,7 @@ class PimTagRoute extends BaseRoute {
     );
   };
 
-  buildFilter = () => {
-    // Get params to URL
-    const { search } = window.location;
-    const searchParams = new URLSearchParams(search);
-
-    for (var pair of searchParams.entries()) {
-      if (/\(|\)|\[|\]/g.test(pair[1])) {
-        let removeBracket = pair[1].replace(/\[|\]/g, '');
-        this.filter[pair[0]] = removeBracket.split(',');
-      } else {
-        this.filter[pair[0]] = pair[1];
-      }
-    }
-    this.page = this.filter['page'] ? this.filter['page'] : 1;
-  };
+  buildFilter = () => {};
 
   createFilters = (filters: any) => {
     let buildFilter: any = {};

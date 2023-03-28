@@ -73,7 +73,7 @@ class AesirxPimProductApiService {
 
       if (data?._embedded) {
         listItems = await Promise.all(
-          data._embedded.item.map(async (o) => {
+          data._embedded.item.map(async (o: any) => {
             return new ProductItemModel(o).toJSON();
           })
         );

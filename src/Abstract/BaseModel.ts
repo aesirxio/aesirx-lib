@@ -4,7 +4,7 @@
  */
 
 class BaseModel {
-  items = [];
+  items: any = [];
   unTransformedItems = [];
 
   pureEntities: any = null;

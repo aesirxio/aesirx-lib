@@ -16,7 +16,7 @@ import {
 } from '../Constant/MemberConstant';
 
 class MemberItemModel {
-  toJSON = (data) => {
+  toJSON = (data: any) => {
     return {
       [MEMBER_GET_FIELD_KEY.ID]: data.id,
       [MEMBER_GET_FIELD_KEY.FULL_NAME]: data.full_name,
@@ -40,7 +40,7 @@ class MemberItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     return {
       [MEMBER_CREATE_API_RESPONSE_FIELD_KEY.USERNAME]: data[MEMBER_CREATE_FIELD_KEY.USERNAME] ?? '',
       [MEMBER_CREATE_API_RESPONSE_FIELD_KEY.EMAIL]: data[MEMBER_CREATE_FIELD_KEY.EMAIL] ?? '',
@@ -48,14 +48,14 @@ class MemberItemModel {
     };
   };
 
-  static __transformItemToApiOfActivation = (data) => {
+  static __transformItemToApiOfActivation = (data: any) => {
     return {
       [MEMBER_UPDATE_ACTIVATION_CODE_FIELD_KEY.ACTIVATION_CODE]:
         data[MEMBER_UPDATE_ACTIVATION_CODE_FIELD_KEY.ACTIVATION_CODE] ?? '',
     };
   };
 
-  static __transformItemToApiOfUpdateMember = (data) => {
+  static __transformItemToApiOfUpdateMember = (data: any) => {
     return {
       [MEMBER_FIELD_KEY.ID]: data[MEMBER_FIELD_KEY.ID] ?? '',
       [MEMBER_FIELD_KEY.FULL_NAME]: data[MEMBER_FIELD_KEY.FULL_NAME_2] ?? '',
@@ -74,7 +74,7 @@ class MemberItemModel {
     };
   };
 
-  static __transformItemToApiOfUpdateMemberPassword = (data) => {
+  static __transformItemToApiOfUpdateMemberPassword = (data: any) => {
     return {
       [MEMBER_UPDATE_PASSWORD_FIELD_KEY.ID]: data[MEMBER_UPDATE_PASSWORD_FIELD_KEY.ID] ?? '',
       [MEMBER_UPDATE_PASSWORD_FIELD_KEY.CURR_PASSWORD]:
@@ -84,14 +84,14 @@ class MemberItemModel {
     };
   };
 
-  static __transformItemToApiOfResetMemberEmail = (data) => {
+  static __transformItemToApiOfResetMemberEmail = (data: any) => {
     return {
       [MEMBER_RESET_PASSWORD_EMAIL_FIELD_KEY.EMAIL]:
         data[MEMBER_RESET_PASSWORD_EMAIL_FIELD_KEY.EMAIL] ?? '',
     };
   };
 
-  static __transformItemToApiOfResetMemberActivation = (data) => {
+  static __transformItemToApiOfResetMemberActivation = (data: any) => {
     return {
       [MEMBER_RESET_PASSWORD_FIELD_KEY.ACTIVATION_CODE]:
         data[MEMBER_RESET_PASSWORD_FIELD_KEY.ACTIVATION_CODE] ?? '',
@@ -100,7 +100,7 @@ class MemberItemModel {
     };
   };
 
-  static __transformItemToApiOfResetMemberNewPassword = (data) => {
+  static __transformItemToApiOfResetMemberNewPassword = (data: any) => {
     return {
       [MEMBER_RESET_PASSWORD_NEW_PASSWORD_FIELD_KEY.ID]:
         data[MEMBER_RESET_PASSWORD_NEW_PASSWORD_FIELD_KEY.ID] ?? '',
@@ -111,13 +111,13 @@ class MemberItemModel {
     };
   };
 
-  static __transformItemToApiOfCheckUsername = (data) => {
+  static __transformItemToApiOfCheckUsername = (data: any) => {
     return {
       [MEMBER_CREATE_FIELD_KEY.USERNAME]: data[MEMBER_CREATE_FIELD_KEY.USERNAME] ?? '',
     };
   };
 
-  static __transformItemToApiOfCheckEmail = (data) => {
+  static __transformItemToApiOfCheckEmail = (data: any) => {
     return {
       [MEMBER_CREATE_FIELD_KEY.EMAIL]: data[MEMBER_CREATE_FIELD_KEY.EMAIL] ?? '',
     };

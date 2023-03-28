@@ -11,7 +11,6 @@ import BaseItemModel from '../Abstract/BaseItemModel';
 import BaseModel from '../Abstract/BaseModel';
 
 class ContentModel extends BaseModel {
-  items: any;
   constructor(entities: any) {
     super(entities);
     if (entities) {

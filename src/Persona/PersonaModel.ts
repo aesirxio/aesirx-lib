@@ -8,7 +8,6 @@ import BaseItemModel from '../Abstract/BaseItemModel';
 import BaseModel from '../Abstract/BaseModel';
 
 class PersonaModel extends BaseModel {
-  items: any;
   constructor(entities: any) {
     super(entities);
     if (entities) {
@@ -23,7 +22,6 @@ class PersonaModel extends BaseModel {
 }
 
 class PersonaFilterModel extends BaseModel {
-  items: any;
   constructor(entities: any) {
     super(entities);
     if (entities) {

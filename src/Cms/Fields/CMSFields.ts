@@ -1,4 +1,3 @@
-import { Component } from 'react';
 import axios from 'axios';
 import CmsFieldsRoute from './CMSFieldsRoute';
 import { FieldsItemModel } from './CMSFieldsModel';

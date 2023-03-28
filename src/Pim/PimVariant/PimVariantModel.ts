@@ -30,7 +30,7 @@ class VariantItemModel extends BaseItemModel {
     return {};
   };
 
-  isJsonString = (str) => {
+  isJsonString = (str: any) => {
     try {
       JSON.parse(str);
     } catch (e) {
@@ -65,7 +65,7 @@ class VariantItemModel extends BaseItemModel {
         data[PIM_VARIANT_DETAIL_FIELD_KEY[index]]
       ) {
         formData.append(
-          [PIM_VARIANT_DETAIL_FIELD_KEY[index]],
+          PIM_VARIANT_DETAIL_FIELD_KEY[index],
           data[PIM_VARIANT_DETAIL_FIELD_KEY[index]]
         );
       }
@@ -74,8 +74,8 @@ class VariantItemModel extends BaseItemModel {
     return formData;
   };
 
-  static __transformItemToApiOfUpdation = (data) => {
-    let formData = {};
+  static __transformItemToApiOfUpdation = (data: any) => {
+    let formData: any = {};
     Object.keys(PIM_VARIANT_DETAIL_FIELD_KEY).forEach((index) => {
       formData[PIM_VARIANT_DETAIL_FIELD_KEY[index]] = data[PIM_VARIANT_DETAIL_FIELD_KEY[index]];
     });

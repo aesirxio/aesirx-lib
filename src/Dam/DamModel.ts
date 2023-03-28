@@ -16,7 +16,6 @@ import {
 import queryString from 'query-string';
 
 class ColectionModel extends BaseModel {
-  items: any;
   constructor(entities: any) {
     super(entities);
     if (entities) {
@@ -68,20 +67,20 @@ class CollectionItemModel extends BaseItemModel {
         data[DAM_COLLECTION_FIELD_KEY[index]]
       ) {
         formData.append(
-          [DAM_COLLECTION_API_RESPONSE_FIELD_KEY[index]],
+          DAM_COLLECTION_API_RESPONSE_FIELD_KEY[index],
           data[DAM_COLLECTION_FIELD_KEY[index]]
         );
       }
     });
     formData.append(
-      [DAM_COLLECTION_API_RESPONSE_FIELD_KEY.PARENT_ID],
+      DAM_COLLECTION_API_RESPONSE_FIELD_KEY.PARENT_ID,
       data[DAM_COLLECTION_FIELD_KEY.PARENT_ID] ?? 0
     );
     return formData;
   };
 
   static __transformItemToApiOfUpdation = (data: any) => {
-    let formData = {};
+    let formData: any = {};
     const excluded = [DAM_COLLECTION_FIELD_KEY.PARENT_ID];
 
     Object.keys(DAM_COLLECTION_API_RESPONSE_FIELD_KEY).forEach((index) => {
@@ -112,7 +111,7 @@ class CollectionItemModel extends BaseItemModel {
     let formData = new FormData();
     if (data[DAM_COLLECTION_FIELD_KEY.PARENT_ID]) {
       formData.append(
-        [DAM_COLLECTION_FIELD_KEY.PARENT_ID],
+        DAM_COLLECTION_FIELD_KEY.PARENT_ID,
         data[DAM_COLLECTION_FIELD_KEY.PARENT_ID] ?? 0
       );
     }
@@ -149,7 +148,6 @@ class CollectionItemModel extends BaseItemModel {
 }
 
 class AssetsModel extends BaseModel {
-  items: any;
   constructor(entities: any) {
     super(entities);
     if (entities) {
@@ -227,11 +225,11 @@ class AssetsItemModel extends BaseItemModel {
     const excluded = [DAM_ASSETS_FIELD_KEY.COLLECTION_ID, DAM_ASSETS_FIELD_KEY.FILE];
     Object.keys(DAM_ASSETS_API_FIELD_KEY).forEach((index) => {
       if (!excluded.includes(DAM_ASSETS_FIELD_KEY[index]) && data[DAM_ASSETS_FIELD_KEY[index]]) {
-        formData.append([DAM_ASSETS_API_FIELD_KEY[index]], data[DAM_ASSETS_FIELD_KEY[index]]);
+        formData.append(DAM_ASSETS_API_FIELD_KEY[index], data[DAM_ASSETS_FIELD_KEY[index]]);
       }
     });
     formData.append(
-      [DAM_ASSETS_API_FIELD_KEY.COLLECTION_ID],
+      DAM_ASSETS_API_FIELD_KEY.COLLECTION_ID,
       data[DAM_ASSETS_FIELD_KEY.COLLECTION_ID] ?? 0
     );
     if (data[DAM_ASSETS_FIELD_KEY.FILE]) {
@@ -244,7 +242,7 @@ class AssetsItemModel extends BaseItemModel {
   };
 
   static __transformItemToApiOfUpdation = (data: any) => {
-    let formData = {};
+    let formData: any = {};
     const excluded = [DAM_ASSETS_FIELD_KEY.COLLECTION_ID];
     Object.keys(DAM_ASSETS_API_FIELD_KEY).forEach((index) => {
       if (!excluded.includes(DAM_ASSETS_FIELD_KEY[index]) && data[DAM_ASSETS_FIELD_KEY[index]]) {
@@ -268,7 +266,6 @@ class AssetsItemModel extends BaseItemModel {
 }
 
 class SubscriptionModel extends BaseModel {
-  items: any;
   constructor(entities: any) {
     super(entities);
     if (entities) {

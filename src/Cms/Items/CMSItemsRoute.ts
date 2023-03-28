@@ -60,7 +60,7 @@ class CmsItemsRoute extends BaseRoute {
   toggleFeatured = (id: any, isFeatured: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
-        option: this.option,
+        option: 'reditem',
         id,
         isFeatured,
       })

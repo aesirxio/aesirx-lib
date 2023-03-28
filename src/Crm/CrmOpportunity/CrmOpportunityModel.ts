@@ -109,7 +109,7 @@ class OpportunityItemModel extends BaseItemModel {
         data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY[index]]
       ) {
         formData.append(
-          [CRM_OPPORTUNITY_DETAIL_FIELD_KEY[index]],
+          CRM_OPPORTUNITY_DETAIL_FIELD_KEY[index],
           data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY[index]]
         );
       }
@@ -119,19 +119,19 @@ class OpportunityItemModel extends BaseItemModel {
       data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT] &&
       data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT].length
     ) {
-      data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT].map((item) => {
-        return formData.append([CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT + '[]'], item.id);
+      data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT].map((item: any) => {
+        return formData.append(CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT + '[]', item.id);
       });
     }
     if (data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.STAGE]) {
       formData.append(
-        [CRM_OPPORTUNITY_DETAIL_FIELD_KEY.STAGE],
+        CRM_OPPORTUNITY_DETAIL_FIELD_KEY.STAGE,
         data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.STAGE]?.id
       );
     }
     if (data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.COMPANY]) {
       formData.append(
-        [CRM_OPPORTUNITY_DETAIL_FIELD_KEY.COMPANY],
+        CRM_OPPORTUNITY_DETAIL_FIELD_KEY.COMPANY,
         data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.COMPANY]?.id
       );
     }
@@ -140,7 +140,7 @@ class OpportunityItemModel extends BaseItemModel {
   };
 
   static __transformItemToApiOfUpdation = (data: any) => {
-    let formData = {};
+    let formData: any = {};
     const excluded = [
       CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT,
       CRM_OPPORTUNITY_DETAIL_FIELD_KEY.STAGE,
@@ -159,7 +159,7 @@ class OpportunityItemModel extends BaseItemModel {
     if (data[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT]?.length) {
       formData[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT] = data[
         CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT
-      ].map((item) => {
+      ].map((item: any) => {
         return item.id;
       });
     } else {

@@ -98,7 +98,7 @@ class EmailMarketingItemModel extends BaseItemModel {
         data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY[index]]
       ) {
         formData.append(
-          [CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY[index]],
+          CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY[index],
           data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY[index]]
         );
       }
@@ -107,17 +107,14 @@ class EmailMarketingItemModel extends BaseItemModel {
       data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS] &&
       data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS].length
     ) {
-      data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS].map((item) => {
-        return formData.append(
-          [CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS + '[]'],
-          item?.value
-        );
+      data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS].map((item: any) => {
+        return formData.append(CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS + '[]', item?.value);
       });
     }
     if (data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CCERS]) {
       let ccersArrays = data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CCERS].split(';');
-      ccersArrays?.map((ccer) => {
-        return formData.append([CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CCERS + '[]'], ccer?.trim());
+      ccersArrays?.map((ccer: any) => {
+        return formData.append(CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.CCERS + '[]', ccer?.trim());
       });
     }
 
@@ -138,7 +135,7 @@ class EmailMarketingItemModel extends BaseItemModel {
         data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY[index]]
       ) {
         formData.append(
-          [CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY[index]],
+          CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY[index],
           data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY[index]]
         );
       }
@@ -147,22 +144,19 @@ class EmailMarketingItemModel extends BaseItemModel {
       data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS_TEST] &&
       data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS_TEST].length
     ) {
-      data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS_TEST].map((item) => {
-        return formData.append(
-          [CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS + '[]'],
-          item?.value
-        );
+      data[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS_TEST].map((item: any) => {
+        return formData.append(CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.RECEIVERS + '[]', item?.value);
       });
     }
 
-    formData.append([CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.PRESEND], 1);
+    formData.append(CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.PRESEND, `1`);
 
     return formData;
   };
 
   static __transformItemToApiOfUpdation = (data: any) => {
-    let formData = {};
-    const excluded = [];
+    let formData: any = {};
+    const excluded: any = [];
     Object.keys(CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY).forEach((index) => {
       if (
         !excluded.includes(CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY[index]) &&

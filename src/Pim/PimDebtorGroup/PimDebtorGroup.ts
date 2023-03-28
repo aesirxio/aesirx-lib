@@ -72,7 +72,7 @@ class AesirxPimDebtorGroupApiService {
 
       if (data?._embedded) {
         listItems = await Promise.all(
-          data._embedded.item.map(async (o) => {
+          data._embedded.item.map(async (o: any) => {
             return new DebtorGroupItemModel(o);
           })
         );

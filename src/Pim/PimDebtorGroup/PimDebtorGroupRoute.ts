@@ -51,7 +51,7 @@ class PimDebtorGroupRoute extends BaseRoute {
     );
   };
 
-  create = (data) => {
+  create = (data: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
@@ -60,7 +60,7 @@ class PimDebtorGroupRoute extends BaseRoute {
     );
   };
 
-  update = (data) => {
+  update = (data: any) => {
     return AesirXApiInstance.put(
       this.createRequestURL({
         option: this.option,
@@ -74,7 +74,7 @@ class PimDebtorGroupRoute extends BaseRoute {
     );
   };
 
-  updateStatus = (listSelected) => {
+  updateStatus = (listSelected: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
@@ -86,7 +86,7 @@ class PimDebtorGroupRoute extends BaseRoute {
     );
   };
 
-  delete = (id) => {
+  delete = (id: any) => {
     return AesirXApiInstance.delete(
       this.createRequestURL({
         option: this.option,
@@ -100,7 +100,7 @@ class PimDebtorGroupRoute extends BaseRoute {
     );
   };
 
-  deleteDebtorGroups = (listSelected) => {
+  deleteDebtorGroups = (listSelected: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,

@@ -99,7 +99,7 @@ class CategoryItemModel extends BaseItemModel {
         data[PIM_CATEGORY_DETAIL_FIELD_KEY[index]]
       ) {
         formData.append(
-          [PIM_CATEGORY_DETAIL_FIELD_KEY[index]],
+          PIM_CATEGORY_DETAIL_FIELD_KEY[index],
           data[PIM_CATEGORY_DETAIL_FIELD_KEY[index]]
         );
       }
@@ -119,9 +119,9 @@ class CategoryItemModel extends BaseItemModel {
       data[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES] &&
       data[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES].length
     ) {
-      data[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES].map((category) => {
+      data[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES].map((category: any) => {
         return formData.append(
-          [PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES + '[]'],
+          PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES + '[]',
           category.id
         );
       });
@@ -130,7 +130,7 @@ class CategoryItemModel extends BaseItemModel {
   };
 
   static __transformItemToApiOfUpdation = (data: any) => {
-    let formData = {};
+    let formData: any = {};
     const excluded = [
       PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS,
       PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES,
@@ -159,7 +159,7 @@ class CategoryItemModel extends BaseItemModel {
     ) {
       formData[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES] = data[
         PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES
-      ].map((category) => {
+      ].map((category: any) => {
         return category.id;
       });
     }

@@ -127,8 +127,8 @@ class CompanyItemModel extends BaseItemModel {
     return formData;
   };
 
-  static __transformItemToApiOfUpdation = (data) => {
-    let formData = {};
+  static __transformItemToApiOfUpdation = (data: any) => {
+    let formData: any = {};
     const excluded = [
       CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS,
       CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS,
@@ -144,7 +144,7 @@ class CompanyItemModel extends BaseItemModel {
     if (data[CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS]?.length) {
       formData[CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS] = data[
         CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS
-      ].map((item) => {
+      ].map((item: any) => {
         return item.id;
       });
     } else {

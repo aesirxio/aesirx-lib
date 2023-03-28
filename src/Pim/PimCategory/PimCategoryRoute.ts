@@ -9,7 +9,7 @@ import BaseRoute from '../../Abstract/BaseRoute';
 class PimCategoryRoute extends BaseRoute {
   option = 'reditem-category_product_category_60';
 
-  getList = (filters) => {
+  getList = (filters: any) => {
     const buildFilters = this.createFilters(filters);
     return AesirXApiInstance.get(
       this.createRequestURL({

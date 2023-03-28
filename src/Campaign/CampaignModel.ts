@@ -8,7 +8,6 @@ import BaseItemModel from '../Abstract/BaseItemModel';
 import BaseModel from '../Abstract/BaseModel';
 
 class CampaignModel extends BaseModel {
-  items: any;
   constructor(entities: any) {
     super(entities);
     if (entities) {
@@ -23,7 +22,6 @@ class CampaignModel extends BaseModel {
 }
 
 class CampaignFilterModel extends BaseModel {
-  items: any;
   constructor(entities: any) {
     super(entities);
     if (entities) {

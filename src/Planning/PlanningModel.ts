@@ -8,7 +8,6 @@ import BaseItemModel from '../Abstract/BaseItemModel';
 import BaseModel from '../Abstract/BaseModel';
 
 class PlanningModel extends BaseModel {
-  items: any;
   constructor(entities: any) {
     super(entities);
     if (entities) {
@@ -23,7 +22,6 @@ class PlanningModel extends BaseModel {
 }
 
 class PlanningFilterModel extends BaseModel {
-  items: any;
   constructor(entities: any) {
     super(entities);
     if (entities) {

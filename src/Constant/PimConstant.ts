@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-const PIM_PRODUCT_DETAIL_FIELD_KEY = {
+const PIM_PRODUCT_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   SKU: 'sku',
   TITLE: 'title',
@@ -33,7 +33,7 @@ const PIM_PRODUCT_DETAIL_FIELD_KEY = {
   MODIFIED_TIME: 'modified_time',
 };
 
-const PIM_VARIANT_DETAIL_FIELD_KEY = {
+const PIM_VARIANT_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   TITLE: 'title',
   PUBLISHED: 'published',
@@ -48,7 +48,7 @@ const PIM_VARIANT_DETAIL_FIELD_KEY = {
   MODIFIED_TIME: 'modified_time',
 };
 
-const PIM_CATEGORY_DETAIL_FIELD_KEY = {
+const PIM_CATEGORY_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   TITLE: 'title',
   ALIAS: 'alias',
@@ -70,7 +70,7 @@ const PIM_CATEGORY_DETAIL_FIELD_KEY = {
   PARENT_NAME: 'parent_name',
 };
 
-const PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY = {
+const PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   TITLE: 'title',
   PUBLISHED: 'published',
@@ -85,7 +85,7 @@ const PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY = {
   MODIFIED_TIME: 'modified_time',
 };
 
-const PIM_TAG_DETAIL_FIELD_KEY = {
+const PIM_TAG_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   TITLE: 'title',
   ALIAS: 'alias',
@@ -100,7 +100,7 @@ const PIM_TAG_DETAIL_FIELD_KEY = {
   PUBLISH_UP: 'publish_up',
 };
 
-const PIM_FIELD_DETAIL_FIELD_KEY = {
+const PIM_FIELD_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   NAME: 'name',
   PUBLISHED: 'published',
@@ -121,7 +121,7 @@ const PIM_FIELD_DETAIL_FIELD_KEY = {
   UNIQUE: 'unique',
 };
 
-const PIM_FIELD_GROUP_DETAIL_FIELD_KEY = {
+const PIM_FIELD_GROUP_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   NAME: 'name',
   PUBLISHED: 'published',
@@ -137,7 +137,7 @@ const PIM_FIELD_GROUP_DETAIL_FIELD_KEY = {
   STATE: 'state',
 };
 
-const PIM_PRICES_DETAIL_FIELD_KEY = {
+const PIM_PRICES_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   PUBLISHED: 'published',
   FEATURED: 'featured',

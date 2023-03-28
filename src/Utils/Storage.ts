@@ -3,19 +3,18 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 import { env } from '../env';
-
-const CryptoJS = require('crypto-js');
+import CryptoJS from 'crypto-js';
 
 const encrypt = env.REACT_APP_ENCRYPT;
 class Storage {
   static setItem(key: any, value: any) {
-    const cKey = CryptoJS.MD5(encrypt + key);
+    const cKey = CryptoJS.MD5(encrypt + key).toString();
     const cValue = CryptoJS.AES.encrypt('' + value, encrypt).toString();
     localStorage.setItem(cKey, cValue);
   }
 
   static getItem(key: any) {
-    const cKey = CryptoJS.MD5(encrypt + key);
+    const cKey = CryptoJS.MD5(encrypt + key).toString();
     const value = localStorage.getItem(cKey);
 
     if (value) {

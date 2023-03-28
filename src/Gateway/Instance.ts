@@ -29,7 +29,7 @@ const AesirXApiInstance = axios.create({
 });
 
 const refreshToken = (failedRequest: any) => {
-  let refresh_token;
+  let refresh_token: any;
   if (process.env.NODE_ENV === 'test') {
     refresh_token = process.env.refreshToken;
   } else {

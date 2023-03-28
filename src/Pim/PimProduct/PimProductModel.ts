@@ -103,7 +103,7 @@ class ProductItemModel extends BaseItemModel {
         data[PIM_PRODUCT_DETAIL_FIELD_KEY[index]]
       ) {
         formData.append(
-          [PIM_PRODUCT_DETAIL_FIELD_KEY[index]],
+          PIM_PRODUCT_DETAIL_FIELD_KEY[index],
           data[PIM_PRODUCT_DETAIL_FIELD_KEY[index]]
         );
       }
@@ -134,36 +134,14 @@ class ProductItemModel extends BaseItemModel {
       data[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES].length
     ) {
       data[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES].map((category: any) => {
-        return formData.append([PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES + '[]'], category);
+        return formData.append(PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES + '[]', category);
       });
     }
-    // if (data[PIM_PRODUCT_DETAIL_FIELD_KEY.VARIANTS]) {
-    //   console.log(
-    //     'data[PIM_PRODUCT_DETAIL_FIELD_KEY.VARIANTS]',
-    //     data[PIM_PRODUCT_DETAIL_FIELD_KEY.VARIANTS]
-    //   );
-    //   let variantData = data[PIM_PRODUCT_DETAIL_FIELD_KEY.VARIANTS].map((variant) => {
-    //     return {
-    //       price: {
-    //         price: variant.price,
-    //         retail_price: variant.retail_price,
-    //       },
-    //       property_values: Object.keys(variant.property_values).map((key) => ({
-    //         title: key,
-    //         property: {
-    //           title: variant.property_values[key],
-    //         },
-    //       })),
-    //       custom_fields: variant.custom_fields,
-    //     };
-    //   });
-    //   console.log('variantData', variantData);
-    //   formData.append([PIM_PRODUCT_DETAIL_FIELD_KEY.VARIANTS], variantData);
-    // }
+
     return formData;
   };
-  static __transformItemToApiOfUpdation = (data) => {
-    let formData = {};
+  static __transformItemToApiOfUpdation = (data: any) => {
+    let formData: any = {};
     const excluded = [
       PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS,
       PIM_PRODUCT_DETAIL_FIELD_KEY.TAGS,
@@ -204,7 +182,7 @@ class ProductItemModel extends BaseItemModel {
     ) {
       formData[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES] = data[
         PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES
-      ].map((category) => {
+      ].map((category: any) => {
         return category;
       });
     }

@@ -3,12 +3,12 @@ import { CategoriesItemModel, CategoryModel } from './CMSCategoriesModel';
 import CmsCategoriesRoute from './CMSCategoriesRoute';
 
 class AesirxCmsCategoryApiService {
-  route = null;
+  route: any = null;
 
   constructor() {
     this.route = new CmsCategoriesRoute();
   }
-  getList = async (filters) => {
+  getList = async (filters: any) => {
     try {
       const data = await this.route.getList(filters);
       let results = null;
@@ -31,7 +31,7 @@ class AesirxCmsCategoryApiService {
     }
   };
 
-  create = async (data) => {
+  create = async (data: any) => {
     try {
       const result = await this.route.create(data);
       if (result) {
@@ -48,7 +48,7 @@ class AesirxCmsCategoryApiService {
     }
   };
 
-  update = async (data) => {
+  update = async (data: any) => {
     try {
       const result = await this.route.update(data);
       if (result) {
@@ -62,7 +62,7 @@ class AesirxCmsCategoryApiService {
     }
   };
 
-  delete = async (id) => {
+  delete = async (id: any) => {
     try {
       const result = await this.route.delete(id);
       if (result) {

@@ -70,16 +70,16 @@ class TagItemModel extends BaseItemModel {
     const excluded = [PIM_TAG_DETAIL_FIELD_KEY.ID];
     Object.keys(PIM_TAG_DETAIL_FIELD_KEY).forEach((index) => {
       if (!excluded.includes(index) && data[PIM_TAG_DETAIL_FIELD_KEY[index]]) {
-        formData.append([PIM_TAG_DETAIL_FIELD_KEY[index]], data[PIM_TAG_DETAIL_FIELD_KEY[index]]);
+        formData.append(PIM_TAG_DETAIL_FIELD_KEY[index], data[PIM_TAG_DETAIL_FIELD_KEY[index]]);
       }
     });
-    formData.append([PIM_TAG_DETAIL_FIELD_KEY.ID], data[PIM_TAG_DETAIL_FIELD_KEY.ID] ?? 0);
+    formData.append(PIM_TAG_DETAIL_FIELD_KEY.ID, data[PIM_TAG_DETAIL_FIELD_KEY.ID] ?? 0);
     return formData;
   };
 
   static __transformItemToApiOfUpdation = (data: any) => {
-    let formData = {};
-    const excluded = [];
+    let formData: any = {};
+    const excluded: any = [];
     Object.keys(PIM_TAG_DETAIL_FIELD_KEY).forEach((index) => {
       if (!excluded.includes(index) && data[PIM_TAG_DETAIL_FIELD_KEY[index]]) {
         formData[PIM_TAG_DETAIL_FIELD_KEY[index]] = data[PIM_TAG_DETAIL_FIELD_KEY[index]];

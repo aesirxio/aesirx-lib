@@ -78,12 +78,12 @@ class FieldGroupItemModel extends BaseItemModel {
         data[PIM_FIELD_GROUP_DETAIL_FIELD_KEY[index]]
       ) {
         if (Array.isArray(data[PIM_FIELD_GROUP_DETAIL_FIELD_KEY[index]])) {
-          data[PIM_FIELD_GROUP_DETAIL_FIELD_KEY[index]].map((item) =>
-            formData.append([PIM_FIELD_GROUP_DETAIL_FIELD_KEY[index] + '[]'], item)
+          data[PIM_FIELD_GROUP_DETAIL_FIELD_KEY[index]].map((item: any) =>
+            formData.append(PIM_FIELD_GROUP_DETAIL_FIELD_KEY[index] + '[]', item)
           );
         } else {
           formData.append(
-            [PIM_FIELD_GROUP_DETAIL_FIELD_KEY[index]],
+            PIM_FIELD_GROUP_DETAIL_FIELD_KEY[index],
             data[PIM_FIELD_GROUP_DETAIL_FIELD_KEY[index]]
           );
         }
@@ -93,8 +93,8 @@ class FieldGroupItemModel extends BaseItemModel {
   };
 
   static __transformItemToApiOfUpdation = (data: any) => {
-    let formData = {};
-    const excluded = [];
+    let formData: any = {};
+    const excluded: any = [];
     Object.keys(PIM_FIELD_GROUP_DETAIL_FIELD_KEY).forEach((index) => {
       if (
         !excluded.includes(PIM_FIELD_GROUP_DETAIL_FIELD_KEY[index]) &&

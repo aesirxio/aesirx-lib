@@ -76,7 +76,7 @@ class DebtorGroupItemModel extends BaseItemModel {
         data[PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY[index]]
       ) {
         formData.append(
-          [PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY[index]],
+          PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY[index],
           data[PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY[index]]
         );
       }
@@ -96,7 +96,7 @@ class DebtorGroupItemModel extends BaseItemModel {
   };
 
   static __transformItemToApiOfUpdation = (data: any) => {
-    let formData = {};
+    let formData: any = {};
     const excluded = [PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY.CUSTOM_FIELDS];
     Object.keys(PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY).forEach((index) => {
       if (
