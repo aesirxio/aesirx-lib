@@ -5,17 +5,15 @@
 
 import { FieldGroupItemModel } from './PimFieldGroupModel';
 import PimFieldGroupRoute from './PimFieldGroupRoute';
-import { Component } from 'react';
 import axios from 'axios';
 
 /**
  * API Service - FieldGroup
  */
-class AesirxPimFieldGroupApiService extends Component {
+class AesirxPimFieldGroupApiService {
   route = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new PimFieldGroupRoute();
   }
 
@@ -106,6 +104,25 @@ class AesirxPimFieldGroupApiService extends Component {
       });
 
       const result = await this.route.updateStatus(listSelected);
+
+      if (result) {
+        return result.result;
+      }
+      return { message: 'Something have problem' };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancel' };
+      } else throw error;
+    }
+  };
+
+  deleteFieldGroups = async (arr) => {
+    try {
+      const listSelected = await arr.map((o) => {
+        return { id: o };
+      });
+
+      const result = await this.route.deleteFieldGroups(listSelected);
 
       if (result) {
         return result.result;

@@ -3,7 +3,6 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { Component } from 'react';
 import axios from 'axios';
 import PimProductPriceRoute from './PimProductPriceRoute';
 import { ProductPriceItemModel } from './PimProductPriceModel';
@@ -11,11 +10,10 @@ import { ProductPriceItemModel } from './PimProductPriceModel';
 /**
  * API Service - Product
  */
-class AesirxPimProductPriceApiService extends Component {
+class AesirxPimProductPriceApiService {
   route = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new PimProductPriceRoute();
   }
 
