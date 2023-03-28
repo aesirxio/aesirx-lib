@@ -3,10 +3,10 @@ import BaseModel from '../../Abstract/BaseModel';
 import { CMS_ITEMS_DETAIL_FIELD_KEY } from '../../Constant/CmsConstant';
 
 class ItemsModel extends BaseModel {
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new ItemsItemModel(element);
       });
     }
@@ -14,23 +14,23 @@ class ItemsModel extends BaseModel {
 }
 
 class ItemsItemModel extends BaseItemModel {
-  id = null;
-  title = null;
+  id: any = null;
+  title: any = null;
   description = null;
   intro_text = null;
   thumb_image = null;
   type = null;
   categories = null;
-  status = null;
+  status: any = null;
   access = null;
-  featured = null;
+  featured: any = null;
   created_time = null;
   author = null;
   engagement = null;
   visits = null;
   languages = null;
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[CMS_ITEMS_DETAIL_FIELD_KEY.ID] ?? '';
@@ -76,7 +76,7 @@ class ItemsItemModel extends BaseItemModel {
     };
   };
 
-  transformStatus = (status) => {
+  transformStatus = (status: any) => {
     switch (status) {
       case 1:
         return 'published';

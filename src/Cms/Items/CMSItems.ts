@@ -3,13 +3,13 @@ import { ItemsItemModel, ItemsModel } from './CMSItemsModel';
 import CMSItemsRoute from './CMSItemsRoute';
 
 class AesirxCmsItemsApiService {
-  route = null;
+  route: any = null;
 
   constructor() {
     this.route = new CMSItemsRoute();
   }
   // List Page
-  getList = async (filter) => {
+  getList = async (filter: any) => {
     try {
       const data = await this.route.getList(filter);
       let results = null;
@@ -32,7 +32,7 @@ class AesirxCmsItemsApiService {
     }
   };
 
-  deleteItems = async (data) => {
+  deleteItems = async (data: any) => {
     try {
       const response = await this.route.deleteItems(data);
       if (response) {
@@ -64,7 +64,7 @@ class AesirxCmsItemsApiService {
   };
 
   // Create || Edit Page
-  getFields = async (contentTypeId) => {
+  getFields = async (contentTypeId: any) => {
     try {
       const response = await this.route.getFields(contentTypeId);
       if (response) {
@@ -79,7 +79,7 @@ class AesirxCmsItemsApiService {
     }
   };
 
-  createItem = async (data) => {
+  createItem = async (data: any) => {
     try {
       const result = await this.route.createItem(data);
       if (result) {
@@ -93,7 +93,7 @@ class AesirxCmsItemsApiService {
     }
   };
 
-  updateItem = async (data) => {
+  updateItem = async (data: any) => {
     try {
       const result = await this.route.updateItem(data);
       if (result) {
@@ -107,7 +107,7 @@ class AesirxCmsItemsApiService {
     }
   };
 
-  getDetail = async (id) => {
+  getDetail = async (id: any) => {
     try {
       const data = await this.route.getDetail(id);
       let results = null;

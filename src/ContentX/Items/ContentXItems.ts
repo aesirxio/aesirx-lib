@@ -3,7 +3,7 @@ import { ItemsItemModel, ItemsModel } from './ContentXItemsModel';
 import ContentXItemsRoute from './ContentXItemsRoute';
 
 class AesirxContentXItemsApiService {
-  route = null;
+  route: any = null;
 
   constructor() {
     this.route = new ContentXItemsRoute();
@@ -32,7 +32,7 @@ class AesirxContentXItemsApiService {
     }
   };
 
-  deleteItems = async (data) => {
+  deleteItems = async (data: any) => {
     try {
       const response = await this.route.deleteItems(data);
       if (response) {
@@ -64,7 +64,7 @@ class AesirxContentXItemsApiService {
   };
 
   // Create || Edit Page
-  getFields = async (contentTypeId) => {
+  getFields = async (contentTypeId: any) => {
     try {
       const response = await this.route.getFields(contentTypeId);
       if (response) {
@@ -79,7 +79,7 @@ class AesirxContentXItemsApiService {
     }
   };
 
-  createItem = async (data) => {
+  createItem = async (data: any) => {
     try {
       const result = await this.route.createItem(data);
       if (result) {
@@ -93,7 +93,7 @@ class AesirxContentXItemsApiService {
     }
   };
 
-  updateItem = async (data) => {
+  updateItem = async (data: any) => {
     try {
       const result = await this.route.updateItem(data);
       if (result) {
@@ -107,7 +107,7 @@ class AesirxContentXItemsApiService {
     }
   };
 
-  getDetail = async (id) => {
+  getDetail = async (id: any) => {
     try {
       const data = await this.route.getDetail(id);
       let results = null;

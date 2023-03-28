@@ -7,10 +7,10 @@ import BaseItemModel from '../../Abstract/BaseItemModel';
 import BaseModel from '../../Abstract/BaseModel';
 import { CRM_LIST_GROUP_DETAIL_FIELD_KEY } from '../../Constant/CrmConstant';
 class ListGroupModel extends BaseModel {
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new ListGroupItemModel(element);
       });
     }
@@ -18,7 +18,7 @@ class ListGroupModel extends BaseModel {
 }
 
 class ListGroupItemModel extends BaseItemModel {
-  id = null;
+  id: any = null;
   crm_listgroup_name = null;
   crm_list_group_contacts = [];
   created_by = null;
@@ -26,9 +26,9 @@ class ListGroupItemModel extends BaseItemModel {
   status = null;
   modified_by = null;
   modified_time = null;
-  featured = null;
+  featured: any = null;
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[CRM_LIST_GROUP_DETAIL_FIELD_KEY.ID] ?? '';
@@ -62,7 +62,7 @@ class ListGroupItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     let formData = new FormData();
     const excluded = [CRM_LIST_GROUP_DETAIL_FIELD_KEY.ID, CRM_LIST_GROUP_DETAIL_FIELD_KEY.CONTACTS];
     Object.keys(CRM_LIST_GROUP_DETAIL_FIELD_KEY).forEach((index) => {
@@ -87,7 +87,7 @@ class ListGroupItemModel extends BaseItemModel {
     return formData;
   };
 
-  static __transformItemToApiOfUpdation = (data) => {
+  static __transformItemToApiOfUpdation = (data: any) => {
     let formData = {};
     const excluded = [CRM_LIST_GROUP_DETAIL_FIELD_KEY.CONTACTS];
     Object.keys(CRM_LIST_GROUP_DETAIL_FIELD_KEY).forEach((index) => {

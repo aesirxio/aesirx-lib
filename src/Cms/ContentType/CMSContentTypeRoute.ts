@@ -22,7 +22,7 @@ class CmsContentTypeRoute extends BaseRoute {
     );
   };
 
-  create = (data) => {
+  create = (data: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
@@ -30,7 +30,7 @@ class CmsContentTypeRoute extends BaseRoute {
       data
     );
   };
-  update = (data) => {
+  update = (data: any) => {
     return AesirXApiInstance.put(
       this.createRequestURL({
         option: this.option,
@@ -43,7 +43,7 @@ class CmsContentTypeRoute extends BaseRoute {
       }
     );
   };
-  delete = (id) => {
+  delete = (id: any) => {
     return AesirXApiInstance.delete(
       this.createRequestURL({
         option: this.option,

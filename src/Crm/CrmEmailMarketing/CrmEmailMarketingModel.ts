@@ -7,10 +7,10 @@ import BaseItemModel from '../../Abstract/BaseItemModel';
 import BaseModel from '../../Abstract/BaseModel';
 import { CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY } from '../../Constant/CrmConstant';
 class EmailMarketingModel extends BaseModel {
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new EmailMarketingItemModel(element);
       });
     }
@@ -18,7 +18,7 @@ class EmailMarketingModel extends BaseModel {
 }
 
 class EmailMarketingItemModel extends BaseItemModel {
-  id = null;
+  id: any = null;
   crm_email_name = null;
   crm_email_subject = null;
   crm_email_sender = null;
@@ -31,7 +31,7 @@ class EmailMarketingItemModel extends BaseItemModel {
   status = null;
   modified_by = null;
   modified_time = null;
-  featured = null;
+  featured: any = null;
 
   // NAME: 'crm_email_name',
   // SUBJECT: 'crm_email_subject',
@@ -40,7 +40,7 @@ class EmailMarketingItemModel extends BaseItemModel {
   // CCERS: 'crm_email_ccers',
   // CONTENT: 'crm_email_content',
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.ID] ?? '';
@@ -84,7 +84,7 @@ class EmailMarketingItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     let formData = new FormData();
     const excluded = [
       CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.ID,
@@ -124,7 +124,7 @@ class EmailMarketingItemModel extends BaseItemModel {
     return formData;
   };
 
-  static __transformItemToApiOfSendTest = (data) => {
+  static __transformItemToApiOfSendTest = (data: any) => {
     let formData = new FormData();
     const excluded = [
       CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY.ID,
@@ -160,7 +160,7 @@ class EmailMarketingItemModel extends BaseItemModel {
     return formData;
   };
 
-  static __transformItemToApiOfUpdation = (data) => {
+  static __transformItemToApiOfUpdation = (data: any) => {
     let formData = {};
     const excluded = [];
     Object.keys(CRM_EMAIL_MARKETING_DETAIL_FIELD_KEY).forEach((index) => {

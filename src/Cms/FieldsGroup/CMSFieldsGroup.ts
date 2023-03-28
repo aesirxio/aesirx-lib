@@ -1,13 +1,11 @@
-import { Component } from 'react';
 import axios from 'axios';
 import CmsFieldsGroupRoute from './CMSFieldsGroupRoute';
 import { FieldsGroupItemModel } from './CMSFieldsGroupModel';
 
-class AesirxCmsFieldsGroupApiService extends Component {
-  route = null;
+class AesirxCmsFieldsGroupApiService {
+  route: any = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new CmsFieldsGroupRoute();
   }
   getList = async () => {
@@ -25,7 +23,7 @@ class AesirxCmsFieldsGroupApiService extends Component {
     }
   };
 
-  create = async (data) => {
+  create = async (data: any) => {
     try {
       const result = await this.route.create(data);
       if (result) {
@@ -39,7 +37,7 @@ class AesirxCmsFieldsGroupApiService extends Component {
     }
   };
 
-  update = async (data) => {
+  update = async (data: any) => {
     try {
       const result = await this.route.update(data);
       if (result) {

@@ -11,21 +11,19 @@ import {
   SubscriptionModel,
 } from './DamModel';
 import DamRoute from './DamRoute';
-import { Component } from 'react';
 import axios from 'axios';
 
 /**
  * API Service - Member
  */
-class AesirxDamApiService extends Component {
-  route = null;
+class AesirxDamApiService {
+  route: any = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new DamRoute();
   }
 
-  search = async (data) => {
+  search = async (data: any) => {
     try {
       const dataSearchAssets = await this.route.searchAssets(data);
       const dataSearchCollections = await this.route.searchCollections(data);
@@ -55,7 +53,7 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  getAsset = async (id) => {
+  getAsset = async (id: any) => {
     try {
       const data = await this.route.getAsset(id);
 
@@ -76,7 +74,7 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  getAssets = async (collectionId = 0, dataFilter) => {
+  getAssets = async (collectionId = 0, dataFilter: any) => {
     try {
       const data = await this.route.getAssets(collectionId, dataFilter);
 
@@ -100,13 +98,13 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  createAssets = async (data) => {
+  createAssets = async (data: any) => {
     try {
       const dataToSubmit = AssetsItemModel.__transformItemToApiOfCreation(data);
       const result = await this.route.createAssets(dataToSubmit);
 
       if (result.result) {
-        let data = new AssetsModel(result.result);
+        let data: any = new AssetsModel(result.result);
         if (data) {
           data = data.toJSON();
           return data;
@@ -120,7 +118,7 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  updateAssets = async (data) => {
+  updateAssets = async (data: any) => {
     try {
       const dataToSubmit = AssetsItemModel.__transformItemToApiOfUpdation(data);
       const result = await this.route.updateAssets(dataToSubmit);
@@ -135,7 +133,7 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  deleteAssets = async (ids) => {
+  deleteAssets = async (ids: any) => {
     try {
       const dataToSubmit = AssetsItemModel.__transformItemToApiOfDelete(ids);
       const result = await this.route.deleteAssets(dataToSubmit);
@@ -150,7 +148,7 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  getCollection = async (id) => {
+  getCollection = async (id: any) => {
     try {
       const data = await this.route.getCollection(id);
 
@@ -171,7 +169,7 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  getCollections = async (collectionId = 0, dataFilter) => {
+  getCollections = async (collectionId = 0, dataFilter: any) => {
     try {
       const data = await this.route.getCollections(collectionId, dataFilter);
       let results = null;
@@ -195,7 +193,7 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  createCollections = async (data) => {
+  createCollections = async (data: any) => {
     try {
       const dataToSubmit = CollectionItemModel.__transformItemToApiOfCreation(data);
       const result = await this.route.createCollections(dataToSubmit);
@@ -210,7 +208,7 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  updateCollections = async (data) => {
+  updateCollections = async (data: any) => {
     try {
       const dataToSubmit = CollectionItemModel.__transformItemToApiOfUpdation(data);
       const result = await this.route.updateCollections(dataToSubmit);
@@ -225,7 +223,7 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  deleteCollections = async (ids) => {
+  deleteCollections = async (ids: any) => {
     try {
       const dataToSubmit = CollectionItemModel.__transformItemToApiOfDelete(ids);
       const result = await this.route.deleteCollections(dataToSubmit);
@@ -260,7 +258,7 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  updateDamSubscription = async (data) => {
+  updateDamSubscription = async (data: any) => {
     try {
       const result = await this.route.updateDamSubscription(data);
       if (result.result) {
@@ -274,7 +272,7 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  moveToFolder = async (data) => {
+  moveToFolder = async (data: any) => {
     try {
       const dataToSubmit = CollectionItemModel.__transformItemToApiOfMoveToFolder(data);
       const result = await this.route.moveToFolder(dataToSubmit);
@@ -289,7 +287,7 @@ class AesirxDamApiService extends Component {
     }
   };
 
-  downloadCollections = async (ids) => {
+  downloadCollections = async (ids: any) => {
     try {
       const dataToSubmit = CollectionItemModel.__transformItemToApiOfDownload(ids);
       const result = await this.route.downloadCollections(dataToSubmit);

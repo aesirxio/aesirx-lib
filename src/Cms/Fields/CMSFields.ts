@@ -3,11 +3,10 @@ import axios from 'axios';
 import CmsFieldsRoute from './CMSFieldsRoute';
 import { FieldsItemModel } from './CMSFieldsModel';
 
-class AesirxCmsFieldsApiService extends Component {
-  route = null;
+class AesirxCmsFieldsApiService {
+  route: any = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new CmsFieldsRoute();
   }
   getList = async () => {
@@ -25,7 +24,7 @@ class AesirxCmsFieldsApiService extends Component {
     }
   };
 
-  create = async (data) => {
+  create = async (data: any) => {
     try {
       const result = await this.route.create(data);
       if (result) {
@@ -39,7 +38,7 @@ class AesirxCmsFieldsApiService extends Component {
     }
   };
 
-  update = async (data) => {
+  update = async (data: any) => {
     try {
       const result = await this.route.update(data);
       if (result) {

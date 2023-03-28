@@ -7,10 +7,10 @@ import BaseItemModel from '../../Abstract/BaseItemModel';
 import BaseModel from '../../Abstract/BaseModel';
 import { CRM_COMPANY_DETAIL_FIELD_KEY } from '../../Constant/CrmConstant';
 class CompanyModel extends BaseModel {
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new CompanyItemModel(element);
       });
     }
@@ -18,7 +18,7 @@ class CompanyModel extends BaseModel {
 }
 
 class CompanyItemModel extends BaseItemModel {
-  id = null;
+  id: any = null;
   crm_company_name = null;
   crm_company_address = null;
   // crm_company_logo = [];
@@ -36,8 +36,8 @@ class CompanyItemModel extends BaseItemModel {
   status = null;
   modified_by = null;
   modified_time = null;
-  featured = null;
-  constructor(entity) {
+  featured: any = null;
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[CRM_COMPANY_DETAIL_FIELD_KEY.ID] ?? '';
@@ -92,7 +92,7 @@ class CompanyItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     let formData = new FormData();
     const excluded = [
       CRM_COMPANY_DETAIL_FIELD_KEY.ID,
@@ -105,7 +105,7 @@ class CompanyItemModel extends BaseItemModel {
         data[CRM_COMPANY_DETAIL_FIELD_KEY[index]]
       ) {
         formData.append(
-          [CRM_COMPANY_DETAIL_FIELD_KEY[index]],
+          CRM_COMPANY_DETAIL_FIELD_KEY[index],
           data[CRM_COMPANY_DETAIL_FIELD_KEY[index]]
         );
       }
@@ -114,13 +114,13 @@ class CompanyItemModel extends BaseItemModel {
       data[CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS] &&
       data[CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS].length
     ) {
-      data[CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS].map((item) => {
-        return formData.append([CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS + '[]'], item.id);
+      data[CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS].map((item: any) => {
+        return formData.append(CRM_COMPANY_DETAIL_FIELD_KEY.CONTACTS + '[]', item.id);
       });
     }
     if (data[CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS]) {
       formData.append(
-        [CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS],
+        CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS,
         data[CRM_COMPANY_DETAIL_FIELD_KEY.COMPANY_STATUS]?.id
       );
     }

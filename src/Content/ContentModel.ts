@@ -11,11 +11,12 @@ import BaseItemModel from '../Abstract/BaseItemModel';
 import BaseModel from '../Abstract/BaseModel';
 
 class ContentModel extends BaseModel {
-  constructor(entities) {
+  items: any;
+  constructor(entities: any) {
     super(entities);
     if (entities) {
       this.unTransformedItems = entities._embedded.item;
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new ContentItemModel(element);
       });
 
@@ -25,12 +26,12 @@ class ContentModel extends BaseModel {
 }
 
 class ContentFilterModel extends BaseModel {
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
       this.unTransformedItems = entities.result.data;
 
-      this.items = entities.result.data.map((element) => {
+      this.items = entities.result.data.map((element: any) => {
         return new ContentItemModel(element);
       });
     }
@@ -65,8 +66,9 @@ class ContentItemModel extends BaseItemModel {
   status = 1;
   attachments = '';
   contentToContentThemes = '';
+  publishingType: any = '';
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.headline = entity[ESI_CONTENT_API_RESPONSE_FIELD_KEY.HEADLINE] ?? '';
@@ -147,7 +149,7 @@ class ContentItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     return {
       [ESI_CONTENT_API_RESPONSE_FIELD_KEY.HEADLINE]:
         data[ESI_CONTENT_FIELD_KEY.CONTENT_TO_POST][ESI_CONTENT_FIELD_KEY.HEADLINE] ?? '',
@@ -183,7 +185,7 @@ class ContentItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfUpdation = (data) => {
+  static __transformItemToApiOfUpdation = (data: any) => {
     return {
       [ESI_CONTENT_API_RESPONSE_FIELD_KEY.ID]: data[ESI_CONTENT_FIELD_KEY.ID],
       [ESI_CONTENT_API_RESPONSE_FIELD_KEY.HEADLINE]: data[ESI_CONTENT_FIELD_KEY.HEADLINE],
@@ -219,11 +221,11 @@ class ContentItemModel extends BaseItemModel {
 }
 
 class ContentsByCampaignModel extends BaseModel {
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
       this.unTransformedItems = entities.result;
-      this.items = entities.result.map((element) => {
+      this.items = entities.result.map((element: any) => {
         return new ContentItemModel(element);
       });
     }

@@ -12,13 +12,13 @@ import axios from 'axios';
  * API Service - ListGroup
  */
 class AesirxCrmListGroupApiService {
-  route = null;
+  route: any = null;
 
   constructor() {
     this.route = new CrmListGroupRoute();
   }
 
-  create = async (data) => {
+  create = async (data: any) => {
     try {
       const dataToSubmit =
         process.env.NODE_ENV === 'test'
@@ -36,7 +36,7 @@ class AesirxCrmListGroupApiService {
     }
   };
 
-  update = async (data) => {
+  update = async (data: any) => {
     try {
       const dataToSubmit =
         process.env.NODE_ENV === 'test'
@@ -73,7 +73,7 @@ class AesirxCrmListGroupApiService {
     }
   };
 
-  getList = async (filter) => {
+  getList = async (filter: any) => {
     try {
       const data = await this.route.getList(filter);
       let listItems = null;
@@ -106,7 +106,7 @@ class AesirxCrmListGroupApiService {
     }
   };
 
-  updateStatus = async (arr, status) => {
+  updateStatus = async (arr: any, status: any) => {
     try {
       const result = await this.route.updateStatus(arr, status);
 
@@ -121,7 +121,7 @@ class AesirxCrmListGroupApiService {
     }
   };
 
-  delete = async (ids) => {
+  delete = async (ids: any) => {
     try {
       const result = await this.route.delete(ids);
 

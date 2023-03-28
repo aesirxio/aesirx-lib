@@ -3,10 +3,10 @@ import BaseModel from '../../Abstract/BaseModel';
 import { CMS_CATE_DETAIL_FIELD_KEY } from '../../Constant/CmsConstant';
 
 class FieldsGroupModel extends BaseModel {
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new FieldsGroupItemModel(element);
       });
     }
@@ -14,7 +14,7 @@ class FieldsGroupModel extends BaseModel {
 }
 
 class FieldsGroupItemModel extends BaseItemModel {
-  id = null;
+  id: any = null;
   check = false;
   engagement = '';
   languages = '';
@@ -22,7 +22,7 @@ class FieldsGroupItemModel extends BaseItemModel {
   status = '';
   type = '';
   visits = '';
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[CMS_CATE_DETAIL_FIELD_KEY.ID] ?? '';
@@ -54,7 +54,7 @@ class FieldsGroupItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     let formData = new FormData();
     // const excluded = [CMS_CATE_DETAIL_FIELD_KEY.ID];
     // Object.keys(CMS_CATE_DETAIL_FIELD_KEY).forEach((index) => {
@@ -65,7 +65,7 @@ class FieldsGroupItemModel extends BaseItemModel {
     //   );
     // }
     // });
-    formData.append([CMS_CATE_DETAIL_FIELD_KEY.ID], data[CMS_CATE_DETAIL_FIELD_KEY.ID] ?? 0);
+    formData.append(CMS_CATE_DETAIL_FIELD_KEY.ID, data[CMS_CATE_DETAIL_FIELD_KEY.ID] ?? 0);
     return formData;
   };
 

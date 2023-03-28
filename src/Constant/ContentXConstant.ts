@@ -21,6 +21,11 @@ const CONTENTX_CATE_DETAIL_FIELD_KEY = {
   SEO_PAGE_HEADING: 'seo_page_heading',
   SEO_PAGE_TITLE: 'seo_page_title',
   META_DATA: 'meta_data',
+  ENGAGEMENT: 'engagement',
+  LANGUAGES: 'languages',
+  TYPE: 'type',
+  VISITS: 'visits',
+  CHECK: 'check',
 };
 const CONTENTX_ITEMS_DETAIL_FIELD_KEY = {
   ID: 'id',

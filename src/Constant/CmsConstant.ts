@@ -21,6 +21,11 @@ const CMS_CATE_DETAIL_FIELD_KEY = {
   SEO_PAGE_HEADING: 'seo_page_heading',
   SEO_PAGE_TITLE: 'seo_page_title',
   META_DATA: 'meta_data',
+  CHECK: 'check',
+  ENGAGEMENT: 'engagement',
+  LANGUAGES: 'languages',
+  TYPE: 'type',
+  VISITS: 'visits',
 };
 const CMS_ITEMS_DETAIL_FIELD_KEY = {
   ID: 'id',

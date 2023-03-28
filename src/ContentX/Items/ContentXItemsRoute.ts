@@ -7,7 +7,7 @@ import AesirXApiInstance from '../../gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 
 class CmsItemsRoute extends BaseRoute {
-  getList = (filters) => {
+  getList = (filters: any) => {
     const buildFilters = this.createFilters(filters);
     return AesirXApiInstance.get(
       this.createRequestURL({
@@ -28,7 +28,7 @@ class CmsItemsRoute extends BaseRoute {
     );
   };
 
-  createItem = (data) => {
+  createItem = (data: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'reditem',
@@ -37,7 +37,7 @@ class CmsItemsRoute extends BaseRoute {
       data
     );
   };
-  updateItem = (data) => {
+  updateItem = (data: any) => {
     return AesirXApiInstance.put(
       this.createRequestURL({
         option: 'reditem',
@@ -46,7 +46,7 @@ class CmsItemsRoute extends BaseRoute {
       data
     );
   };
-  deleteItems = (ids) => {
+  deleteItems = (ids: any) => {
     return AesirXApiInstance.delete(
       this.createRequestURL({
         option: 'reditem',
@@ -57,19 +57,19 @@ class CmsItemsRoute extends BaseRoute {
       }
     );
   };
-  toggleFeatured = (id, isFeatured) => {
+  toggleFeatured = (id: any, isFeatured: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
-        option: this.option,
+        option: 'reditem',
         id,
         isFeatured,
       })
     );
   };
 
-  createFilters = (filters) => {
-    let buildFilter = {};
-    for (const [key, value] of Object.entries(filters)) {
+  createFilters = (filters: any) => {
+    let buildFilter: any = {};
+    for (const [key, value] of Object.entries<any>(filters)) {
       if (typeof value === 'object') {
         switch (value.type) {
           case 'custom_fields':

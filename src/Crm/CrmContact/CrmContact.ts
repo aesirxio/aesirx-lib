@@ -12,13 +12,13 @@ import axios from 'axios';
  * API Service - Contact
  */
 class AesirxCrmContactApiService {
-  route = null;
+  route: any = null;
 
   constructor() {
     this.route = new CrmContactRoute();
   }
 
-  create = async (data) => {
+  create = async (data: any) => {
     try {
       const dataToSubmit =
         process.env.NODE_ENV === 'test'
@@ -36,7 +36,7 @@ class AesirxCrmContactApiService {
     }
   };
 
-  update = async (data) => {
+  update = async (data: any) => {
     try {
       const dataToSubmit =
         process.env.NODE_ENV === 'test'
@@ -73,7 +73,7 @@ class AesirxCrmContactApiService {
     }
   };
 
-  getList = async (filter) => {
+  getList = async (filter: any) => {
     try {
       const data = await this.route.getList(filter);
       let listItems = null;
@@ -106,7 +106,7 @@ class AesirxCrmContactApiService {
     }
   };
 
-  updateStatus = async (arr, status) => {
+  updateStatus = async (arr: any, status: any) => {
     try {
       const result = await this.route.updateStatus(arr, status);
 
@@ -121,7 +121,7 @@ class AesirxCrmContactApiService {
     }
   };
 
-  delete = async (ids) => {
+  delete = async (ids: any) => {
     try {
       const result = await this.route.delete(ids);
 
@@ -142,7 +142,7 @@ class AesirxCrmContactApiService {
       let statusListItems = null;
       if (data?.result) {
         statusListItems = await Promise.all(
-          data.result.map(async (o) => {
+          data.result.map(async (o: any) => {
             return new StatusItemModel(o);
           })
         );

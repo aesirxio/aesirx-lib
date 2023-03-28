@@ -10,7 +10,7 @@ class CrmListGroupRoute extends BaseRoute {
   option = 'reditem';
   view = 'crm_listgroup';
 
-  getList = (filters) => {
+  getList = (filters: any) => {
     const buildFilters = this.createFilters(filters);
     return AesirXApiInstance.get(
       this.createRequestURL({
@@ -21,9 +21,9 @@ class CrmListGroupRoute extends BaseRoute {
     );
   };
 
-  createFilters = (filters) => {
-    let buildFilter = {};
-    for (const [key, value] of Object.entries(filters)) {
+  createFilters = (filters: any) => {
+    let buildFilter: any = {};
+    for (const [key, value] of Object.entries<any>(filters)) {
       if (typeof value === 'object') {
         switch (value.type) {
           case 'custom_fields':
@@ -54,7 +54,7 @@ class CrmListGroupRoute extends BaseRoute {
     );
   };
 
-  create = (data) => {
+  create = (data: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
@@ -64,7 +64,7 @@ class CrmListGroupRoute extends BaseRoute {
     );
   };
 
-  update = (data) => {
+  update = (data: any) => {
     return AesirXApiInstance.put(
       this.createRequestURL({
         option: this.option,
@@ -79,7 +79,7 @@ class CrmListGroupRoute extends BaseRoute {
     );
   };
 
-  updateStatus = (listSelected, status) => {
+  updateStatus = (listSelected: any, status: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
@@ -93,7 +93,7 @@ class CrmListGroupRoute extends BaseRoute {
     );
   };
 
-  delete = (ids) => {
+  delete = (ids: any) => {
     return AesirXApiInstance.delete(
       this.createRequestURL({
         option: this.option,

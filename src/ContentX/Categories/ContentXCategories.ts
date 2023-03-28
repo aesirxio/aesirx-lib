@@ -3,12 +3,12 @@ import { CategoriesItemModel, CategoryModel } from './ContentXCategoriesModel';
 import ContentXCategoriesRoute from './ContentXCategoriesRoute';
 
 class AesirxContentXCategoryApiService {
-  route = null;
+  route: any = null;
 
   constructor() {
     this.route = new ContentXCategoriesRoute();
   }
-  getList = async (filters) => {
+  getList = async (filters: any) => {
     try {
       const data = await this.route.getList(filters);
       let results = null;
@@ -31,7 +31,7 @@ class AesirxContentXCategoryApiService {
     }
   };
 
-  create = async (data) => {
+  create = async (data: any) => {
     try {
       const result = await this.route.create(data);
       if (result) {
@@ -45,7 +45,7 @@ class AesirxContentXCategoryApiService {
     }
   };
 
-  update = async (data) => {
+  update = async (data: any) => {
     try {
       const result = await this.route.update(data);
       if (result) {
@@ -59,7 +59,7 @@ class AesirxContentXCategoryApiService {
     }
   };
 
-  delete = async (id) => {
+  delete = async (id: any) => {
     try {
       const result = await this.route.delete(id);
       if (result) {

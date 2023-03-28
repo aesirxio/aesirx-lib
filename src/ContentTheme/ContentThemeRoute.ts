@@ -7,7 +7,7 @@ import BaseRoute from '../Abstract/BaseRoute';
 import AesirXApiInstance from '../gateway/Instance';
 
 class ContentThemeRoute extends BaseRoute {
-  getContentThemeItemRequest = (id) =>
+  getContentThemeItemRequest = (id: any) =>
     AesirXApiInstance.get(
       this.createRequestURL({
         option: 'content_theme',
@@ -28,7 +28,7 @@ class ContentThemeRoute extends BaseRoute {
    *
    * @param data
    */
-  createContentThemeRequest = (data) => {
+  createContentThemeRequest = (data: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'content_theme',
@@ -41,7 +41,7 @@ class ContentThemeRoute extends BaseRoute {
    *
    * @param data
    */
-  updateContentThemeRequest = (data) =>
+  updateContentThemeRequest = (data: any) =>
     AesirXApiInstance.put(
       this.createRequestURL({
         option: 'content_theme',
@@ -53,7 +53,7 @@ class ContentThemeRoute extends BaseRoute {
    *
    * @param id
    */
-  deleteContentThemeRequest = (id) => {
+  deleteContentThemeRequest = (id: any) => {
     let ids = null;
 
     if (typeof id === 'string') {
@@ -80,7 +80,7 @@ class ContentThemeRoute extends BaseRoute {
     }
   };
 
-  getContentThemeByDesignIdRequest = (designId) =>
+  getContentThemeByDesignIdRequest = (designId: any) =>
     AesirXApiInstance.get(
       this.createRequestURL({
         option: 'content_theme',

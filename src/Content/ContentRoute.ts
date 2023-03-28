@@ -8,7 +8,7 @@ import AesirXApiInstance from '../gateway/Instance';
 import AesirxServiceApiInstance from '../gateway/InstanceServiceApi';
 
 class ContentRoute extends BaseRoute {
-  getContentItemRequest = (ContentID) =>
+  getContentItemRequest = (ContentID: any) =>
     AesirXApiInstance.get(
       this.createRequestURL({
         option: 'content',
@@ -29,7 +29,7 @@ class ContentRoute extends BaseRoute {
    *
    * @param data
    */
-  createContentRequest = (data) =>
+  createContentRequest = (data: any) =>
     AesirXApiInstance.post(
       this.createRequestURL({
         option: 'content',
@@ -41,7 +41,7 @@ class ContentRoute extends BaseRoute {
    *
    * @param data
    */
-  updateContentRequest = (data) =>
+  updateContentRequest = (data: any) =>
     AesirXApiInstance.put(
       this.createRequestURL({
         option: 'content',
@@ -53,7 +53,7 @@ class ContentRoute extends BaseRoute {
    *
    * @param contentId
    */
-  deleteContentRequest = (contentId) => {
+  deleteContentRequest = (contentId: any) => {
     const contentIds = JSON.parse(contentId);
     return AesirXApiInstance.delete(
       this.createRequestURL({
@@ -72,7 +72,7 @@ class ContentRoute extends BaseRoute {
     );
   };
 
-  getContentsByCampaignIDsRequest = (campaignIds, limit = 20) => {
+  getContentsByCampaignIDsRequest = (campaignIds: any, limit = 20) => {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'content',
@@ -83,7 +83,7 @@ class ContentRoute extends BaseRoute {
     );
   };
 
-  searchContentsRequest = (dataFilter, page = 1, limit = 20) =>
+  searchContentsRequest = (dataFilter: any, page = 1, limit = 20) =>
     AesirXApiInstance.get(
       this.createRequestURL({
         option: 'content',
@@ -98,7 +98,7 @@ class ContentRoute extends BaseRoute {
    *
    * @param data
    */
-  createPostRequest = (data, publishingType) =>
+  createPostRequest = (data: any, publishingType: any) =>
     AesirXApiInstance.post(
       this.createRequestURL({
         option: 'content',
@@ -126,7 +126,7 @@ class ContentRoute extends BaseRoute {
    *
    * @param id
    */
-  getPostItemRequest = (categoryId, itemId) => {
+  getPostItemRequest = (categoryId: any, itemId: any) => {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'content',
@@ -137,7 +137,7 @@ class ContentRoute extends BaseRoute {
     );
   };
 
-  getContentChannelItemRequest = (categoryId) => {
+  getContentChannelItemRequest = (categoryId: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'content',
@@ -149,7 +149,7 @@ class ContentRoute extends BaseRoute {
     );
   };
 
-  getScheduleChannelRequest = (memberId) => {
+  getScheduleChannelRequest = (memberId: any) => {
     return AesirxServiceApiInstance.get('/api/schedule/' + memberId);
   };
 }

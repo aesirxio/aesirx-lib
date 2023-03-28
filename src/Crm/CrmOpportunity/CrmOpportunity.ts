@@ -12,13 +12,13 @@ import axios from 'axios';
  * API Service - Opportunity
  */
 class AesirxCrmOpportunityApiService {
-  route = null;
+  route: any = null;
 
   constructor() {
     this.route = new CrmOpportunityRoute();
   }
 
-  create = async (data) => {
+  create = async (data: any) => {
     try {
       const dataToSubmit =
         process.env.NODE_ENV === 'test'
@@ -36,7 +36,7 @@ class AesirxCrmOpportunityApiService {
     }
   };
 
-  update = async (data) => {
+  update = async (data: any) => {
     try {
       const dataToSubmit =
         process.env.NODE_ENV === 'test'
@@ -73,7 +73,7 @@ class AesirxCrmOpportunityApiService {
     }
   };
 
-  getList = async (filter) => {
+  getList = async (filter: any) => {
     try {
       const data = await this.route.getList(filter);
       let listItems = null;
@@ -81,7 +81,7 @@ class AesirxCrmOpportunityApiService {
 
       if (data?._embedded) {
         listItems = await Promise.all(
-          data._embedded.item.map(async (o) => {
+          data._embedded.item.map(async (o: any) => {
             return new OpportunityItemModel(o);
           })
         );
@@ -106,7 +106,7 @@ class AesirxCrmOpportunityApiService {
     }
   };
 
-  updateStatus = async (arr, status) => {
+  updateStatus = async (arr: any, status: any) => {
     try {
       const result = await this.route.updateStatus(arr, status);
 
@@ -121,7 +121,7 @@ class AesirxCrmOpportunityApiService {
     }
   };
 
-  delete = async (ids) => {
+  delete = async (ids: any) => {
     try {
       const result = await this.route.delete(ids);
 
@@ -142,7 +142,7 @@ class AesirxCrmOpportunityApiService {
       let stageListItems = null;
       if (data?.result) {
         stageListItems = await Promise.all(
-          data.result.map(async (o) => {
+          data.result.map(async (o: any) => {
             return new StageItemModel(o);
           })
         );

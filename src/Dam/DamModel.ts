@@ -16,10 +16,11 @@ import {
 import queryString from 'query-string';
 
 class ColectionModel extends BaseModel {
-  constructor(entities) {
+  items: any;
+  constructor(entities: any) {
     super(entities);
     if (entities) {
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new CollectionItemModel(element);
       });
       this.items.pagination = this.getPagination();
@@ -27,12 +28,12 @@ class ColectionModel extends BaseModel {
   }
 }
 class CollectionItemModel extends BaseItemModel {
-  id = null;
+  id: any = null;
   parent_id = null;
   name = '';
   file_size = 0;
   owner = null;
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[DAM_COLLECTION_FIELD_KEY.ID] ?? '';
@@ -58,7 +59,7 @@ class CollectionItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     let formData = new FormData();
     const excluded = [DAM_COLLECTION_FIELD_KEY.PARENT_ID];
     Object.keys(DAM_COLLECTION_API_RESPONSE_FIELD_KEY).forEach((index) => {
@@ -79,7 +80,7 @@ class CollectionItemModel extends BaseItemModel {
     return formData;
   };
 
-  static __transformItemToApiOfUpdation = (data) => {
+  static __transformItemToApiOfUpdation = (data: any) => {
     let formData = {};
     const excluded = [DAM_COLLECTION_FIELD_KEY.PARENT_ID];
 
@@ -98,7 +99,7 @@ class CollectionItemModel extends BaseItemModel {
     return formData;
   };
 
-  static __transformItemToApiOfDelete = (data) => {
+  static __transformItemToApiOfDelete = (data: any) => {
     const formData = queryString.stringify(
       { [DAM_COLLECTION_API_RESPONSE_FIELD_KEY.IDS]: data },
       { arrayFormat: 'bracket' }
@@ -107,7 +108,7 @@ class CollectionItemModel extends BaseItemModel {
     return formData;
   };
 
-  static __transformItemToApiOfMoveToFolder = (data) => {
+  static __transformItemToApiOfMoveToFolder = (data: any) => {
     let formData = new FormData();
     if (data[DAM_COLLECTION_FIELD_KEY.PARENT_ID]) {
       formData.append(
@@ -117,28 +118,28 @@ class CollectionItemModel extends BaseItemModel {
     }
 
     if (data[DAM_COLLECTION_FIELD_KEY.COLLECTIONIDS]) {
-      data[DAM_COLLECTION_FIELD_KEY.COLLECTIONIDS].forEach((collection) => {
+      data[DAM_COLLECTION_FIELD_KEY.COLLECTIONIDS].forEach((collection: any) => {
         formData.append([DAM_COLLECTION_API_RESPONSE_FIELD_KEY.COLLECTIONIDS] + '[]', collection);
       });
     }
     if (data[DAM_COLLECTION_FIELD_KEY.ASSETSIDS]) {
-      data[DAM_COLLECTION_FIELD_KEY.ASSETSIDS].forEach((asset) => {
+      data[DAM_COLLECTION_FIELD_KEY.ASSETSIDS].forEach((asset: any) => {
         formData.append([DAM_COLLECTION_API_RESPONSE_FIELD_KEY.ASSETSIDS] + '[]', asset);
       });
     }
     return formData;
   };
 
-  static __transformItemToApiOfDownload = (data) => {
+  static __transformItemToApiOfDownload = (data: any) => {
     let formData = new FormData();
 
     if (data[DAM_COLLECTION_FIELD_KEY.COLLECTIONIDS]) {
-      data[DAM_COLLECTION_FIELD_KEY.COLLECTIONIDS].forEach((collection) => {
+      data[DAM_COLLECTION_FIELD_KEY.COLLECTIONIDS].forEach((collection: any) => {
         formData.append([DAM_COLLECTION_API_RESPONSE_FIELD_KEY.COLLECTIONIDS] + '[]', collection);
       });
     }
     if (data[DAM_COLLECTION_FIELD_KEY.ASSETSIDS]) {
-      data[DAM_COLLECTION_FIELD_KEY.ASSETSIDS].forEach((asset) => {
+      data[DAM_COLLECTION_FIELD_KEY.ASSETSIDS].forEach((asset: any) => {
         formData.append([DAM_COLLECTION_API_RESPONSE_FIELD_KEY.ASSETSIDS] + '[]', asset);
       });
     }
@@ -148,16 +149,17 @@ class CollectionItemModel extends BaseItemModel {
 }
 
 class AssetsModel extends BaseModel {
-  constructor(entities) {
+  items: any;
+  constructor(entities: any) {
     super(entities);
     if (entities) {
       if (entities?._embedded?.item) {
-        this.items = entities._embedded.item.map((element) => {
+        this.items = entities._embedded.item.map((element: any) => {
           return new AssetsItemModel(element);
         });
         this.items.pagination = this.getPagination();
       } else {
-        this.items = entities.map((element) => {
+        this.items = entities.map((element: any) => {
           return new AssetsItemModel(element);
         });
       }
@@ -166,19 +168,19 @@ class AssetsModel extends BaseModel {
 }
 
 class AssetsItemModel extends BaseItemModel {
-  id = null;
+  id: any = null;
   collection_id = null;
   name = null;
-  alias = null;
+  alias: any = null;
   uuid = null;
   file_extention = null;
-  file_size = null;
+  file_size: any = null;
   file_mine_type = null;
   type_id = null;
   type = null;
   download_url = null;
   owner = null;
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[DAM_ASSETS_FIELD_KEY.ID] ?? '';
@@ -220,7 +222,7 @@ class AssetsItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     let formData = new FormData();
     const excluded = [DAM_ASSETS_FIELD_KEY.COLLECTION_ID, DAM_ASSETS_FIELD_KEY.FILE];
     Object.keys(DAM_ASSETS_API_FIELD_KEY).forEach((index) => {
@@ -233,7 +235,7 @@ class AssetsItemModel extends BaseItemModel {
       data[DAM_ASSETS_FIELD_KEY.COLLECTION_ID] ?? 0
     );
     if (data[DAM_ASSETS_FIELD_KEY.FILE]) {
-      data[DAM_ASSETS_FIELD_KEY.FILE].forEach((file) => {
+      data[DAM_ASSETS_FIELD_KEY.FILE].forEach((file: any) => {
         formData.append([DAM_ASSETS_API_FIELD_KEY.FILE] + '[]', file);
       });
     }
@@ -241,7 +243,7 @@ class AssetsItemModel extends BaseItemModel {
     return formData;
   };
 
-  static __transformItemToApiOfUpdation = (data) => {
+  static __transformItemToApiOfUpdation = (data: any) => {
     let formData = {};
     const excluded = [DAM_ASSETS_FIELD_KEY.COLLECTION_ID];
     Object.keys(DAM_ASSETS_API_FIELD_KEY).forEach((index) => {
@@ -255,7 +257,7 @@ class AssetsItemModel extends BaseItemModel {
     return formData;
   };
 
-  static __transformItemToApiOfDelete = (data) => {
+  static __transformItemToApiOfDelete = (data: any) => {
     const formData = queryString.stringify(
       { [DAM_ASSETS_API_FIELD_KEY.IDS]: data },
       { arrayFormat: 'bracket' }
@@ -266,10 +268,11 @@ class AssetsItemModel extends BaseItemModel {
 }
 
 class SubscriptionModel extends BaseModel {
-  constructor(entities) {
+  items: any;
+  constructor(entities: any) {
     super(entities);
     if (entities) {
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new SubsctiptionItemModel(element);
       });
       this.items.pagination = this.getPagination();
@@ -277,17 +280,17 @@ class SubscriptionModel extends BaseModel {
   }
 }
 class SubsctiptionItemModel extends BaseItemModel {
-  id = null;
+  id: any = null;
 
-  product = null;
+  product: any = null;
   product_type = null;
   product_option = null;
   product_storage_usage = null;
   license = null;
-  package = null;
+  package: any = null;
   package_name = null;
   package_storage_limit = null;
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[DAM_SUBSCIPTION_API_FIELD_KEY.ID] ?? '';

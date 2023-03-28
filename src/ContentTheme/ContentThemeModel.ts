@@ -11,11 +11,12 @@ import BaseItemModel from '../Abstract/BaseItemModel';
 import BaseModel from '../Abstract/BaseModel';
 
 class ContentThemeModel extends BaseModel {
-  constructor(entities) {
+  items: any;
+  constructor(entities: any) {
     super(entities);
     if (entities) {
       this.unTransformedItems = entities._embedded.item;
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new ContentThemeItemModel(element);
       });
 
@@ -28,7 +29,7 @@ class ContentThemeItemModel extends BaseItemModel {
   designId = 0;
   image = '';
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.designId = entity[ESI_CONTENT_THEME_API_RESPONSE_FIELD_KEY.DESIGN_ID] ?? '';
@@ -45,7 +46,7 @@ class ContentThemeItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     return {
       [ESI_CONTENT_THEME_API_RESPONSE_FIELD_KEY.DESIGN_ID]:
         data[ESI_CONTENT_THEME_FIELD_KEY.DESIGN_ID] ?? '',
@@ -54,7 +55,7 @@ class ContentThemeItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfUpdation = (data) => {
+  static __transformItemToApiOfUpdation = (data: any) => {
     return {
       [ESI_CONTENT_THEME_API_RESPONSE_FIELD_KEY.ID]: data[ESI_CONTENT_THEME_FIELD_KEY.ID],
       [ESI_CONTENT_THEME_API_RESPONSE_FIELD_KEY.DESIGN_ID]:

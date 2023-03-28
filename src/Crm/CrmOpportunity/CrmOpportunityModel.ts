@@ -10,10 +10,10 @@ import {
   CRM_STAGE_DETAIL_FIELD_KEY,
 } from '../../Constant/CrmConstant';
 class OpportunityModel extends BaseModel {
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new OpportunityItemModel(element);
       });
     }
@@ -21,7 +21,7 @@ class OpportunityModel extends BaseModel {
 }
 
 class OpportunityItemModel extends BaseItemModel {
-  id = null;
+  id: any = null;
   crm_opportunity_name = null;
   crm_opportunity_company = null;
   crm_opportunity_contact = [];
@@ -38,9 +38,9 @@ class OpportunityItemModel extends BaseItemModel {
   status = null;
   modified_by = null;
   modified_time = null;
-  featured = null;
+  featured: any = null;
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[CRM_OPPORTUNITY_DETAIL_FIELD_KEY.ID] ?? '';
@@ -95,7 +95,7 @@ class OpportunityItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     let formData = new FormData();
     const excluded = [
       CRM_OPPORTUNITY_DETAIL_FIELD_KEY.ID,
@@ -139,7 +139,7 @@ class OpportunityItemModel extends BaseItemModel {
     return formData;
   };
 
-  static __transformItemToApiOfUpdation = (data) => {
+  static __transformItemToApiOfUpdation = (data: any) => {
     let formData = {};
     const excluded = [
       CRM_OPPORTUNITY_DETAIL_FIELD_KEY.CONTACT,
@@ -178,10 +178,10 @@ class OpportunityItemModel extends BaseItemModel {
 }
 
 class StageItemModel extends BaseItemModel {
-  id = null;
-  title = null;
+  id: any = null;
+  title: any = null;
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[CRM_STAGE_DETAIL_FIELD_KEY.ID] ?? '';
@@ -197,7 +197,7 @@ class StageItemModel extends BaseItemModel {
     return {
       ...this.baseToJSON(),
       [CRM_OPPORTUNITY_DETAIL_FIELD_KEY.ID]: this.id,
-      [CRM_OPPORTUNITY_DETAIL_FIELD_KEY.TITLE]: this.title,
+      [CRM_OPPORTUNITY_DETAIL_FIELD_KEY.NAME]: this.title,
     };
   };
 }

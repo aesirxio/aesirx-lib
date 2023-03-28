@@ -10,20 +10,15 @@ import {
   ContentsByCampaignModel,
 } from './ContentModel';
 import ContentRoute from './ContentRoute';
-import { Component } from 'react';
 
 /**
  * API Service - Content
  */
-class AesirxContentApiService extends Component {
-  route = null;
+class AesirxContentApiService {
+  route: any = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new ContentRoute();
-    if (props) {
-      this.mode = props.mode ?? null;
-    }
   }
 
   /**
@@ -60,12 +55,7 @@ class AesirxContentApiService extends Component {
 
   /**
    * Call this function once you need the detail inforamtion of a Project Item by passing a ContentID
-   * @param ContentID (default: null)
-   * @returns {JSON|NULL}
-   * - JSON: Project item information is in JSON format
-   * - NULL: Project item is NOT found
    *  */
-
   async getContentItem(ContentID = 0, returnAsJSON = true) {
     try {
       if (ContentID === 0) return null;
@@ -87,15 +77,8 @@ class AesirxContentApiService extends Component {
 
   /**
    * Create a Content
-   * @param JSON data
-   * - Fields structure:
-   * {
-   *
-   *
-   * }
-   * @returns {Boolean}
    */
-  async createContent(data) {
+  async createContent(data: any) {
     try {
       // if (!data) return false;
       const dataToSubmit = ContentItemModel.__transformItemToApiOfCreation(data);
@@ -114,14 +97,8 @@ class AesirxContentApiService extends Component {
 
   /**
    * Update data of the Content with specified Content ID
-   * @param JSON data
-   * - Fields structure:
-   * {
-   *
-   * }
-   * @returns {Boolean}
    */
-  async updateContent(data) {
+  async updateContent(data: any) {
     try {
       if (!data) return false;
       if (data.id === null || data.id === 0 || data.id === undefined) return false;
@@ -138,10 +115,8 @@ class AesirxContentApiService extends Component {
 
   /**
    * Delete a Content
-   * @param integer contentId
-   * @returns {Boolean}
    */
-  async deleteContent(contentId) {
+  async deleteContent(contentId: any) {
     try {
       if (!contentId || contentId === 0) return false;
       return await this.route.deleteContentRequest(contentId);
@@ -163,17 +138,6 @@ class AesirxContentApiService extends Component {
 
   /**
    * Search projects
-   * @param JSON dataFilter
-   * - Fields structure:
-   * {
-   *    keyword:'',
-   *    campaigns: [123,245,133,125,...],
-   *    personas: [123,245,133,125,...],
-   * }
-   * @param integer page
-   * @param integer limit
-   * @param Boolean returnAsJSON
-   * @returns {Boolean}
    */
   async searchContents(dataFilter = {}, page = 1, limit = 20, returnAsJSON = true) {
     try {
@@ -200,12 +164,8 @@ class AesirxContentApiService extends Component {
 
   /**
    * get content campaignIDs data
-   * @param Array campaignIds   [12,32,31]
-   * @param integer limit
-   * @param Boolean returnAsJSON
-   * @returns {Boolean}
    */
-  async getContentsByCampaignIDs(campaignIds, limit = 20, returnAsJSON = true) {
+  async getContentsByCampaignIDs(campaignIds: any, limit = 20, returnAsJSON = true) {
     try {
       const data = await this.route.getContentsByCampaignIDsRequest(campaignIds, limit);
 
@@ -225,7 +185,7 @@ class AesirxContentApiService extends Component {
     }
   }
 
-  createPost = async (data, publishingType = 'post') => {
+  createPost = async (data: any, publishingType = 'post') => {
     const result = await this.route.createPostRequest(data, publishingType);
 
     return result.result;
@@ -237,26 +197,22 @@ class AesirxContentApiService extends Component {
     return result.result;
   };
 
-  getPostItem = async (categoryId, itemId) => {
+  getPostItem = async (categoryId: any, itemId: any) => {
     const result = await this.route.getPostItemRequest(categoryId, itemId);
     return result.result;
   };
 
-  getContentChannelItem = async (contentId) => {
+  getContentChannelItem = async (contentId: any) => {
     let result = await this.route.getContentChannelItemRequest(contentId);
 
     return result;
   };
 
-  getScheduleChannel = async (memberId) => {
+  getScheduleChannel = async (memberId: any) => {
     const result = await this.route.getScheduleChannelRequest(memberId);
 
     return result;
   };
-
-  render() {
-    return {};
-  }
 }
 
 export default AesirxContentApiService;

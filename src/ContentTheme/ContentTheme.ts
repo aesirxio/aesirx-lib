@@ -5,20 +5,15 @@
 
 import { ContentThemeItemModel, ContentThemeModel } from './ContentThemeModel';
 import ContentThemeRoute from './ContentThemeRoute';
-import { Component } from 'react';
 
 /**
  * API Service - Content
  */
-class AesirxContentThemeApiService extends Component {
-  route = null;
+class AesirxContentThemeApiService {
+  route: any = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new ContentThemeRoute();
-    if (props) {
-      this.mode = props.mode ?? null;
-    }
   }
 
   /**
@@ -90,7 +85,7 @@ class AesirxContentThemeApiService extends Component {
    * }
    * @returns {Boolean}
    */
-  async createContentTheme(data) {
+  async createContentTheme(data: any) {
     try {
       // if (!data) return false;
       const dataToSubmit = ContentThemeItemModel.__transformItemToApiOfCreation(data);
@@ -116,7 +111,7 @@ class AesirxContentThemeApiService extends Component {
    * }
    * @returns {Boolean}
    */
-  async updateContentTheme(data) {
+  async updateContentTheme(data: any) {
     try {
       if (!data) return false;
       if (data.id === null || data.id === 0 || data.id === undefined) return false;
@@ -138,7 +133,7 @@ class AesirxContentThemeApiService extends Component {
    * @param integer id
    * @returns {Boolean}
    */
-  async deleteContentTheme(id) {
+  async deleteContentTheme(id: any) {
     try {
       if (!id || id === 0) return false;
     } catch (error) {
@@ -170,10 +165,6 @@ class AesirxContentThemeApiService extends Component {
     } catch (error) {
       return null;
     }
-  }
-
-  render() {
-    return {};
   }
 }
 

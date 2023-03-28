@@ -13,13 +13,13 @@ import { StatusItemModel } from '../CrmContact/CrmContactModel';
  * API Service - Company
  */
 class AesirxCrmCompanyApiService {
-  route = null;
+  route: any = null;
 
   constructor() {
     this.route = new CrmCompanyRoute();
   }
 
-  create = async (data) => {
+  create = async (data: any) => {
     try {
       const dataToSubmit =
         process.env.NODE_ENV === 'test'
@@ -37,7 +37,7 @@ class AesirxCrmCompanyApiService {
     }
   };
 
-  update = async (data) => {
+  update = async (data: any) => {
     try {
       const dataToSubmit =
         process.env.NODE_ENV === 'test'
@@ -74,7 +74,7 @@ class AesirxCrmCompanyApiService {
     }
   };
 
-  getList = async (filter) => {
+  getList = async (filter: any) => {
     try {
       const data = await this.route.getList(filter);
       let listItems = null;
@@ -107,7 +107,7 @@ class AesirxCrmCompanyApiService {
     }
   };
 
-  updateStatus = async (arr, status) => {
+  updateStatus = async (arr: any, status: any) => {
     try {
       const result = await this.route.updateStatus(arr, status);
 
@@ -122,7 +122,7 @@ class AesirxCrmCompanyApiService {
     }
   };
 
-  delete = async (ids) => {
+  delete = async (ids: any) => {
     try {
       const result = await this.route.delete(ids);
 
@@ -143,7 +143,7 @@ class AesirxCrmCompanyApiService {
       let statusListItems = null;
       if (data?.result) {
         statusListItems = await Promise.all(
-          data.result.map(async (o) => {
+          data.result.map(async (o: any) => {
             return new StatusItemModel(o);
           })
         );

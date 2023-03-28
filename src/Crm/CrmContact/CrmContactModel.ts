@@ -10,10 +10,10 @@ import {
   CRM_STATUS_DETAIL_FIELD_KEY,
 } from '../../Constant/CrmConstant';
 class ContactModel extends BaseModel {
-  constructor(entities) {
+  constructor(entities: any) {
     super(entities);
     if (entities) {
-      this.items = entities._embedded.item.map((element) => {
+      this.items = entities._embedded.item.map((element: any) => {
         return new ContactItemModel(element);
       });
     }
@@ -21,7 +21,7 @@ class ContactModel extends BaseModel {
 }
 
 class ContactItemModel extends BaseItemModel {
-  id = null;
+  id: any = null;
   crm_contact_company_id = null;
   crm_company_name = null;
   // crm_contact_photo = [];
@@ -37,8 +37,8 @@ class ContactItemModel extends BaseItemModel {
   status = null;
   modified_by = null;
   modified_time = null;
-  featured = null;
-  constructor(entity) {
+  featured: any = null;
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[CRM_CONTACT_DETAIL_FIELD_KEY.ID] ?? '';
@@ -88,7 +88,7 @@ class ContactItemModel extends BaseItemModel {
     };
   };
 
-  static __transformItemToApiOfCreation = (data) => {
+  static __transformItemToApiOfCreation = (data: any) => {
     let formData = new FormData();
     const excluded = [
       CRM_CONTACT_DETAIL_FIELD_KEY.ID,
@@ -155,10 +155,10 @@ class ContactItemModel extends BaseItemModel {
 }
 
 class StatusItemModel extends BaseItemModel {
-  id = null;
-  title = null;
+  id: any = null;
+  title: any = null;
 
-  constructor(entity) {
+  constructor(entity: any) {
     super(entity);
     if (entity) {
       this.id = entity[CRM_STATUS_DETAIL_FIELD_KEY.ID] ?? '';

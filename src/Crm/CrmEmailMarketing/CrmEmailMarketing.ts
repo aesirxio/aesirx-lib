@@ -12,13 +12,13 @@ import axios from 'axios';
  * API Service - EmailMarketing
  */
 class AesirxCrmEmailMarketingApiService {
-  route = null;
+  route: any = null;
 
   constructor() {
     this.route = new CrmEmailMarketingRoute();
   }
 
-  create = async (data) => {
+  create = async (data: any) => {
     try {
       const dataToSubmit =
         process.env.NODE_ENV === 'test'
@@ -36,7 +36,7 @@ class AesirxCrmEmailMarketingApiService {
     }
   };
 
-  sendTest = async (data) => {
+  sendTest = async (data: any) => {
     try {
       const dataToSubmit =
         process.env.NODE_ENV === 'test'
@@ -54,7 +54,7 @@ class AesirxCrmEmailMarketingApiService {
     }
   };
 
-  update = async (data) => {
+  update = async (data: any) => {
     try {
       const dataToSubmit = EmailMarketingItemModel.__transformItemToApiOfUpdation(data);
       const result = await this.route.update(dataToSubmit);
@@ -88,7 +88,7 @@ class AesirxCrmEmailMarketingApiService {
     }
   };
 
-  getList = async (filter) => {
+  getList = async (filter: any) => {
     try {
       const data = await this.route.getList(filter);
       let listItems = null;
@@ -121,7 +121,7 @@ class AesirxCrmEmailMarketingApiService {
     }
   };
 
-  updateStatus = async (arr, status) => {
+  updateStatus = async (arr: any, status: any) => {
     try {
       const result = await this.route.updateStatus(arr, status);
 
@@ -136,7 +136,7 @@ class AesirxCrmEmailMarketingApiService {
     }
   };
 
-  delete = async (ids) => {
+  delete = async (ids: any) => {
     try {
       const result = await this.route.delete(ids);
 

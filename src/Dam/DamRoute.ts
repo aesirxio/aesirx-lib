@@ -14,7 +14,7 @@ class DamRoute extends BaseRoute {
     );
   };
 
-  updateDamSubscription = (data) => {
+  updateDamSubscription = (data: any) => {
     return AesirXApiInstance.put(
       this.createRequestURL({
         option: 'user_subscription',
@@ -28,7 +28,7 @@ class DamRoute extends BaseRoute {
     );
   };
 
-  getAsset = (id) => {
+  getAsset = (id: any) => {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'dam_asset',
@@ -56,7 +56,7 @@ class DamRoute extends BaseRoute {
     );
   };
 
-  createAssets = (data) => {
+  createAssets = (data: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'dam_asset',
@@ -65,7 +65,7 @@ class DamRoute extends BaseRoute {
     );
   };
 
-  updateAssets = (data) => {
+  updateAssets = (data: any) => {
     return AesirXApiInstance.put(
       this.createRequestURL({
         option: 'dam_asset',
@@ -79,7 +79,7 @@ class DamRoute extends BaseRoute {
     );
   };
 
-  deleteAssets = (ids) => {
+  deleteAssets = (ids: any) => {
     return AesirXApiInstance.delete(
       this.createRequestURL({
         option: 'dam_asset',
@@ -93,7 +93,7 @@ class DamRoute extends BaseRoute {
     );
   };
 
-  getCollection = (id) => {
+  getCollection = (id: any) => {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'dam_collection',
@@ -125,7 +125,7 @@ class DamRoute extends BaseRoute {
     );
   };
 
-  createCollections = (data) => {
+  createCollections = (data: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'dam_collection',
@@ -134,7 +134,7 @@ class DamRoute extends BaseRoute {
     );
   };
 
-  updateCollections = (data) => {
+  updateCollections = (data: any) => {
     return AesirXApiInstance.put(
       this.createRequestURL({
         option: 'dam_collection',
@@ -148,7 +148,7 @@ class DamRoute extends BaseRoute {
     );
   };
 
-  deleteCollections = (ids) => {
+  deleteCollections = (ids: any) => {
     return AesirXApiInstance.delete(
       this.createRequestURL({
         option: 'dam_collection',
@@ -162,7 +162,7 @@ class DamRoute extends BaseRoute {
     );
   };
 
-  moveToFolder = (data) => {
+  moveToFolder = (data: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'dam_collection',
@@ -172,7 +172,7 @@ class DamRoute extends BaseRoute {
     );
   };
 
-  downloadCollections = (ids) => {
+  downloadCollections = (ids: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'dam_collection',
