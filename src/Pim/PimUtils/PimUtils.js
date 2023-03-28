@@ -3,7 +3,6 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { Component } from 'react';
 import axios from 'axios';
 import { PublishStatusModel } from './PimUtilsModel';
 import UtilsRoute from './PimUtilsRoute';
@@ -11,11 +10,10 @@ import UtilsRoute from './PimUtilsRoute';
 /**
  * API Service - Util
  */
-class AesirxPimUtilApiService extends Component {
+class AesirxPimUtilApiService {
   route = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.utilsRoute = new UtilsRoute();
   }
 

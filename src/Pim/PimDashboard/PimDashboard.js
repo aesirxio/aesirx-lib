@@ -5,17 +5,15 @@
 
 import { DashboardModel } from './PimDashboardModel';
 import PimDashboardRoute from './PimDashboardRoute';
-import { Component } from 'react';
 import axios from 'axios';
 
 /**
  * API Service - Dashboards
  */
-class AesirxPimDashboardApiService extends Component {
+class AesirxPimDashboardApiService {
   route = null;
 
-  constructor(props) {
-    super(props);
+  constructor() {
     this.route = new PimDashboardRoute();
   }
 

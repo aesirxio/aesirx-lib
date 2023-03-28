@@ -98,6 +98,17 @@ class PimFieldGroupRoute extends BaseRoute {
       }
     );
   };
+  deleteFieldGroups = (listSelected) => {
+    return AesirXApiInstance.post(
+      this.createRequestURL({
+        option: this.option,
+        task: 'bulkDelete',
+      }),
+      {
+        items: listSelected,
+      }
+    );
+  };
 }
 
 export default PimFieldGroupRoute;
