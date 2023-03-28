@@ -3,14 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import {
-  DashboardModel,
-  DomainModel,
-  MetricsModel,
-  SummaryModel,
-  VisitorModel,
-  VisitorsModel,
-} from './BiModel';
+import { DomainModel, MetricsModel, SummaryModel, VisitorModel, VisitorsModel } from './BiModel';
 import BiRoute from './BiRoute';
 import { Component } from 'react';
 import axios from 'axios';
