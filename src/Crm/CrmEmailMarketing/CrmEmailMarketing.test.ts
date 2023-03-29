@@ -2,7 +2,7 @@ import { env } from '../../env';
 import AesirxCrmEmailMarketingApiService from './CrmEmailMarketing';
 import { describe, expect } from '@jest/globals';
 
-let createID = '';
+let createID: any = '';
 describe('CrmEmailMarketing', () => {
   it('Create', async () => {
     const service = new AesirxCrmEmailMarketingApiService();
@@ -61,7 +61,7 @@ describe('CrmEmailMarketing', () => {
   it('Get Detail', async () => {
     const service = new AesirxCrmEmailMarketingApiService();
 
-    const response = await service.getDetail(createID);
+    const response: any = await service.getDetail(createID);
 
     expect(response?.id).toEqual(createID);
   });
@@ -70,10 +70,10 @@ describe('CrmEmailMarketing', () => {
     const service = new AesirxCrmEmailMarketingApiService();
 
     const responseUnPublished = await service.updateStatus([createID], 0);
-    const responseDetailUnPublished = await service.getDetail(createID);
+    const responseDetailUnPublished: any = await service.getDetail(createID);
 
     const responsePublished = await service.updateStatus([createID], 1);
-    const responseDetailPublished = await service.getDetail(createID);
+    const responseDetailPublished: any = await service.getDetail(createID);
 
     expect(responseUnPublished).toBeTruthy();
     expect(responseDetailUnPublished.status).toBe(0);

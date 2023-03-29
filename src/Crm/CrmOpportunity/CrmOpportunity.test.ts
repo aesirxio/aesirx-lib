@@ -1,7 +1,7 @@
 import AesirxCrmOpportunityApiService from './CrmOpportunity';
 import { describe, expect } from '@jest/globals';
 
-let createID = '';
+let createID: any = '';
 describe('CrmOpportunity', () => {
   it('Create', async () => {
     const service = new AesirxCrmOpportunityApiService();
@@ -51,7 +51,7 @@ describe('CrmOpportunity', () => {
   it('Get Detail', async () => {
     const service = new AesirxCrmOpportunityApiService();
 
-    const response = await service.getDetail(createID);
+    const response: any = await service.getDetail(createID);
 
     expect(response?.id).toEqual(createID);
   });
@@ -60,10 +60,10 @@ describe('CrmOpportunity', () => {
     const service = new AesirxCrmOpportunityApiService();
 
     const responseUnPublished = await service.updateStatus([createID], 0);
-    const responseDetailUnPublished = await service.getDetail(createID);
+    const responseDetailUnPublished: any = await service.getDetail(createID);
 
     const responsePublished = await service.updateStatus([createID], 1);
-    const responseDetailPublished = await service.getDetail(createID);
+    const responseDetailPublished: any = await service.getDetail(createID);
 
     expect(responseUnPublished).toBeTruthy();
     expect(responseDetailUnPublished.status).toBe(0);

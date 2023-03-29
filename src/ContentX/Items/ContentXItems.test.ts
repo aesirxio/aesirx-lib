@@ -1,6 +1,6 @@
 import AesirxContentXItemsApiService from './ContentXItems';
 import { describe, expect } from '@jest/globals';
-let createID = '';
+let createID: any = '';
 
 describe('ContentXItems', () => {
   it('Create', async () => {
@@ -46,7 +46,7 @@ describe('ContentXItems', () => {
   it('Get Detail', async () => {
     const service = new AesirxContentXItemsApiService();
 
-    const response = await service.getDetail(createID);
+    const response: any = await service.getDetail(createID);
 
     expect(response?.id).toEqual(createID);
   });

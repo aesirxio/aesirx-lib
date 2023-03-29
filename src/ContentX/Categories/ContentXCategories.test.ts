@@ -1,6 +1,6 @@
 import AesirxContentXCategoryApiService from './ContentXCategories';
 
-let createID = '';
+let createID: any = '';
 
 describe('ContentXCategories', () => {
   it('Create', async () => {
@@ -46,7 +46,7 @@ describe('ContentXCategories', () => {
   it('Get Detail', async () => {
     const service = new AesirxContentXCategoryApiService();
 
-    const response = await service.getDetail(createID);
+    const response: any = await service.getDetail(createID);
 
     expect(response?.id).toEqual(createID);
   });

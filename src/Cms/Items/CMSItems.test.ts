@@ -1,6 +1,6 @@
 import AesirxCmsItemsApiService from './CMSItems';
 import { describe, expect } from '@jest/globals';
-let createID = '';
+let createID: any = '';
 
 describe('CMSItems', () => {
   it('Create', async () => {
@@ -46,7 +46,7 @@ describe('CMSItems', () => {
   it('Get Detail', async () => {
     const service = new AesirxCmsItemsApiService();
 
-    const response = await service.getDetail(createID);
+    const response: any = await service.getDetail(createID);
 
     expect(response?.id).toEqual(createID);
   });
