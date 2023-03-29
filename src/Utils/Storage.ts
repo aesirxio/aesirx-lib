@@ -5,7 +5,7 @@
 import { env } from '../env';
 import CryptoJS from 'crypto-js';
 
-const encrypt = env.REACT_APP_ENCRYPT ?? 'encrypt';
+const encrypt = env.REACT_APP_ENCRYPT;
 class Storage {
   static setItem(key: any, value: any) {
     const cKey = CryptoJS.MD5(encrypt + key).toString();
