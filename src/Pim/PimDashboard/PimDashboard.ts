@@ -17,7 +17,7 @@ class AesirxPimDashboardApiService {
     this.route = new PimDashboardRoute();
   }
 
-  getStatisticalData = async (filter: any) => {
+  getStatisticalData = async (filter?: any) => {
     try {
       const data = await this.route.getStatisticalData(filter);
       let results = null;

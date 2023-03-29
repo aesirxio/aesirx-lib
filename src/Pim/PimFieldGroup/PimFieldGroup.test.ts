@@ -1,6 +1,6 @@
 import AesirxPimFieldGroupApiService from './PimFieldGroup';
-
-let createID = '';
+import { describe, expect } from '@jest/globals';
+let createID: any = '';
 
 describe('PimFieldGroup', () => {
   it('Create', async () => {
@@ -49,7 +49,7 @@ describe('PimFieldGroup', () => {
   it('Get Detail', async () => {
     const service = new AesirxPimFieldGroupApiService();
 
-    const response = await service.getDetail(createID);
+    const response: any = await service.getDetail(createID);
 
     expect(response?.id).toEqual(createID);
   });
@@ -58,10 +58,10 @@ describe('PimFieldGroup', () => {
     const service = new AesirxPimFieldGroupApiService();
 
     const responseUnPublished = await service.updateStatus([createID], 0);
-    const responseDetailUnPublished = await service.getDetail(createID);
+    const responseDetailUnPublished: any = await service.getDetail(createID);
 
     const responsePublished = await service.updateStatus([createID], 1);
-    const responseDetailPublished = await service.getDetail(createID);
+    const responseDetailPublished: any = await service.getDetail(createID);
 
     expect(responseUnPublished).toBeTruthy();
     expect(responseDetailUnPublished.state).toBe(0);

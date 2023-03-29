@@ -1,12 +1,13 @@
-import AesirxCrmContactApiService from './CrmContact';
+import AesirxCrmListGroupApiService from './CrmListGroup';
+import { describe, expect } from '@jest/globals';
 
 let createID = '';
-describe('CrmContact', () => {
+describe('CrmListGroup', () => {
   it('Create', async () => {
-    const service = new AesirxCrmContactApiService();
+    const service = new AesirxCrmListGroupApiService();
 
     const data = {
-      crm_contact_name: 'CRM Contact 0002',
+      crm_listgroup_name: 'CRM ListGroup 0000',
     };
 
     const response = await service.create(data);
@@ -20,7 +21,7 @@ describe('CrmContact', () => {
   });
 
   it('Get List', async () => {
-    const service = new AesirxCrmContactApiService();
+    const service = new AesirxCrmListGroupApiService();
 
     const filters = {
       'list[limitstart]': 0,
@@ -33,12 +34,12 @@ describe('CrmContact', () => {
   });
 
   it('Update', async () => {
-    const service = new AesirxCrmContactApiService();
+    const service = new AesirxCrmListGroupApiService();
 
     const data = {
       id: createID,
-      crm_contact_name: 'CRM Contact 0002',
-      crm_contact_phone_number: '0000',
+      crm_listgroup_name: 'CRM ListGroup 0000',
+      'crm_list_group_contacts[]': '1',
     };
 
     const response = await service.update(data);
@@ -47,7 +48,7 @@ describe('CrmContact', () => {
   });
 
   it('Get Detail', async () => {
-    const service = new AesirxCrmContactApiService();
+    const service = new AesirxCrmListGroupApiService();
 
     const response = await service.getDetail(createID);
 
@@ -55,7 +56,7 @@ describe('CrmContact', () => {
   });
 
   it('Update Status', async () => {
-    const service = new AesirxCrmContactApiService();
+    const service = new AesirxCrmListGroupApiService();
 
     const responseUnPublished = await service.updateStatus([createID], 0);
     const responseDetailUnPublished = await service.getDetail(createID);
@@ -71,7 +72,7 @@ describe('CrmContact', () => {
   });
 
   it('Delete', async () => {
-    const service = new AesirxCrmContactApiService();
+    const service = new AesirxCrmListGroupApiService();
 
     const response = await service.delete([createID]);
 

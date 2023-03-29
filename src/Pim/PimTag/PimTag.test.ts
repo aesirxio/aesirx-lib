@@ -1,4 +1,5 @@
 import AesirxPimTagApiService from './PimTag';
+import { describe, expect } from '@jest/globals';
 
 describe('PimTag', () => {
   it('Get List', async () => {
@@ -7,7 +8,7 @@ describe('PimTag', () => {
       'list[limitstart]': 0,
       'list[limit]': 2,
     };
-    const data = await service.getList(filters);
+    const data: any = await service.getList(filters);
 
     expect(data?.items?.length).toBeGreaterThan(0);
   });

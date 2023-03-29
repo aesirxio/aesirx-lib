@@ -1,12 +1,14 @@
-import AesirxCrmListGroupApiService from './CrmListGroup';
+import AesirxPimCategoryApiService from './PimCategory';
+import { describe, expect } from '@jest/globals';
 
 let createID = '';
-describe('CrmListGroup', () => {
+
+describe('PimCategory', () => {
   it('Create', async () => {
-    const service = new AesirxCrmListGroupApiService();
+    const service = new AesirxPimCategoryApiService();
 
     const data = {
-      crm_listgroup_name: 'CRM ListGroup 0000',
+      title: 'PIM Category 0000',
     };
 
     const response = await service.create(data);
@@ -20,7 +22,7 @@ describe('CrmListGroup', () => {
   });
 
   it('Get List', async () => {
-    const service = new AesirxCrmListGroupApiService();
+    const service = new AesirxPimCategoryApiService();
 
     const filters = {
       'list[limitstart]': 0,
@@ -33,12 +35,11 @@ describe('CrmListGroup', () => {
   });
 
   it('Update', async () => {
-    const service = new AesirxCrmListGroupApiService();
+    const service = new AesirxPimCategoryApiService();
 
     const data = {
       id: createID,
-      crm_listgroup_name: 'CRM ListGroup 0000',
-      'crm_list_group_contacts[]': '1',
+      title: 'PIM Category 0001',
     };
 
     const response = await service.update(data);
@@ -47,7 +48,7 @@ describe('CrmListGroup', () => {
   });
 
   it('Get Detail', async () => {
-    const service = new AesirxCrmListGroupApiService();
+    const service = new AesirxPimCategoryApiService();
 
     const response = await service.getDetail(createID);
 
@@ -55,7 +56,7 @@ describe('CrmListGroup', () => {
   });
 
   it('Update Status', async () => {
-    const service = new AesirxCrmListGroupApiService();
+    const service = new AesirxPimCategoryApiService();
 
     const responseUnPublished = await service.updateStatus([createID], 0);
     const responseDetailUnPublished = await service.getDetail(createID);
@@ -64,16 +65,16 @@ describe('CrmListGroup', () => {
     const responseDetailPublished = await service.getDetail(createID);
 
     expect(responseUnPublished).toBeTruthy();
-    expect(responseDetailUnPublished.status).toBe(0);
+    expect(responseDetailUnPublished.published).toBe(0);
 
     expect(responsePublished).toBeTruthy();
-    expect(responseDetailPublished.status).toBe(1);
+    expect(responseDetailPublished.published).toBe(1);
   });
 
   it('Delete', async () => {
-    const service = new AesirxCrmListGroupApiService();
+    const service = new AesirxPimCategoryApiService();
 
-    const response = await service.delete([createID]);
+    const response = await service.deleteCategories([createID]);
 
     expect(response).toBeTruthy();
   });

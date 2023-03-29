@@ -1,13 +1,13 @@
-import AesirxCrmOpportunityApiService from './CrmOpportunity';
+import AesirxCrmContactApiService from './CrmContact';
+import { describe, expect } from '@jest/globals';
 
 let createID = '';
-describe('CrmOpportunity', () => {
+describe('CrmContact', () => {
   it('Create', async () => {
-    const service = new AesirxCrmOpportunityApiService();
+    const service = new AesirxCrmContactApiService();
 
     const data = {
-      crm_opportunity_name: 'CRM Opportunity 0000',
-      'crm_opportunity_contact[]': '1',
+      crm_contact_name: 'CRM Contact 0002',
     };
 
     const response = await service.create(data);
@@ -21,7 +21,7 @@ describe('CrmOpportunity', () => {
   });
 
   it('Get List', async () => {
-    const service = new AesirxCrmOpportunityApiService();
+    const service = new AesirxCrmContactApiService();
 
     const filters = {
       'list[limitstart]': 0,
@@ -34,12 +34,12 @@ describe('CrmOpportunity', () => {
   });
 
   it('Update', async () => {
-    const service = new AesirxCrmOpportunityApiService();
+    const service = new AesirxCrmContactApiService();
 
     const data = {
       id: createID,
-      crm_opportunity_name: 'CRM Opportunity 0000',
-      crm_opportunity_description: 'CRM Opportunity',
+      crm_contact_name: 'CRM Contact 0002',
+      crm_contact_phone_number: '0000',
     };
 
     const response = await service.update(data);
@@ -48,7 +48,7 @@ describe('CrmOpportunity', () => {
   });
 
   it('Get Detail', async () => {
-    const service = new AesirxCrmOpportunityApiService();
+    const service = new AesirxCrmContactApiService();
 
     const response = await service.getDetail(createID);
 
@@ -56,7 +56,7 @@ describe('CrmOpportunity', () => {
   });
 
   it('Update Status', async () => {
-    const service = new AesirxCrmOpportunityApiService();
+    const service = new AesirxCrmContactApiService();
 
     const responseUnPublished = await service.updateStatus([createID], 0);
     const responseDetailUnPublished = await service.getDetail(createID);
@@ -72,7 +72,7 @@ describe('CrmOpportunity', () => {
   });
 
   it('Delete', async () => {
-    const service = new AesirxCrmOpportunityApiService();
+    const service = new AesirxCrmContactApiService();
 
     const response = await service.delete([createID]);
 

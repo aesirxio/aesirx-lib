@@ -1,12 +1,14 @@
-import AesirxCrmCompanyApiService from './CrmCompany';
+import AesirxCrmOpportunityApiService from './CrmOpportunity';
+import { describe, expect } from '@jest/globals';
 
 let createID = '';
-describe('CrmCompany', () => {
+describe('CrmOpportunity', () => {
   it('Create', async () => {
-    const service = new AesirxCrmCompanyApiService();
+    const service = new AesirxCrmOpportunityApiService();
 
     const data = {
-      crm_company_name: 'CRM Company 0000',
+      crm_opportunity_name: 'CRM Opportunity 0000',
+      'crm_opportunity_contact[]': '1',
     };
 
     const response = await service.create(data);
@@ -20,7 +22,7 @@ describe('CrmCompany', () => {
   });
 
   it('Get List', async () => {
-    const service = new AesirxCrmCompanyApiService();
+    const service = new AesirxCrmOpportunityApiService();
 
     const filters = {
       'list[limitstart]': 0,
@@ -33,12 +35,12 @@ describe('CrmCompany', () => {
   });
 
   it('Update', async () => {
-    const service = new AesirxCrmCompanyApiService();
+    const service = new AesirxCrmOpportunityApiService();
 
     const data = {
       id: createID,
-      crm_company_name: 'CRM Company 0000',
-      crm_company_address: 'Company Address',
+      crm_opportunity_name: 'CRM Opportunity 0000',
+      crm_opportunity_description: 'CRM Opportunity',
     };
 
     const response = await service.update(data);
@@ -47,7 +49,7 @@ describe('CrmCompany', () => {
   });
 
   it('Get Detail', async () => {
-    const service = new AesirxCrmCompanyApiService();
+    const service = new AesirxCrmOpportunityApiService();
 
     const response = await service.getDetail(createID);
 
@@ -55,7 +57,7 @@ describe('CrmCompany', () => {
   });
 
   it('Update Status', async () => {
-    const service = new AesirxCrmCompanyApiService();
+    const service = new AesirxCrmOpportunityApiService();
 
     const responseUnPublished = await service.updateStatus([createID], 0);
     const responseDetailUnPublished = await service.getDetail(createID);
@@ -71,7 +73,7 @@ describe('CrmCompany', () => {
   });
 
   it('Delete', async () => {
-    const service = new AesirxCrmCompanyApiService();
+    const service = new AesirxCrmOpportunityApiService();
 
     const response = await service.delete([createID]);
 

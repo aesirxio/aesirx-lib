@@ -8,10 +8,6 @@ module.exports = {
   globalSetup: '<rootDir>/src/__test__/globalSetup.ts',
   testEnvironment: 'node',
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
-  transform: {
-    '^.+\\.jsx?$': 'babel-jest',
-    '^.+\\.tsx?$': 'ts-jest',
-  },
   globals: {
     'ts-jest': {
       babel: true,

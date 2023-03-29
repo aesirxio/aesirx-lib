@@ -46,7 +46,7 @@ class BaseRoute {
     return result;
   };
 
-  static __createRequestURL = (props: any, isDefault: any, baseURL: any = '') => {
+  static __createRequestURL = (props: any, isDefault: any, baseURL?: any) => {
     const instance = new BaseRoute();
     return instance.createRequestURL(props, isDefault, baseURL);
   };

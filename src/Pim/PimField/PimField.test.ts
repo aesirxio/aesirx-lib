@@ -1,13 +1,14 @@
-import AesirxPimDebtorGroupApiService from './PimDebtorGroup';
+import AesirxPimFieldApiService from './PimField';
+import { describe, expect } from '@jest/globals';
+let createID: any = '';
 
-let createID = '';
-
-describe('PimDebtorGroup', () => {
+describe('PimField', () => {
   it('Create', async () => {
-    const service = new AesirxPimDebtorGroupApiService();
+    const service = new AesirxPimFieldApiService();
 
     const data = {
-      title: 'PIM DebtorGroup 0000',
+      name: 'PIM Field 0000',
+      type: 'text',
     };
 
     const response = await service.create(data);
@@ -21,7 +22,7 @@ describe('PimDebtorGroup', () => {
   });
 
   it('Get List', async () => {
-    const service = new AesirxPimDebtorGroupApiService();
+    const service = new AesirxPimFieldApiService();
 
     const filters = {
       'list[limitstart]': 0,
@@ -34,11 +35,11 @@ describe('PimDebtorGroup', () => {
   });
 
   it('Update', async () => {
-    const service = new AesirxPimDebtorGroupApiService();
+    const service = new AesirxPimFieldApiService();
 
     const data = {
       id: createID,
-      title: 'PIM DebtorGroup 0001',
+      name: 'PIM Field 0001',
     };
 
     const response = await service.update(data);
@@ -47,21 +48,21 @@ describe('PimDebtorGroup', () => {
   });
 
   it('Get Detail', async () => {
-    const service = new AesirxPimDebtorGroupApiService();
+    const service = new AesirxPimFieldApiService();
 
-    const response = await service.getDetail(createID);
+    const response: any = await service.getDetail(createID);
 
     expect(response?.id).toEqual(createID);
   });
 
   it('Update Status', async () => {
-    const service = new AesirxPimDebtorGroupApiService();
+    const service = new AesirxPimFieldApiService();
 
     const responseUnPublished = await service.updateStatus([createID], 0);
-    const responseDetailUnPublished = await service.getDetail(createID);
+    const responseDetailUnPublished: any = await service.getDetail(createID);
 
     const responsePublished = await service.updateStatus([createID], 1);
-    const responseDetailPublished = await service.getDetail(createID);
+    const responseDetailPublished: any = await service.getDetail(createID);
 
     expect(responseUnPublished).toBeTruthy();
     expect(responseDetailUnPublished.published).toBe(0);
@@ -71,9 +72,9 @@ describe('PimDebtorGroup', () => {
   });
 
   it('Delete', async () => {
-    const service = new AesirxPimDebtorGroupApiService();
+    const service = new AesirxPimFieldApiService();
 
-    const response = await service.deleteDebtorGroups([createID]);
+    const response = await service.deleteFields([createID]);
 
     expect(response).toBeTruthy();
   });

@@ -1,13 +1,13 @@
-import AesirxPimProductApiService from './PimProduct';
+import AesirxPimProductPriceApiService from './PimProductPrice';
+import { describe, expect } from '@jest/globals';
+let createID: any = '';
 
-let createID = '';
-
-describe('PimProduct', () => {
+describe('PimProductPrice', () => {
   it('Create', async () => {
-    const service = new AesirxPimProductApiService();
+    const service = new AesirxPimProductPriceApiService();
 
     const data = {
-      title: 'PIM Product 0000',
+      title: 'PIM ProductPrice 0000',
     };
 
     const response = await service.create(data);
@@ -21,7 +21,7 @@ describe('PimProduct', () => {
   });
 
   it('Get List', async () => {
-    const service = new AesirxPimProductApiService();
+    const service = new AesirxPimProductPriceApiService();
 
     const filters = {
       'list[limitstart]': 0,
@@ -34,11 +34,11 @@ describe('PimProduct', () => {
   });
 
   it('Update', async () => {
-    const service = new AesirxPimProductApiService();
+    const service = new AesirxPimProductPriceApiService();
 
     const data = {
       id: createID,
-      title: 'PIM Product 0001',
+      title: 'PIM ProductPrice 0001',
     };
 
     const response = await service.update(data);
@@ -47,21 +47,21 @@ describe('PimProduct', () => {
   });
 
   it('Get Detail', async () => {
-    const service = new AesirxPimProductApiService();
+    const service = new AesirxPimProductPriceApiService();
 
-    const response = await service.getDetail(createID);
+    const response: any = await service.getDetail(createID);
 
     expect(response?.id).toEqual(createID);
   });
 
   it('Update Status', async () => {
-    const service = new AesirxPimProductApiService();
+    const service = new AesirxPimProductPriceApiService();
 
     const responseUnPublished = await service.updateStatus([createID], 0);
-    const responseDetailUnPublished = await service.getDetail(createID);
+    const responseDetailUnPublished: any = await service.getDetail(createID);
 
     const responsePublished = await service.updateStatus([createID], 1);
-    const responseDetailPublished = await service.getDetail(createID);
+    const responseDetailPublished: any = await service.getDetail(createID);
 
     expect(responseUnPublished).toBeTruthy();
     expect(responseDetailUnPublished.published).toBe(0);
@@ -71,9 +71,9 @@ describe('PimProduct', () => {
   });
 
   it('Delete', async () => {
-    const service = new AesirxPimProductApiService();
+    const service = new AesirxPimProductPriceApiService();
 
-    const response = await service.deleteProducts([createID]);
+    const response = await service.deleteProductPrices([createID]);
 
     expect(response).toBeTruthy();
   });

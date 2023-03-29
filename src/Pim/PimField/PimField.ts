@@ -83,7 +83,7 @@ class AesirxPimFieldApiService {
     }
   };
 
-  getList = async (filter: any, filterList: any) => {
+  getList = async (filter?: any, filterList?: any) => {
     try {
       const data = await this.route.getList(filter, filterList);
       let listItems = null;

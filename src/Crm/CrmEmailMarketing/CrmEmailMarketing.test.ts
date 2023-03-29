@@ -1,5 +1,6 @@
 import { env } from '../../env';
 import AesirxCrmEmailMarketingApiService from './CrmEmailMarketing';
+import { describe, expect } from '@jest/globals';
 
 let createID = '';
 describe('CrmEmailMarketing', () => {
