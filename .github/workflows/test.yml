@@ -39,7 +39,9 @@ jobs:
         run: yarn format:check
 
       - name: Run Build
-        run: CI=false yarn build
+        run: |
+          export NODE_OPTIONS="--max_old_space_size=4096"
+          CI=false yarn build
 
       - name: Run Test
         run: yarn test

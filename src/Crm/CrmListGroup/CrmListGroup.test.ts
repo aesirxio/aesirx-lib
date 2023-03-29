@@ -1,7 +1,7 @@
 import AesirxCrmListGroupApiService from './CrmListGroup';
 import { describe, expect } from '@jest/globals';
 
-let createID = '';
+let createID: any = '';
 describe('CrmListGroup', () => {
   it('Create', async () => {
     const service = new AesirxCrmListGroupApiService();
@@ -50,7 +50,7 @@ describe('CrmListGroup', () => {
   it('Get Detail', async () => {
     const service = new AesirxCrmListGroupApiService();
 
-    const response = await service.getDetail(createID);
+    const response: any = await service.getDetail(createID);
 
     expect(response?.id).toEqual(createID);
   });
@@ -59,10 +59,10 @@ describe('CrmListGroup', () => {
     const service = new AesirxCrmListGroupApiService();
 
     const responseUnPublished = await service.updateStatus([createID], 0);
-    const responseDetailUnPublished = await service.getDetail(createID);
+    const responseDetailUnPublished: any = await service.getDetail(createID);
 
     const responsePublished = await service.updateStatus([createID], 1);
-    const responseDetailPublished = await service.getDetail(createID);
+    const responseDetailPublished: any = await service.getDetail(createID);
 
     expect(responseUnPublished).toBeTruthy();
     expect(responseDetailUnPublished.status).toBe(0);
