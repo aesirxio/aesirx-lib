@@ -4,7 +4,13 @@ require('dotenv').config();
 module.exports = {
   roots: ['<rootDir>/src'],
   testTimeout: 20000,
-  setupFilesAfterEnv: ['<rootDir>/src/__test__/setupTests.js'],
-  globalSetup: '<rootDir>/src/__test__/globalSetup.js',
-  testEnvironment: 'node',
+  setupFilesAfterEnv: ['<rootDir>/test/setupTests.js'],
+  globalSetup: '<rootDir>/test/globalSetup.js',
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  globals: {
+    'ts-jest': {
+      babel: true,
+      tsConfig: 'tsconfig.json',
+    },
+  },
 };
