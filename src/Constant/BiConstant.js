@@ -50,6 +50,7 @@ const BI_VISITOR_FIELD_KEY = {
   ATTRIBUTES: 'attributes',
   REFERER: 'referer',
   URL: 'url',
+  FLOW_ID: 'flow_uuid',
 };
 
 const BI_SUMMARY_FIELD_KEY = {
@@ -75,6 +76,20 @@ const BI_DOMAIN_FIELD_KEY = {
   NAME: 'name',
 };
 
+const BI_FLOW_DETAIL_KEY = {
+  UUID: 'uuid',
+  IP: 'ip',
+  USER_AGENT: 'user_agent',
+  DEVICE: 'device',
+  BROWSER_NAME: 'browser_name',
+  BROWSER_VERSION: 'browser_version',
+  DOMAIN: 'domain',
+  LANG: 'lang',
+  START: 'start',
+  END: 'end',
+  GEO: 'geo',
+};
+
 export {
   BI_DASHBOARD_FIELD_KEY,
   BI_WIDGET_FIELD_KEY,
@@ -85,4 +100,5 @@ export {
   BI_SUMMARY_FIELD_KEY,
   BI_METRICS_FIELD_KEY,
   BI_VISITOR_FIELD_KEY,
+  BI_FLOW_DETAIL_KEY,
 };

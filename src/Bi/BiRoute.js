@@ -9,6 +9,33 @@ import BaseRoute from '../Abstract/BaseRoute';
 const version = '/v1/';
 
 class BiRoute extends BaseRoute {
+  getAttribute = (dataFilter, dateFilter) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: 'attribute' + version,
+          date: dateFilter,
+          filter: dataFilter,
+        },
+        false,
+        null,
+        true
+      )
+    );
+  };
+  getFlowDetail = (flowId) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: 'flow' + version + flowId,
+        },
+        false,
+        null,
+        true
+      )
+    );
+  };
+
   getVisitor = (dataFilter, dateFilter) => {
     return AesirXApiInstance.get(
       this.createRequestURL(

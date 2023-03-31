@@ -116,6 +116,7 @@ import {
   BI_SUMMARY_FIELD_KEY,
   BI_METRICS_FIELD_KEY,
   BI_VISITOR_FIELD_KEY,
+  BI_FLOW_DETAIL_KEY,
 } from './Constant/BiConstant';
 
 // CRM Constant
@@ -206,6 +207,7 @@ export {
   BI_SUMMARY_FIELD_KEY,
   BI_METRICS_FIELD_KEY,
   BI_VISITOR_FIELD_KEY,
+  BI_FLOW_DETAIL_KEY,
   // PIM Model
   CategoryItemModel,
   DebtorGroupItemModel,
