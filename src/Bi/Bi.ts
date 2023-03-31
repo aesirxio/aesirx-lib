@@ -3,7 +3,14 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { DomainModel, MetricsModel, SummaryModel, VisitorModel, VisitorsModel } from './BiModel';
+import {
+  DomainModel,
+  FlowItemModel,
+  MetricsModel,
+  SummaryModel,
+  VisitorModel,
+  VisitorsModel,
+} from './BiModel';
 import BiRoute from './BiRoute';
 
 import axios from 'axios';
@@ -17,7 +24,42 @@ class AesirxBiApiService {
   constructor() {
     this.route = new BiRoute();
   }
+  getFlowDetail = async (flowId: any) => {
+    try {
+      const data = await this.route.getFlowDetail(flowId);
 
+      let results = null;
+
+      if (data) {
+        results = new FlowItemModel(data);
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+
+      return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getAttribute = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getAttribute(dataFilter, dateFilter);
+
+      if (data?.collection) {
+        return data.collection;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
   getListDomain = async (dataFilter: any, listDomains: any) => {
     try {
       const data = await this.route.getListDomain(dataFilter, listDomains);

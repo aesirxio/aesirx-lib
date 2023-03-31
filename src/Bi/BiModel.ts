@@ -14,6 +14,7 @@ import {
   BI_SUMMARY_FIELD_KEY,
   BI_METRICS_FIELD_KEY,
   BI_VISITOR_FIELD_KEY,
+  BI_FLOW_DETAIL_KEY,
 } from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
@@ -291,6 +292,7 @@ class VisitorItemModel extends BaseItemModel {
   attributes = null;
   url = null;
   referer = null;
+  flow_id = null;
   constructor(entity: any) {
     super(entity);
     if (entity) {
@@ -301,6 +303,7 @@ class VisitorItemModel extends BaseItemModel {
       this.attributes = entity[BI_VISITOR_FIELD_KEY.ATTRIBUTES] ?? [];
       this.url = entity[BI_VISITOR_FIELD_KEY.URL] ?? '';
       this.referer = entity[BI_VISITOR_FIELD_KEY.REFERER] ?? '';
+      this.flow_id = entity[BI_VISITOR_FIELD_KEY.FLOW_ID] ?? '';
     }
   }
   toObject = () => {
@@ -316,10 +319,57 @@ class VisitorItemModel extends BaseItemModel {
       [BI_VISITOR_FIELD_KEY.ATTRIBUTES]: this.attributes,
       [BI_VISITOR_FIELD_KEY.URL]: this.url,
       [BI_VISITOR_FIELD_KEY.REFERER]: this.referer,
+      [BI_VISITOR_FIELD_KEY.FLOW_ID]: this.flow_id,
     };
   };
 }
 
+class FlowItemModel extends BaseItemModel {
+  uuid = null;
+  ip = null;
+  user_agent = null;
+  device = null;
+  browser_name = null;
+  browser_version = null;
+  domain = null;
+  lang = null;
+  start = null;
+  end = null;
+  geo = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.uuid = entity[BI_FLOW_DETAIL_KEY.UUID] ?? '';
+      this.ip = entity[BI_FLOW_DETAIL_KEY.IP] ?? '';
+      this.user_agent = entity[BI_FLOW_DETAIL_KEY.USER_AGENT] ?? '';
+      this.device = entity[BI_FLOW_DETAIL_KEY.DEVICE] ?? '';
+      this.browser_name = entity[BI_FLOW_DETAIL_KEY.BROWSER_NAME] ?? '';
+      this.domain = entity[BI_FLOW_DETAIL_KEY.DOMAIN] ?? '';
+      this.lang = entity[BI_FLOW_DETAIL_KEY.LANG] ?? '';
+      this.start = entity[BI_FLOW_DETAIL_KEY.START] ?? '';
+      this.end = entity[BI_FLOW_DETAIL_KEY.END] ?? '';
+      this.geo = entity[BI_FLOW_DETAIL_KEY.GEO] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_FLOW_DETAIL_KEY.UUID]: this.uuid,
+      [BI_FLOW_DETAIL_KEY.IP]: this.ip,
+      [BI_FLOW_DETAIL_KEY.USER_AGENT]: this.user_agent,
+      [BI_FLOW_DETAIL_KEY.DEVICE]: this.device,
+      [BI_FLOW_DETAIL_KEY.BROWSER_NAME]: this.browser_name,
+      [BI_FLOW_DETAIL_KEY.DOMAIN]: this.domain,
+      [BI_FLOW_DETAIL_KEY.LANG]: this.lang,
+      [BI_FLOW_DETAIL_KEY.START]: this.start,
+      [BI_FLOW_DETAIL_KEY.END]: this.end,
+      [BI_FLOW_DETAIL_KEY.GEO]: this.geo,
+    };
+  };
+}
 export {
   DomainModel,
   DashboardModel,
@@ -329,4 +379,5 @@ export {
   MetricsModel,
   VisitorModel,
   VisitorItemModel,
+  FlowItemModel,
 };

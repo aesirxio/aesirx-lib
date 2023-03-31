@@ -26,7 +26,9 @@ class BaseRoute {
       if (datePath) {
         result = result.concat(datePath);
       }
-      result = result.concat('?').concat(queryString.stringify(props.filter));
+      if (props.filter) {
+        result = result.concat('?').concat(queryString.stringify(props.filter));
+      }
       return decodeURI(result);
     } else {
       result = baseUrl.concat('/').concat(this.slug).concat('?');
