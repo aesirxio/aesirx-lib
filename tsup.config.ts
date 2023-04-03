@@ -10,6 +10,7 @@ export const tsup: Options = {
   watch: env === 'development',
   outDir: 'dist',
   entry: ['src/index.ts', 'src/**/*.ts'],
+  target: 'es2020',
   outExtension() {
     return {
       js: `.js`,
