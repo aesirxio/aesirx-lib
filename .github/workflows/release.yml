@@ -8,6 +8,10 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    env:
+      CI: false
+      NODE_OPTIONS: "--max_old_space_size=4096"
+
     permissions:
       contents: write
     steps:
@@ -15,9 +19,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - uses: |
-          export NODE_OPTIONS="--max_old_space_size=4096"
-          JS-DevTools/npm-publish@v1
+      - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
           check-version: true
