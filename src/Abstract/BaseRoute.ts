@@ -21,8 +21,7 @@ class BaseRoute {
     if (isBi) {
       const datePath = props?.date ? `${props?.date?.date_start}/${props?.date?.date_end}` : null;
 
-      result = this.baseURL.concat('/').concat(props?.url);
-
+      result = baseUrl.concat('/').concat(props?.url);
       if (datePath) {
         result = result.concat(datePath);
       }
