@@ -15,9 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: |
-          export NODE_OPTIONS="--max_old_space_size=4096"
-          yarn install
+      - run: yarn install
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
@@ -26,5 +24,4 @@ jobs:
       - name: Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/analytics.js"
           generateReleaseNotes: true
