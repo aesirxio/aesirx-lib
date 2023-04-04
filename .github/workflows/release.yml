@@ -15,10 +15,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: |
+      - uses: |
           export NODE_OPTIONS="--max_old_space_size=4096"
-          yarn install
-      - uses: JS-DevTools/npm-publish@v1
+          JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
           check-version: true
