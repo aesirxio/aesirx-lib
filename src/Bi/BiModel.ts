@@ -336,6 +336,7 @@ class FlowItemModel extends BaseItemModel {
   start = null;
   end = null;
   geo = null;
+  events = [];
   constructor(entity: any) {
     super(entity);
     if (entity) {
@@ -349,6 +350,7 @@ class FlowItemModel extends BaseItemModel {
       this.start = entity[BI_FLOW_DETAIL_KEY.START] ?? '';
       this.end = entity[BI_FLOW_DETAIL_KEY.END] ?? '';
       this.geo = entity[BI_FLOW_DETAIL_KEY.GEO] ?? '';
+      this.events = entity[BI_FLOW_DETAIL_KEY.EVENTS] ?? [];
     }
   }
   toObject = () => {
@@ -367,6 +369,7 @@ class FlowItemModel extends BaseItemModel {
       [BI_FLOW_DETAIL_KEY.START]: this.start,
       [BI_FLOW_DETAIL_KEY.END]: this.end,
       [BI_FLOW_DETAIL_KEY.GEO]: this.geo,
+      [BI_FLOW_DETAIL_KEY.EVENTS]: this.events,
     };
   };
 }
