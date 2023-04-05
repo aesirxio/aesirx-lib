@@ -18,7 +18,7 @@ class BiRoute extends BaseRoute {
           filter: dataFilter,
         },
         false,
-        null,
+        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
         true
       )
     );
@@ -31,7 +31,7 @@ class BiRoute extends BaseRoute {
           filter: dataFilter,
         },
         false,
-        null,
+        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
         true
       )
     );
@@ -46,7 +46,7 @@ class BiRoute extends BaseRoute {
           filter: dataFilter,
         },
         false,
-        null,
+        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
         true
       )
     );
@@ -61,7 +61,7 @@ class BiRoute extends BaseRoute {
           filter: dataFilter,
         },
         false,
-        null,
+        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
         true
       )
     );
@@ -76,7 +76,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        null,
+        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
         true
       )
     );
@@ -90,7 +90,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        null,
+        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
         true
       )
     );
@@ -104,7 +104,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        null,
+        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
         true
       )
     );
@@ -117,7 +117,7 @@ class BiRoute extends BaseRoute {
           url: 'visitor' + version + 'init',
         },
         false,
-        null,
+        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
         true
       ),
       {
