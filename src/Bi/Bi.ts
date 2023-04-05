@@ -24,9 +24,9 @@ class AesirxBiApiService {
   constructor() {
     this.route = new BiRoute();
   }
-  getFlowDetail = async (flowId: any) => {
+  getFlowDetail = async (flowId: any, dataFilter: any) => {
     try {
-      const data = await this.route.getFlowDetail(flowId);
+      const data = await this.route.getFlowDetail(flowId, dataFilter);
 
       let results = null;
 

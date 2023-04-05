@@ -88,6 +88,7 @@ const BI_FLOW_DETAIL_KEY = {
   START: 'start',
   END: 'end',
   GEO: 'geo',
+  EVENTS: 'events',
 };
 
 export {

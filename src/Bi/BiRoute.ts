@@ -23,11 +23,12 @@ class BiRoute extends BaseRoute {
       )
     );
   };
-  getFlowDetail = (flowId: any) => {
+  getFlowDetail = (flowId: any, dataFilter: any) => {
     return AesirXApiInstance.get(
       this.createRequestURL(
         {
           url: 'flow' + version + flowId,
+          filter: dataFilter,
         },
         false,
         null,
