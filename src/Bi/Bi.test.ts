@@ -6,8 +6,11 @@ describe('Bi', () => {
     const service = new AesirxBiApiService();
 
     const flowId = '000d2113-1f26-44a1-a053-8b514b17a86c';
+    const dataFilter = {
+      'with[]': 'events',
+    };
 
-    const data = await service.getFlowDetail(flowId);
+    const data = await service.getFlowDetail(flowId, dataFilter);
     expect(data).not.toBeNull();
   });
 
