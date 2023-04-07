@@ -63,12 +63,12 @@ const BI_SUMMARY_FIELD_KEY = {
 };
 
 const BI_METRICS_FIELD_KEY = {
-  NUMBER_OF_VISITORS: 'visitors',
-  NUMBER_OF_PAGE_VIEWS: 'page_views',
-  NUMBER_OF_UNIQUE_PAGE_VIEWS: 'page_views_unique',
-  AVERAGE_SESSION_DURATION: 'session_duration_average_seconds',
-  NUMBER_OF_PAGES_PER_SESSION: 'pages_per_session_average',
-  BOUNCE_RATE: 'bounce_rate_percentage',
+  NUMBER_OF_VISITORS: 'number_of_visitors',
+  NUMBER_OF_PAGE_VIEWS: 'number_of_page_views',
+  NUMBER_OF_UNIQUE_PAGE_VIEWS: 'number_of_unique_page_views',
+  AVERAGE_SESSION_DURATION: 'average_session_duration',
+  NUMBER_OF_PAGES_PER_SESSION: 'average_number_of_pages_per_session',
+  BOUNCE_RATE: 'bounce_rate',
 };
 
 const BI_DOMAIN_FIELD_KEY = {

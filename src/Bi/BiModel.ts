@@ -232,28 +232,23 @@ class SummaryItemModel extends BaseItemModel {
   };
 }
 class MetricsModel extends BaseItemModel {
-  visitors = null;
-  page_views = null;
-  page_views_unique = null;
-  session_duration_average_seconds = null;
-  pages_per_session_average = null;
-  bounce_rate_percentage = null;
-  number_of_visitors: any;
-  number_of_page_views: any;
-  average_session_duration: any;
-  number_of_pages_per_session: any;
-  bounce_rate: any;
+  number_of_visitors: any = null;
+  number_of_page_views: any = null;
+  number_of_unique_page_views: any = null;
+  average_session_duration: any = null;
+  number_of_pages_per_session: any = null;
+  bounce_rate: any = null;
   constructor(entity: any) {
     super(entity);
     if (entity) {
-      this.visitors = entity[BI_METRICS_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
-      this.page_views = entity[BI_METRICS_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
-      this.page_views_unique = entity[BI_METRICS_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
-      this.session_duration_average_seconds =
-        entity[BI_METRICS_FIELD_KEY.AVERAGE_SESSION_DURATION] ?? '';
-      this.pages_per_session_average =
+      this.number_of_visitors = entity[BI_METRICS_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.number_of_page_views = entity[BI_METRICS_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
+      this.number_of_unique_page_views =
+        entity[BI_METRICS_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
+      this.average_session_duration = entity[BI_METRICS_FIELD_KEY.AVERAGE_SESSION_DURATION] ?? '';
+      this.number_of_pages_per_session =
         entity[BI_METRICS_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION] ?? '';
-      this.bounce_rate_percentage = entity[BI_METRICS_FIELD_KEY.BOUNCE_RATE] ?? '';
+      this.bounce_rate = entity[BI_METRICS_FIELD_KEY.BOUNCE_RATE] ?? '';
     }
   }
   toObject = () => {
