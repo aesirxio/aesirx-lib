@@ -1,0 +1,5 @@
+{
+    "extends": "aesirx-tsconfig/tsconfig.json",
+    "include": ["./src"],
+    "exclude": ["dist", "node_modules"]
+  }
