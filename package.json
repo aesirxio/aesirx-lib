@@ -16,9 +16,9 @@
   "scripts": {
     "lint": "cross-env NODE_ENV=production BABEL_ENV=production eslint --fix \"src/**/\"",
     "lint:check": "cross-env NODE_ENV=production BABEL_ENV=production eslint \"src/**/\"",
-    "watch": "NODE_ENV=development tsup",
+    "watch": "NODE_ENV=development tsup --dts",
     "build": "NODE_ENV=production NODE_OPTIONS=--max_old_space_size=4096 tsup",
-    "prepublishOnly": "yarn run build",
+    "prepublishOnly": "yarn run build --dts",
     "format:check": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
     "format:write": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
     "test": "jest"

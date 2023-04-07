@@ -3,8 +3,7 @@ import type { Options } from 'tsup';
 const env = process.env.NODE_ENV;
 
 export const tsup: Options = {
-  clean: true, // clean up the dist folder
-  dts: true, // generate dts files
+  clean: true,
   format: ['esm'],
   minify: env === 'production',
   watch: env === 'development',
