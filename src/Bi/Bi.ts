@@ -186,6 +186,9 @@ class AesirxBiApiService {
       }
       return results;
     } catch (error) {
+      if (process.env.NODE_ENV !== 'test') {
+        return error;
+      }
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
       } else throw error;

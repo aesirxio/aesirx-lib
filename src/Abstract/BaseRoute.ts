@@ -18,9 +18,9 @@ class BaseRoute {
   };
   createRequestURL = (props: any, isDefault = true, baseUrl = this.baseURL, isBi = false) => {
     let result;
+    baseUrl = baseUrl ?? this.baseURL;
     if (isBi) {
       const datePath = props?.date ? `${props?.date?.date_start}/${props?.date?.date_end}` : null;
-
       result = baseUrl.concat('/').concat(props?.url);
       if (datePath) {
         result = result.concat(datePath);

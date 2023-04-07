@@ -21,7 +21,7 @@ describe('Bi', () => {
       'filter[attribute_name]': 'utm_source',
     };
     const dateFilter = {
-      date_start: '2023-03-01',
+      date_start: '2023-03-28',
       date_end: '2023-03-30',
     };
 
@@ -35,7 +35,7 @@ describe('Bi', () => {
       'filter[domain]': 'aesirx.io',
     };
     const dateFilter = {
-      date_start: '2023-03-01',
+      date_start: '2023-03-28',
       date_end: '2023-03-30',
     };
 
@@ -49,7 +49,7 @@ describe('Bi', () => {
       'filter[domain]': 'aesirx.io',
     };
     const dateFilter = {
-      date_start: '2023-03-01',
+      date_start: '2023-03-28',
       date_end: '2023-03-30',
     };
 
@@ -63,7 +63,7 @@ describe('Bi', () => {
       'filter[domain]': 'aesirx.io',
     };
     const dateFilter = {
-      date_start: '2023-03-01',
+      date_start: '2023-03-28',
       date_end: '2023-03-30',
     };
 
@@ -77,7 +77,7 @@ describe('Bi', () => {
       'filter[domain]': 'aesirx.io',
     };
     const dateFilter = {
-      date_start: '2023-03-01',
+      date_start: '2023-03-28',
       date_end: '2023-03-30',
     };
 
@@ -91,7 +91,7 @@ describe('Bi', () => {
       'filter[domain]': 'aesirx.io',
     };
     const dateFilter = {
-      date_start: '2023-03-01',
+      date_start: '2023-03-28',
       date_end: '2023-03-30',
     };
 
