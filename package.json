@@ -1,9 +1,9 @@
 {
-  "name": "aesirx-dma-lib",
-  "version": "1.9.0",
+  "name": "aesirx-lib",
+  "version": "1.9.1",
   "license": "GPL-3.0-only",
   "author": "AesirX",
-  "repository": "https://github.com/aesirxio/dma-lib",
+  "repository": "https://github.com/aesirxio/aesirx-lib",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
