@@ -62,13 +62,13 @@ const BI_SUMMARY_FIELD_KEY = {
   BOUNCE_RATE: 'bounce_rate',
 };
 
-const BI_METRICS_FIELD_KEY = {
-  NUMBER_OF_VISITORS: 'number_of_visitors',
-  NUMBER_OF_PAGE_VIEWS: 'number_of_page_views',
-  NUMBER_OF_UNIQUE_PAGE_VIEWS: 'number_of_unique_page_views',
-  AVERAGE_SESSION_DURATION: 'average_session_duration',
-  NUMBER_OF_PAGES_PER_SESSION: 'average_number_of_pages_per_session',
-  BOUNCE_RATE: 'bounce_rate',
+const BI_DEVICES_FIELD_KEY = {
+  DEVICE: 'device',
+};
+
+const BI_COUNTRIES_FIELD_KEY = {
+  COUNTRY_NAME: 'country_name',
+  COUNTRY_CODE: 'country_code',
 };
 
 const BI_DOMAIN_FIELD_KEY = {
@@ -99,7 +99,8 @@ export {
   BI_VISITORS_FIELD_KEY,
   BI_DOMAIN_FIELD_KEY,
   BI_SUMMARY_FIELD_KEY,
-  BI_METRICS_FIELD_KEY,
+  BI_DEVICES_FIELD_KEY,
+  BI_COUNTRIES_FIELD_KEY,
   BI_VISITOR_FIELD_KEY,
   BI_FLOW_DETAIL_KEY,
 };

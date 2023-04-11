@@ -4,6 +4,8 @@
  */
 
 import {
+  CountriesModel,
+  DevicesModel,
   DomainModel,
   FlowItemModel,
   MetricsModel,
@@ -176,10 +178,53 @@ class AesirxBiApiService {
   getMetrics = async (dataFilter: any, dateFilter: any) => {
     try {
       const data = await this.route.getMetrics(dataFilter, dateFilter);
-
       let results = null;
       if (data) {
         results = new MetricsModel(data);
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return results;
+    } catch (error) {
+      if (process.env.NODE_ENV !== 'test') {
+        return error;
+      }
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getDevices = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getDevices(dataFilter, dateFilter);
+
+      let results = null;
+      if (data) {
+        results = new DevicesModel(data);
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return results;
+    } catch (error) {
+      if (process.env.NODE_ENV !== 'test') {
+        return error;
+      }
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getCountries = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getCountries(dataFilter, dateFilter);
+
+      let results = null;
+      if (data?.collection) {
+        results = new CountriesModel(data);
       }
       if (results) {
         results = results.toJSON();

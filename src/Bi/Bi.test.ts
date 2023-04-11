@@ -98,4 +98,32 @@ describe('Bi', () => {
     const response: any = await service.getMetrics(dataFilter, dateFilter);
     expect(response).not.toBeNull();
   });
+
+  it('Get Devices', async () => {
+    const service = new AesirxBiApiService();
+    const dataFilter = {
+      'filter[domain]': 'aesirx.io',
+    };
+    const dateFilter = {
+      date_start: '2023-03-28',
+      date_end: '2023-03-30',
+    };
+
+    const response: any = await service.getDevices(dataFilter, dateFilter);
+    expect(response).not.toBeNull();
+  });
+
+  it('Get Countries', async () => {
+    const service = new AesirxBiApiService();
+    const dataFilter = {
+      'filter[domain]': 'aesirx.io',
+    };
+    const dateFilter = {
+      date_start: '2023-03-28',
+      date_end: '2023-03-30',
+    };
+
+    const response: any = await service.getCountries(dataFilter, dateFilter);
+    expect(response).not.toBeNull();
+  });
 });

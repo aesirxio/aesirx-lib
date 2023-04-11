@@ -5,119 +5,16 @@
 
 import BaseItemModel from '../Abstract/BaseItemModel';
 import {
-  BI_DASHBOARD_FIELD_KEY,
-  BI_WIDGET_FIELD_KEY,
-  BI_NEW_USERS_KEY,
-  BI_CONTINENTS_KEY,
   BI_VISITORS_FIELD_KEY,
   BI_DOMAIN_FIELD_KEY,
   BI_SUMMARY_FIELD_KEY,
-  BI_METRICS_FIELD_KEY,
   BI_VISITOR_FIELD_KEY,
   BI_FLOW_DETAIL_KEY,
+  BI_DEVICES_FIELD_KEY,
+  BI_COUNTRIES_FIELD_KEY,
 } from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
-class DashboardModel extends BaseItemModel {
-  visitor: any = null;
-  total_revenue: any = null;
-  sessions: any = null;
-  conversion_rate: any = null;
-  revenue_by_subscribers: any = null;
-  new_users: any = null;
-  continents: any = null;
-  constructor(entity: any) {
-    super(entity);
-    if (entity) {
-      if (entity[BI_WIDGET_FIELD_KEY.VISITOR]) {
-        this.visitor = {
-          [BI_WIDGET_FIELD_KEY.VALUE]:
-            entity[BI_WIDGET_FIELD_KEY.VISITOR][BI_WIDGET_FIELD_KEY.VALUE] ?? '',
-          [BI_WIDGET_FIELD_KEY.PERCENT]:
-            entity[BI_WIDGET_FIELD_KEY.VISITOR][BI_WIDGET_FIELD_KEY.PERCENT] ?? '',
-          [BI_WIDGET_FIELD_KEY.INCREASE]:
-            entity[BI_WIDGET_FIELD_KEY.VISITOR][BI_WIDGET_FIELD_KEY.INCREASE] ?? '',
-        };
-      }
-      if (entity[BI_WIDGET_FIELD_KEY.TOTAL_REVENUE]) {
-        this.total_revenue = {
-          [BI_WIDGET_FIELD_KEY.VALUE]:
-            entity[BI_WIDGET_FIELD_KEY.TOTAL_REVENUE][BI_WIDGET_FIELD_KEY.VALUE] ?? '',
-          [BI_WIDGET_FIELD_KEY.PERCENT]:
-            entity[BI_WIDGET_FIELD_KEY.TOTAL_REVENUE][BI_WIDGET_FIELD_KEY.PERCENT] ?? '',
-          [BI_WIDGET_FIELD_KEY.INCREASE]:
-            entity[BI_WIDGET_FIELD_KEY.TOTAL_REVENUE][BI_WIDGET_FIELD_KEY.INCREASE] ?? '',
-        };
-      }
-      if (entity[BI_WIDGET_FIELD_KEY.SESSIONS]) {
-        this.sessions = {
-          [BI_WIDGET_FIELD_KEY.VALUE]:
-            entity[BI_WIDGET_FIELD_KEY.SESSIONS][BI_WIDGET_FIELD_KEY.VALUE] ?? '',
-          [BI_WIDGET_FIELD_KEY.PERCENT]:
-            entity[BI_WIDGET_FIELD_KEY.SESSIONS][BI_WIDGET_FIELD_KEY.PERCENT] ?? '',
-          [BI_WIDGET_FIELD_KEY.INCREASE]:
-            entity[BI_WIDGET_FIELD_KEY.SESSIONS][BI_WIDGET_FIELD_KEY.INCREASE] ?? '',
-        };
-      }
-      if (entity[BI_WIDGET_FIELD_KEY.CONVERSION_RATE]) {
-        this.conversion_rate = {
-          [BI_WIDGET_FIELD_KEY.VALUE]:
-            entity[BI_WIDGET_FIELD_KEY.CONVERSION_RATE][BI_WIDGET_FIELD_KEY.VALUE] ?? '',
-          [BI_WIDGET_FIELD_KEY.PERCENT]:
-            entity[BI_WIDGET_FIELD_KEY.CONVERSION_RATE][BI_WIDGET_FIELD_KEY.PERCENT] ?? '',
-          [BI_WIDGET_FIELD_KEY.INCREASE]:
-            entity[BI_WIDGET_FIELD_KEY.CONVERSION_RATE][BI_WIDGET_FIELD_KEY.INCREASE] ?? '',
-        };
-      }
-      if (entity[BI_DASHBOARD_FIELD_KEY.REVENUE_BY_SUBSCRIBERS]) {
-        this.revenue_by_subscribers = entity[BI_DASHBOARD_FIELD_KEY.REVENUE_BY_SUBSCRIBERS].map(
-          (item: any) => {
-            return {
-              [BI_CONTINENTS_KEY.TYPE]: item[BI_CONTINENTS_KEY.TYPE],
-              [BI_WIDGET_FIELD_KEY.PERCENT]: item[BI_WIDGET_FIELD_KEY.PERCENT],
-              [BI_WIDGET_FIELD_KEY.VALUE]: item[BI_WIDGET_FIELD_KEY.VALUE],
-            };
-          }
-        );
-      }
-      if (entity[BI_NEW_USERS_KEY.NEW_USERS]) {
-        this.new_users = entity[BI_NEW_USERS_KEY.NEW_USERS].map((item: any) => {
-          return {
-            [BI_NEW_USERS_KEY.NAME]: item[BI_NEW_USERS_KEY.NAME],
-            [BI_NEW_USERS_KEY.EMAIL]: item[BI_NEW_USERS_KEY.EMAIL],
-            [BI_NEW_USERS_KEY.DATE]: item[BI_NEW_USERS_KEY.DATE],
-            [BI_NEW_USERS_KEY.STATUS]: item[BI_NEW_USERS_KEY.STATUS],
-          };
-        });
-      }
-      if (entity[BI_CONTINENTS_KEY.CONTINENTS]) {
-        this.continents = entity[BI_CONTINENTS_KEY.CONTINENTS].map((item: any) => {
-          return {
-            [BI_CONTINENTS_KEY.COUNTRY]: item[BI_CONTINENTS_KEY.COUNTRY],
-            [BI_CONTINENTS_KEY.COUNTRY_CODE]: item[BI_CONTINENTS_KEY.COUNTRY_CODE],
-            [BI_CONTINENTS_KEY.FLAG]: item[BI_CONTINENTS_KEY.FLAG],
-            [BI_CONTINENTS_KEY.VIEWS]: item[BI_CONTINENTS_KEY.VIEWS],
-          };
-        });
-      }
-    }
-  }
-  toObject = () => {
-    return {};
-  };
-  toJSON = () => {
-    return {
-      ...this.baseToJSON(),
-      [BI_WIDGET_FIELD_KEY.VISITOR]: this.visitor,
-      [BI_WIDGET_FIELD_KEY.TOTAL_REVENUE]: this.total_revenue,
-      [BI_WIDGET_FIELD_KEY.SESSIONS]: this.sessions,
-      [BI_WIDGET_FIELD_KEY.CONVERSION_RATE]: this.conversion_rate,
-      [BI_DASHBOARD_FIELD_KEY.REVENUE_BY_SUBSCRIBERS]: this.revenue_by_subscribers,
-      [BI_NEW_USERS_KEY.NEW_USERS]: this.new_users,
-      [BI_CONTINENTS_KEY.CONTINENTS]: this.continents,
-    };
-  };
-}
 class DomainModel extends BaseModel {
   items: any = null;
   constructor(entities: any) {
@@ -241,14 +138,14 @@ class MetricsModel extends BaseItemModel {
   constructor(entity: any) {
     super(entity);
     if (entity) {
-      this.number_of_visitors = entity[BI_METRICS_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
-      this.number_of_page_views = entity[BI_METRICS_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
+      this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.number_of_page_views = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
       this.number_of_unique_page_views =
-        entity[BI_METRICS_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
-      this.average_session_duration = entity[BI_METRICS_FIELD_KEY.AVERAGE_SESSION_DURATION] ?? '';
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
+      this.average_session_duration = entity[BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION] ?? '';
       this.number_of_pages_per_session =
-        entity[BI_METRICS_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION] ?? '';
-      this.bounce_rate = entity[BI_METRICS_FIELD_KEY.BOUNCE_RATE] ?? '';
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION] ?? '';
+      this.bounce_rate = entity[BI_SUMMARY_FIELD_KEY.BOUNCE_RATE] ?? '';
     }
   }
   toObject = () => {
@@ -257,12 +154,12 @@ class MetricsModel extends BaseItemModel {
   toJSON = () => {
     return {
       ...this.baseToJSON(),
-      [BI_METRICS_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
-      [BI_METRICS_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
-      [BI_METRICS_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_page_views,
-      [BI_METRICS_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,
-      [BI_METRICS_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION]: this.number_of_pages_per_session,
-      [BI_METRICS_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
+      [BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION]: this.number_of_pages_per_session,
+      [BI_SUMMARY_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
     };
   };
 }
@@ -368,9 +265,112 @@ class FlowItemModel extends BaseItemModel {
     };
   };
 }
+class DevicesModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new DevicesItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class DevicesItemModel extends BaseItemModel {
+  device: any = null;
+  number_of_visitors: any = null;
+  number_of_page_views: any = null;
+  number_of_unique_page_views: any = null;
+  average_session_duration: any = null;
+  number_of_pages_per_session: any = null;
+  bounce_rate: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.device = entity[BI_DEVICES_FIELD_KEY.DEVICE] ?? '';
+      this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.number_of_page_views = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
+      this.number_of_unique_page_views =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
+      this.average_session_duration = entity[BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION] ?? '';
+      this.number_of_pages_per_session =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION] ?? '';
+      this.bounce_rate = entity[BI_SUMMARY_FIELD_KEY.BOUNCE_RATE] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_DEVICES_FIELD_KEY.DEVICE]: this.device,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
+      [BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION]: this.number_of_pages_per_session,
+      [BI_SUMMARY_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
+    };
+  };
+}
+class CountriesModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new CountriesItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class CountriesItemModel extends BaseItemModel {
+  country_name: any = null;
+  country_code: any = null;
+  number_of_visitors: any = null;
+  number_of_page_views: any = null;
+  number_of_unique_page_views: any = null;
+  average_session_duration: any = null;
+  number_of_pages_per_session: any = null;
+  bounce_rate: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.country_name = entity[BI_COUNTRIES_FIELD_KEY.COUNTRY_NAME] ?? '';
+      this.country_code = entity[BI_COUNTRIES_FIELD_KEY.COUNTRY_CODE] ?? '';
+      this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.number_of_page_views = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
+      this.number_of_unique_page_views =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
+      this.average_session_duration = entity[BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION] ?? '';
+      this.number_of_pages_per_session =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION] ?? '';
+      this.bounce_rate = entity[BI_SUMMARY_FIELD_KEY.BOUNCE_RATE] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_COUNTRIES_FIELD_KEY.COUNTRY_NAME]: this.country_name,
+      [BI_COUNTRIES_FIELD_KEY.COUNTRY_CODE]: this.country_code,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
+      [BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION]: this.number_of_pages_per_session,
+      [BI_SUMMARY_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
+    };
+  };
+}
+
 export {
   DomainModel,
-  DashboardModel,
   VisitorsModel,
   SummaryModel,
   SummaryItemModel,
@@ -378,4 +378,6 @@ export {
   VisitorModel,
   VisitorItemModel,
   FlowItemModel,
+  DevicesModel,
+  CountriesModel,
 };
