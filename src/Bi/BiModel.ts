@@ -265,8 +265,19 @@ class FlowItemModel extends BaseItemModel {
     };
   };
 }
-
-class DevicesModel extends BaseItemModel {
+class DevicesModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new DevicesItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class DevicesItemModel extends BaseItemModel {
   device: any = null;
   number_of_visitors: any = null;
   number_of_page_views: any = null;
@@ -304,8 +315,19 @@ class DevicesModel extends BaseItemModel {
     };
   };
 }
-
-class CountriesModel extends BaseItemModel {
+class CountriesModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new CountriesItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class CountriesItemModel extends BaseItemModel {
   country_name: any = null;
   country_code: any = null;
   number_of_visitors: any = null;

@@ -223,7 +223,7 @@ class AesirxBiApiService {
       const data = await this.route.getCountries(dataFilter, dateFilter);
 
       let results = null;
-      if (data) {
+      if (data?.collection) {
         results = new CountriesModel(data);
       }
       if (results) {
