@@ -12,6 +12,8 @@ import {
   BI_FLOW_DETAIL_KEY,
   BI_DEVICES_FIELD_KEY,
   BI_COUNTRIES_FIELD_KEY,
+  BI_CITIES_FIELD_KEY,
+  BI_BROWSERS_FIELD_KEY,
 } from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
@@ -369,6 +371,108 @@ class CountriesItemModel extends BaseItemModel {
   };
 }
 
+class CitiesModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new CitiesItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class CitiesItemModel extends BaseItemModel {
+  city: any = null;
+  number_of_visitors: any = null;
+  number_of_page_views: any = null;
+  number_of_unique_page_views: any = null;
+  average_session_duration: any = null;
+  number_of_pages_per_session: any = null;
+  bounce_rate: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.city = entity[BI_CITIES_FIELD_KEY.CITY] ?? '';
+      this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.number_of_page_views = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
+      this.number_of_unique_page_views =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
+      this.average_session_duration = entity[BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION] ?? '';
+      this.number_of_pages_per_session =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION] ?? '';
+      this.bounce_rate = entity[BI_SUMMARY_FIELD_KEY.BOUNCE_RATE] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_CITIES_FIELD_KEY.CITY]: this.city,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
+      [BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION]: this.number_of_pages_per_session,
+      [BI_SUMMARY_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
+    };
+  };
+}
+
+class BrowsersModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new BrowsersItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class BrowsersItemModel extends BaseItemModel {
+  browser_name: any = null;
+  number_of_visitors: any = null;
+  number_of_page_views: any = null;
+  number_of_unique_page_views: any = null;
+  average_session_duration: any = null;
+  number_of_pages_per_session: any = null;
+  bounce_rate: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.browser_name = entity[BI_BROWSERS_FIELD_KEY.BROWSER_NAME] ?? '';
+      this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.number_of_page_views = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
+      this.number_of_unique_page_views =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
+      this.average_session_duration = entity[BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION] ?? '';
+      this.number_of_pages_per_session =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION] ?? '';
+      this.bounce_rate = entity[BI_SUMMARY_FIELD_KEY.BOUNCE_RATE] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_BROWSERS_FIELD_KEY.BROWSER_NAME]: this.browser_name,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
+      [BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION]: this.number_of_pages_per_session,
+      [BI_SUMMARY_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
+    };
+  };
+}
+
 export {
   DomainModel,
   VisitorsModel,
@@ -380,4 +484,6 @@ export {
   FlowItemModel,
   DevicesModel,
   CountriesModel,
+  CitiesModel,
+  BrowsersModel,
 };

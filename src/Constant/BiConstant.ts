@@ -71,6 +71,14 @@ const BI_COUNTRIES_FIELD_KEY = {
   COUNTRY_CODE: 'country_code',
 };
 
+const BI_CITIES_FIELD_KEY = {
+  CITY: 'city',
+};
+
+const BI_BROWSERS_FIELD_KEY = {
+  BROWSER_NAME: 'browser_name',
+};
+
 const BI_DOMAIN_FIELD_KEY = {
   DOMAIN: 'domain',
   NAME: 'name',
@@ -101,6 +109,8 @@ export {
   BI_SUMMARY_FIELD_KEY,
   BI_DEVICES_FIELD_KEY,
   BI_COUNTRIES_FIELD_KEY,
+  BI_CITIES_FIELD_KEY,
+  BI_BROWSERS_FIELD_KEY,
   BI_VISITOR_FIELD_KEY,
   BI_FLOW_DETAIL_KEY,
 };
