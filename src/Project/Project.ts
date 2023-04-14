@@ -162,4 +162,4 @@ class AesirxProjectApiService {
   }
 }
 
-export default AesirxProjectApiService;
+export { AesirxProjectApiService };

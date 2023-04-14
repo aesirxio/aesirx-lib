@@ -93,4 +93,4 @@ class AesirxContentXCategoryApiService {
   };
 }
 
-export default AesirxContentXCategoryApiService;
+export { AesirxContentXCategoryApiService };

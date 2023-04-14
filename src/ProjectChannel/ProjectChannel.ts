@@ -210,4 +210,4 @@ class AesirxProjectChannelApiService {
   }
 }
 
-export default AesirxProjectChannelApiService;
+export { AesirxProjectChannelApiService };

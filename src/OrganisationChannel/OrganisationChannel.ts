@@ -241,4 +241,4 @@ class AesirxOrganisationChannelApiService {
   };
 }
 
-export default AesirxOrganisationChannelApiService;
+export { AesirxOrganisationChannelApiService };

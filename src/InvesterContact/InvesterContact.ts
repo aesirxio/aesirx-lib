@@ -42,4 +42,4 @@ class AesirxInvesterContactApiService {
   }
 }
 
-export default AesirxInvesterContactApiService;
+export { AesirxInvesterContactApiService };

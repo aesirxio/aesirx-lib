@@ -6,7 +6,7 @@
 import axios from 'axios';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
-import Storage from '../Utils/Storage';
+import { Storage } from '../Utils/Storage';
 
 const baseUrl =
   process.env.BASE_ENDPOINT_PRICING_PLAN_URL !== undefined &&

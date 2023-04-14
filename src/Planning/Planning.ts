@@ -73,4 +73,4 @@ class AesirxPlanningApiService {
   }
 }
 
-export default AesirxPlanningApiService;
+export { AesirxPlanningApiService };

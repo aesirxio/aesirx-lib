@@ -137,4 +137,4 @@ class AesirxPimCategoryApiService {
   };
 }
 
-export default AesirxPimCategoryApiService;
+export { AesirxPimCategoryApiService };

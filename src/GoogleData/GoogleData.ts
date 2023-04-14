@@ -32,4 +32,4 @@ class GoogleData {
   }
 }
 
-export default GoogleData;
+export { GoogleData };

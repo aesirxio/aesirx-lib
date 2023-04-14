@@ -168,4 +168,4 @@ class AesirxContentThemeApiService {
   }
 }
 
-export default AesirxContentThemeApiService;
+export { AesirxContentThemeApiService };

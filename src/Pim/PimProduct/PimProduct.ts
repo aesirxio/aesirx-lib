@@ -137,4 +137,4 @@ class AesirxPimProductApiService {
   };
 }
 
-export default AesirxPimProductApiService;
+export { AesirxPimProductApiService };

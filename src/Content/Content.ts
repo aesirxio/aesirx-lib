@@ -215,4 +215,4 @@ class AesirxContentApiService {
   };
 }
 
-export default AesirxContentApiService;
+export { AesirxContentApiService };

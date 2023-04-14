@@ -7,8 +7,8 @@ import { NewsModel } from './NewsModel';
 import NewsRoute from './NewsRoute';
 
 import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
-import Storage from '../Utils/Storage';
-import AesirxAuthenticationApiService from '../Authentication/Authentication';
+import { Storage } from '../Utils/Storage';
+import { AesirxAuthenticationApiService } from '../Authentication/Authentication';
 import BaseRoute from '../Abstract/BaseRoute';
 class AesirxNewsApiService {
   route: any = null;
@@ -75,4 +75,4 @@ class AesirxNewsApiService {
   }
 }
 
-export default AesirxNewsApiService;
+export { AesirxNewsApiService };

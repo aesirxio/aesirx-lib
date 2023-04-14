@@ -136,4 +136,4 @@ class AesirxPimDebtorGroupApiService {
   };
 }
 
-export default AesirxPimDebtorGroupApiService;
+export { AesirxPimDebtorGroupApiService };

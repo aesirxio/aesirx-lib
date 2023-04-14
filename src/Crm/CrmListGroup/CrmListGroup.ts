@@ -137,4 +137,4 @@ class AesirxCrmListGroupApiService {
   };
 }
 
-export default AesirxCrmListGroupApiService;
+export { AesirxCrmListGroupApiService };
