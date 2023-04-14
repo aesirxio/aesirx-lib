@@ -140,6 +140,36 @@ class BiRoute extends BaseRoute {
     );
   };
 
+  getCities = (dataFilter: any, dateFilter: any) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: 'cities' + version,
+          filter: dataFilter,
+          date: dateFilter,
+        },
+        false,
+        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
+        true
+      )
+    );
+  };
+
+  getBrowsers = (dataFilter: any, dateFilter: any) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: 'browsers' + version,
+          filter: dataFilter,
+          date: dateFilter,
+        },
+        false,
+        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
+        true
+      )
+    );
+  };
+
   init = () => {
     return AesirXApiInstance.post(
       this.createRequestURL(
