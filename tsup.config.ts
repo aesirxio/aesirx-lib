@@ -6,7 +6,6 @@ export const tsup: Options = {
   clean: true,
   format: ['esm'],
   minify: env === 'production',
-  watch: env === 'development',
   outDir: 'dist',
   entry: ['src/index.ts', 'src/**/*.ts', '!src/**/*.test.{ts,tsx}'],
   target: 'es2020',
