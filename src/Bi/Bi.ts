@@ -4,6 +4,8 @@
  */
 
 import {
+  BrowsersModel,
+  CitiesModel,
   CountriesModel,
   DevicesModel,
   DomainModel,
@@ -225,6 +227,50 @@ class AesirxBiApiService {
       let results = null;
       if (data?.collection) {
         results = new CountriesModel(data);
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return results;
+    } catch (error) {
+      if (process.env.NODE_ENV !== 'test') {
+        return error;
+      }
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getCities = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getCities(dataFilter, dateFilter);
+
+      let results = null;
+      if (data?.collection) {
+        results = new CitiesModel(data);
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return results;
+    } catch (error) {
+      if (process.env.NODE_ENV !== 'test') {
+        return error;
+      }
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getBrowsers = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getBrowsers(dataFilter, dateFilter);
+
+      let results = null;
+      if (data?.collection) {
+        results = new BrowsersModel(data);
       }
       if (results) {
         results = results.toJSON();
