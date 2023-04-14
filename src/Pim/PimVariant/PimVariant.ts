@@ -61,4 +61,4 @@ class AesirxPimVariantApiService {
   };
 }
 
-export default AesirxPimVariantApiService;
+export { AesirxPimVariantApiService };

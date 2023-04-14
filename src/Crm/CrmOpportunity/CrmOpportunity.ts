@@ -159,4 +159,4 @@ class AesirxCrmOpportunityApiService {
   };
 }
 
-export default AesirxCrmOpportunityApiService;
+export { AesirxCrmOpportunityApiService };

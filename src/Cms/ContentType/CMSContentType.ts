@@ -71,4 +71,4 @@ class AesirxCmsContentTypeApiService {
   };
 }
 
-export default AesirxCmsContentTypeApiService;
+export { AesirxCmsContentTypeApiService };

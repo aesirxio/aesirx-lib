@@ -96,4 +96,4 @@ class AesirxCmsCategoryApiService {
   };
 }
 
-export default AesirxCmsCategoryApiService;
+export { AesirxCmsCategoryApiService };

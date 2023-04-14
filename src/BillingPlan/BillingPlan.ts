@@ -104,4 +104,4 @@ class AesirxBillingPlanApiService {
   }
 }
 
-export default AesirxBillingPlanApiService;
+export { AesirxBillingPlanApiService };

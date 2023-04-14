@@ -8,8 +8,8 @@ import queryString from 'query-string';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
 import BaseRoute from '../Abstract/BaseRoute';
-import Storage from '../Utils/Storage';
-import AesirXAuthenticationApiService from '../Authentication/Authentication';
+import { Storage } from '../Utils/Storage';
+import { AesirxAuthenticationApiService } from '../Authentication/Authentication';
 
 const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
   {
@@ -48,7 +48,7 @@ const refreshToken = (failedRequest: any) => {
     [AUTHORIZATION_KEY.REFRESH_TOKEN]: [AUTHORIZATION_KEY.REFRESH_TOKEN],
   };
 
-  const request = new AesirXAuthenticationApiService();
+  const request = new AesirxAuthenticationApiService();
 
   request.refreshToken(failedRequest, AUTHORIZED_CODE_URL, refreshTokenFormData, key);
 };

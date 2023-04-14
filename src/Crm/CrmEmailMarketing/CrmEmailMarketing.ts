@@ -152,4 +152,4 @@ class AesirxCrmEmailMarketingApiService {
   };
 }
 
-export default AesirxCrmEmailMarketingApiService;
+export { AesirxCrmEmailMarketingApiService };

@@ -91,4 +91,4 @@ class AesirxPimUtilApiService {
   };
 }
 
-export default AesirxPimUtilApiService;
+export { AesirxPimUtilApiService };

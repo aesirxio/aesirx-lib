@@ -197,4 +197,4 @@ class AesirxPersonaApiService {
   }
 }
 
-export default AesirxPersonaApiService;
+export { AesirxPersonaApiService };

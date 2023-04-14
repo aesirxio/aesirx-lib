@@ -287,4 +287,4 @@ class AesirxBiApiService {
   };
 }
 
-export default AesirxBiApiService;
+export { AesirxBiApiService };

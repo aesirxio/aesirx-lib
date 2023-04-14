@@ -6,9 +6,9 @@
 import axios from 'axios';
 import { AXIOS_CONFIGS, AUTHORIZATION_KEY } from '../Constant/Constant';
 import BaseRoute from '../Abstract/BaseRoute';
-import AesirxMemberApiService from '../Member/Member';
+import { AesirxMemberApiService } from '../Member/Member';
 import qs from 'query-string';
-import Storage from '../Utils/Storage';
+import { Storage } from '../Utils/Storage';
 import { logout } from './Logout';
 
 class AesirxAuthenticationApiService {
@@ -209,4 +209,4 @@ class AesirxAuthenticationApiService {
   };
 }
 
-export default AesirxAuthenticationApiService;
+export { AesirxAuthenticationApiService };

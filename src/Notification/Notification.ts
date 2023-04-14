@@ -32,4 +32,4 @@ class AesirxNotificationApiService {
   }
 }
 
-export default AesirxNotificationApiService;
+export { AesirxNotificationApiService };

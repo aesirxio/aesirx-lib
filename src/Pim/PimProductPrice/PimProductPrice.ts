@@ -150,4 +150,4 @@ class AesirxPimProductPriceApiService {
   };
 }
 
-export default AesirxPimProductPriceApiService;
+export { AesirxPimProductPriceApiService };

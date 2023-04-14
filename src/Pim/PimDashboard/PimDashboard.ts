@@ -33,4 +33,4 @@ class AesirxPimDashboardApiService {
   };
 }
 
-export default AesirxPimDashboardApiService;
+export { AesirxPimDashboardApiService };

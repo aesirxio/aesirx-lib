@@ -6,7 +6,7 @@
 import FacebookDataRoute from './FacebookDataRoute';
 import axios from 'axios';
 import { AUTHORIZATION_KEY } from '../Constant/Constant';
-import Storage from '../Utils/Storage';
+import { Storage } from '../Utils/Storage';
 
 /**
  * Laravel Service - Facebook Data
@@ -114,4 +114,4 @@ class FacebookData {
   }
 }
 
-export default FacebookData;
+export { FacebookData };

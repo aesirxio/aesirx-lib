@@ -8,7 +8,7 @@ import MemberRoute from './MemberRoute';
 import BaseRoute from '../Abstract/BaseRoute';
 import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
 import axios from 'axios';
-import Storage from '../Utils/Storage';
+import { Storage } from '../Utils/Storage';
 
 /**
  * API Service - Member
@@ -237,4 +237,4 @@ class AesirxMemberApiService {
   }
 }
 
-export default AesirxMemberApiService;
+export { AesirxMemberApiService };
