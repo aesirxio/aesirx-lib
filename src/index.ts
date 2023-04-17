@@ -27,7 +27,7 @@ export * from './ContentX/Items/ContentXItems';
 
 // Constants
 export * from './Constant/Constant';
-export * from './Constant/FormFieldType';
+export * from './Constant/Format';
 
 // PersonaConstant
 export * from './Constant/PersonaConstant';

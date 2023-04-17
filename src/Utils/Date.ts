@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { FORMAT_DATE, FORMAT_TIME } from '../Constant/FormFieldType';
+import { FORMAT_DATE, FORMAT_TIME } from '../Constant/Format';
 import { addMilliseconds, format, fromUnixTime } from 'date-fns';
 import { getTimezoneOffset } from 'date-fns-tz';
 import { Helper } from './Helper';
