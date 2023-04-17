@@ -1,4 +1,4 @@
-import AesirxCmsCategoryApiService from './CMSCategories';
+import { AesirxCmsCategoryApiService } from './CMSCategories';
 import { describe, expect } from '@jest/globals';
 let createID: any = '';
 

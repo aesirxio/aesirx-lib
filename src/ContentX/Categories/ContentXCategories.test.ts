@@ -1,4 +1,4 @@
-import AesirxContentXCategoryApiService from './ContentXCategories';
+import { AesirxContentXCategoryApiService } from './ContentXCategories';
 
 let createID: any = '';
 

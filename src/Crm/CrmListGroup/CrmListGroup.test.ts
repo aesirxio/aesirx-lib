@@ -1,4 +1,4 @@
-import AesirxCrmListGroupApiService from './CrmListGroup';
+import { AesirxCrmListGroupApiService } from './CrmListGroup';
 import { describe, expect } from '@jest/globals';
 
 let createID: any = '';

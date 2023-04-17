@@ -1,4 +1,4 @@
-import AesirxBiApiService from './Bi';
+import { AesirxBiApiService } from './Bi';
 import { describe, expect } from '@jest/globals';
 
 describe('Bi', () => {

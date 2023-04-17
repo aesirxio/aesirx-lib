@@ -1,4 +1,4 @@
-import AesirxContentXItemsApiService from './ContentXItems';
+import { AesirxContentXItemsApiService } from './ContentXItems';
 import { describe, expect } from '@jest/globals';
 let createID: any = '';
 

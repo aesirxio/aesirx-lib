@@ -14,7 +14,7 @@
     "date-fns": "^2.29.3",
     "date-fns-tz": "^2.0.0",
     "moment": "^2.29.4",
-    "query-string": "^8.1.0"
+    "query-string": "7"
   },
   "scripts": {
     "lint": "cross-env NODE_ENV=production BABEL_ENV=production eslint --fix \"src/**/\"",

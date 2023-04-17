@@ -1,6 +1,6 @@
 import BaseRoute from '../Abstract/BaseRoute';
 import { AXIOS_CONFIGS } from '../Constant/Constant';
-import AesirxAuthenticationApiService from './Authentication';
+import { AesirxAuthenticationApiService } from './Authentication';
 import { describe, expect } from '@jest/globals';
 
 describe('Authentication', () => {

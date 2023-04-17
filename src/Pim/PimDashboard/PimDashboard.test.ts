@@ -1,4 +1,4 @@
-import AesirxPimDashboardApiService from './PimDashboard';
+import { AesirxPimDashboardApiService } from './PimDashboard';
 import { describe, expect } from '@jest/globals';
 
 describe('PimDashboard', () => {

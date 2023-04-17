@@ -1,4 +1,4 @@
-import AesirxPimDebtorGroupApiService from './PimDebtorGroup';
+import { AesirxPimDebtorGroupApiService } from './PimDebtorGroup';
 import { describe, expect } from '@jest/globals';
 
 let createID: any = '';

@@ -1,4 +1,4 @@
-import AesirxCrmOpportunityApiService from './CrmOpportunity';
+import { AesirxCrmOpportunityApiService } from './CrmOpportunity';
 import { describe, expect } from '@jest/globals';
 
 let createID: any = '';

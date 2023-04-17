@@ -1,4 +1,4 @@
-import AesirxPimTagApiService from './PimTag';
+import { AesirxPimTagApiService } from './PimTag';
 import { describe, expect } from '@jest/globals';
 
 describe('PimTag', () => {

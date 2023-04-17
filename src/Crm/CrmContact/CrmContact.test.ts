@@ -1,4 +1,4 @@
-import AesirxCrmContactApiService from './CrmContact';
+import { AesirxCrmContactApiService } from './CrmContact';
 import { describe, expect } from '@jest/globals';
 
 let createID: any = '';
