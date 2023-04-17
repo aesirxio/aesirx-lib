@@ -7,6 +7,7 @@ import { FORMAT_DATE, FORMAT_TIME } from '../Constant/FormFieldType';
 import { addMilliseconds, format, fromUnixTime } from 'date-fns';
 import { getTimezoneOffset } from 'date-fns-tz';
 import { Helper } from './Helper';
+import moment from 'moment';
 
 const timezone = Helper.getTimezoneDefault();
 
@@ -26,4 +27,17 @@ const formatUnix = (timestamp: any, withTime = false) => {
   return formatDate(fromUnixTime(timestamp), withTime, false);
 };
 
-export { formatDate, formatUnix };
+const enumerateDaysBetweenDates = function (startDate: any, endDate: any) {
+  let dates = [];
+
+  const currDate = moment(startDate).startOf('day');
+  const lastDate = moment(endDate).startOf('day');
+
+  while (currDate.add(1, 'days').diff(lastDate) < 0) {
+    dates.push(currDate.clone().format('YYYY-MM-DD'));
+  }
+
+  return dates;
+};
+
+export { formatDate, formatUnix, enumerateDaysBetweenDates };
