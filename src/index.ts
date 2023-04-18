@@ -9,6 +9,7 @@ export * from './Persona/Persona';
 export * from './Content/Content';
 export * from './Member/Member';
 export * from './Authentication/Authentication';
+export * from './Authentication/Logout';
 export * from './ProjectChannel/ProjectChannel';
 export * from './PersonaTemplate/PersonaTemplate';
 export * from './ContentTheme/ContentTheme';
@@ -80,3 +81,5 @@ export * from './Bi/Bi';
 export * from './Utils/Helper';
 export * from './Utils/Date';
 export * from './Utils/Storage';
+
+export * from './env';
