@@ -8,7 +8,7 @@ import GoogleDataRoute from './GoogleDataRoute';
 /**
  * Laravel Service - Google Data
  */
-class GoogleData {
+class AesirxGoogleDataApiService {
   route: any = null;
 
   constructor() {
@@ -32,4 +32,4 @@ class GoogleData {
   }
 }
 
-export { GoogleData };
+export { AesirxGoogleDataApiService };
