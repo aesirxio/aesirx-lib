@@ -28,8 +28,8 @@ class BaseRoute {
       if (props.filter) {
         result = result.concat('?').concat(queryString.stringify(props.filter));
       }
-      if(baseUrl && !result?.startsWith('http')) {
-        result = "https://" + result;
+      if (baseUrl && !result?.startsWith('http')) {
+        result = 'https://' + result;
       }
       return decodeURI(result);
     } else {
