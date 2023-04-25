@@ -26,9 +26,7 @@
     "format:write": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
     "test": "jest"
   },
-  "peerDependencies": {
-    "react": "^17.0.0"
-  },
+  
   "devDependencies": {
     "@babel/core": "^7.21",
     "@babel/eslint-parser": "^7.18",
