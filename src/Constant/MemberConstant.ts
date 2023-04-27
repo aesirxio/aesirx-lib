@@ -21,6 +21,8 @@ const MEMBER_FIELD_KEY = {
   CREATED_DATE: 'registerDate',
   TIMEZONE: 'timezone',
   LOGO: 'member_logo',
+  AVATAR_DAM: 'avatar_dam',
+  USERNAME: 'username',
 };
 
 const MEMBER_GET_FIELD_KEY = {

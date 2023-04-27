@@ -29,6 +29,7 @@ export * from './ContentX/Items/ContentXItems';
 // Constants
 export * from './Constant/Constant';
 export * from './Constant/Format';
+export * from './Constant/MemberConstant';
 
 // PersonaConstant
 export * from './Constant/PersonaConstant';
