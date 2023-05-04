@@ -203,13 +203,18 @@ class AesirxBiApiService {
       const data = await this.route.getDevices(dataFilter, dateFilter);
 
       let results = null;
+      let pagination = null;
       if (data) {
         results = new DevicesModel(data);
+        pagination = results.getBiPagination();
       }
       if (results) {
         results = results.toJSON();
       }
-      return results;
+      return {
+        list: results,
+        pagination: pagination,
+      };
     } catch (error) {
       if (process.env.NODE_ENV !== 'test') {
         return error;
@@ -225,13 +230,18 @@ class AesirxBiApiService {
       const data = await this.route.getCountries(dataFilter, dateFilter);
 
       let results = null;
-      if (data?.collection) {
+      let pagination = null;
+      if (data) {
         results = new CountriesModel(data);
+        pagination = results.getBiPagination();
       }
       if (results) {
         results = results.toJSON();
       }
-      return results;
+      return {
+        list: results,
+        pagination: pagination,
+      };
     } catch (error) {
       if (process.env.NODE_ENV !== 'test') {
         return error;
@@ -247,13 +257,18 @@ class AesirxBiApiService {
       const data = await this.route.getCities(dataFilter, dateFilter);
 
       let results = null;
+      let pagination = null;
       if (data?.collection) {
         results = new CitiesModel(data);
+        pagination = results.getBiPagination();
       }
       if (results) {
         results = results.toJSON();
       }
-      return results;
+      return {
+        list: results,
+        pagination: pagination,
+      };
     } catch (error) {
       if (process.env.NODE_ENV !== 'test') {
         return error;
@@ -269,13 +284,18 @@ class AesirxBiApiService {
       const data = await this.route.getBrowsers(dataFilter, dateFilter);
 
       let results = null;
+      let pagination = null;
       if (data?.collection) {
         results = new BrowsersModel(data);
+        pagination = results.getBiPagination();
       }
       if (results) {
         results = results.toJSON();
       }
-      return results;
+      return {
+        list: results,
+        pagination: pagination,
+      };
     } catch (error) {
       if (process.env.NODE_ENV !== 'test') {
         return error;
