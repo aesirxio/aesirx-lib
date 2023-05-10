@@ -10,7 +10,9 @@ import {
   DevicesModel,
   DomainModel,
   FlowItemModel,
+  LanguagesModel,
   MetricsModel,
+  PagesModel,
   SummaryModel,
   VisitorModel,
   VisitorsModel,
@@ -287,6 +289,60 @@ class AesirxBiApiService {
       let pagination = null;
       if (data?.collection) {
         results = new BrowsersModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (process.env.NODE_ENV !== 'test') {
+        return error;
+      }
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getLanguages = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getLanguages(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data?.collection) {
+        results = new LanguagesModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (process.env.NODE_ENV !== 'test') {
+        return error;
+      }
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getPages = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getPages(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data?.collection) {
+        results = new PagesModel(data);
         pagination = results.getBiPagination();
       }
       if (results) {
