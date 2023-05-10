@@ -122,7 +122,7 @@ AesirxPricingPlanApiInstance.interceptors.request.use(
       }
     } else {
       accessToken = Storage.getItem(AUTHORIZATION_KEY.PRICING_PLAN_ACCESS_TOKEN);
-      const authorizationHeader = Storage.getItem(
+      const authorizationHeader: any = Storage.getItem(
         AUTHORIZATION_KEY.PRICING_PLAN_AUTHORIZED_TOKEN_HEADER
       );
 
