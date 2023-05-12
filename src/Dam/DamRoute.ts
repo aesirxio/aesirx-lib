@@ -10,6 +10,7 @@ class DamRoute extends BaseRoute {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'user_subscription',
+        'filter[product][]': 'product-aesirx-dam',
       })
     );
   };
