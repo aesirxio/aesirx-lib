@@ -39,6 +39,7 @@ const BI_NEW_USERS_KEY = {
 
 const BI_VISITORS_FIELD_KEY = {
   VISITS: 'visits',
+  TOTAL_PAGE_VIEWS: 'total_page_views',
   DATE: 'date',
 };
 
