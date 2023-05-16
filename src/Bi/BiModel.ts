@@ -67,11 +67,13 @@ class VisitorsModel extends BaseModel {
 class VisitorsItemModel extends BaseItemModel {
   visits = null;
   date = null;
+  total_page_views = null;
   constructor(entity: any) {
     super(entity);
     if (entity) {
       this.visits = entity[BI_VISITORS_FIELD_KEY.VISITS] ?? '';
       this.date = entity[BI_VISITORS_FIELD_KEY.DATE] ?? '';
+      this.total_page_views = entity[BI_VISITORS_FIELD_KEY.TOTAL_PAGE_VIEWS] ?? '';
     }
   }
   toObject = () => {
@@ -82,6 +84,7 @@ class VisitorsItemModel extends BaseItemModel {
       ...this.baseToJSON(),
       [BI_VISITORS_FIELD_KEY.VISITS]: this.visits,
       [BI_VISITORS_FIELD_KEY.DATE]: this.date,
+      [BI_VISITORS_FIELD_KEY.TOTAL_PAGE_VIEWS]: this.total_page_views,
     };
   };
 }
