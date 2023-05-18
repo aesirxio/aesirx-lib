@@ -166,9 +166,9 @@ class ProductItemModel extends BaseItemModel {
           if (typeof fieldData === 'object' && fieldData !== null && !Array.isArray(fieldData)) {
             formData[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key] = [JSON.stringify(fieldData)];
           } else if (Array.isArray(fieldData)) {
-            formData[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key] = fieldData.map((field) =>
-              typeof field === 'object' && field !== null ? JSON.stringify(field) : field
-            );
+            formData[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key] = fieldData.length ? fieldData.map((field) =>
+              typeof field === 'object' && field !== null ? JSON.stringify(field) : field 
+            ) : "";
           } else {
             formData[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key] = fieldData;
           }
