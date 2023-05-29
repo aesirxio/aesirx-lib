@@ -108,6 +108,13 @@ const BI_FLOW_DETAIL_KEY = {
   EVENTS: 'events',
 };
 
+const BI_EVENTS_FIELD_KEY = {
+  EVENT_NAME: 'event_name',
+  EVENT_TYPE: 'event_type',
+  TOTAL_VISITOR: 'total_visitor',
+  DATE: 'date',
+};
+
 export {
   BI_DASHBOARD_FIELD_KEY,
   BI_WIDGET_FIELD_KEY,
@@ -124,4 +131,5 @@ export {
   BI_LANGUAGES_FIELD_KEY,
   BI_VISITOR_FIELD_KEY,
   BI_FLOW_DETAIL_KEY,
+  BI_EVENTS_FIELD_KEY,
 };

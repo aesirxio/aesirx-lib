@@ -9,6 +9,7 @@ import {
   CountriesModel,
   DevicesModel,
   DomainModel,
+  EventsModel,
   FlowItemModel,
   LanguagesModel,
   MetricsModel,
@@ -119,13 +120,18 @@ class AesirxBiApiService {
       const data = await this.route.getVisitor(dataFilter, dateFilter);
 
       let results = null;
+      let pagination = null;
       if (data) {
         results = new VisitorModel(data);
+        pagination = results.getBiPagination();
       }
       if (results) {
         results = results.toJSON();
       }
-      return results;
+      return {
+        list: results,
+        pagination: pagination,
+      };
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
@@ -356,6 +362,24 @@ class AesirxBiApiService {
       if (process.env.NODE_ENV !== 'test') {
         return error;
       }
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getEvents = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getEvents(dataFilter, dateFilter);
+
+      let results = null;
+      if (data) {
+        results = new EventsModel(data);
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return results;
+    } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
       } else throw error;

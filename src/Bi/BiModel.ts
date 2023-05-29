@@ -16,6 +16,7 @@ import {
   BI_BROWSERS_FIELD_KEY,
   BI_LANGUAGES_FIELD_KEY,
   BI_PAGES_FIELD_KEY,
+  BI_EVENTS_FIELD_KEY,
 } from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
@@ -580,6 +581,46 @@ class PagesItemModel extends BaseItemModel {
   };
 }
 
+class EventsModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new EventsItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class EventsItemModel extends BaseItemModel {
+  event_name = null;
+  event_type = null;
+  total_visitor = null;
+  date = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.event_name = entity[BI_EVENTS_FIELD_KEY.EVENT_NAME] ?? '';
+      this.event_type = entity[BI_EVENTS_FIELD_KEY.EVENT_TYPE] ?? '';
+      this.total_visitor = entity[BI_EVENTS_FIELD_KEY.TOTAL_VISITOR] ?? '';
+      this.date = entity[BI_EVENTS_FIELD_KEY.DATE] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_EVENTS_FIELD_KEY.EVENT_NAME]: this.event_name,
+      [BI_EVENTS_FIELD_KEY.EVENT_TYPE]: this.event_type,
+      [BI_EVENTS_FIELD_KEY.TOTAL_VISITOR]: this.total_visitor,
+      [BI_EVENTS_FIELD_KEY.DATE]: this.date,
+    };
+  };
+}
+
 export {
   DomainModel,
   VisitorsModel,
@@ -595,4 +636,5 @@ export {
   BrowsersModel,
   LanguagesModel,
   PagesModel,
+  EventsModel,
 };
