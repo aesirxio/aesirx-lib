@@ -62,6 +62,7 @@ createAuthRefreshInterceptor(AesirXApiInstance, refreshAuthLogic, {
 
 const pending: any = {};
 const CancelToken = axios.CancelToken;
+
 const removePending = (config: any, f: any) => {
   if (config) {
     const url = config.url.replace(config.baseURL, '/');
@@ -81,6 +82,7 @@ const removePending = (config: any, f: any) => {
     }
   }
 };
+
 AesirXApiInstance.interceptors.request.use(
   function (config: any) {
     let accessToken: any = '';

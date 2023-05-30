@@ -33,11 +33,11 @@ class BaseModel {
 
   getPagination = () => {
     return {
-      page: this.pureEntities.page ? parseInt(this.pureEntities.page) : null,
-      pageLimit: this.pureEntities.pageLimit ? parseInt(this.pureEntities.pageLimit) : null,
-      limitstart: this.pureEntities.limitstart ? parseInt(this.pureEntities.limitstart) : null,
-      totalItems: this.pureEntities.totalItems ? parseInt(this.pureEntities.totalItems) : null,
-      totalPages: this.pureEntities.totalPages ? parseInt(this.pureEntities.totalPages) : null,
+      page: this.pureEntities.page ? parseInt(this.pureEntities.page) : 1,
+      pageLimit: this.pureEntities.pageLimit ? parseInt(this.pureEntities.pageLimit) : 0,
+      limitstart: this.pureEntities.limitstart ? parseInt(this.pureEntities.limitstart) : 0,
+      totalItems: this.pureEntities.totalItems ? parseInt(this.pureEntities.totalItems) : 0,
+      totalPages: this.pureEntities.totalPages ? parseInt(this.pureEntities.totalPages) : 0,
     };
   };
 
