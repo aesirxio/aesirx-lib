@@ -16,6 +16,7 @@ class BaseRoute {
     webserviceVersion: '1.0.0',
     api: 'hal',
   };
+
   createRequestURL = (props: any, isDefault = true, baseUrl = this.baseURL, isBi = false) => {
     let result;
     baseUrl = baseUrl ?? this.baseURL;
