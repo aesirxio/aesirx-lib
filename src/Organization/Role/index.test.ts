@@ -1,8 +1,6 @@
 import { OrganizationRoleApiService } from './index';
 import { describe, expect } from '@jest/globals';
 
-let createID: any = '';
-
 describe('OrganizationRole', () => {
   it('Get List', async () => {
     const service = new OrganizationRoleApiService();
