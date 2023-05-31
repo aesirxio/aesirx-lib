@@ -21,6 +21,16 @@ class OrganizationMemberRouter extends BaseRoute {
     );
   };
 
+  getDetail = (id = 0, dataFilter = {}) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL({
+        option: this.option,
+        ids: id,
+        ...dataFilter,
+      })
+    );
+  };
+
   create = (data: any) => {
     return AesirXApiInstance.post(
       this.createRequestURL({
@@ -40,6 +50,17 @@ class OrganizationMemberRouter extends BaseRoute {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
+      }
+    );
+  };
+
+  delete = (ids: any) => {
+    return AesirXApiInstance.delete(
+      this.createRequestURL({
+        option: this.option,
+      }),
+      {
+        data: { ids: Array.isArray(ids) ? ids : [ids] },
       }
     );
   };
