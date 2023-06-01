@@ -26,7 +26,7 @@ class OrganizationMemberItemModel extends BaseItemModel {
   member_role: any = null;
   organisation: any = null;
   organisation_id: any = null;
-  member_state: any = null;
+  published: any = null;
   created_user_name: any = null;
   modified_user_name: any = null;
   created_time: any = null;
@@ -44,7 +44,7 @@ class OrganizationMemberItemModel extends BaseItemModel {
       this.member_role = entity[ORGANISATION_MEMBER_FIELD.MEMBER_ROLE] ?? '';
       this.organisation = entity[ORGANISATION_MEMBER_FIELD.ORGANISATION] ?? '';
       this.organisation_id = entity[ORGANISATION_MEMBER_FIELD.ORGANISATION_ID] ?? '';
-      this.member_state = entity[ORGANISATION_MEMBER_FIELD.MEMBER_STATE] ?? '';
+      this.published = entity[ORGANISATION_MEMBER_FIELD.PUBLISHED] ?? '';
       this.created_user_name = entity[ORGANISATION_MEMBER_FIELD.CREATED_USER_NAME] ?? '';
       this.modified_user_name = entity[ORGANISATION_MEMBER_FIELD.MODIFIED_USER_NAME] ?? '';
       this.created_time = entity[ORGANISATION_MEMBER_FIELD.CREATED_TIME] ?? '';
@@ -64,7 +64,7 @@ class OrganizationMemberItemModel extends BaseItemModel {
       [ORGANISATION_MEMBER_FIELD.MEMBER_ROLE]: this.member_role,
       [ORGANISATION_MEMBER_FIELD.ORGANISATION]: this.organisation,
       [ORGANISATION_MEMBER_FIELD.ORGANISATION_ID]: this.organisation_id,
-      [ORGANISATION_MEMBER_FIELD.MEMBER_STATE]: this.member_state,
+      [ORGANISATION_MEMBER_FIELD.PUBLISHED]: this.published,
       [ORGANISATION_MEMBER_FIELD.CREATED_USER_NAME]: this.created_user_name,
       [ORGANISATION_MEMBER_FIELD.MODIFIED_USER_NAME]: this.modified_user_name,
       [ORGANISATION_MEMBER_FIELD.CREATED_TIME]: this.created_time,

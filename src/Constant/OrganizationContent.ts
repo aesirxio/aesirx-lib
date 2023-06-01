@@ -8,7 +8,7 @@ const ORGANISATION_MEMBER_FIELD: any = {
   MEMBER_ROLE: 'member_role',
   ORGANISATION: 'organisation',
   ORGANISATION_ID: 'organisation_id',
-  MEMBER_STATE: 'member_state',
+  PUBLISHED: 'published',
   CREATED_USER_NAME: 'created_user_name',
   MODIFIED_USER_NAME: 'modified_user_name',
   CREATED_TIME: 'created_time',
