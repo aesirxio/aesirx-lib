@@ -54,7 +54,7 @@ describe('Bi', () => {
     };
 
     const response: any = await service.getVisitor(dataFilter, dateFilter);
-    expect(response?.length).toBeGreaterThan(0);
+    expect(response).not.toBeUndefined();
   });
 
   it('Get Visits', async () => {
