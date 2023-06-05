@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { OrganizationMemberModel } from './Model';
+import { OrganizationMemberItemModel, OrganizationMemberModel } from './Model';
 import OrganizationMemberRouter from './Route';
 
 import axios from 'axios';
@@ -83,7 +83,7 @@ class OrganizationMemberApiService {
       const data = await this.route.getDetail(id);
       let results = null;
       if (data) {
-        results = new OrganizationMemberModel(data);
+        results = new OrganizationMemberItemModel(data);
       }
       if (results) {
         results = results.toJSON();

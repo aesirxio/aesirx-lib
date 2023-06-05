@@ -25,7 +25,7 @@ class OrganizationMemberRouter extends BaseRoute {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: this.option,
-        ids: id,
+        id: id,
         ...dataFilter,
       })
     );
