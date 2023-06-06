@@ -38,11 +38,11 @@ class PlanningFilterModel extends BaseModel {
     const pagination = this.pureEntities.result.pagination;
 
     return {
-      page: pagination.page ? parseInt(pagination.page) : null,
-      pageLimit: pagination.pageLimit ? parseInt(pagination.pageLimit) : null,
-      limitstart: pagination.limitStart ? parseInt(pagination.limitStart) : null,
-      totalItems: pagination.totalItems ? parseInt(pagination.totalItems) : null,
-      totalPages: pagination.totalPage ? parseInt(pagination.totalPage) : null,
+      page: pagination.page ? parseInt(pagination.page) : 1,
+      pageLimit: pagination.pageLimit ? parseInt(pagination.pageLimit) : 0,
+      limitstart: pagination.limitStart ? parseInt(pagination.limitStart) : 0,
+      totalItems: pagination.totalItems ? parseInt(pagination.totalItems) : 0,
+      totalPages: pagination.totalPage ? parseInt(pagination.totalPage) : 0,
     };
   };
 }

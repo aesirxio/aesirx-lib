@@ -78,6 +78,13 @@ export * from './Dam/Dam';
 export * from './Constant/BiConstant';
 export * from './Bi/Bi';
 
+// Organization
+export * from './Constant/OrganizationContent';
+export * from './Organization/Member/index';
+export * from './Organization/Member/Model';
+export * from './Organization/Role/index';
+export * from './Organization/Role/Model';
+
 // Utils
 export * from './Utils/Helper';
 export * from './Utils/Date';
