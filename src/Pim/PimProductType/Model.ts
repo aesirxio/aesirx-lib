@@ -23,6 +23,7 @@ class ProductTypeItemModel extends BaseItemModel {
   name: any = null;
   parent_id: any = null;
   parent_name: any = null;
+  level: any = null;
   organization_id: any = null;
   published: any = null;
   created_user_name: any = null;
@@ -39,6 +40,7 @@ class ProductTypeItemModel extends BaseItemModel {
       this.name = entity[PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.NAME] ?? '';
       this.parent_id = entity[PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.PARENT_ID] ?? '';
       this.parent_name = entity[PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.PARENT_NAME] ?? '';
+      this.level = entity[PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.LEVEL] ?? '';
       this.organization_id = entity[PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.ORGANIZATION_ID] ?? '';
       this.published = entity[PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.PUBLISHED] ?? '';
       this.created_user_name = entity[PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.CREATED_USER_NAME] ?? '';
@@ -57,6 +59,7 @@ class ProductTypeItemModel extends BaseItemModel {
       [PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.NAME]: this.name,
       [PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.PARENT_ID]: this.parent_id,
       [PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.PARENT_NAME]: this.parent_name,
+      [PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.LEVEL]: this.level,
       [PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.ORGANIZATION_ID]: this.organization_id,
       [PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.PUBLISHED]: this.published,
       [PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.CREATED_USER_NAME]: this.created_user_name,
@@ -101,7 +104,11 @@ class ProductTypeItemModel extends BaseItemModel {
 
   static __transformItemToApiOfUpdation = (data: any) => {
     let formData: any = {};
-    const excluded = [PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.CUSTOM_FIELDS];
+    const excluded = [
+      PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.CUSTOM_FIELDS,
+      PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.PUBLISHED,
+      PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.ORGANIZATION_ID,
+    ];
     Object.keys(PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY).forEach((index) => {
       if (
         !excluded.includes(PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY[index]) &&

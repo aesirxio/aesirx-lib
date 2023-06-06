@@ -179,6 +179,7 @@ const PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   PARENT_ID: 'parent_id',
   PARENT_NAME: 'parent_name',
+  LEVEL: 'level',
   ORGANIZATION_ID: 'organization_id',
   NAME: 'name',
   PUBLISHED: 'published',
