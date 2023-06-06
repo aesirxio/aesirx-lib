@@ -61,7 +61,8 @@ export * from './Pim/PimProductPrice/PimProductPrice';
 export * from './Pim/PimTag/PimTag';
 export * from './Pim/PimUtils/PimUtils';
 export * from './Pim/PimVariant/PimVariant';
-
+export * from './Pim/PimProductType';
+export * from './Pim/PimProductType/Model';
 // CRM Constant
 export * from './Constant/CrmConstant';
 export * from './Crm/CrmCompany/CrmCompany';

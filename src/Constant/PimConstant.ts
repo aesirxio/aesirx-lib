@@ -163,7 +163,7 @@ const PIM_PRICES_DETAIL_FIELD_KEY: any = {
   THUMB_IMAGE_URL: 'thumbImageUrl',
 };
 
-const PIM_DASH_BOARD_DETAIL_FIELD_KEY = {
+const PIM_DASH_BOARD_DETAIL_FIELD_KEY: any = {
   TOTAL_PRODUCT: 'total_product',
   TOTAL_CATEGORIES: 'total_categories',
   PERCENT_NEW_PRODUCT: 'percent_new_product',
@@ -173,6 +173,22 @@ const PIM_DASH_BOARD_DETAIL_FIELD_KEY = {
   PERCENT_PRODUCT_DRAFT: 'percent_product_draft',
   PERCENT_PRODUCT_ARCHIVED: 'percent_product_Archived',
   PERCENT_PRODUCT_TRASH: 'percent_product_trash',
+};
+
+const PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  PARENT_ID: 'parent_id',
+  PARENT_NAME: 'parent_name',
+  LEVEL: 'level',
+  ORGANIZATION_ID: 'organization_id',
+  NAME: 'name',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
 };
 
 export {
@@ -185,4 +201,5 @@ export {
   PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY,
   PIM_DASH_BOARD_DETAIL_FIELD_KEY,
   PIM_VARIANT_DETAIL_FIELD_KEY,
+  PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY,
 };
