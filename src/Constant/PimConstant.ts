@@ -31,6 +31,8 @@ const PIM_PRODUCT_DETAIL_FIELD_KEY: any = {
   THUMB_IMAGE: 'thumb_image',
   DOWNLOAD_URL: 'download_url',
   MODIFIED_TIME: 'modified_time',
+  PRODUCT_TYPE_ID: 'product_type_id',
+  PRODUCT_TYPE_NAME: 'product_type_name',
 };
 
 const PIM_VARIANT_DETAIL_FIELD_KEY: any = {
@@ -68,6 +70,8 @@ const PIM_CATEGORY_DETAIL_FIELD_KEY: any = {
   MODIFIED_TIME: 'modified_time',
   PRODUCT_QUANTITY: 'product_quantity',
   PARENT_NAME: 'parent_name',
+  PRODUCT_TYPE_ID: 'product_type_id',
+  PRODUCT_TYPE_NAME: 'product_type_name',
 };
 
 const PIM_DEBTOR_GROUP_DETAIL_FIELD_KEY: any = {
@@ -114,6 +118,7 @@ const PIM_FIELD_DETAIL_FIELD_KEY: any = {
   FIELD_GROUP_NAME: 'field_group_name',
   TYPE: 'type',
   SECTION: 'content_types',
+  PRODUCT_TYPES: 'product_types',
   FIELD_CODE: 'fieldcode',
   PARAMS: 'params',
   OPTIONS: 'options',
