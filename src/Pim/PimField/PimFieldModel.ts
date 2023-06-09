@@ -53,7 +53,7 @@ class FieldItemModel extends BaseItemModel {
       this.fieldcode = entity[PIM_FIELD_DETAIL_FIELD_KEY.FIELD_CODE] ?? '';
       this.params = entity[PIM_FIELD_DETAIL_FIELD_KEY.PARAMS][0]
         ? JSON.parse(entity[PIM_FIELD_DETAIL_FIELD_KEY.PARAMS])
-        : [];
+        : {};
       this.options = entity[PIM_FIELD_DETAIL_FIELD_KEY.OPTIONS] ?? '';
       this.relevance = entity[PIM_FIELD_DETAIL_FIELD_KEY.RELEVANCE] ?? '';
       this.content_types = entity[PIM_FIELD_DETAIL_FIELD_KEY.SECTION] ?? '';
@@ -155,15 +155,14 @@ class FieldItemModel extends BaseItemModel {
       }
     });
 
-    if (
-      data[PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES] &&
-      data[PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES].length
-    ) {
+    if (data[PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES]) {
       formData[PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES] = data[
         PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES
-      ].map((item: any) => {
-        return item.id;
-      });
+      ]?.length
+        ? data[PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES]?.map((item: any) => {
+            return item.id;
+          })
+        : '';
     }
     return formData;
   };
