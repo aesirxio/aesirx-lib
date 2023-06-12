@@ -33,6 +33,7 @@ class FieldItemModel extends BaseItemModel {
   options = null;
   relevance = null;
   content_types = null;
+  product_types = null;
   unique = null;
 
   constructor(entity: any) {
@@ -52,10 +53,11 @@ class FieldItemModel extends BaseItemModel {
       this.fieldcode = entity[PIM_FIELD_DETAIL_FIELD_KEY.FIELD_CODE] ?? '';
       this.params = entity[PIM_FIELD_DETAIL_FIELD_KEY.PARAMS][0]
         ? JSON.parse(entity[PIM_FIELD_DETAIL_FIELD_KEY.PARAMS])
-        : [];
+        : {};
       this.options = entity[PIM_FIELD_DETAIL_FIELD_KEY.OPTIONS] ?? '';
       this.relevance = entity[PIM_FIELD_DETAIL_FIELD_KEY.RELEVANCE] ?? '';
       this.content_types = entity[PIM_FIELD_DETAIL_FIELD_KEY.SECTION] ?? '';
+      this.product_types = entity[PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES] ?? '';
       this.unique = entity[PIM_FIELD_DETAIL_FIELD_KEY.UNIQUE] ?? '';
     }
   }
@@ -82,13 +84,18 @@ class FieldItemModel extends BaseItemModel {
       [PIM_FIELD_DETAIL_FIELD_KEY.OPTIONS]: this.options,
       [PIM_FIELD_DETAIL_FIELD_KEY.RELEVANCE]: this.relevance,
       [PIM_FIELD_DETAIL_FIELD_KEY.SECTION]: this.content_types,
+      [PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES]: this.product_types,
       [PIM_FIELD_DETAIL_FIELD_KEY.UNIQUE]: this.unique,
     };
   };
 
   static __transformItemToApiOfCreation = (data: any) => {
     let formData = new FormData();
-    const excluded = [PIM_FIELD_DETAIL_FIELD_KEY.ID, PIM_FIELD_DETAIL_FIELD_KEY.PARAMS];
+    const excluded = [
+      PIM_FIELD_DETAIL_FIELD_KEY.ID,
+      PIM_FIELD_DETAIL_FIELD_KEY.PARAMS,
+      PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES,
+    ];
     Object.keys(PIM_FIELD_DETAIL_FIELD_KEY).forEach((index) => {
       if (
         !excluded.includes(PIM_FIELD_DETAIL_FIELD_KEY[index]) &&
@@ -123,12 +130,22 @@ class FieldItemModel extends BaseItemModel {
         );
       });
     }
+
+    if (
+      data[PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES] &&
+      data[PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES].length
+    ) {
+      data[PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES].map((item: any) => {
+        return formData.append(PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES + '[]', item?.id);
+      });
+    }
+
     return formData;
   };
 
   static __transformItemToApiOfUpdation = (data: any) => {
     let formData: any = {};
-    const excluded: any = [];
+    const excluded: any = [PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES];
     Object.keys(PIM_FIELD_DETAIL_FIELD_KEY).forEach((index) => {
       if (
         !excluded.includes(PIM_FIELD_DETAIL_FIELD_KEY[index]) &&
@@ -137,6 +154,16 @@ class FieldItemModel extends BaseItemModel {
         formData[PIM_FIELD_DETAIL_FIELD_KEY[index]] = data[PIM_FIELD_DETAIL_FIELD_KEY[index]];
       }
     });
+
+    if (data[PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES]) {
+      formData[PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES] = data[
+        PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES
+      ]?.length
+        ? data[PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES]?.map((item: any) => {
+            return item.id;
+          })
+        : '';
+    }
     return formData;
   };
 }

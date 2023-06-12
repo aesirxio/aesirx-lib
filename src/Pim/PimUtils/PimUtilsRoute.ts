@@ -16,12 +16,14 @@ class UtilsRoute extends BaseRoute {
       })
     );
   };
-  getListContentType = () => {
+  getListContentType = (filters = {}) => {
+    const buildFilters = this.createFilters(filters);
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'reditem',
         view: 'pim_select_options',
         task: 'contentType',
+        ...buildFilters,
       })
     );
   };
@@ -33,6 +35,28 @@ class UtilsRoute extends BaseRoute {
         task: 'fieldType',
       })
     );
+  };
+
+  createFilters = (filters: any) => {
+    let buildFilter: any = {};
+    for (const [key, value] of Object.entries<any>(filters)) {
+      if (typeof value === 'object') {
+        switch (value.type) {
+          case 'custom_fields':
+            buildFilter['filter[' + value.type + '][' + key + '][]'] = value.value;
+            break;
+          case 'filter':
+            buildFilter['filter[' + key + ']'] = value.value;
+            break;
+          default:
+            break;
+        }
+      } else {
+        buildFilter[key] = value;
+      }
+    }
+
+    return buildFilter;
   };
 }
 

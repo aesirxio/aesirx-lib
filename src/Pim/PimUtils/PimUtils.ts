@@ -42,9 +42,9 @@ class AesirxPimUtilApiService {
     }
   };
 
-  getListContentType = async () => {
+  getListContentType = async (filter?: any) => {
     try {
-      const data = await this.utilsRoute.getListContentType();
+      const data = await this.utilsRoute.getListContentType(filter);
 
       let results = null;
 
