@@ -37,6 +37,8 @@ class MemberItemModel {
       [MEMBER_GET_FIELD_KEY.TIMEZONE]: data.timezone,
       [MEMBER_GET_FIELD_KEY.ALLOW_CREATE_ITEM]: data.allow_create_item,
       [MEMBER_GET_FIELD_KEY.ORGANIZATION]: data.organization,
+      [MEMBER_GET_FIELD_KEY.WALLET_METAMASK]: data.wallet_metamask,
+      [MEMBER_GET_FIELD_KEY.WALLET_CONCORDIUM]: data.wallet_concordium,
     };
   };
 
@@ -71,6 +73,8 @@ class MemberItemModel {
       [MEMBER_FIELD_KEY.CITY]: data[MEMBER_FIELD_KEY.CITY] ?? '',
       [MEMBER_FIELD_KEY.COUNTRY]: data[MEMBER_FIELD_KEY.COUNTRY] ?? '',
       [MEMBER_FIELD_KEY.TIMEZONE]: data[MEMBER_FIELD_KEY.TIMEZONE] ?? '',
+      [MEMBER_FIELD_KEY.WALLET_METAMASK]: data[MEMBER_FIELD_KEY.WALLET_METAMASK] ?? '',
+      [MEMBER_FIELD_KEY.WALLET_CONCORDIUM]: data[MEMBER_FIELD_KEY.WALLET_CONCORDIUM] ?? '',
     };
   };
 

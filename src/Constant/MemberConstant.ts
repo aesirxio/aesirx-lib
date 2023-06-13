@@ -23,6 +23,8 @@ const MEMBER_FIELD_KEY = {
   LOGO: 'member_logo',
   AVATAR_DAM: 'avatar_dam',
   USERNAME: 'username',
+  WALLET_METAMASK: 'wallet_metamask',
+  WALLET_CONCORDIUM: 'wallet_concordium',
 };
 
 const MEMBER_GET_FIELD_KEY = {
@@ -44,6 +46,8 @@ const MEMBER_GET_FIELD_KEY = {
   ALLOW_CREATE_ITEM: 'allow_create_item',
   ORGANIZATION: 'organization',
   LOGO: 'member_logo',
+  WALLET_METAMASK: 'wallet_metamask',
+  WALLET_CONCORDIUM: 'wallet_concordium',
 };
 
 const MEMBER_CREATE_FIELD_KEY = {
