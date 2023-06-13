@@ -115,10 +115,19 @@ class CategoryItemModel extends BaseItemModel {
       Object.keys(data[PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).length
     ) {
       Object.keys(data[PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).forEach(function (key) {
-        formData.append(
-          [PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + '[' + key + ']',
-          data[PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key]
-        );
+        if (Array.isArray(data[PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key])) {
+          data[PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key].map((field: any) => {
+            return formData.append(
+              [PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + '[' + key + '][]',
+              typeof field === 'object' ? JSON.stringify(field) : field
+            );
+          });
+        } else {
+          formData.append(
+            [PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + '[' + key + ']',
+            data[PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key]
+          );
+        }
       });
     }
     if (
