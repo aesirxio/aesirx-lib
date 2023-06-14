@@ -18,7 +18,7 @@ class BiRoute extends BaseRoute {
           filter: dataFilter,
         },
         false,
-        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -31,7 +31,7 @@ class BiRoute extends BaseRoute {
           filter: dataFilter,
         },
         false,
-        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -46,7 +46,7 @@ class BiRoute extends BaseRoute {
           filter: dataFilter,
         },
         false,
-        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -61,7 +61,7 @@ class BiRoute extends BaseRoute {
           filter: dataFilter,
         },
         false,
-        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -76,7 +76,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -90,7 +90,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -104,7 +104,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -119,7 +119,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -134,7 +134,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -149,7 +149,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -164,7 +164,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -179,7 +179,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -194,7 +194,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -209,7 +209,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -222,7 +222,7 @@ class BiRoute extends BaseRoute {
           url: 'visitor' + version + 'init',
         },
         false,
-        process.env.NODE_ENV === 'test' ? process.env.REACT_APP_BI_ENDPOINT_URL : null,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
         true
       ),
       {
