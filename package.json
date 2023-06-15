@@ -35,7 +35,7 @@
     "@babel/preset-typescript": "^7.21.5",
     "@jest/globals": "^29.5.0",
     "@types/crypto-js": "^4.1.1",
-    "@types/jest": "^29.5.1",
+    "@types/jest": "^29.5.2",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "eslint": "^8.39",
