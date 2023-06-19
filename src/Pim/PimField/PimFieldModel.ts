@@ -145,7 +145,10 @@ class FieldItemModel extends BaseItemModel {
 
   static __transformItemToApiOfUpdation = (data: any) => {
     let formData: any = {};
-    const excluded: any = [PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES];
+    const excluded: any = [
+      PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES,
+      PIM_FIELD_DETAIL_FIELD_KEY.FIELD_GROUP_ID,
+    ];
     Object.keys(PIM_FIELD_DETAIL_FIELD_KEY).forEach((index) => {
       if (
         !excluded.includes(PIM_FIELD_DETAIL_FIELD_KEY[index]) &&
@@ -162,7 +165,13 @@ class FieldItemModel extends BaseItemModel {
         ? data[PIM_FIELD_DETAIL_FIELD_KEY.PRODUCT_TYPES]?.map((item: any) => {
             return item.id;
           })
-        : '';
+        : [''];
+    }
+    if (data[PIM_FIELD_DETAIL_FIELD_KEY.FIELD_GROUP_ID]) {
+      formData[PIM_FIELD_DETAIL_FIELD_KEY.FIELD_GROUP_ID] =
+        data[PIM_FIELD_DETAIL_FIELD_KEY.FIELD_GROUP_ID];
+    } else {
+      formData[PIM_FIELD_DETAIL_FIELD_KEY.FIELD_GROUP_ID] = '';
     }
     return formData;
   };
