@@ -106,7 +106,6 @@ class ProductTypeItemModel extends BaseItemModel {
     let formData: any = {};
     const excluded = [
       PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.CUSTOM_FIELDS,
-      PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.PUBLISHED,
       PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY.ORGANIZATION_ID,
     ];
     Object.keys(PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY).forEach((index) => {
