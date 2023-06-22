@@ -63,6 +63,8 @@ export * from './Pim/PimUtils/PimUtils';
 export * from './Pim/PimVariant/PimVariant';
 export * from './Pim/PimProductType';
 export * from './Pim/PimProductType/Model';
+export * from './Pim/PimBrand';
+export * from './Pim/PimBrand/Model';
 // CRM Constant
 export * from './Constant/CrmConstant';
 export * from './Crm/CrmCompany/CrmCompany';
