@@ -196,6 +196,18 @@ const PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY: any = {
   CUSTOM_FIELDS: 'custom_fields',
 };
 
+const PIM_BRAND_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  NAME: 'name',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
 export {
   PIM_PRODUCT_DETAIL_FIELD_KEY,
   PIM_CATEGORY_DETAIL_FIELD_KEY,
@@ -207,4 +219,5 @@ export {
   PIM_DASH_BOARD_DETAIL_FIELD_KEY,
   PIM_VARIANT_DETAIL_FIELD_KEY,
   PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY,
+  PIM_BRAND_DETAIL_FIELD_KEY,
 };
