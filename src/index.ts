@@ -65,6 +65,14 @@ export * from './Pim/PimProductType';
 export * from './Pim/PimProductType/Model';
 export * from './Pim/PimBrand';
 export * from './Pim/PimBrand/Model';
+export * from './Pim/PimFilteringField';
+export * from './Pim/PimFilteringField/Model';
+export * from './Pim/PimFilteringFieldset';
+export * from './Pim/PimFilteringFieldset/Model';
+export * from './Pim/PimFilteringValue';
+export * from './Pim/PimFilteringValue/Model';
+export * from './Pim/PimProductFieldValue';
+export * from './Pim/PimProductFieldValue/Model';
 // CRM Constant
 export * from './Constant/CrmConstant';
 export * from './Crm/CrmCompany/CrmCompany';
