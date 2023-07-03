@@ -237,6 +237,7 @@ const PIM_FILTERING_FIELD_DETAIL_FIELD_KEY: any = {
 const PIM_FILTERING_VALUE_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   FIELD: 'field',
+  FIELD_NAME: 'field_name',
   VALUE: 'value',
   KEY: 'key',
   PUBLISHED: 'published',
@@ -251,8 +252,11 @@ const PIM_FILTERING_VALUE_DETAIL_FIELD_KEY: any = {
 const PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   FIELD: 'field',
+  FIELD_NAME: 'field_name',
   VALUE: 'value',
+  FILTERING_VALUE_NAME: 'filtering_value_name',
   PRODUCT: 'product',
+  PRODUCT_NAME: 'product_name',
   PUBLISHED: 'published',
   CREATED_USER_NAME: 'created_user_name',
   MODIFIED_USER_NAME: 'modified_user_name',
