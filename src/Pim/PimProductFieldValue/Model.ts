@@ -21,8 +21,11 @@ class ProductFieldValueModel extends BaseModel {
 class ProductFieldValueItemModel extends BaseItemModel {
   id: any = null;
   value: any = null;
+  filtering_value_name: any = null;
   field: any = null;
+  field_name: any = null;
   product: any = null;
+  product_name: any = null;
   published: any = null;
   created_user_name: any = null;
   modified_user_name: any = null;
@@ -35,8 +38,12 @@ class ProductFieldValueItemModel extends BaseItemModel {
     if (entity) {
       this.id = entity[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.ID] ?? '';
       this.value = entity[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.VALUE] ?? '';
+      this.filtering_value_name =
+        entity[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.FILTERING_VALUE_NAME] ?? '';
       this.field = entity[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.FIELD] ?? '';
+      this.field_name = entity[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.FIELD_NAME] ?? '';
       this.product = entity[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.PRODUCT] ?? '';
+      this.product_name = entity[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.PRODUCT_NAME] ?? '';
       this.published = entity[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.PUBLISHED] ?? '';
       this.created_user_name =
         entity[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.CREATED_USER_NAME] ?? '';
@@ -54,8 +61,11 @@ class ProductFieldValueItemModel extends BaseItemModel {
       ...this.baseToJSON(),
       [PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.ID]: this.id,
       [PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.VALUE]: this.value,
+      [PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.FILTERING_VALUE_NAME]: this.filtering_value_name,
       [PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.FIELD]: this.field,
+      [PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.FIELD_NAME]: this.field_name,
       [PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.PRODUCT]: this.product,
+      [PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.PRODUCT_NAME]: this.product_name,
       [PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.PUBLISHED]: this.published,
       [PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.CREATED_USER_NAME]: this.created_user_name,
       [PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.MODIFIED_USER_NAME]: this.modified_user_name,

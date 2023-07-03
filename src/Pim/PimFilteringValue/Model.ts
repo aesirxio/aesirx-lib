@@ -23,6 +23,7 @@ class FilteringValueItemModel extends BaseItemModel {
   value: any = null;
   key: any = null;
   field: any = null;
+  field_name: any = null;
   published: any = null;
   created_user_name: any = null;
   modified_user_name: any = null;
@@ -37,6 +38,7 @@ class FilteringValueItemModel extends BaseItemModel {
       this.value = entity[PIM_FILTERING_VALUE_DETAIL_FIELD_KEY.VALUE] ?? '';
       this.key = entity[PIM_FILTERING_VALUE_DETAIL_FIELD_KEY.KEY] ?? '';
       this.field = entity[PIM_FILTERING_VALUE_DETAIL_FIELD_KEY.FIELD] ?? '';
+      this.field_name = entity[PIM_FILTERING_VALUE_DETAIL_FIELD_KEY.FIELD_NAME] ?? '';
       this.published = entity[PIM_FILTERING_VALUE_DETAIL_FIELD_KEY.PUBLISHED] ?? '';
       this.created_user_name = entity[PIM_FILTERING_VALUE_DETAIL_FIELD_KEY.CREATED_USER_NAME] ?? '';
       this.modified_user_name =
@@ -55,6 +57,7 @@ class FilteringValueItemModel extends BaseItemModel {
       [PIM_FILTERING_VALUE_DETAIL_FIELD_KEY.VALUE]: this.value,
       [PIM_FILTERING_VALUE_DETAIL_FIELD_KEY.KEY]: this.key,
       [PIM_FILTERING_VALUE_DETAIL_FIELD_KEY.FIELD]: this.field,
+      [PIM_FILTERING_VALUE_DETAIL_FIELD_KEY.FIELD_NAME]: this.field_name,
       [PIM_FILTERING_VALUE_DETAIL_FIELD_KEY.PUBLISHED]: this.published,
       [PIM_FILTERING_VALUE_DETAIL_FIELD_KEY.CREATED_USER_NAME]: this.created_user_name,
       [PIM_FILTERING_VALUE_DETAIL_FIELD_KEY.MODIFIED_USER_NAME]: this.modified_user_name,
