@@ -23,6 +23,7 @@ class BrandItemModel extends BaseItemModel {
   name: any = null;
   level: any = null;
   parent_id: any = null;
+  parent_name: any = null;
   published: any = null;
   created_user_name: any = null;
   modified_user_name: any = null;
@@ -38,6 +39,7 @@ class BrandItemModel extends BaseItemModel {
       this.name = entity[PIM_BRAND_DETAIL_FIELD_KEY.NAME] ?? '';
       this.level = entity[PIM_BRAND_DETAIL_FIELD_KEY.LEVEL] ?? '';
       this.parent_id = entity[PIM_BRAND_DETAIL_FIELD_KEY.PARENT_ID] ?? '';
+      this.parent_name = entity[PIM_BRAND_DETAIL_FIELD_KEY.PARENT_NAME] ?? '';
       this.published = entity[PIM_BRAND_DETAIL_FIELD_KEY.PUBLISHED] ?? '';
       this.created_user_name = entity[PIM_BRAND_DETAIL_FIELD_KEY.CREATED_USER_NAME] ?? '';
       this.modified_user_name = entity[PIM_BRAND_DETAIL_FIELD_KEY.MODIFIED_USER_NAME] ?? '';
@@ -55,6 +57,7 @@ class BrandItemModel extends BaseItemModel {
       [PIM_BRAND_DETAIL_FIELD_KEY.NAME]: this.name,
       [PIM_BRAND_DETAIL_FIELD_KEY.LEVEL]: this.level,
       [PIM_BRAND_DETAIL_FIELD_KEY.PARENT_ID]: this.parent_id,
+      [PIM_BRAND_DETAIL_FIELD_KEY.PARENT_NAME]: this.parent_name,
       [PIM_BRAND_DETAIL_FIELD_KEY.PUBLISHED]: this.published,
       [PIM_BRAND_DETAIL_FIELD_KEY.CREATED_USER_NAME]: this.created_user_name,
       [PIM_BRAND_DETAIL_FIELD_KEY.MODIFIED_USER_NAME]: this.modified_user_name,

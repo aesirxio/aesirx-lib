@@ -200,6 +200,7 @@ const PIM_BRAND_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   NAME: 'name',
   PARENT_ID: 'parent_id',
+  PARENT_NAME: 'parent_name',
   LEVEL: 'level',
   PUBLISHED: 'published',
   CREATED_USER_NAME: 'created_user_name',
