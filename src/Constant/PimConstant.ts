@@ -199,6 +199,8 @@ const PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY: any = {
 const PIM_BRAND_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   NAME: 'name',
+  parent_id: 'parent_id',
+  level: 'level',
   PUBLISHED: 'published',
   CREATED_USER_NAME: 'created_user_name',
   MODIFIED_USER_NAME: 'modified_user_name',
@@ -266,6 +268,30 @@ const PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY: any = {
   CUSTOM_FIELDS: 'custom_fields',
 };
 
+const PIM_TYPE_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  NAME: 'name',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
+const PIM_SUB_TYPE_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  NAME: 'name',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
 export {
   PIM_PRODUCT_DETAIL_FIELD_KEY,
   PIM_CATEGORY_DETAIL_FIELD_KEY,
@@ -282,4 +308,6 @@ export {
   PIM_FILTERING_FIELD_DETAIL_FIELD_KEY,
   PIM_FILTERING_VALUE_DETAIL_FIELD_KEY,
   PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY,
+  PIM_TYPE_DETAIL_FIELD_KEY,
+  PIM_SUB_TYPE_DETAIL_FIELD_KEY,
 };
