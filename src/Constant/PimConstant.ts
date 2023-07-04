@@ -199,8 +199,8 @@ const PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY: any = {
 const PIM_BRAND_DETAIL_FIELD_KEY: any = {
   ID: 'id',
   NAME: 'name',
-  parent_id: 'parent_id',
-  level: 'level',
+  PARENT_ID: 'parent_id',
+  LEVEL: 'level',
   PUBLISHED: 'published',
   CREATED_USER_NAME: 'created_user_name',
   MODIFIED_USER_NAME: 'modified_user_name',
