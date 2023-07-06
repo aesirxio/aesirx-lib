@@ -196,6 +196,103 @@ const PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY: any = {
   CUSTOM_FIELDS: 'custom_fields',
 };
 
+const PIM_BRAND_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  NAME: 'name',
+  PARENT_ID: 'parent_id',
+  PARENT_NAME: 'parent_name',
+  LEVEL: 'level',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
+const PIM_FILTERING_FIELDSET_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  TITLE: 'title',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
+const PIM_FILTERING_FIELD_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  NAME: 'name',
+  TYPE: 'type',
+  FILTERING_FIELDSET: 'filtering_fieldset',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
+const PIM_FILTERING_VALUE_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  FIELD: 'field',
+  FIELD_NAME: 'field_name',
+  VALUE: 'value',
+  KEY: 'key',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
+const PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  FIELD: 'field',
+  FIELD_NAME: 'field_name',
+  VALUE: 'value',
+  FILTERING_VALUE_NAME: 'filtering_value_name',
+  PRODUCT: 'product',
+  PRODUCT_NAME: 'product_name',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
+const PIM_TYPE_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  NAME: 'name',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
+const PIM_SUB_TYPE_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  NAME: 'name',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
 export {
   PIM_PRODUCT_DETAIL_FIELD_KEY,
   PIM_CATEGORY_DETAIL_FIELD_KEY,
@@ -207,4 +304,11 @@ export {
   PIM_DASH_BOARD_DETAIL_FIELD_KEY,
   PIM_VARIANT_DETAIL_FIELD_KEY,
   PIM_PRODUCT_TYPE_DETAIL_FIELD_KEY,
+  PIM_BRAND_DETAIL_FIELD_KEY,
+  PIM_FILTERING_FIELDSET_DETAIL_FIELD_KEY,
+  PIM_FILTERING_FIELD_DETAIL_FIELD_KEY,
+  PIM_FILTERING_VALUE_DETAIL_FIELD_KEY,
+  PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY,
+  PIM_TYPE_DETAIL_FIELD_KEY,
+  PIM_SUB_TYPE_DETAIL_FIELD_KEY,
 };

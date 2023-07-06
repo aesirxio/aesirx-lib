@@ -120,11 +120,20 @@ class ProductItemModel extends BaseItemModel {
     ) {
       Object.keys(data[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).forEach(function (key) {
         if (Array.isArray(data[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key])) {
-          data[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key].map((field: any) => {
-            return formData.append(
-              [PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + '[' + key + '][]',
-              typeof field === 'object' ? JSON.stringify(field) : field
-            );
+          data[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key].map((field: any, index: any) => {
+            if (typeof field === 'object' && field !== null && !Array.isArray(field)) {
+              Object.keys(field).forEach(function (fieldKey) {
+                return formData.append(
+                  [PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + `[${key}][${index}][${fieldKey}]`,
+                  field[fieldKey]
+                );
+              });
+            } else {
+              return formData.append(
+                [PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + '[' + key + '][' + index + ']',
+                field
+              );
+            }
           });
         } else {
           formData.append(
@@ -166,32 +175,21 @@ class ProductItemModel extends BaseItemModel {
     ) {
       formData[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS] = {};
       Object.keys(data[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).forEach(function (key) {
-        if (key !== 'variant' && key !== 'property' && key !== 'tag') {
-          let fieldData = data[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key];
-          if (typeof fieldData === 'object' && fieldData !== null && !Array.isArray(fieldData)) {
-            formData[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key] = [JSON.stringify(fieldData)];
-          } else if (Array.isArray(fieldData)) {
-            formData[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key] = fieldData.length
-              ? fieldData.map((field) =>
-                  typeof field === 'object' && field !== null ? JSON.stringify(field) : field
-                )
-              : '';
-          } else {
-            formData[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key] = fieldData;
-          }
-        }
+        formData[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key] =
+          data[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key];
       });
     }
 
-    if (
-      data[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES] &&
-      data[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES].length
-    ) {
-      formData[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES] = data[
-        PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES
-      ].map((category: any) => {
-        return category;
-      });
+    if (data[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES]) {
+      if (data[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES].length) {
+        formData[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES] = data[
+          PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES
+        ].map((category: any) => {
+          return category;
+        });
+      } else {
+        formData[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES + '[]'] = '';
+      }
     }
 
     return formData;

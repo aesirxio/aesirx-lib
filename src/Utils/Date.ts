@@ -50,7 +50,7 @@ declare global {
   }
 }
 if (!String.prototype.replaceAll) {
-  String.prototype.replaceAll = function (pattern, replacement) {
+  String.prototype.replaceAll = function (pattern, replacement: any) {
     return this.split(pattern).join(replacement);
   };
 }
