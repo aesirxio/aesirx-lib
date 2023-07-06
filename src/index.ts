@@ -73,6 +73,10 @@ export * from './Pim/PimFilteringValue';
 export * from './Pim/PimFilteringValue/Model';
 export * from './Pim/PimProductFieldValue';
 export * from './Pim/PimProductFieldValue/Model';
+export * from './Pim/PimType';
+export * from './Pim/PimType/Model';
+export * from './Pim/PimSubType';
+export * from './Pim/PimSubType/Model';
 // CRM Constant
 export * from './Constant/CrmConstant';
 export * from './Crm/CrmCompany/CrmCompany';
