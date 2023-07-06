@@ -177,15 +177,16 @@ class CategoryItemModel extends BaseItemModel {
           data[PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key];
       });
     }
-    if (
-      data[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES] &&
-      data[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES].length
-    ) {
-      formData[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES] = data[
-        PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES
-      ].map((category: any) => {
-        return category.id;
-      });
+    if (data[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES]) {
+      if (data[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES].length) {
+        formData[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES] = data[
+          PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES
+        ].map((category: any) => {
+          return category.id;
+        });
+      } else {
+        formData[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES + '[]'] = '';
+      }
     }
     return formData;
   };
