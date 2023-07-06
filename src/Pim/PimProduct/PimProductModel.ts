@@ -180,15 +180,16 @@ class ProductItemModel extends BaseItemModel {
       });
     }
 
-    if (
-      data[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES] &&
-      data[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES].length
-    ) {
-      formData[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES] = data[
-        PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES
-      ].map((category: any) => {
-        return category;
-      });
+    if (data[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES]) {
+      if (data[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES].length) {
+        formData[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES] = data[
+          PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES
+        ].map((category: any) => {
+          return category;
+        });
+      } else {
+        formData[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES + '[]'] = '';
+      }
     }
 
     return formData;
