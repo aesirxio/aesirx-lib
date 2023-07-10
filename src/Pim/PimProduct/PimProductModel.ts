@@ -54,10 +54,9 @@ class ProductItemModel extends BaseItemModel {
     let customFields = Object.keys(this.custom_fields)
       .map((key) => {
         let value = JSON.parse(JSON.stringify(this.custom_fields[key]));
-        let isValueJson = Helper.isJson(value);
         if (Array.isArray(value)) {
           value = value.map((data) => data && Helper.isJson(data) && JSON.parse(data));
-        } else if (isValueJson) {
+        } else if (Helper.isJson(value)) {
           value = JSON.parse(value);
         }
         return {
