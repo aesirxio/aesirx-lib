@@ -5,6 +5,7 @@
 
 import BaseItemModel from '../../Abstract/BaseItemModel';
 import { PIM_PRODUCT_DETAIL_FIELD_KEY } from '../../Constant/PimConstant';
+import { Helper } from '../../Utils/Helper';
 class ProductItemModel extends BaseItemModel {
   id: any = null;
   sku: any = null;
@@ -49,23 +50,14 @@ class ProductItemModel extends BaseItemModel {
     return {};
   };
 
-  isJsonString = (str: any) => {
-    try {
-      JSON.parse(str);
-    } catch (e) {
-      return false;
-    }
-    return true;
-  };
-
   toJSON = () => {
     let customFields = Object.keys(this.custom_fields)
       .map((key) => {
         let value = JSON.parse(JSON.stringify(this.custom_fields[key]));
-        let isJson = this.isJsonString(value);
+        let isValueJson = Helper.isJson(value);
         if (Array.isArray(value)) {
-          value = value.map((data) => data && this.isJsonString(data) && JSON.parse(data));
-        } else if (isJson) {
+          value = value.map((data) => data && Helper.isJson(data) && JSON.parse(data));
+        } else if (isValueJson) {
           value = JSON.parse(value);
         }
         return {
