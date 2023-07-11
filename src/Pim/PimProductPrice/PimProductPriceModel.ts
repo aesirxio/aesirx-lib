@@ -6,6 +6,7 @@
 import BaseItemModel from '../../Abstract/BaseItemModel';
 import BaseModel from '../../Abstract/BaseModel';
 import { PIM_PRICES_DETAIL_FIELD_KEY } from '../../Constant/PimConstant';
+import { Helper } from '../../Utils/Helper';
 
 class ProductPriceModel extends BaseModel {
   constructor(entities: any) {
@@ -47,7 +48,12 @@ class ProductPriceItemModel extends BaseItemModel {
         entity[PIM_PRICES_DETAIL_FIELD_KEY.PRODUCTS]?.length &&
         entity[PIM_PRICES_DETAIL_FIELD_KEY.PRODUCTS][0][PIM_PRICES_DETAIL_FIELD_KEY.CUSTOM_FIELDS][
           PIM_PRICES_DETAIL_FIELD_KEY.THUMB_IMAGE
-        ]
+        ] &&
+        Helper.isJson(
+          entity[PIM_PRICES_DETAIL_FIELD_KEY.PRODUCTS][0][
+            PIM_PRICES_DETAIL_FIELD_KEY.CUSTOM_FIELDS
+          ][PIM_PRICES_DETAIL_FIELD_KEY.THUMB_IMAGE][0]
+        )
           ? JSON.parse(
               entity[PIM_PRICES_DETAIL_FIELD_KEY.PRODUCTS][0][
                 PIM_PRICES_DETAIL_FIELD_KEY.CUSTOM_FIELDS
