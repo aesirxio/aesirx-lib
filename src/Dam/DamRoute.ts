@@ -62,7 +62,12 @@ class DamRoute extends BaseRoute {
       this.createRequestURL({
         option: 'dam_asset',
       }),
-      data
+      data,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
     );
   };
 
@@ -74,7 +79,7 @@ class DamRoute extends BaseRoute {
       data,
       {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'multipart/form-data',
         },
       }
     );
