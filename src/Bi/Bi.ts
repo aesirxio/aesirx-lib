@@ -67,6 +67,23 @@ class AesirxBiApiService {
       } else throw error;
     }
   };
+
+  getAttributeDate = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getAttributeDate(dataFilter, dateFilter);
+
+      if (data?.collection) {
+        return data.collection;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
   getListDomain = async (dataFilter: any, listDomains: any) => {
     try {
       const data = await this.route.getListDomain(dataFilter, listDomains);
