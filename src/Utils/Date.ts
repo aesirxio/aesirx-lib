@@ -30,7 +30,7 @@ const formatUnix = (timestamp: any, withTime = false) => {
 const enumerateDaysBetweenDates = function (startDate: any, endDate: any) {
   let dates = [];
 
-  const currDate = moment(startDate).startOf('day');
+  const currDate = moment(startDate).startOf('day')?.subtract(1, 'days');
   const lastDate = moment(endDate).endOf('day');
 
   while (currDate.add(1, 'days').diff(lastDate) < 0) {
