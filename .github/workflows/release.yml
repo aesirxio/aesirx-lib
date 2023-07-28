@@ -16,10 +16,11 @@ jobs:
         with:
           node-version: 16
       - run: yarn install
-      - uses: JS-DevTools/npm-publish@v1
+      - uses: JS-DevTools/npm-publish@v2
         with:
           token: ${{ secrets.NPM_TOKEN }}
-          check-version: true
+          strategy: upgrade
+          ignore-scripts: false
 
       - name: Release
         uses: ncipollo/release-action@v1
