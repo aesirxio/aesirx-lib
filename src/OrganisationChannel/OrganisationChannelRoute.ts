@@ -255,18 +255,15 @@ class OrganisationChannelRoute extends BaseRoute {
       })
     );
 
-    bulkRemoveChannel = (channelName: any, channelIds: any) =>
-      AesirXApiInstance.get(
-        this.createRequestURL({
-          option: 'organisation_channel',
-          task: 'bulkRemoveChannel',
-          channelName: channelName,
-          'channelIds[]': channelIds,
-        })
-      );
-     
-     
+  bulkRemoveChannel = (channelName: any, channelIds: any) =>
+    AesirXApiInstance.get(
+      this.createRequestURL({
+        option: 'organisation_channel',
+        task: 'bulkRemoveChannel',
+        channelName: channelName,
+        'channelIds[]': channelIds,
+      })
+    );
 }
-
 
 export default OrganisationChannelRoute;
