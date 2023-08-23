@@ -21,7 +21,9 @@ class ShippingRateModel extends BaseModel {
 class ShippingRateItemModel extends BaseItemModel {
   id: any = null;
   shipping_zone: any = null;
+  shipping_zone_id: any = null;
   shipping_method: any = null;
+  shipping_method_id: any = null;
   country: any = null;
   state: any = null;
   city: any = null;
@@ -30,7 +32,9 @@ class ShippingRateItemModel extends BaseItemModel {
   price: any = null;
   rate: any = null;
   product: any = null;
+  product_id: any = null;
   product_category: any = null;
+  category_id: any = null;
   published: any = null;
   created_user_name: any = null;
   modified_user_name: any = null;
@@ -42,8 +46,10 @@ class ShippingRateItemModel extends BaseItemModel {
     super(entity);
     if (entity) {
       this.id = entity[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.ID] ?? '';
-      this.shipping_zone = entity[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.SHIPPING_RATE] ?? '';
+      this.shipping_zone = entity[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.SHIPPING_ZONE] ?? '';
+      this.shipping_zone_id = entity[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.SHIPPING_ZONE_ID] ?? '';
       this.shipping_method = entity[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.SHIPPING_METHOD] ?? '';
+      this.shipping_method_id = entity[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.SHIPPING_METHOD_ID] ?? '';
       this.country = entity[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.COUNTRY] ?? '';
       this.state = entity[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.STATE] ?? '';
       this.city = entity[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.CITY] ?? '';
@@ -52,7 +58,9 @@ class ShippingRateItemModel extends BaseItemModel {
       this.price = entity[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.PRICE] ?? '';
       this.rate = entity[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.RATE] ?? '';
       this.product = entity[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.PRODUCT] ?? '';
+      this.product_id = entity[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.PRODUCT_ID] ?? '';
       this.product_category = entity[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.PRODUCT_CATEGORY] ?? '';
+      this.category_id = entity[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.CATEGORY_ID] ?? '';
       this.published = entity[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.PUBLISHED] ?? '';
       this.created_user_name = entity[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.CREATED_USER_NAME] ?? '';
       this.modified_user_name = entity[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.MODIFIED_USER_NAME] ?? '';
@@ -67,7 +75,21 @@ class ShippingRateItemModel extends BaseItemModel {
     return {
       ...this.baseToJSON(),
       [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.ID]: this.id,
-      [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.TITLE]: this.title,
+      [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.SHIPPING_ZONE]: this.shipping_zone,
+      [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.SHIPPING_ZONE_ID]: this.shipping_zone_id,
+      [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.SHIPPING_METHOD]: this.shipping_method,
+      [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.SHIPPING_METHOD_ID]: this.shipping_method_id,
+      [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.COUNTRY]: this.country,
+      [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.STATE]: this.state,
+      [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.CITY]: this.city,
+      [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.ZIP_START]: this.zip_start,
+      [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.ZIP_END]: this.zip_end,
+      [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.PRICE]: this.price,
+      [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.RATE]: this.rate,
+      [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.PRODUCT]: this.product,
+      [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.PRODUCT_ID]: this.product_id,
+      [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.PRODUCT_CATEGORY]: this.product_category,
+      [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.CATEGORY_ID]: this.category_id,
       [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.PUBLISHED]: this.published,
       [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.CREATED_USER_NAME]: this.created_user_name,
       [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.MODIFIED_USER_NAME]: this.modified_user_name,
@@ -79,7 +101,7 @@ class ShippingRateItemModel extends BaseItemModel {
   };
 
   static __transformItemToApiOfCreation = (data: any) => {
-    let formData = new FormData();
+    let formData: any = {};
     const excluded = [
       PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.ID,
       PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.CUSTOM_FIELDS,
@@ -89,24 +111,21 @@ class ShippingRateItemModel extends BaseItemModel {
         !excluded.includes(PIM_SHIPPING_RATE_DETAIL_FIELD_KEY[index]) &&
         data[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY[index]]
       ) {
-        formData.append(
-          PIM_SHIPPING_RATE_DETAIL_FIELD_KEY[index],
-          data[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY[index]]
-        );
+        formData[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY[index]] =
+          data[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY[index]];
       }
     });
     if (
       data[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.CUSTOM_FIELDS] &&
       Object.keys(data[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).length
     ) {
+      formData[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.CUSTOM_FIELDS] = {};
       Object.keys(data[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).forEach(function (key) {
-        formData.append(
-          [PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + '[' + key + ']',
-          data[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key]
-        );
+        formData[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key] =
+          data[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key];
       });
     }
-    return formData;
+    return { items: [formData] };
   };
 
   static __transformItemToApiOfUpdation = (data: any) => {
@@ -131,7 +150,7 @@ class ShippingRateItemModel extends BaseItemModel {
           data[PIM_SHIPPING_RATE_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key];
       });
     }
-    return formData;
+    return { items: [formData] };
   };
 }
 

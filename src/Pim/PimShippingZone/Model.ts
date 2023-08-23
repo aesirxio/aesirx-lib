@@ -82,7 +82,7 @@ class ShippingZoneItemModel extends BaseItemModel {
   };
 
   static __transformItemToApiOfCreation = (data: any) => {
-    let formData = new FormData();
+    let formData: any = {};
     const excluded = [
       PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY.ID,
       PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY.CUSTOM_FIELDS,
@@ -92,24 +92,22 @@ class ShippingZoneItemModel extends BaseItemModel {
         !excluded.includes(PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY[index]) &&
         data[PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY[index]]
       ) {
-        formData.append(
-          PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY[index],
-          data[PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY[index]]
-        );
+        formData[PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY[index]] =
+          data[PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY[index]];
       }
     });
     if (
       data[PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY.CUSTOM_FIELDS] &&
       Object.keys(data[PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).length
     ) {
+      formData[PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY.CUSTOM_FIELDS] = {};
       Object.keys(data[PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).forEach(function (key) {
-        formData.append(
-          [PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + '[' + key + ']',
-          data[PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key]
-        );
+        formData[PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key] =
+          data[PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key];
       });
     }
-    return formData;
+
+    return { items: [formData] };
   };
 
   static __transformItemToApiOfUpdation = (data: any) => {
@@ -134,7 +132,7 @@ class ShippingZoneItemModel extends BaseItemModel {
           data[PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key];
       });
     }
-    return formData;
+    return { items: [formData] };
   };
 }
 
