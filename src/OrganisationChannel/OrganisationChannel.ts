@@ -239,6 +239,11 @@ class AesirxOrganisationChannelApiService {
 
     return result.result;
   };
+  bulkRemoveChannel = async (channelName: any, channelIds: any) => {
+    const result = await this.route.bulkRemoveChannel(channelName, channelIds);
+
+    return result.result;
+  };
 }
 
 export { AesirxOrganisationChannelApiService };
