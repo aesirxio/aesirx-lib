@@ -245,15 +245,25 @@ class OrganisationChannelRoute extends BaseRoute {
       })
     );
 
-  removeChannel = (channelName: any, channelId: any) =>
-    AesirXApiInstance.post(
+  removeChannel = (channelName: any, channelIds: number | Array<Number>) => {
+    let task = 'removeChannel';
+    let params: Array<Object> = [{ channelId: channelIds }];
+
+    if (Array.isArray(channelIds)) {
+      task = 'bulkRemoveChannel';
+
+      params = channelIds.map((channelId) => ({ 'channelIds[]': channelId }));
+    }
+
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'organisation_channel',
-        task: 'removeChannel',
+        task: task,
         channelName: channelName,
-        channelId: channelId,
+        ...Object.assign({}, ...params),
       })
     );
+  };
 }
 
 export default OrganisationChannelRoute;
