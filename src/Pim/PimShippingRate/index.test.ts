@@ -32,6 +32,7 @@ describe('ShippingRate', () => {
     expect(createProductID).not.toBeUndefined();
     expect(createProductID).not.toBe('false');
   });
+
   it('CreateCategory', async () => {
     const service = new AesirxPimCategoryApiService();
 
