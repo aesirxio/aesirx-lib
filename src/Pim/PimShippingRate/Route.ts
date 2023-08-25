@@ -55,12 +55,13 @@ class ShippingRateRouter extends BaseRoute {
   };
 
   delete = (ids: any) => {
-    return AesirXApiInstance.delete(
+    return AesirXApiInstance.post(
       this.createRequestURL({
         option: this.option,
+        task: 'bulkDelete',
       }),
       {
-        data: { ids: Array.isArray(ids) ? ids : [ids] },
+        ids: Array.isArray(ids) ? ids : [ids],
       }
     );
   };

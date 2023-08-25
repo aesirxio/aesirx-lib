@@ -44,38 +44,29 @@ describe('ShippingZone', () => {
     listItemsCity = data?.listItems;
     expect(data?.listItems?.length).toBeGreaterThan(0);
   });
-  // it('Create', async () => {
-  //   const service = new ShippingZoneApiService();
+  it('Create', async () => {
+    const service = new ShippingZoneApiService();
 
-  //   const data = {
-  //     items: [
-  //       {
-  //         country_id: listItemsCountry[0]?.id,
-  //       },
-  //       {
-  //         state_id: listItemsState[0]?.id,
-  //       },
-  //       {
-  //         city_id: listItemsCity[0]?.id,
-  //       },
-  //       {
-  //         zip_start: '000',
-  //       },
-  //       {
-  //         zip_end: '999',
-  //       },
-  //     ],
-  //   };
+    const data = {
+      items: [
+        {
+          country_id: listItemsCountry[0]?.id,
+          state_id: listItemsState[0]?.id,
+          city_id: listItemsCity[0]?.id,
+          zip_start: '000',
+          zip_end: '999',
+        },
+      ],
+    };
 
-  //   const response = await service.create(data);
+    const response = await service.create(data);
+    createID = response?.items[0];
 
-  //   createID = response?.result;
-
-  //   expect(createID).not.toBeNull();
-  //   expect(createID).toBeDefined();
-  //   expect(createID).not.toBeUndefined();
-  //   expect(createID).not.toBe('false');
-  // });
+    expect(createID).not.toBeNull();
+    expect(createID).toBeDefined();
+    expect(createID).not.toBeUndefined();
+    expect(createID).not.toBe('false');
+  });
   it('Get List', async () => {
     const service = new ShippingZoneApiService();
 
@@ -89,19 +80,19 @@ describe('ShippingZone', () => {
     expect(data?.listItems?.length).toBeGreaterThan(0);
   });
 
-  // it('Get Detail', async () => {
-  //   const service = new ShippingZoneApiService();
+  it('Get Detail', async () => {
+    const service = new ShippingZoneApiService();
 
-  //   const response: any = await service.getDetail(createID);
+    const response: any = await service.getDetail(createID);
 
-  //   expect(response?.id).toEqual(createID);
-  // });
+    expect(response?.id).toEqual(createID);
+  });
 
-  // it('Delete', async () => {
-  //   const service = new ShippingZoneApiService();
+  it('Delete', async () => {
+    const service = new ShippingZoneApiService();
 
-  //   const response = await service.delete([createID]);
+    const response = await service.delete([createID]);
 
-  //   expect(response).toBeTruthy();
-  // });
+    expect(response).toBeTruthy();
+  });
 });
