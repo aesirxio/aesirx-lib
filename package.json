@@ -27,7 +27,7 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/core": "^7.21",
+    "@babel/core": "^7.22",
     "@babel/eslint-parser": "^7.22",
     "@babel/plugin-proposal-class-properties": "^7.17",
     "@babel/preset-env": "^7.21.4",
