@@ -178,6 +178,9 @@ class AssetsItemModel extends BaseItemModel {
   type = null;
   download_url = null;
   owner = null;
+  description = null;
+  keywords = null;
+  tags = null;
   constructor(entity: any) {
     super(entity);
     if (entity) {
@@ -195,6 +198,9 @@ class AssetsItemModel extends BaseItemModel {
       this.type = entity[DAM_ASSETS_FIELD_KEY.TYPE] ?? '';
       this.download_url = entity[DAM_ASSETS_FIELD_KEY.DOWNLOAD_URL] ?? '';
       this.owner = entity[DAM_ASSETS_FIELD_KEY.OWNER] ?? '';
+      this.description = entity[DAM_ASSETS_FIELD_KEY.DESCRIPTION] ?? '';
+      this.keywords = entity[DAM_ASSETS_FIELD_KEY.KEYWORDS] ?? '';
+      this.tags = entity[DAM_ASSETS_FIELD_KEY.TAGS] ?? '';
     }
   }
 
@@ -217,6 +223,9 @@ class AssetsItemModel extends BaseItemModel {
       [DAM_ASSETS_FIELD_KEY.TYPE]: this.type,
       [DAM_ASSETS_FIELD_KEY.DOWNLOAD_URL]: this.download_url,
       [DAM_ASSETS_FIELD_KEY.OWNER]: this.owner,
+      [DAM_ASSETS_FIELD_KEY.DESCRIPTION]: this.description,
+      [DAM_ASSETS_FIELD_KEY.KEYWORDS]: this.keywords,
+      [DAM_ASSETS_FIELD_KEY.TAGS]: this.tags,
     };
   };
 

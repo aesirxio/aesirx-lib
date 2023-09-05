@@ -46,6 +46,9 @@ const DAM_ASSETS_FIELD_KEY: any = {
   CREATE_DATE: 'created_date',
   FILE_NAME: 'file_name',
   FILE: 'file',
+  DESCRIPTION: 'description',
+  KEYWORDS: 'keywords',
+  TAGS: 'tags',
 };
 const DAM_ASSETS_API_FIELD_KEY: any = {
   ID: 'id',
