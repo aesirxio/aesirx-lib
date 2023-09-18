@@ -63,13 +63,13 @@ class MemberItemModel {
   static __transformItemToApiOfUpdateMember = (data: any) => {
     return {
       [MEMBER_FIELD_KEY.ID]: data[MEMBER_FIELD_KEY.ID] ?? '',
-      [MEMBER_FIELD_KEY.FIRST_NAME]: data[MEMBER_FIELD_KEY.FIRST_NAME] ?? data[MEMBER_FIELD_KEY.FULL_NAME].split(' ')[0],
-      [MEMBER_FIELD_KEY.LAST_NAME]: data[MEMBER_FIELD_KEY.LAST_NAME] ?? data[MEMBER_FIELD_KEY.FULL_NAME].split(' ')[1],
+      [MEMBER_FIELD_KEY.FIRST_NAME]:
+        data[MEMBER_FIELD_KEY.FIRST_NAME] ?? data[MEMBER_FIELD_KEY.FULL_NAME].split(' ')[0],
+      [MEMBER_FIELD_KEY.LAST_NAME]:
+        data[MEMBER_FIELD_KEY.LAST_NAME] ?? data[MEMBER_FIELD_KEY.FULL_NAME].split(' ')[1],
       [MEMBER_FIELD_KEY.AVATAR_DAM]: data[MEMBER_FIELD_KEY.AVATAR_DAM] ?? '',
       [MEMBER_FIELD_KEY.ORGANIZATION]: data[MEMBER_FIELD_KEY.ORGANIZATION] ?? '',
       [MEMBER_FIELD_KEY.DESCRIPTION]: data[MEMBER_FIELD_KEY.DESCRIPTION] ?? '',
-
-
     };
   };
 

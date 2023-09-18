@@ -25,7 +25,7 @@ const MEMBER_FIELD_KEY = {
   USERNAME: 'username',
   WALLET_METAMASK: 'wallet_metamask',
   WALLET_CONCORDIUM: 'wallet_concordium',
-  DESCRIPTION :'description',
+  DESCRIPTION: 'description',
   ORGANIZATION: 'organization',
   FIRST_NAME: 'first_name',
   LAST_NAME: 'sur_name',
@@ -52,7 +52,7 @@ const MEMBER_GET_FIELD_KEY = {
   LOGO: 'member_logo',
   WALLET_METAMASK: 'wallet_metamask',
   WALLET_CONCORDIUM: 'wallet_concordium',
-  DESCRIPTION :'description',
+  DESCRIPTION: 'description',
   FIRST_NAME: 'first_name',
   LAST_NAME: 'sur_name',
 };
