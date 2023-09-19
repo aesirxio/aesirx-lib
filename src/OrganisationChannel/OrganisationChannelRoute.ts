@@ -256,9 +256,6 @@ class OrganisationChannelRoute extends BaseRoute {
       params = [{ 'channelIds[]': channelIds }];
     }
 
-    console.log('Task:', task);
-    console.log('Params:', params);
-
     return AesirXApiInstance.post(
       this.createRequestURL({
         option: 'organisation_channel',
