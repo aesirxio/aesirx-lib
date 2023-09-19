@@ -22,8 +22,8 @@
     "dev": "NODE_ENV=development NODE_OPTIONS=--max_old_space_size=4096 tsup --watch",
     "build": "NODE_ENV=production NODE_OPTIONS=--max_old_space_size=4096 tsup",
     "prepublishOnly": "yarn run build --dts",
-    "format:check": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
-    "format:write": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
+    "format:check": "prettier --check \"./src/**/*.{js,jsx,ts,tsx}\"",
+    "format:write": "prettier --write \"./src/**/*.{js,jsx,ts,tsx}\"",
     "test": "jest"
   },
   "devDependencies": {
