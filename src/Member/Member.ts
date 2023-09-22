@@ -233,7 +233,7 @@ class AesirxMemberApiService {
   }
 
   async getPreregistration(jwt: any) {
-    return await axios.get(`${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/aesirx`, {
+    return await axios.get(`${AXIOS_CONFIGS.BASE_ENDPOINT_WEB3_URL}/preregistration/aesirx`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + jwt,
@@ -249,7 +249,7 @@ class AesirxMemberApiService {
       formData.append('organization', data.organization);
       formData.append('avatar', data.avatar);
 
-      return await axios.put(`${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration`, data, {
+      return await axios.put(`${AXIOS_CONFIGS.BASE_ENDPOINT_WEB3_URL}/preregistration`, data, {
         headers: {
           'Content-type': 'multipart/form-data',
           Authorization: 'Bearer ' + jwt,
