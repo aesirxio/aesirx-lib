@@ -232,6 +232,35 @@ class AesirxMemberApiService {
     }
   }
 
+  async getPreregistration(jwt: any) {
+    return await axios.get(`${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration/aesirx`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + jwt,
+      },
+    });
+  }
+  async updatePreregistration(jwt: any, data: any) {
+    try {
+      const formData = new FormData();
+      formData.append('id', data.id);
+      formData.append('first_name', data.first_name);
+      formData.append('sur_name', data.sur_name);
+      formData.append('organization', data.organization);
+      formData.append('avatar', data.avatar);
+
+      return await axios.put(`${process.env.REACT_APP_WEB3_API_ENDPOINT}/preregistration`, data, {
+        headers: {
+          'Content-type': 'multipart/form-data',
+          Authorization: 'Bearer ' + jwt,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+
   render() {
     return {};
   }
