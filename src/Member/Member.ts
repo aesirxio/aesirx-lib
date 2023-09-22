@@ -256,7 +256,6 @@ class AesirxMemberApiService {
         },
       });
     } catch (error) {
-      console.log(error);
       throw error;
     }
   }
