@@ -95,10 +95,10 @@ class AesirxAuthenticationApiService {
     let authorizationHeader = '';
     let tokenType = '';
     let accessToken = '';
-        let firstLogin = false;
+    let firstLogin = false;
     let refreshToken = '';
     if (accessTokenData) {
-            tokenType = accessTokenData.token_type ?? 'Bearer';
+      tokenType = accessTokenData.token_type ?? 'Bearer';
       accessToken = accessTokenData.access_token ?? '';
       authorizationHeader = authorizationHeader.concat(tokenType).concat(' ').concat(accessToken);
       refreshToken = accessTokenData[AUTHORIZATION_KEY.REFRESH_TOKEN] ?? '';
@@ -110,7 +110,7 @@ class AesirxAuthenticationApiService {
       }
 
       const setStore = {
-                [AUTHORIZATION_KEY.ACCESS_TOKEN]: accessToken,
+        [AUTHORIZATION_KEY.ACCESS_TOKEN]: accessToken,
         [AUTHORIZATION_KEY.TOKEN_TYPE]: tokenType,
         [AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]: authorizationHeader,
         [AUTHORIZATION_KEY.REFRESH_TOKEN]: refreshToken,
