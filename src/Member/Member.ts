@@ -240,8 +240,7 @@ class AesirxMemberApiService {
       },
     });
   }
-  
-  async updatePreregistration(jwt: any, data: any) {
+    async updatePreregistration(jwt: any, data: any) {
     try {
       const formData = new FormData();
       formData.append('id', data.id);

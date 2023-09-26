@@ -27,6 +27,7 @@ const AUTHORIZATION_KEY = {
   WEBSERVICE_AUTHORIZED_TOKEN_HEADER: 'webservice_authorized_header',
   TIMEZONE: 'timezone',
   FACEBOOK_ADS_APP_ACCESS_TOKEN: 'facebook_ads_app_access_token',
+  JWT : 'jwt',
 };
 
 const AXIOS_CONFIGS: any = {
