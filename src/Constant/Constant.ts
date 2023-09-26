@@ -27,14 +27,15 @@ const AUTHORIZATION_KEY = {
   WEBSERVICE_AUTHORIZED_TOKEN_HEADER: 'webservice_authorized_header',
   TIMEZONE: 'timezone',
   FACEBOOK_ADS_APP_ACCESS_TOKEN: 'facebook_ads_app_access_token',
-  JWT : 'jwt',
+  JWT: 'jwt',
 };
 
 const AXIOS_CONFIGS: any = {
   CLIENT_ID: env.REACT_APP_SSO_CLIENT_ID || env.REACT_APP_CLIENT_ID || '',
   CLIENT_SECRET: env.REACT_APP_SSO_CLIENT_SECRET || env.REACT_APP_CLIENT_SECRET || '',
   BASE_ENDPOINT_URL: env.REACT_APP_ENDPOINT_URL || 'https://api.aesirx.io',
-  BASE_ENDPOINT_WEB3_URL: env.REACT_APP_WEB3_API_ENDPOINT || 'https://web3id.backend.aesirx.io:8001',
+  BASE_ENDPOINT_WEB3_URL:
+    env.REACT_APP_WEB3_API_ENDPOINT || 'https://web3id.backend.aesirx.io:8001',
   BASE_ENDPOINT_DAM_URL: env.REACT_APP_DAM_ENDPOINT_URL || '',
   BASE_ENDPOINT_PRICING_PLAN_URL: env.REACT_APP_ENDPOINT_PRICING_PLAN_URL || '',
   USERNAME: env.REACT_APP_OAUTH_DEFAULT_USERNAME || '',

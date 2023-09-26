@@ -240,7 +240,8 @@ class AesirxMemberApiService {
       },
     });
   }
-    async updatePreregistration(jwt: any, data: any) {
+
+  async updatePreregistration(jwt: any, data: any) {
     try {
       const formData = new FormData();
       formData.append('id', data.id);
@@ -259,7 +260,7 @@ class AesirxMemberApiService {
       throw error;
     }
   }
-  async updateEmailMember (bodyData: any, accessToken: string)  {
+  async updateEmailMember(bodyData: any, accessToken: string) {
     try {
       const response = await axios.put(
         `${AXIOS_CONFIGS.BASE_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&api=hal`,
@@ -275,8 +276,7 @@ class AesirxMemberApiService {
     } catch (error) {
       throw error;
     }
-  };
-  
+  }
 
   render() {
     return {};
