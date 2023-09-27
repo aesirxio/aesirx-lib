@@ -277,6 +277,50 @@ class AesirxMemberApiService {
       throw error;
     }
   }
+  async connectWallet(address: string, walletType: string, accessToken: string, userName: string) {
+    try {
+      const url = `${AXIOS_CONFIGS.BASE_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&task=setWallet&api=hal`;
+      const requestData = {
+        wallet: walletType,
+        publicAddress: address,
+        username: userName,
+      };
+      const headers = {
+        'Content-Type': 'application/json',
+        // Authorization: 'Bearer ' + accessToken,
+      };
+
+      const response = await axios.post(url, requestData, { headers });
+
+      return response?.data;
+    } catch (error: any) {
+      console.log('connectWalletError', error);
+      throw error;
+    }
+  }
+
+  async removeWallet(address: string, walletType: string, accessToken: string, userName: string) {
+    try {
+      const response = await axios.post(
+        `${AXIOS_CONFIGS.BASE_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&task=deleteWallet&api=hal`,
+        {
+          wallet: walletType,
+          publicAddress: address,
+          username: userName,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + accessToken,
+          },
+        }
+      );
+      return response?.data;
+    } catch (error: any) {
+      console.log('removeWalletError', error);
+      throw error;
+    }
+  }
 
   render() {
     return {};
