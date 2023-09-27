@@ -29,7 +29,6 @@ const MEMBER_FIELD_KEY = {
   ORGANIZATION: 'organization',
   FIRST_NAME: 'first_name',
   LAST_NAME: 'sur_name',
-  MEMBER_ID : 'member_id',
 };
 
 const MEMBER_GET_FIELD_KEY = {
@@ -56,7 +55,6 @@ const MEMBER_GET_FIELD_KEY = {
   DESCRIPTION: 'description',
   FIRST_NAME: 'first_name',
   LAST_NAME: 'sur_name',
-  MEMBER_ID : 'member_id',
 };
 
 const MEMBER_CREATE_FIELD_KEY = {
