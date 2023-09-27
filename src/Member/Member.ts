@@ -257,6 +257,8 @@ class AesirxMemberApiService {
         },
       });
     } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
       throw error;
     }
   }
@@ -274,6 +276,8 @@ class AesirxMemberApiService {
       );
       return response?.data;
     } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
       throw error;
     }
   }
@@ -294,6 +298,7 @@ class AesirxMemberApiService {
 
       return response?.data;
     } catch (error: any) {
+      // eslint-disable-next-line no-console
       console.log('connectWalletError', error);
       throw error;
     }
@@ -317,6 +322,7 @@ class AesirxMemberApiService {
       );
       return response?.data;
     } catch (error: any) {
+      // eslint-disable-next-line no-console
       console.log('removeWalletError', error);
       throw error;
     }
