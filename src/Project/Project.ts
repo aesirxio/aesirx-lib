@@ -137,7 +137,13 @@ class AesirxProjectApiService {
   /**
    * Search projects
    */
-  async searchProjects(dataFilter = {}, page = 1, limit = 20, returnAsJSON = true, sort: { ordering: string, direction: string }) {
+  async searchProjects(
+    dataFilter = {},
+    page = 1,
+    limit = 20,
+    returnAsJSON = true,
+    sort: { ordering: string; direction: string }
+  ) {
     try {
       const data = await this.route.searchProjectsRequest(dataFilter, page, limit, sort);
       let results: any = null;
