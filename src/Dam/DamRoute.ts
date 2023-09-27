@@ -38,11 +38,12 @@ class DamRoute extends BaseRoute {
     );
   };
 
-  getAssets = (collectionId = 0, dataFilter = {}) => {
+  getAssets = (collectionId = 0, dataFilter = { limitAsset: 2 }) => {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'dam_asset',
         'filter[collection_id]': collectionId,
+        limit: dataFilter.limitAsset,
         ...dataFilter,
       })
     );
