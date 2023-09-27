@@ -43,7 +43,6 @@ class DamRoute extends BaseRoute {
       this.createRequestURL({
         option: 'dam_asset',
         'filter[collection_id]': collectionId,
-        limit: dataFilter.limitAsset,
         ...dataFilter,
       })
     );
