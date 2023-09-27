@@ -327,6 +327,35 @@ class AesirxMemberApiService {
       throw error;
     }
   }
+  async getMember(accessToken: string) {
+    try {
+      const member = await axios.get(
+        `${AXIOS_CONFIGS.BASE_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=persona&api=hal&task=getTokenByUser`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + accessToken,
+          },
+        }
+      );
+
+      if (member?.data?.result?.member_id) {
+        const data = await axios.get(
+          `${AXIOS_CONFIGS.BASE_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&api=hal&id=${member?.data?.result?.member_id}`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + accessToken,
+            },
+          }
+        );
+        return data?.data;
+      }
+    } catch (error) {
+      console.log('getMember', error);
+      throw error;
+    }
+  }
 
   render() {
     return {};
