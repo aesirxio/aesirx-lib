@@ -24,7 +24,18 @@ class ProjectRoute extends BaseRoute {
       })
     );
 
-  searchProjectsRequest = (dataFilter: any, page = 1, limit = 20) => {
+  searchProjectsRequest = (dataFilter: any, page = 1, limit = 20, sort: { ordering: string, direction: string }) => {
+    if (sort.ordering) {
+      return AesirXApiInstance.get(
+        this.createRequestURL({
+          option: 'project',
+          limitStart: (page - 1) * limit,
+          limit: limit,
+          'list[ordering]': sort.ordering,
+          'list[direction]': sort.direction,
+        })
+      );
+    }
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'project',
