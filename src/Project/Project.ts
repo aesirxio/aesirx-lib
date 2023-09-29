@@ -149,16 +149,14 @@ class AesirxProjectApiService {
       let results: any = null;
       let pagination = null;
 
-      if (sort.ordering) {
-        if (data) {
+      if (data) {
+        if (sort.ordering) {
           results = new ProjectModel(data);
           pagination = results.getPagination();
         }
       } else {
-        if (data) {
-          results = new ProjectFilterModel(data);
-          pagination = results.getPagination();
-        }
+        results = new ProjectFilterModel(data);
+        pagination = results.getPagination();
       }
 
       if (results && returnAsJSON) {
