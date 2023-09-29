@@ -137,22 +137,26 @@ class AesirxProjectApiService {
   /**
    * Search projects
    */
-  async searchProjects(dataFilter = {}, page = 1, limit = 20, returnAsJSON = true, sort: { ordering: string, direction: string }) {
+  async searchProjects(
+    dataFilter = {},
+    page = 1,
+    limit = 20,
+    returnAsJSON = true,
+    sort: { ordering: string; direction: string }
+  ) {
     try {
       const data = await this.route.searchProjectsRequest(dataFilter, page, limit, sort);
       let results: any = null;
       let pagination = null;
 
-      if (sort.ordering) {
-        if (data) {
+      if (data) {
+        if (sort.ordering) {
           results = new ProjectModel(data);
           pagination = results.getPagination();
         }
       } else {
-        if (data) {
-          results = new ProjectFilterModel(data);
-          pagination = results.getPagination();
-        }
+        results = new ProjectFilterModel(data);
+        pagination = results.getPagination();
       }
 
       if (results && returnAsJSON) {
