@@ -106,7 +106,7 @@ class AesirxProjectApiService {
   /**
    * Delete a Project
    */
-  async deleteProject(projectId: any) {
+  async deleteProject(projectId: string) {
     try {
       //if (!projectId || projectId === 0) return false;
       return await this.route.deleteProjectRequest(projectId);
