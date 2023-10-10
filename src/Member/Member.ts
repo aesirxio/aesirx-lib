@@ -232,6 +232,56 @@ class AesirxMemberApiService {
     }
   }
 
+  async getPreregistration(jwt: any) {
+    return await axios.get(`${AXIOS_CONFIGS.BASE_ENDPOINT_WEB3_URL}/preregistration/aesirx`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + jwt,
+      },
+    });
+  }
+
+  async updatePreregistration(jwt: any, data: any) {
+    try {
+      const formData = new FormData();
+      formData.append('id', data.id);
+      formData.append('first_name', data.first_name);
+      formData.append('sur_name', data.sur_name);
+      formData.append('organization', data.organization);
+      formData.append('avatar', data.avatar);
+
+      return await axios.put(`${AXIOS_CONFIGS.BASE_ENDPOINT_WEB3_URL}/preregistration`, data, {
+        headers: {
+          'Content-type': 'multipart/form-data',
+          Authorization: 'Bearer ' + jwt,
+        },
+      });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+      throw error;
+    }
+  }
+  async updateEmailMember(bodyData: any, accessToken: string) {
+    try {
+      const response = await axios.put(
+        `${AXIOS_CONFIGS.BASE_ENDPOINT_URL}/index.php?webserviceClient=site&webserviceVersion=1.0.0&option=member&api=hal`,
+        bodyData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      return response?.data;
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+      throw error;
+    }
+  }
+
   render() {
     return {};
   }
