@@ -153,10 +153,10 @@ class AesirxProjectApiService {
         if (sort.ordering) {
           results = new ProjectModel(data);
           pagination = results.getPagination();
+        } else {
+          results = new ProjectFilterModel(data);
+          pagination = results.getPagination();
         }
-      } else {
-        results = new ProjectFilterModel(data);
-        pagination = results.getPagination();
       }
 
       if (results && returnAsJSON) {
