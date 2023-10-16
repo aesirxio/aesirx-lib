@@ -234,8 +234,8 @@ class AesirxOrganisationChannelApiService {
     return result.result;
   };
 
-  removeChannel = async (channelName: any, channelId: any) => {
-    const result = await this.route.removeChannel(channelName, channelId);
+  removeChannel = async (channelName: any, channelIds: number | Array<Number>) => {
+    const result = await this.route.removeChannel(channelName, channelIds);
 
     return result.result;
   };

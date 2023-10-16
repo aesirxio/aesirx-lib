@@ -106,7 +106,7 @@ class AesirxProjectApiService {
   /**
    * Delete a Project
    */
-  async deleteProject(projectId: any) {
+  async deleteProject(projectId: string) {
     try {
       //if (!projectId || projectId === 0) return false;
       return await this.route.deleteProjectRequest(projectId);
@@ -137,13 +137,24 @@ class AesirxProjectApiService {
   /**
    * Search projects
    */
-  async searchProjects(dataFilter = {}, page = 1, limit = 20, returnAsJSON = true) {
+  async searchProjects(
+    dataFilter = {},
+    page = 1,
+    limit = 20,
+    returnAsJSON = true,
+    sort: { ordering: string; direction: string }
+  ) {
     try {
-      const data = await this.route.searchProjectsRequest(dataFilter, page, limit);
+      const data = await this.route.searchProjectsRequest(dataFilter, page, limit, sort);
       let results: any = null;
       let pagination = null;
 
       if (data) {
+        if (sort.ordering) {
+          results = new ProjectModel(data);
+          pagination = results.getPagination();
+        }
+      } else {
         results = new ProjectFilterModel(data);
         pagination = results.getPagination();
       }

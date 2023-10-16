@@ -293,6 +293,157 @@ const PIM_SUB_TYPE_DETAIL_FIELD_KEY: any = {
   CUSTOM_FIELDS: 'custom_fields',
 };
 
+const PIM_TAX_GROUP_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  NAME: 'name',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
+const PIM_CUSTOMER_GROUP_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  NAME: 'name',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
+const PIM_REGION_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  NAME: 'name',
+  EU: 'eu',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
+const PIM_COUNTRY_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  NAME: 'name',
+  REGION: 'region',
+  EU: 'eu',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
+const PIM_STATE_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  NAME: 'name',
+  COUNTRY: 'country',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
+const PIM_CITY_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  NAME: 'name',
+  STATE: 'state',
+  COUNTRY: 'country',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
+const PIM_TAX_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  NAME: 'name',
+  STATE: 'state',
+  COUNTRY: 'country',
+  CUSTOMER_GROUP: 'customer_group',
+  TAX_GROUP: 'tax_group',
+  RATE: 'rate',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
+const PIM_SHIPPING_METHOD_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  TITLE: 'title',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
+const PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  COUNTRY: 'country',
+  COUNTRY_ID: 'country_id',
+  STATE: 'state',
+  STATE_ID: 'state_id',
+  CITY: 'city',
+  CITY_ID: 'city_id',
+  ZIP_START: 'zip_start',
+  ZIP_END: 'zip_end',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+const PIM_SHIPPING_RATE_DETAIL_FIELD_KEY: any = {
+  ID: 'id',
+  SHIPPING_ZONE: 'shipping_zone',
+  SHIPPING_ZONE_ID: 'shipping_zone_id',
+  SHIPPING_METHOD: 'shipping_method',
+  SHIPPING_METHOD_ID: 'shipping_method_id',
+  COUNTRY: 'country',
+  STATE: 'state',
+  CITY: 'city',
+  ZIP_START: 'zip_start',
+  ZIP_END: 'zip_end',
+  PRICE: 'price',
+  RATE: 'rate',
+  PRODUCT: 'product',
+  PRODUCT_ID: 'product_id',
+  PRODUCT_CATEGORY: 'product_category',
+  CATEGORY_ID: 'category_id',
+  PUBLISHED: 'published',
+  CREATED_USER_NAME: 'created_user_name',
+  MODIFIED_USER_NAME: 'modified_user_name',
+  CREATED_TIME: 'created_time',
+  MODIFIED_TIME: 'modified_time',
+  PUBLISH_UP: 'publish_up',
+  CUSTOM_FIELDS: 'custom_fields',
+};
+
 export {
   PIM_PRODUCT_DETAIL_FIELD_KEY,
   PIM_CATEGORY_DETAIL_FIELD_KEY,
@@ -311,4 +462,14 @@ export {
   PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY,
   PIM_TYPE_DETAIL_FIELD_KEY,
   PIM_SUB_TYPE_DETAIL_FIELD_KEY,
+  PIM_TAX_GROUP_DETAIL_FIELD_KEY,
+  PIM_CUSTOMER_GROUP_DETAIL_FIELD_KEY,
+  PIM_REGION_DETAIL_FIELD_KEY,
+  PIM_COUNTRY_DETAIL_FIELD_KEY,
+  PIM_STATE_DETAIL_FIELD_KEY,
+  PIM_CITY_DETAIL_FIELD_KEY,
+  PIM_TAX_DETAIL_FIELD_KEY,
+  PIM_SHIPPING_METHOD_DETAIL_FIELD_KEY,
+  PIM_SHIPPING_ZONE_DETAIL_FIELD_KEY,
+  PIM_SHIPPING_RATE_DETAIL_FIELD_KEY,
 };

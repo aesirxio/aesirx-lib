@@ -24,7 +24,23 @@ class ProjectRoute extends BaseRoute {
       })
     );
 
-  searchProjectsRequest = (dataFilter: any, page = 1, limit = 20) => {
+  searchProjectsRequest = (
+    dataFilter: any,
+    page = 1,
+    limit = 20,
+    sort: { ordering: string; direction: string }
+  ) => {
+    if (sort.ordering) {
+      return AesirXApiInstance.get(
+        this.createRequestURL({
+          option: 'project',
+          limitStart: (page - 1) * limit,
+          limit: limit,
+          'list[ordering]': sort.ordering,
+          'list[direction]': sort.direction,
+        })
+      );
+    }
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'project',
@@ -63,27 +79,14 @@ class ProjectRoute extends BaseRoute {
    *
    * @param projectId
    */
-  deleteProjectRequest = (projectId: any) => {
+  deleteProjectRequest = (projectId: string) => {
     const ids = projectId.split(',');
-
-    if (ids.length < 2) {
-      return AesirXApiInstance.delete(
-        this.createRequestURL({
-          option: 'project',
-          id: projectId,
-        })
-      );
-    } else {
-      return AesirXApiInstance.post(
-        this.createRequestURL({
-          option: 'project',
-          task: 'deleteAll',
-        }),
-        {
-          id: projectId,
-        }
-      );
-    }
+    return AesirXApiInstance.delete(
+      this.createRequestURL({
+        option: 'project',
+        'ids[]': ids,
+      })
+    );
   };
 
   getProjectMasterDataRequest = () => {
