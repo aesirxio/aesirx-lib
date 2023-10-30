@@ -115,6 +115,34 @@ const BI_EVENTS_FIELD_KEY = {
   DATE: 'date',
 };
 
+const BI_WOOCOMMERCE_PRODUCT_FIELD_KEY = {
+  AVG_PRICE: 'avg_price',
+  AVG_QUANTITY: 'avg_quantity',
+  ITEMS_SOLD: 'items_sold',
+  PRODUCT: 'product',
+  PRODUCT_REVENUE: 'product_revenue',
+  QUANTITY: 'quantity',
+};
+
+const BI_WOOCOMMERCE_PRODUCT_CHART_FIELD_KEY = {
+  DATE: 'date',
+  QUANTITY: 'quantity',
+};
+
+const BI_WOOCOMMERCE_STATISTIC_FIELD_KEY = {
+  AVG_ORDER_VALUE: 'avg_order_value',
+  CONVERSION_RATE: 'conversion_rate',
+  TOTAL_ADD_TO_CARTS: 'total_add_to_carts',
+  TOTAL_REVENUE: 'total_revenue',
+  TRANSACTIONS: 'transactions',
+};
+
+const BI_WOOCOMMERCE_STATISTIC_CHART_FIELD_KEY = {
+  DATE: 'date',
+  TOTAL_PURCHASERS: 'total_purchasers',
+  TOTAL_REVENUE: 'total_revenue',
+};
+
 export {
   BI_DASHBOARD_FIELD_KEY,
   BI_WIDGET_FIELD_KEY,
@@ -132,4 +160,8 @@ export {
   BI_VISITOR_FIELD_KEY,
   BI_FLOW_DETAIL_KEY,
   BI_EVENTS_FIELD_KEY,
+  BI_WOOCOMMERCE_PRODUCT_FIELD_KEY,
+  BI_WOOCOMMERCE_PRODUCT_CHART_FIELD_KEY,
+  BI_WOOCOMMERCE_STATISTIC_FIELD_KEY,
+  BI_WOOCOMMERCE_STATISTIC_CHART_FIELD_KEY,
 };
