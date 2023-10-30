@@ -100,7 +100,7 @@ AesirXApiInstance.interceptors.request.use(
       config.headers = {
         ...config.headers,
         Authorization:
-          'Bearer ' + (process.env?.REACT_APP_HEADER_JWT === 'true' ? jwt : accessToken),
+          'Bearer ' + ((window as any).env?.REACT_APP_HEADER_JWT === 'true' ? jwt : accessToken),
       };
     }
 
