@@ -10,6 +10,7 @@ import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
 import BaseRoute from '../Abstract/BaseRoute';
 import { Storage } from '../Utils/Storage';
 import { AesirxAuthenticationApiService } from '../Authentication/Authentication';
+import { env } from '../env';
 
 const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
   {
@@ -99,8 +100,7 @@ AesirXApiInstance.interceptors.request.use(
     if (accessToken || jwt) {
       config.headers = {
         ...config.headers,
-        Authorization:
-          'Bearer ' + ((window as any).env?.REACT_APP_HEADER_JWT === 'true' ? jwt : accessToken),
+        Authorization: 'Bearer ' + (env?.REACT_APP_HEADER_JWT === 'true' ? jwt : accessToken),
       };
     }
 
