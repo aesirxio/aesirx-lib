@@ -17,6 +17,7 @@ import {
   BI_LANGUAGES_FIELD_KEY,
   BI_PAGES_FIELD_KEY,
   BI_EVENTS_FIELD_KEY,
+  BI_VISITS_FIELD_KEY,
 } from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
@@ -65,6 +66,7 @@ class VisitorsModel extends BaseModel {
     }
   }
 }
+
 class VisitorsItemModel extends BaseItemModel {
   visits = null;
   date = null;
@@ -86,6 +88,44 @@ class VisitorsItemModel extends BaseItemModel {
       [BI_VISITORS_FIELD_KEY.VISITS]: this.visits,
       [BI_VISITORS_FIELD_KEY.DATE]: this.date,
       [BI_VISITORS_FIELD_KEY.TOTAL_PAGE_VIEWS]: this.total_page_views,
+    };
+  };
+}
+
+class VisitsModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new VisitsItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+
+class VisitsItemModel extends BaseItemModel {
+  visits = null;
+  date = null;
+  unique_visits = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.visits = entity[BI_VISITS_FIELD_KEY.VISITS] ?? '';
+      this.date = entity[BI_VISITORS_FIELD_KEY.DATE] ?? '';
+      this.unique_visits = entity[BI_VISITS_FIELD_KEY.UNIQUE_VISITS] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_VISITS_FIELD_KEY.VISITS]: this.visits,
+      [BI_VISITS_FIELD_KEY.DATE]: this.date,
+      [BI_VISITS_FIELD_KEY.UNIQUE_VISITS]: this.unique_visits,
     };
   };
 }
@@ -637,4 +677,5 @@ export {
   LanguagesModel,
   PagesModel,
   EventsModel,
+  VisitsModel,
 };

@@ -43,6 +43,13 @@ const BI_VISITORS_FIELD_KEY = {
   DATE: 'date',
 };
 
+const BI_VISITS_FIELD_KEY = {
+  VISITS: 'visits',
+  UNIQUE_VISITS: 'unique_visits',
+  DATE: 'date',
+};
+
+
 const BI_VISITOR_FIELD_KEY = {
   START_DATE: 'start',
   END_DATE: 'end',
@@ -132,4 +139,5 @@ export {
   BI_VISITOR_FIELD_KEY,
   BI_FLOW_DETAIL_KEY,
   BI_EVENTS_FIELD_KEY,
+  BI_VISITS_FIELD_KEY,
 };

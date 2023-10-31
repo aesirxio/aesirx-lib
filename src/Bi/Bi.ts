@@ -17,6 +17,7 @@ import {
   SummaryModel,
   VisitorModel,
   VisitorsModel,
+  VisitsModel,
 } from './BiModel';
 import BiRoute from './BiRoute';
 
@@ -162,7 +163,7 @@ class AesirxBiApiService {
 
       let results = null;
       if (data) {
-        results = new VisitorsModel(data);
+        results = new VisitsModel(data);
       }
       if (results) {
         results = results.toJSON();
