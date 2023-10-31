@@ -17,6 +17,7 @@ import {
   SummaryModel,
   VisitorModel,
   VisitorsModel,
+  VisitsModel,
   WoocommerceProductChartModel,
   WoocommerceProductModel,
   WoocommerceStatisticChartModel,
@@ -166,7 +167,7 @@ class AesirxBiApiService {
 
       let results = null;
       if (data) {
-        results = new VisitorsModel(data);
+        results = new VisitsModel(data);
       }
       if (results) {
         results = results.toJSON();

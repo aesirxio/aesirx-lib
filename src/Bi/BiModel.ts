@@ -17,6 +17,7 @@ import {
   BI_LANGUAGES_FIELD_KEY,
   BI_PAGES_FIELD_KEY,
   BI_EVENTS_FIELD_KEY,
+  BI_VISITS_FIELD_KEY,
   BI_WOOCOMMERCE_PRODUCT_FIELD_KEY,
   BI_WOOCOMMERCE_PRODUCT_CHART_FIELD_KEY,
   BI_WOOCOMMERCE_STATISTIC_CHART_FIELD_KEY,
@@ -104,6 +105,43 @@ class SummaryModel extends BaseModel {
       this.items.pagination = this.getBiPagination();
     }
   }
+}
+class VisitsModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new VisitsItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+
+class VisitsItemModel extends BaseItemModel {
+  visits = null;
+  date = null;
+  unique_visits = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.visits = entity[BI_VISITS_FIELD_KEY.VISITS] ?? '';
+      this.date = entity[BI_VISITORS_FIELD_KEY.DATE] ?? '';
+      this.unique_visits = entity[BI_VISITS_FIELD_KEY.UNIQUE_VISITS] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_VISITS_FIELD_KEY.VISITS]: this.visits,
+      [BI_VISITS_FIELD_KEY.DATE]: this.date,
+      [BI_VISITS_FIELD_KEY.UNIQUE_VISITS]: this.unique_visits,
+    };
+  };
 }
 class SummaryItemModel extends BaseItemModel {
   number_of_visitors = null;
@@ -802,6 +840,7 @@ export {
   LanguagesModel,
   PagesModel,
   EventsModel,
+  VisitsModel,
   WoocommerceStatisticModel,
   WoocommerceStatisticChartModel,
   WoocommerceProductModel,
