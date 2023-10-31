@@ -11,7 +11,7 @@ const ESI_PROJECT_FIELD_KEY = {
   SHORT_DESCRIPTION: 'short_description',
   LOGO: 'logo',
   PROJECT_LEAD: 'project_lead',
-  STATUS:'status',
+  STATUS: 'status',
 };
 
 const ESI_PROJECT_API_RESPONSE_FIELD_KEY = {
@@ -22,7 +22,7 @@ const ESI_PROJECT_API_RESPONSE_FIELD_KEY = {
   SHORT_DESCRIPTION: 'short_description',
   LOGO: 'logo',
   PROJECT_LEAD: 'project_lead',
-  STATUS:'status',
+  STATUS: 'status',
 };
 
 export { ESI_PROJECT_FIELD_KEY, ESI_PROJECT_API_RESPONSE_FIELD_KEY };

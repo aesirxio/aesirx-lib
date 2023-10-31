@@ -106,7 +106,7 @@ class AesirxProjectApiService {
   /**
    * Delete a Project
    */
-  async deleteProject(projectId: any) {
+  async deleteProject(projectId: string) {
     try {
       //if (!projectId || projectId === 0) return false;
       return await this.route.deleteProjectRequest(projectId);
@@ -153,10 +153,10 @@ class AesirxProjectApiService {
         if (sort.ordering) {
           results = new ProjectModel(data);
           pagination = results.getPagination();
+        } else {
+          results = new ProjectFilterModel(data);
+          pagination = results.getPagination();
         }
-      } else {
-        results = new ProjectFilterModel(data);
-        pagination = results.getPagination();
       }
 
       if (results && returnAsJSON) {
