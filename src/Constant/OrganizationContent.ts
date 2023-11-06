@@ -21,8 +21,22 @@ const ORGANISATION_MEMBER_FIELD: any = {
 
 const ORGANISATION_ROLE_FIELD: any = {
   ID: 'id',
-  NAME: 'role_name',
-  DESC: 'description',
+  ROLE_NAME: 'role_name',
+  DESCRIPTION: 'description',
 };
 
-export { ORGANISATION_MEMBER_FIELD, ORGANISATION_ROLE_FIELD };
+const MEMBER_ROLE_FIELD: any = {
+  ID: 'id',
+  MEMBER_ID: 'member_id',
+  ROLE_ID: 'role_id',
+  ORGANISATION_ID: 'organisation_id',
+  NAME: 'name',
+  STATE: 'state',
+  PUBLISHED: 'status',
+  CREATED_USER_NAME: 'created_by',
+  MODIFIED_USER_NAME: 'modified_by',
+  CREATED_TIME: 'created_date',
+  MODIFIED_TIME: 'modified_date',
+};
+
+export { ORGANISATION_MEMBER_FIELD, ORGANISATION_ROLE_FIELD, MEMBER_ROLE_FIELD };

@@ -7,8 +7,8 @@ import AesirXApiInstance from '../../Gateway/Instance';
 import BaseRoute from '../../Abstract/BaseRoute';
 import Utils from '../../Utils/Utils';
 
-class OrganizationRoleRouter extends BaseRoute {
-  option = 'reditem-organization_role';
+class MemberRoleRouter extends BaseRoute {
+  option = 'reditem-member_role';
 
   create = (data: any) => {
     return AesirXApiInstance.post(
@@ -66,4 +66,4 @@ class OrganizationRoleRouter extends BaseRoute {
   };
 }
 
-export default OrganizationRoleRouter;
+export default MemberRoleRouter;
