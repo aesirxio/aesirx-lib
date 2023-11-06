@@ -55,6 +55,7 @@ const MEMBER_GET_FIELD_KEY = {
   DESCRIPTION: 'description',
   FIRST_NAME: 'first_name',
   LAST_NAME: 'sur_name',
+  CHATGPT_API_KEY: 'chatgpt_api_key',
 };
 
 const MEMBER_CREATE_FIELD_KEY = {

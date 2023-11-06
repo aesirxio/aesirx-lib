@@ -42,6 +42,7 @@ class MemberItemModel {
       [MEMBER_GET_FIELD_KEY.DESCRIPTION]: data.description,
       [MEMBER_GET_FIELD_KEY.FIRST_NAME]: data.first_name,
       [MEMBER_GET_FIELD_KEY.LAST_NAME]: data.sur_name,
+      [MEMBER_GET_FIELD_KEY.CHATGPT_API_KEY]: data?.chatgpt_api_key ?? '',
     };
   };
 
