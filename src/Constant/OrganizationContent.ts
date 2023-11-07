@@ -39,4 +39,14 @@ const MEMBER_ROLE_FIELD: any = {
   MODIFIED_TIME: 'modified_date',
 };
 
-export { ORGANISATION_MEMBER_FIELD, ORGANISATION_ROLE_FIELD, MEMBER_ROLE_FIELD };
+const PERMISSION_FIELD: any = {
+  ROLE_NAME: 'role_name',
+  GROUP_ID: 'group_id',
+  RULES: 'rules',
+  ASSET_ID: 'asset_id',
+  ACTION: 'action',
+  VALUE: 'value',
+  ENTITY: 'entity',
+};
+
+export { ORGANISATION_MEMBER_FIELD, ORGANISATION_ROLE_FIELD, MEMBER_ROLE_FIELD, PERMISSION_FIELD };
