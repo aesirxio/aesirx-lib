@@ -145,6 +145,7 @@ class VisitsItemModel extends BaseItemModel {
 }
 class SummaryItemModel extends BaseItemModel {
   number_of_visitors = null;
+  total_number_of_visitors = null;
   number_of_page_views = null;
   number_of_unique_page_views = null;
   average_session_duration = null;
@@ -154,6 +155,7 @@ class SummaryItemModel extends BaseItemModel {
     super(entity);
     if (entity) {
       this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.total_number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.TOTAL_NUMBER_OF_VISITORS] ?? '';
       this.number_of_page_views = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
       this.number_of_unique_page_views =
         entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
@@ -180,6 +182,7 @@ class SummaryItemModel extends BaseItemModel {
 }
 class MetricsModel extends BaseItemModel {
   number_of_visitors: any = null;
+  total_number_of_visitors: any = null;
   number_of_page_views: any = null;
   number_of_unique_page_views: any = null;
   average_session_duration: any = null;
@@ -189,6 +192,7 @@ class MetricsModel extends BaseItemModel {
     super(entity);
     if (entity) {
       this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.total_number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.TOTAL_NUMBER_OF_VISITORS] ?? '';
       this.number_of_page_views = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
       this.number_of_unique_page_views =
         entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
@@ -205,6 +209,7 @@ class MetricsModel extends BaseItemModel {
     return {
       ...this.baseToJSON(),
       [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.TOTAL_NUMBER_OF_VISITORS]: this.total_number_of_visitors,
       [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
       [BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
       [BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,
@@ -485,6 +490,7 @@ class BrowsersModel extends BaseModel {
 class BrowsersItemModel extends BaseItemModel {
   browser_name: any = null;
   number_of_visitors: any = null;
+  number_of_visitors_percent: any = null;
   number_of_page_views: any = null;
   number_of_unique_page_views: any = null;
   average_session_duration: any = null;
@@ -495,6 +501,8 @@ class BrowsersItemModel extends BaseItemModel {
     if (entity) {
       this.browser_name = entity[BI_BROWSERS_FIELD_KEY.BROWSER_NAME] ?? '';
       this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.number_of_visitors_percent =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS_PERCENT] ?? '';
       this.number_of_page_views = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
       this.number_of_unique_page_views =
         entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
@@ -512,6 +520,7 @@ class BrowsersItemModel extends BaseItemModel {
       ...this.baseToJSON(),
       [BI_BROWSERS_FIELD_KEY.BROWSER_NAME]: this.browser_name,
       [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS_PERCENT]: this.number_of_visitors_percent,
       [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
       [BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
       [BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,

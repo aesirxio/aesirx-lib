@@ -62,6 +62,8 @@ const BI_VISITOR_FIELD_KEY = {
 
 const BI_SUMMARY_FIELD_KEY = {
   NUMBER_OF_VISITORS: 'number_of_visitors',
+  TOTAL_NUMBER_OF_VISITORS: 'total_number_of_visitors',
+  NUMBER_OF_VISITORS_PERCENT: 'number_of_visitors_percent',
   NUMBER_OF_PAGE_VIEWS: 'number_of_page_views',
   NUMBER_OF_UNIQUE_PAGE_VIEWS: 'number_of_unique_page_views',
   AVERAGE_SESSION_DURATION: 'average_session_duration',
