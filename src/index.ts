@@ -126,3 +126,4 @@ export * from './Utils/Date';
 export * from './Utils/Storage';
 
 export * from './env';
+export { default as getFingerprint } from './lib/fingerprint';
