@@ -1617,6 +1617,11 @@
     "@types/tough-cookie" "*"
     parse5 "^7.0.0"
 
+"@types/murmurhash-js@^1.0.3":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@types/murmurhash-js/-/murmurhash-js-1.0.6.tgz#1e7131c6ae041d0df272e5c5ff501ecb860dba3b"
+  integrity sha512-P2RRwRpevEKO0FrK5xNjxBywg0Br24tEv8K2+iWg56PtcCUNGAkaaOWKBQiUpofA8H/gmgdHXrcvSgp2uXCVAQ==
+
 "@types/node@*":
   version "18.15.11"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.15.11.tgz#b3b790f09cb1696cffcec605de025b088fa4225f"
