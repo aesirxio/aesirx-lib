@@ -10,6 +10,7 @@ import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
 import BaseRoute from '../Abstract/BaseRoute';
 import { Storage } from '../Utils/Storage';
 import { AesirxAuthenticationApiService } from '../Authentication/Authentication';
+import { env } from '../env';
 
 const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
   {
@@ -86,20 +87,20 @@ const removePending = (config: any, f: any) => {
 AesirXApiInstance.interceptors.request.use(
   function (config: any) {
     let accessToken: any = '';
-
+    let jwt: any = '';
     if (process.env.NODE_ENV === 'test') {
       accessToken = process.env.accessToken;
     } else {
       accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
+      jwt = Storage.getItem(AUTHORIZATION_KEY.JWT);
     }
     if (config.method === 'post' || config.method === 'put') {
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
     }
-
-    if (accessToken) {
+    if (accessToken || jwt) {
       config.headers = {
         ...config.headers,
-        Authorization: 'Bearer ' + accessToken,
+        Authorization: 'Bearer ' + (env?.REACT_APP_HEADER_JWT === 'true' ? jwt : accessToken),
       };
     }
 

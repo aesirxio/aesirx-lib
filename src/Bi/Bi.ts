@@ -17,6 +17,11 @@ import {
   SummaryModel,
   VisitorModel,
   VisitorsModel,
+  VisitsModel,
+  WoocommerceProductChartModel,
+  WoocommerceProductModel,
+  WoocommerceStatisticChartModel,
+  WoocommerceStatisticModel,
 } from './BiModel';
 import BiRoute from './BiRoute';
 
@@ -162,7 +167,7 @@ class AesirxBiApiService {
 
       let results = null;
       if (data) {
-        results = new VisitorsModel(data);
+        results = new VisitsModel(data);
       }
       if (results) {
         results = results.toJSON();
@@ -396,6 +401,101 @@ class AesirxBiApiService {
         results = results.toJSON();
       }
       return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getWoocommerceStatistic = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getWoocommerceStatistic(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new WoocommerceStatisticModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getWoocommerceStatisticChart = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getWoocommerceStatisticChart(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new WoocommerceStatisticChartModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getWoocommerceProduct = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getWoocommerceProduct(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new WoocommerceProductModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getWoocommerceProductChart = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getWoocommerceProductChart(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new WoocommerceProductChartModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };

@@ -1,7 +1,5 @@
 import type { Options } from 'tsup';
-
 const env = process.env.NODE_ENV;
-
 export const tsup: Options = {
   clean: true,
   format: ['esm'],
@@ -15,6 +13,6 @@ export const tsup: Options = {
     };
   },
   esbuildOptions(options) {
-    options.drop = ['console'];
+    env === 'production' ? (options.drop = ['console']) : '';
   },
 };

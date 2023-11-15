@@ -17,6 +17,11 @@ import {
   BI_LANGUAGES_FIELD_KEY,
   BI_PAGES_FIELD_KEY,
   BI_EVENTS_FIELD_KEY,
+  BI_VISITS_FIELD_KEY,
+  BI_WOOCOMMERCE_PRODUCT_FIELD_KEY,
+  BI_WOOCOMMERCE_PRODUCT_CHART_FIELD_KEY,
+  BI_WOOCOMMERCE_STATISTIC_CHART_FIELD_KEY,
+  BI_WOOCOMMERCE_STATISTIC_FIELD_KEY,
 } from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
@@ -101,8 +106,46 @@ class SummaryModel extends BaseModel {
     }
   }
 }
+class VisitsModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new VisitsItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+
+class VisitsItemModel extends BaseItemModel {
+  visits = null;
+  date = null;
+  unique_visits = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.visits = entity[BI_VISITS_FIELD_KEY.VISITS] ?? '';
+      this.date = entity[BI_VISITORS_FIELD_KEY.DATE] ?? '';
+      this.unique_visits = entity[BI_VISITS_FIELD_KEY.UNIQUE_VISITS] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_VISITS_FIELD_KEY.VISITS]: this.visits,
+      [BI_VISITS_FIELD_KEY.DATE]: this.date,
+      [BI_VISITS_FIELD_KEY.UNIQUE_VISITS]: this.unique_visits,
+    };
+  };
+}
 class SummaryItemModel extends BaseItemModel {
   number_of_visitors = null;
+  total_number_of_visitors = null;
   number_of_page_views = null;
   number_of_unique_page_views = null;
   average_session_duration = null;
@@ -112,6 +155,7 @@ class SummaryItemModel extends BaseItemModel {
     super(entity);
     if (entity) {
       this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.total_number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.TOTAL_NUMBER_OF_VISITORS] ?? '';
       this.number_of_page_views = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
       this.number_of_unique_page_views =
         entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
@@ -138,6 +182,7 @@ class SummaryItemModel extends BaseItemModel {
 }
 class MetricsModel extends BaseItemModel {
   number_of_visitors: any = null;
+  total_number_of_visitors: any = null;
   number_of_page_views: any = null;
   number_of_unique_page_views: any = null;
   average_session_duration: any = null;
@@ -147,6 +192,7 @@ class MetricsModel extends BaseItemModel {
     super(entity);
     if (entity) {
       this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.total_number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.TOTAL_NUMBER_OF_VISITORS] ?? '';
       this.number_of_page_views = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
       this.number_of_unique_page_views =
         entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
@@ -163,6 +209,7 @@ class MetricsModel extends BaseItemModel {
     return {
       ...this.baseToJSON(),
       [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.TOTAL_NUMBER_OF_VISITORS]: this.total_number_of_visitors,
       [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
       [BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
       [BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,
@@ -443,6 +490,7 @@ class BrowsersModel extends BaseModel {
 class BrowsersItemModel extends BaseItemModel {
   browser_name: any = null;
   number_of_visitors: any = null;
+  number_of_visitors_percent: any = null;
   number_of_page_views: any = null;
   number_of_unique_page_views: any = null;
   average_session_duration: any = null;
@@ -453,6 +501,8 @@ class BrowsersItemModel extends BaseItemModel {
     if (entity) {
       this.browser_name = entity[BI_BROWSERS_FIELD_KEY.BROWSER_NAME] ?? '';
       this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.number_of_visitors_percent =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS_PERCENT] ?? '';
       this.number_of_page_views = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
       this.number_of_unique_page_views =
         entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
@@ -470,6 +520,7 @@ class BrowsersItemModel extends BaseItemModel {
       ...this.baseToJSON(),
       [BI_BROWSERS_FIELD_KEY.BROWSER_NAME]: this.browser_name,
       [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS_PERCENT]: this.number_of_visitors_percent,
       [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
       [BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
       [BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,
@@ -621,6 +672,167 @@ class EventsItemModel extends BaseItemModel {
   };
 }
 
+class WoocommerceStatisticModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new WoocommerceStatisticItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class WoocommerceStatisticItemModel extends BaseItemModel {
+  avg_order_value = null;
+  conversion_rate = null;
+  total_add_to_carts = null;
+  total_revenue = null;
+  transactions = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.avg_order_value = entity[BI_WOOCOMMERCE_STATISTIC_FIELD_KEY.AVG_ORDER_VALUE] ?? '';
+      this.conversion_rate = entity[BI_WOOCOMMERCE_STATISTIC_FIELD_KEY.CONVERSION_RATE] ?? '';
+      this.total_add_to_carts = entity[BI_WOOCOMMERCE_STATISTIC_FIELD_KEY.TOTAL_ADD_TO_CARTS] ?? '';
+      this.total_revenue = entity[BI_WOOCOMMERCE_STATISTIC_FIELD_KEY.TOTAL_REVENUE] ?? '';
+      this.transactions = entity[BI_WOOCOMMERCE_STATISTIC_FIELD_KEY.TRANSACTIONS] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_WOOCOMMERCE_STATISTIC_FIELD_KEY.AVG_ORDER_VALUE]: this.avg_order_value,
+      [BI_WOOCOMMERCE_STATISTIC_FIELD_KEY.CONVERSION_RATE]: this.conversion_rate,
+      [BI_WOOCOMMERCE_STATISTIC_FIELD_KEY.TOTAL_ADD_TO_CARTS]: this.total_add_to_carts,
+      [BI_WOOCOMMERCE_STATISTIC_FIELD_KEY.TOTAL_REVENUE]: this.total_revenue,
+      [BI_WOOCOMMERCE_STATISTIC_FIELD_KEY.TRANSACTIONS]: this.transactions,
+    };
+  };
+}
+
+class WoocommerceStatisticChartModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new WoocommerceStatisticChartItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class WoocommerceStatisticChartItemModel extends BaseItemModel {
+  date = null;
+  total_purchasers = null;
+  total_revenue = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.date = entity[BI_WOOCOMMERCE_STATISTIC_CHART_FIELD_KEY.DATE] ?? '';
+      this.total_purchasers =
+        entity[BI_WOOCOMMERCE_STATISTIC_CHART_FIELD_KEY.TOTAL_PURCHASERS] ?? '';
+      this.total_revenue = entity[BI_WOOCOMMERCE_STATISTIC_CHART_FIELD_KEY.TOTAL_REVENUE] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_WOOCOMMERCE_STATISTIC_CHART_FIELD_KEY.DATE]: this.date,
+      [BI_WOOCOMMERCE_STATISTIC_CHART_FIELD_KEY.TOTAL_PURCHASERS]: this.total_purchasers,
+      [BI_WOOCOMMERCE_STATISTIC_CHART_FIELD_KEY.TOTAL_REVENUE]: this.total_revenue,
+    };
+  };
+}
+
+class WoocommerceProductChartModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new WoocommerceProductChartItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class WoocommerceProductChartItemModel extends BaseItemModel {
+  date = null;
+  quantity = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.date = entity[BI_WOOCOMMERCE_PRODUCT_CHART_FIELD_KEY.DATE] ?? '';
+      this.quantity = entity[BI_WOOCOMMERCE_PRODUCT_CHART_FIELD_KEY.QUANTITY] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_WOOCOMMERCE_PRODUCT_CHART_FIELD_KEY.DATE]: this.date,
+      [BI_WOOCOMMERCE_PRODUCT_CHART_FIELD_KEY.QUANTITY]: this.quantity,
+    };
+  };
+}
+
+class WoocommerceProductModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new WoocommerceProductItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class WoocommerceProductItemModel extends BaseItemModel {
+  avg_price: any = null;
+  avg_quantity: any = null;
+  items_sold: any = null;
+  product: any = null;
+  product_revenue: any = null;
+  quantity: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.avg_price = entity[BI_WOOCOMMERCE_PRODUCT_FIELD_KEY.AVG_PRICE] ?? '';
+      this.avg_quantity = entity[BI_WOOCOMMERCE_PRODUCT_FIELD_KEY.AVG_QUANTITY] ?? '';
+      this.items_sold = entity[BI_WOOCOMMERCE_PRODUCT_FIELD_KEY.ITEMS_SOLD] ?? '';
+      this.product = entity[BI_WOOCOMMERCE_PRODUCT_FIELD_KEY.PRODUCT] ?? '';
+      this.product_revenue = entity[BI_WOOCOMMERCE_PRODUCT_FIELD_KEY.PRODUCT_REVENUE] ?? '';
+      this.quantity = entity[BI_WOOCOMMERCE_PRODUCT_FIELD_KEY.QUANTITY] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_WOOCOMMERCE_PRODUCT_FIELD_KEY.AVG_PRICE]: this.avg_price,
+      [BI_WOOCOMMERCE_PRODUCT_FIELD_KEY.AVG_QUANTITY]: this.avg_quantity,
+      [BI_WOOCOMMERCE_PRODUCT_FIELD_KEY.ITEMS_SOLD]: this.items_sold,
+      [BI_WOOCOMMERCE_PRODUCT_FIELD_KEY.PRODUCT]: this.product,
+      [BI_WOOCOMMERCE_PRODUCT_FIELD_KEY.PRODUCT_REVENUE]: this.product_revenue,
+      [BI_WOOCOMMERCE_PRODUCT_FIELD_KEY.QUANTITY]: this.quantity,
+    };
+  };
+}
+
 export {
   DomainModel,
   VisitorsModel,
@@ -637,4 +849,9 @@ export {
   LanguagesModel,
   PagesModel,
   EventsModel,
+  VisitsModel,
+  WoocommerceStatisticModel,
+  WoocommerceStatisticChartModel,
+  WoocommerceProductModel,
+  WoocommerceProductChartModel,
 };
