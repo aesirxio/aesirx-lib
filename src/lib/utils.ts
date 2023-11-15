@@ -49,13 +49,7 @@ export const getDisabledKeys = (): string[] => {
   ];
   const response: string[] = [];
   DISABLED_KEYS.split('|').forEach((key) => {
-    if (key === '') {
-      console.log('test');
-    } else if (allOptions.includes(key)) response.push(key);
-    else
-      console.warn(
-        `react-secure-storage : ${key} is not present in the available disabled keys options! Please go through the documentation`
-      );
+    if (allOptions.includes(key)) response.push(key);
   });
   return response;
 };

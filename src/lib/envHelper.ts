@@ -1,10 +1,5 @@
 // const SUPPORTED_PREFIX = ['', 'REACT_APP_', 'NEXT_PUBLIC_', 'VITE_'];
 
-export type SECURE_LOCAL_STORAGE_KEYS =
-  | 'SECURE_LOCAL_STORAGE_DISABLED_KEYS'
-  | 'SECURE_LOCAL_STORAGE_PREFIX'
-  | 'SECURE_LOCAL_STORAGE_HASH_KEY';
-
 /**
  * Function to get SECURE_LOCAL_STORAGE_HASH_KEY
  * @returns
@@ -18,8 +13,6 @@ const getHashKey = () => {
         process.env.REACT_APP_SECURE_LOCAL_STORAGE_HASH_KEY ||
         process.env.NEXT_PUBLIC_SECURE_LOCAL_STORAGE_HASH_KEY ||
         process.env.VITE_SECURE_LOCAL_STORAGE_HASH_KEY;
-    } else {
-      console.warn(`react-secure-storage : process is not defined! Just a warning!`);
     }
   } catch (ex) {
     return null;
@@ -40,8 +33,6 @@ const getStoragePrefix = () => {
         process.env.REACT_APP_SECURE_LOCAL_STORAGE_PREFIX ||
         process.env.NEXT_PUBLIC_SECURE_LOCAL_STORAGE_PREFIX ||
         process.env.VITE_SECURE_LOCAL_STORAGE_PREFIX;
-    } else {
-      console.warn(`react-secure-storage : process is not defined! Just a warning!`);
     }
   } catch (ex) {
     return null;
@@ -61,8 +52,6 @@ const getDisabledKeys = () => {
         process.env.REACT_APP_SECURE_LOCAL_STORAGE_DISABLED_KEYS ||
         process.env.NEXT_PUBLIC_SECURE_LOCAL_STORAGE_DISABLED_KEYS ||
         process.env.VITE_SECURE_LOCAL_STORAGE_DISABLED_KEYS;
-    } else {
-      console.warn(`react-secure-storage : process is not defined! Just a warning!`);
     }
   } catch (ex) {
     return null;
