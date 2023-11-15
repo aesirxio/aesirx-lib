@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 16
       - run: yarn install
-      - uses: JS-DevTools/npm-publish@v2
+      - uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
           strategy: upgrade
