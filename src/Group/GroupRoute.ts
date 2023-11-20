@@ -30,7 +30,7 @@ class GroupRoute extends BaseRoute {
     AesirXApiInstance.post(
       this.createRequestURL({
         option: 'reditem',
-        view :"categories",
+        view: 'categories',
       }),
       data
     );
