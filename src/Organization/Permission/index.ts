@@ -3,7 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { PermissionItemModel, PermissionModel } from './Model';
+import { PermissionModel } from './Model';
 import PermissionRouter from './Route';
 
 import axios from 'axios';
