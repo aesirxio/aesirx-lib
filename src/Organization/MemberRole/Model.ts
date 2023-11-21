@@ -21,7 +21,9 @@ class MemberRoleModel extends BaseModel {
 class MemberRoleItemModel extends BaseItemModel {
   id: number = 0;
   member_id = null;
+  member_name = null;
   role_id = null;
+  role_name = null;
   organisation_id = null;
   name = null;
   state = null;
@@ -35,7 +37,9 @@ class MemberRoleItemModel extends BaseItemModel {
     if (entity) {
       this.id = entity[MEMBER_ROLE_FIELD.ID] ?? 0;
       this.member_id = entity[MEMBER_ROLE_FIELD.MEMBER_ID] ?? 0;
+      this.member_name = entity[MEMBER_ROLE_FIELD.MEMBER_NAME] ?? '';
       this.role_id = entity[MEMBER_ROLE_FIELD.ROLE_ID] ?? 0;
+      this.role_name = entity[MEMBER_ROLE_FIELD.ROLE_NAME] ?? '';
       this.name = entity[MEMBER_ROLE_FIELD.NAME] ?? '';
       this.state = entity[MEMBER_ROLE_FIELD.STATE] ?? '';
       this.published = entity[MEMBER_ROLE_FIELD.PUBLISHED] ?? 0;
@@ -52,7 +56,9 @@ class MemberRoleItemModel extends BaseItemModel {
       ...this.baseToJSON(),
       [MEMBER_ROLE_FIELD.ID]: this.id,
       [MEMBER_ROLE_FIELD.MEMBER_ID]: this.member_id,
+      [MEMBER_ROLE_FIELD.MEMBER_NAME]: this.member_name,
       [MEMBER_ROLE_FIELD.ROLE_ID]: this.role_id,
+      [MEMBER_ROLE_FIELD.ROLE_NAME]: this.role_name,
       [MEMBER_ROLE_FIELD.NAME]: this.name,
       [MEMBER_ROLE_FIELD.STATE]: this.state,
       [MEMBER_ROLE_FIELD.PUBLISHED]: this.published,
