@@ -10,14 +10,15 @@ import BaseRoute from '../Abstract/BaseRoute';
  * Class GroupRoute extends BaseRoute
  */
 class GroupRoute extends BaseRoute {
+  option = 'reditem';
   /**
    * function getGroupRequest get specified Group Data from Aesir Redcore WS
    */
-  getGroupRequest = (groupId: any) => {
-    return AesirXApiInstance.get(
+  getGroupRequest = (Id: any) => {
+    return AesirXApiInstance.get( 
       this.createRequestURL({
-        option: 'com_reditem',
-        id: groupId,
+        option: this.option,
+        id: Id,
       })
     );
   };
@@ -29,7 +30,7 @@ class GroupRoute extends BaseRoute {
   createGroupRequest = (data: any) =>
     AesirXApiInstance.post(
       this.createRequestURL({
-        option: 'reditem',
+        option: this.option,
         view: 'categories',
       }),
       data
@@ -42,7 +43,7 @@ class GroupRoute extends BaseRoute {
   updateGroupRequest = (data: any) =>
     AesirXApiInstance.put(
       this.createRequestURL({
-        option: 'com_reditem',
+        option: this.option,
       }),
       data
     );
@@ -57,14 +58,14 @@ class GroupRoute extends BaseRoute {
     if (ids.length < 2) {
       return AesirXApiInstance.delete(
         this.createRequestURL({
-          option: 'com_reditem',
+          option: this.option,
           id: groupId,
         })
       );
     } else {
       return AesirXApiInstance.post(
         this.createRequestURL({
-          option: 'campaign',
+          option: this.option,
           task: 'deleteAll',
         }),
         {
@@ -82,7 +83,7 @@ class GroupRoute extends BaseRoute {
   getGroupListRequest = (page = 1, limit = 20) =>
     AesirXApiInstance.get(
       this.createRequestURL({
-        option: 'com_reditem',
+        option: this.option,
         'list[limitstart]': (page - 1) * limit,
         'list[limit]': limit,
       })
@@ -91,7 +92,7 @@ class GroupRoute extends BaseRoute {
   getGroupMasterDataRequest = () => {
     return AesirXApiInstance.get(
       this.createRequestURL({
-        option: 'campaign',
+        option: this.option,
         task: 'getMasterData',
       })
     );
@@ -100,7 +101,7 @@ class GroupRoute extends BaseRoute {
   searchGroupRequest = (dataFilter: any, page = 1, limit = 20) => {
     return AesirXApiInstance.get(
       this.createRequestURL({
-        option: 'campaign',
+        option: this.option,
         task: 'filterCampaign',
         limitStart: (page - 1) * limit,
         limit: limit,
