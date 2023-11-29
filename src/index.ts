@@ -119,7 +119,10 @@ export * from './Organization/Member/index';
 export * from './Organization/Member/Model';
 export * from './Organization/Role/index';
 export * from './Organization/Role/Model';
-
+export * from './Organization/MemberRole/index';
+export * from './Organization/MemberRole/Model';
+export * from './Organization/Permission/index';
+export * from './Organization/Permission/Model';
 // Utils
 export * from './Utils/Helper';
 export * from './Utils/Date';
