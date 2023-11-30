@@ -6,19 +6,49 @@
 import AesirXApiInstance from '../Gateway/Instance';
 import BaseRoute from '../Abstract/BaseRoute';
 
-/**
- * Class GroupRoute extends BaseRoute
- */
 class GroupRoute extends BaseRoute {
   option = 'reditem';
-  /**
-   * function getGroupRequest get specified Group Data from Aesir Redcore WS
-   */
-  getGroupRequest = (Id: any) => {
-    return AesirXApiInstance.get( 
+  getGroupItemRequest = (Id: any) =>
+    AesirXApiInstance.get(
       this.createRequestURL({
         option: this.option,
         id: Id,
+      })
+    );
+
+  getGroupRequest = (page = 1, limit = 20) =>
+    AesirXApiInstance.get(
+      this.createRequestURL({
+        option: this.option,
+        'list[limitstart]': (page - 1) * limit,
+        'list[limit]': limit,
+      })
+    );
+
+  searchPGroupRequest = (
+    dataFilter: any,
+    page = 1,
+    limit = 20,
+    sort: { ordering: string; direction: string }
+  ) => {
+    if (sort.ordering) {
+      return AesirXApiInstance.get(
+        this.createRequestURL({
+          option: this.option,
+          limitStart: (page - 1) * limit,
+          limit: limit,
+          'list[ordering]': sort.ordering,
+          'list[direction]': sort.direction,
+        })
+      );
+    }
+    return AesirXApiInstance.get(
+      this.createRequestURL({
+        option: this.option,
+        task: 'filterProject',
+        limitStart: (page - 1) * limit,
+        limit: limit,
+        ...dataFilter,
       })
     );
   };
@@ -47,19 +77,18 @@ class GroupRoute extends BaseRoute {
       }),
       data
     );
-
   /**
    *
    * @param groupId
    */
-  deleteGroupRequest = (groupId: any) => {
-    const ids = groupId.split(',');
+  deleteGroupRequest = (Id: any) => {
+    const ids = Id.split(',');
 
     if (ids.length < 2) {
       return AesirXApiInstance.delete(
         this.createRequestURL({
           option: this.option,
-          id: groupId,
+          id: Id,
         })
       );
     } else {
@@ -69,43 +98,17 @@ class GroupRoute extends BaseRoute {
           task: 'deleteAll',
         }),
         {
-          id: groupId,
+          id: Id,
         }
       );
     }
   };
 
-  /**
-   *
-   * @param page
-   * @param limit
-   */
-  getGroupListRequest = (page = 1, limit = 20) =>
-    AesirXApiInstance.get(
-      this.createRequestURL({
-        option: this.option,
-        'list[limitstart]': (page - 1) * limit,
-        'list[limit]': limit,
-      })
-    );
-
-  getGroupMasterDataRequest = () => {
+  getProjectMasterDataRequest = () => {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: this.option,
         task: 'getMasterData',
-      })
-    );
-  };
-
-  searchGroupRequest = (dataFilter: any, page = 1, limit = 20) => {
-    return AesirXApiInstance.get(
-      this.createRequestURL({
-        option: this.option,
-        task: 'filterCampaign',
-        limitStart: (page - 1) * limit,
-        limit: limit,
-        ...dataFilter,
       })
     );
   };
