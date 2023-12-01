@@ -22,6 +22,9 @@ import {
   BI_WOOCOMMERCE_PRODUCT_CHART_FIELD_KEY,
   BI_WOOCOMMERCE_STATISTIC_CHART_FIELD_KEY,
   BI_WOOCOMMERCE_STATISTIC_FIELD_KEY,
+  BI_CONSENTS_LIST_FIELD_KEY,
+  BI_CONSENTS_DATE_FIELD_KEY,
+  BI_CONSENTS_TIER_FIELD_KEY,
 } from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
@@ -833,6 +836,123 @@ class WoocommerceProductItemModel extends BaseItemModel {
   };
 }
 
+class ConsentsListModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new ConsentsListItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class ConsentsListItemModel extends BaseItemModel {
+  consent: any = null;
+  tier: any = null;
+  datetime: any = null;
+  expiration: any = null;
+  uuid: any = null;
+  wallet: any = null;
+  web3id: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.consent = entity[BI_CONSENTS_LIST_FIELD_KEY.CONSENT] ?? '';
+      this.tier = entity[BI_CONSENTS_LIST_FIELD_KEY.TIER] ?? '';
+      this.datetime = entity[BI_CONSENTS_LIST_FIELD_KEY.DATETIME] ?? '';
+      this.expiration = entity[BI_CONSENTS_LIST_FIELD_KEY.EXPIRATION] ?? '';
+      this.uuid = entity[BI_CONSENTS_LIST_FIELD_KEY.UUID] ?? '';
+      this.wallet = entity[BI_CONSENTS_LIST_FIELD_KEY.WALLET] ?? '';
+      this.web3id = entity[BI_CONSENTS_LIST_FIELD_KEY.WEB3ID] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_CONSENTS_LIST_FIELD_KEY.CONSENT]: this.consent,
+      [BI_CONSENTS_LIST_FIELD_KEY.TIER]: this.tier,
+      [BI_CONSENTS_LIST_FIELD_KEY.DATETIME]: this.datetime,
+      [BI_CONSENTS_LIST_FIELD_KEY.EXPIRATION]: this.expiration,
+      [BI_CONSENTS_LIST_FIELD_KEY.UUID]: this.uuid,
+      [BI_CONSENTS_LIST_FIELD_KEY.WALLET]: this.wallet,
+      [BI_CONSENTS_LIST_FIELD_KEY.WEB3ID]: this.web3id,
+    };
+  };
+}
+
+class ConsentsDateModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new ConsentsDateItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class ConsentsDateItemModel extends BaseItemModel {
+  date: any = null;
+  total: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.date = entity[BI_CONSENTS_DATE_FIELD_KEY.DATE] ?? '';
+      this.total = entity[BI_CONSENTS_DATE_FIELD_KEY.TOTAL] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_CONSENTS_DATE_FIELD_KEY.DATE]: this.date,
+      [BI_CONSENTS_DATE_FIELD_KEY.TOTAL]: this.total,
+    };
+  };
+}
+
+class ConsentsTierModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new ConsentsTierItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class ConsentsTierItemModel extends BaseItemModel {
+  tier: any = null;
+  total: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.tier = entity[BI_CONSENTS_TIER_FIELD_KEY.TIER] ?? '';
+      this.total = entity[BI_CONSENTS_TIER_FIELD_KEY.TOTAL] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_CONSENTS_TIER_FIELD_KEY.TIER]: this.tier,
+      [BI_CONSENTS_TIER_FIELD_KEY.TOTAL]: this.total,
+    };
+  };
+}
+
 export {
   DomainModel,
   VisitorsModel,
@@ -854,4 +974,7 @@ export {
   WoocommerceStatisticChartModel,
   WoocommerceProductModel,
   WoocommerceProductChartModel,
+  ConsentsListModel,
+  ConsentsDateModel,
+  ConsentsTierModel,
 };
