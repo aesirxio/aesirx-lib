@@ -17,6 +17,7 @@ import {
   LanguagesModel,
   MetricsModel,
   PagesModel,
+  RefererModel,
   SummaryModel,
   VisitorModel,
   VisitorsModel,
@@ -559,6 +560,30 @@ class AesirxBiApiService {
       let pagination = null;
       if (data) {
         results = new ConsentsTierModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getReferer = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getReferer(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new RefererModel(data);
         pagination = results.getBiPagination();
       }
       if (results) {
