@@ -6,6 +6,9 @@
 import {
   BrowsersModel,
   CitiesModel,
+  ConsentsDateModel,
+  ConsentsListModel,
+  ConsentsTierModel,
   CountriesModel,
   DevicesModel,
   DomainModel,
@@ -14,6 +17,7 @@ import {
   LanguagesModel,
   MetricsModel,
   PagesModel,
+  RefererModel,
   SummaryModel,
   VisitorModel,
   VisitorsModel,
@@ -487,6 +491,99 @@ class AesirxBiApiService {
       let pagination = null;
       if (data) {
         results = new WoocommerceProductChartModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getConsentsList = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getConsentsList(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new ConsentsListModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getConsentsDate = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getConsentsDate(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new ConsentsDateModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getConsentsTier = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getConsentsTier(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new ConsentsTierModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getReferer = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getReferer(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new RefererModel(data);
         pagination = results.getBiPagination();
       }
       if (results) {

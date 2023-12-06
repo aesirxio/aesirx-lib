@@ -151,6 +151,30 @@ const BI_WOOCOMMERCE_STATISTIC_CHART_FIELD_KEY = {
   TOTAL_REVENUE: 'total_revenue',
 };
 
+const BI_CONSENTS_LIST_FIELD_KEY = {
+  CONSENT: 'consent',
+  DATETIME: 'datetime',
+  EXPIRATION: 'expiration',
+  TIER: 'tier',
+  UUID: 'uuid',
+  WALLET: 'wallet',
+  WEB3ID: 'web3id',
+};
+
+const BI_CONSENTS_DATE_FIELD_KEY = {
+  DATE: 'date',
+  TOTAL: 'total',
+};
+
+const BI_CONSENTS_TIER_FIELD_KEY = {
+  TIER: 'tier',
+  TOTAL: 'total',
+};
+
+const BI_REFERER_FIELD_KEY = {
+  REFERER: 'referer',
+};
+
 export {
   BI_DASHBOARD_FIELD_KEY,
   BI_WIDGET_FIELD_KEY,
@@ -173,4 +197,8 @@ export {
   BI_WOOCOMMERCE_PRODUCT_CHART_FIELD_KEY,
   BI_WOOCOMMERCE_STATISTIC_FIELD_KEY,
   BI_WOOCOMMERCE_STATISTIC_CHART_FIELD_KEY,
+  BI_CONSENTS_LIST_FIELD_KEY,
+  BI_CONSENTS_DATE_FIELD_KEY,
+  BI_CONSENTS_TIER_FIELD_KEY,
+  BI_REFERER_FIELD_KEY,
 };

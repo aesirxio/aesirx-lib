@@ -9,7 +9,7 @@ const logout = () => {
     return 'logout';
   } else {
     localStorage.clear();
-    window.location.reload();
+    typeof window !== 'undefined' && window.location.reload();
   }
 };
 

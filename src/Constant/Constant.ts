@@ -52,7 +52,10 @@ const AXIOS_CONFIGS: any = {
   DAM_LICENSE: env.REACT_APP_DAM_LICENSE || '',
   DMA_LICENSE: env.REACT_APP_DMA_LICENSE || '',
   TEST_MODE: env.REACT_APP_TEST_MODE || '',
-  DOMAIN: process.env.NODE_ENV === 'test' ? env.REACT_APP_TEST_DOMAIN : window?.location?.hostname,
+  DOMAIN:
+    process.env.NODE_ENV === 'test'
+      ? env.REACT_APP_TEST_DOMAIN
+      : typeof window !== 'undefined' && window?.location?.hostname,
 };
 
 const GENERAL_CONFIG = {
