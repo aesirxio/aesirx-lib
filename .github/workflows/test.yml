@@ -29,8 +29,8 @@ jobs:
       REACT_APP_SECURE_LOCAL_STORAGE_DISABLED_KEYS: ${{ secrets.REACT_APP_SECURE_LOCAL_STORAGE_DISABLED_KEYS }}
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 16.x
 
