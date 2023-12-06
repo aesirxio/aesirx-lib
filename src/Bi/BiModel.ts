@@ -25,6 +25,7 @@ import {
   BI_CONSENTS_LIST_FIELD_KEY,
   BI_CONSENTS_DATE_FIELD_KEY,
   BI_CONSENTS_TIER_FIELD_KEY,
+  BI_REFERER_FIELD_KEY,
 } from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
@@ -953,6 +954,40 @@ class ConsentsTierItemModel extends BaseItemModel {
   };
 }
 
+class RefererModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new RefererItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class RefererItemModel extends BaseItemModel {
+  number_of_visitors: any = null;
+  referer: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.referer = entity[BI_REFERER_FIELD_KEY.REFERER] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_REFERER_FIELD_KEY.REFERER]: this.referer,
+    };
+  };
+}
+
 export {
   DomainModel,
   VisitorsModel,
@@ -977,4 +1012,5 @@ export {
   ConsentsListModel,
   ConsentsDateModel,
   ConsentsTierModel,
+  RefererModel,
 };
