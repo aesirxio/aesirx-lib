@@ -79,27 +79,14 @@ class ProjectRoute extends BaseRoute {
    *
    * @param projectId
    */
-  deleteProjectRequest = (projectId: any) => {
+  deleteProjectRequest = (projectId: string) => {
     const ids = projectId.split(',');
-
-    if (ids.length < 2) {
-      return AesirXApiInstance.delete(
-        this.createRequestURL({
-          option: 'project',
-          id: projectId,
-        })
-      );
-    } else {
-      return AesirXApiInstance.post(
-        this.createRequestURL({
-          option: 'project',
-          task: 'deleteAll',
-        }),
-        {
-          id: projectId,
-        }
-      );
-    }
+    return AesirXApiInstance.delete(
+      this.createRequestURL({
+        option: 'project',
+        'ids[]': ids,
+      })
+    );
   };
 
   getProjectMasterDataRequest = () => {
