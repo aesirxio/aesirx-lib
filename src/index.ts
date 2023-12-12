@@ -5,6 +5,7 @@
 
 export * from './Project/Project';
 export * from './Campaign/Campaign';
+export * from './Group/Group';
 export * from './Persona/Persona';
 export * from './Content/Content';
 export * from './Member/Member';
