@@ -21,7 +21,7 @@ class AesirxGroupApiService {
    *  */
   async getGroups(page = 1, limit = 20, returnAsJSON = true) {
     try {
-      const data = await this.route.getGroupListRequest(page, limit);
+      const data = await this.route.getGroupRequest(page, limit);
 
       let results = null;
       let pagination = null;
@@ -47,11 +47,12 @@ class AesirxGroupApiService {
   /**
    * Call this function once you need the detail inforamtion of a Campaign Item by passing a CampaignId
    *  */
-  async getGroup(Id = 0, returnAsJSON = true) {
+  async getGroupItem(groupId = 0, returnAsJSON = true) {
     try {
-      if (Id === 0) return null;
+      if (groupId === 0) return null;
 
-      const data = await this.route.getGroupRequest(Id);
+      const data = await this.route.getGroupItemRequest(groupId);
+      console.log(data,"sss");
 
       let item = null;
 

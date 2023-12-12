@@ -8,24 +8,26 @@ import BaseRoute from '../Abstract/BaseRoute';
 
 class GroupRoute extends BaseRoute {
   option = 'reditem';
-  getGroupItemRequest = (Id: any) =>
+  getGroupItemRequest = (groupId: any) =>
     AesirXApiInstance.get(
       this.createRequestURL({
         option: this.option,
-        id: Id,
+        id: groupId,
+        view: "categories",
       })
     );
 
   getGroupRequest = (page = 1, limit = 20) =>
     AesirXApiInstance.get(
       this.createRequestURL({
-        option: this.option,
+        option: "com_reditem",
+        view: "categories",
         'list[limitstart]': (page - 1) * limit,
         'list[limit]': limit,
       })
     );
 
-  searchPGroupRequest = (
+  searchGroupRequest = (
     dataFilter: any,
     page = 1,
     limit = 20,
@@ -45,7 +47,7 @@ class GroupRoute extends BaseRoute {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: this.option,
-        task: 'filterProject',
+        task: 'filterGroups',
         limitStart: (page - 1) * limit,
         limit: limit,
         ...dataFilter,
@@ -81,14 +83,14 @@ class GroupRoute extends BaseRoute {
    *
    * @param groupId
    */
-  deleteGroupRequest = (Id: any) => {
-    const ids = Id.split(',');
+  deleteGroupRequest = (groupId: any) => {
+    const ids = groupId.split(',');
 
     if (ids.length < 2) {
       return AesirXApiInstance.delete(
         this.createRequestURL({
           option: this.option,
-          id: Id,
+          id: groupId,
         })
       );
     } else {
@@ -98,13 +100,13 @@ class GroupRoute extends BaseRoute {
           task: 'deleteAll',
         }),
         {
-          id: Id,
+          id: groupId,
         }
       );
     }
   };
 
-  getProjectMasterDataRequest = () => {
+  getGroupMasterDataRequest = () => {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: this.option,
