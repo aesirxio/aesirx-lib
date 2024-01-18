@@ -26,6 +26,7 @@ import {
   BI_CONSENTS_DATE_FIELD_KEY,
   BI_CONSENTS_TIER_FIELD_KEY,
   BI_REFERER_FIELD_KEY,
+  BI_FLOW_LIST_FIELD_KEY,
 } from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
@@ -988,6 +989,56 @@ class RefererItemModel extends BaseItemModel {
   };
 }
 
+class FlowListModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new FlowListItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+
+class FlowListItemModel extends BaseItemModel {
+  uuid: any = null;
+  flow_uuid: any = null;
+  geo: any = null;
+  start: any = null;
+  end: any = null;
+  url: any = null;
+  referrer: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.uuid = entity[BI_FLOW_LIST_FIELD_KEY.UUID] ?? '';
+      this.flow_uuid = entity[BI_FLOW_LIST_FIELD_KEY.FLOW_UUID] ?? '';
+      this.geo = entity[BI_FLOW_LIST_FIELD_KEY.GEO] ?? '';
+      this.start = entity[BI_FLOW_LIST_FIELD_KEY.START] ?? '';
+      this.end = entity[BI_FLOW_LIST_FIELD_KEY.END] ?? '';
+      this.url = entity[BI_FLOW_LIST_FIELD_KEY.URL] ?? '';
+      this.referrer = entity[BI_FLOW_LIST_FIELD_KEY.REFERRER] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_FLOW_LIST_FIELD_KEY.UUID]: this.uuid,
+      [BI_FLOW_LIST_FIELD_KEY.FLOW_UUID]: this.flow_uuid,
+      [BI_FLOW_LIST_FIELD_KEY.GEO]: this.geo,
+      [BI_FLOW_LIST_FIELD_KEY.START]: this.start,
+      [BI_FLOW_LIST_FIELD_KEY.END]: this.end,
+      [BI_FLOW_LIST_FIELD_KEY.URL]: this.url,
+      [BI_FLOW_LIST_FIELD_KEY.REFERRER]: this.referrer,
+    };
+  };
+}
+
 export {
   DomainModel,
   VisitorsModel,
@@ -1013,4 +1064,5 @@ export {
   ConsentsDateModel,
   ConsentsTierModel,
   RefererModel,
+  FlowListModel,
 };

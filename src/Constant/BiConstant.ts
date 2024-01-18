@@ -175,6 +175,16 @@ const BI_REFERER_FIELD_KEY = {
   REFERER: 'referer',
 };
 
+const BI_FLOW_LIST_FIELD_KEY = {
+  UUID: 'uuid',
+  FLOW_UUID: 'flow_uuid',
+  GEO: 'geo',
+  START: 'start',
+  END: 'end',
+  URL: 'url',
+  REFERRER: 'referrer',
+};
+
 export {
   BI_DASHBOARD_FIELD_KEY,
   BI_WIDGET_FIELD_KEY,
@@ -201,4 +211,5 @@ export {
   BI_CONSENTS_DATE_FIELD_KEY,
   BI_CONSENTS_TIER_FIELD_KEY,
   BI_REFERER_FIELD_KEY,
+  BI_FLOW_LIST_FIELD_KEY,
 };
