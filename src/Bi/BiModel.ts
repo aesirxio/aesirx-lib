@@ -245,6 +245,7 @@ class VisitorItemModel extends BaseItemModel {
   url = null;
   referer = null;
   flow_id = null;
+  uuid = null;
   constructor(entity: any) {
     super(entity);
     if (entity) {
@@ -256,6 +257,7 @@ class VisitorItemModel extends BaseItemModel {
       this.url = entity[BI_VISITOR_FIELD_KEY.URL] ?? '';
       this.referer = entity[BI_VISITOR_FIELD_KEY.REFERER] ?? '';
       this.flow_id = entity[BI_VISITOR_FIELD_KEY.FLOW_ID] ?? '';
+      this.uuid = entity[BI_VISITOR_FIELD_KEY.UUID] ?? '';
     }
   }
   toObject = () => {
@@ -272,6 +274,7 @@ class VisitorItemModel extends BaseItemModel {
       [BI_VISITOR_FIELD_KEY.URL]: this.url,
       [BI_VISITOR_FIELD_KEY.REFERER]: this.referer,
       [BI_VISITOR_FIELD_KEY.FLOW_ID]: this.flow_id,
+      [BI_VISITOR_FIELD_KEY.UUID]: this.uuid,
     };
   };
 }

@@ -58,6 +58,7 @@ const BI_VISITOR_FIELD_KEY = {
   REFERER: 'referer',
   URL: 'url',
   FLOW_ID: 'flow_uuid',
+  UUID: 'uuid',
 };
 
 const BI_SUMMARY_FIELD_KEY = {
