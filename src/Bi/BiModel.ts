@@ -1013,6 +1013,10 @@ class FlowListItemModel extends BaseItemModel {
   end: any = null;
   url: any = null;
   referrer: any = null;
+  sop_id: any = null;
+  events: any = null;
+  event: any = null;
+  conversion: any = null;
   constructor(entity: any) {
     super(entity);
     if (entity) {
@@ -1021,8 +1025,28 @@ class FlowListItemModel extends BaseItemModel {
       this.geo = entity[BI_FLOW_LIST_FIELD_KEY.GEO] ?? '';
       this.start = entity[BI_FLOW_LIST_FIELD_KEY.START] ?? '';
       this.end = entity[BI_FLOW_LIST_FIELD_KEY.END] ?? '';
-      this.url = entity[BI_FLOW_LIST_FIELD_KEY.URL] ?? '';
+      this.url = entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]?.length
+        ? entity[BI_FLOW_LIST_FIELD_KEY.EVENTS][0]?.url
+        : '';
       this.referrer = entity[BI_FLOW_LIST_FIELD_KEY.REFERRER] ?? '';
+      this.events = entity[BI_FLOW_LIST_FIELD_KEY.EVENTS] ?? '';
+      this.event =
+        entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]?.filter(
+          (item: any) => item?.event_type === 'click' || item?.event_type === 'submit'
+        ).length ?? 0;
+      this.conversion =
+        entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]?.filter(
+          (item: any) => item?.event_type === 'conversion'
+        ).length ?? 0;
+      this.sop_id = entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]?.length
+        ? entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]
+            ?.find((item: any) => {
+              return item?.attributes;
+            })
+            ?.attributes?.find((attr: any) => {
+              return attr?.name === 'sop_id';
+            })?.value ?? 'Not Available'
+        : 'Not Available';
     }
   }
   toObject = () => {
@@ -1038,6 +1062,10 @@ class FlowListItemModel extends BaseItemModel {
       [BI_FLOW_LIST_FIELD_KEY.END]: this.end,
       [BI_FLOW_LIST_FIELD_KEY.URL]: this.url,
       [BI_FLOW_LIST_FIELD_KEY.REFERRER]: this.referrer,
+      [BI_FLOW_LIST_FIELD_KEY.SOP_ID]: this.sop_id,
+      [BI_FLOW_LIST_FIELD_KEY.EVENTS]: this.events,
+      [BI_FLOW_LIST_FIELD_KEY.EVENT]: this.event,
+      [BI_FLOW_LIST_FIELD_KEY.CONVERSION]: this.conversion,
     };
   };
 }

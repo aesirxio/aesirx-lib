@@ -184,6 +184,10 @@ const BI_FLOW_LIST_FIELD_KEY = {
   END: 'end',
   URL: 'url',
   REFERRER: 'referrer',
+  EVENTS: 'events',
+  SOP_ID: 'sop_id',
+  EVENT: 'event',
+  CONVERSION: 'conversion',
 };
 
 export {

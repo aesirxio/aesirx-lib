@@ -308,9 +308,8 @@ class BiRoute extends BaseRoute {
     return AesirXApiInstance.get(
       this.createRequestURL(
         {
-          url: 'consents' + version,
+          url: 'consents' + version + dateFilter?.date_start + '/' + dateFilter?.date_end + '/date',
           filter: dataFilter,
-          date: dateFilter,
         },
         false,
         process.env.REACT_APP_BI_ENDPOINT_URL,
