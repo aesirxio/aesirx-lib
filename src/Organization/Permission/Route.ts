@@ -8,7 +8,7 @@ import BaseRoute from '../../Abstract/BaseRoute';
 import Utils from '../../Utils/Utils';
 
 class OrganizationRoleRouter extends BaseRoute {
-  option = 'reditem-organization_role';
+  option = 'reditem-permission';
 
   create = (data: any) => {
     return AesirXApiInstance.post(

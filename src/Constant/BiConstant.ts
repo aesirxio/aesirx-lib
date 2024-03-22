@@ -43,6 +43,12 @@ const BI_VISITORS_FIELD_KEY = {
   DATE: 'date',
 };
 
+const BI_VISITS_FIELD_KEY = {
+  VISITS: 'visits',
+  UNIQUE_VISITS: 'unique_visits',
+  DATE: 'date',
+};
+
 const BI_VISITOR_FIELD_KEY = {
   START_DATE: 'start',
   END_DATE: 'end',
@@ -56,6 +62,8 @@ const BI_VISITOR_FIELD_KEY = {
 
 const BI_SUMMARY_FIELD_KEY = {
   NUMBER_OF_VISITORS: 'number_of_visitors',
+  TOTAL_NUMBER_OF_VISITORS: 'total_number_of_visitors',
+  NUMBER_OF_VISITORS_PERCENT: 'number_of_visitors_percent',
   NUMBER_OF_PAGE_VIEWS: 'number_of_page_views',
   NUMBER_OF_UNIQUE_PAGE_VIEWS: 'number_of_unique_page_views',
   AVERAGE_SESSION_DURATION: 'average_session_duration',
@@ -115,6 +123,58 @@ const BI_EVENTS_FIELD_KEY = {
   DATE: 'date',
 };
 
+const BI_WOOCOMMERCE_PRODUCT_FIELD_KEY = {
+  AVG_PRICE: 'avg_price',
+  AVG_QUANTITY: 'avg_quantity',
+  ITEMS_SOLD: 'items_sold',
+  PRODUCT: 'product',
+  PRODUCT_REVENUE: 'product_revenue',
+  QUANTITY: 'quantity',
+};
+
+const BI_WOOCOMMERCE_PRODUCT_CHART_FIELD_KEY = {
+  DATE: 'date',
+  QUANTITY: 'quantity',
+};
+
+const BI_WOOCOMMERCE_STATISTIC_FIELD_KEY = {
+  AVG_ORDER_VALUE: 'avg_order_value',
+  CONVERSION_RATE: 'conversion_rate',
+  TOTAL_ADD_TO_CARTS: 'total_add_to_carts',
+  TOTAL_REVENUE: 'total_revenue',
+  TRANSACTIONS: 'transactions',
+};
+
+const BI_WOOCOMMERCE_STATISTIC_CHART_FIELD_KEY = {
+  DATE: 'date',
+  TOTAL_PURCHASERS: 'total_purchasers',
+  TOTAL_REVENUE: 'total_revenue',
+};
+
+const BI_CONSENTS_LIST_FIELD_KEY = {
+  CONSENT: 'consent',
+  DATETIME: 'datetime',
+  EXPIRATION: 'expiration',
+  TIER: 'tier',
+  UUID: 'uuid',
+  WALLET: 'wallet',
+  WEB3ID: 'web3id',
+};
+
+const BI_CONSENTS_DATE_FIELD_KEY = {
+  DATE: 'date',
+  TOTAL: 'total',
+};
+
+const BI_CONSENTS_TIER_FIELD_KEY = {
+  TIER: 'tier',
+  TOTAL: 'total',
+};
+
+const BI_REFERER_FIELD_KEY = {
+  REFERER: 'referer',
+};
+
 const BI_ISPS_FIELD_KEY = {
   ISP: 'isp',
   BOUNCE_RATE: 'bounce_rate',
@@ -137,5 +197,14 @@ export {
   BI_VISITOR_FIELD_KEY,
   BI_FLOW_DETAIL_KEY,
   BI_EVENTS_FIELD_KEY,
-  BI_ISPS_FIELD_KEY
+  BI_VISITS_FIELD_KEY,
+  BI_WOOCOMMERCE_PRODUCT_FIELD_KEY,
+  BI_WOOCOMMERCE_PRODUCT_CHART_FIELD_KEY,
+  BI_WOOCOMMERCE_STATISTIC_CHART_FIELD_KEY,
+  BI_WOOCOMMERCE_STATISTIC_FIELD_KEY,
+  BI_CONSENTS_LIST_FIELD_KEY,
+  BI_CONSENTS_DATE_FIELD_KEY,
+  BI_CONSENTS_TIER_FIELD_KEY,
+  BI_REFERER_FIELD_KEY,
+  BI_ISPS_FIELD_KEY,
 };

@@ -252,7 +252,8 @@ class OrganisationChannelRoute extends BaseRoute {
     if (Array.isArray(channelIds)) {
       task = 'bulkRemoveChannel';
 
-      params = channelIds.map((channelId) => ({ 'channelIds[]': channelId }));
+      // params = channelIds.map((channelId) => ({ 'channelIds[]': channelId }));
+      params = [{ 'channelIds[]': channelIds }];
     }
 
     return AesirXApiInstance.post(

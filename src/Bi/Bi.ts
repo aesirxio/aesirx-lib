@@ -6,6 +6,9 @@
 import {
   BrowsersModel,
   CitiesModel,
+  ConsentsDateModel,
+  ConsentsListModel,
+  ConsentsTierModel,
   CountriesModel,
   DevicesModel,
   DomainModel,
@@ -15,9 +18,15 @@ import {
   LanguagesModel,
   MetricsModel,
   PagesModel,
+  RefererModel,
   SummaryModel,
   VisitorModel,
   VisitorsModel,
+  VisitsModel,
+  WoocommerceProductChartModel,
+  WoocommerceProductModel,
+  WoocommerceStatisticChartModel,
+  WoocommerceStatisticModel,
 } from './BiModel';
 import BiRoute from './BiRoute';
 
@@ -163,7 +172,7 @@ class AesirxBiApiService {
 
       let results = null;
       if (data) {
-        results = new VisitorsModel(data);
+        results = new VisitsModel(data);
       }
       if (results) {
         results = results.toJSON();
@@ -424,6 +433,194 @@ class AesirxBiApiService {
         results = results.toJSON();
       }
       return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getWoocommerceStatistic = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getWoocommerceStatistic(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new WoocommerceStatisticModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getWoocommerceStatisticChart = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getWoocommerceStatisticChart(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new WoocommerceStatisticChartModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getWoocommerceProduct = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getWoocommerceProduct(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new WoocommerceProductModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getWoocommerceProductChart = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getWoocommerceProductChart(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new WoocommerceProductChartModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getConsentsList = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getConsentsList(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new ConsentsListModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getConsentsDate = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getConsentsDate(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new ConsentsDateModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getConsentsTier = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getConsentsTier(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new ConsentsTierModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getReferer = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getReferer(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new RefererModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };

@@ -3,26 +3,26 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import { OrganizationRoleItemModel, OrganizationRoleModel } from './Model';
-import OrganizationRoleRouter from './Route';
+import { MemberRoleItemModel, MemberRoleModel } from './Model';
+import MemberRoleRouter from './Route';
 
 import axios from 'axios';
 
 /**
  * API Service
  */
-class OrganizationRoleApiService {
+class MemberRoleApiService {
   route: any = null;
 
   constructor() {
-    this.route = new OrganizationRoleRouter();
+    this.route = new MemberRoleRouter();
   }
 
   getList = async (filter: any) => {
     try {
       const data = await this.route.getList(filter);
 
-      const roleItems = new OrganizationRoleModel(data);
+      const roleItems = new MemberRoleModel(data);
 
       return {
         listItems: roleItems.getItems(),
@@ -40,7 +40,7 @@ class OrganizationRoleApiService {
       const data = await this.route.getDetail(id);
       let results = null;
       if (data) {
-        results = new OrganizationRoleItemModel(data);
+        results = new MemberRoleItemModel(data);
       }
       if (results) {
         results = results.toJSON();
@@ -98,4 +98,4 @@ class OrganizationRoleApiService {
   };
 }
 
-export { OrganizationRoleApiService };
+export { MemberRoleApiService };

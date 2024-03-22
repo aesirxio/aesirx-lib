@@ -97,9 +97,11 @@ class AesirxAuthenticationApiService {
     let accessToken = '';
     let firstLogin = false;
     let refreshToken = '';
+    let jwt = '';
     if (accessTokenData) {
       tokenType = accessTokenData.token_type ?? 'Bearer';
       accessToken = accessTokenData.access_token ?? '';
+      jwt = accessTokenData.jwt ?? '';
       authorizationHeader = authorizationHeader.concat(tokenType).concat(' ').concat(accessToken);
       refreshToken = accessTokenData[AUTHORIZATION_KEY.REFRESH_TOKEN] ?? '';
 
@@ -110,6 +112,7 @@ class AesirxAuthenticationApiService {
       }
 
       const setStore = {
+        [AUTHORIZATION_KEY.JWT]: jwt,
         [AUTHORIZATION_KEY.ACCESS_TOKEN]: accessToken,
         [AUTHORIZATION_KEY.TOKEN_TYPE]: tokenType,
         [AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]: authorizationHeader,
@@ -168,11 +171,15 @@ class AesirxAuthenticationApiService {
       let tokenType = '';
       let accessToken = '';
       let refreshToken = '';
+      let jwt = '';
+
       if (tokenRefreshResponse && tokenRefreshResponse.data) {
         tokenType = tokenRefreshResponse.data.token_type ?? 'Bearer';
         accessToken = tokenRefreshResponse.data.access_token ?? '';
         authorizationHeader = authorizationHeader.concat(tokenType).concat(' ').concat(accessToken);
         refreshToken = tokenRefreshResponse.data[AUTHORIZATION_KEY.REFRESH_TOKEN] ?? '';
+        jwt = tokenRefreshResponse.data[AUTHORIZATION_KEY.JWT] ?? '';
+        const isJwtChange = jwt !== this.getStore(AUTHORIZATION_KEY.JWT);
         if (process.env.NODE_ENV === 'test') {
           return tokenRefreshResponse.data;
         } else {
@@ -181,8 +188,10 @@ class AesirxAuthenticationApiService {
             [key[AUTHORIZATION_KEY.TOKEN_TYPE]]: tokenType,
             [key[AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]]: authorizationHeader,
             [key[AUTHORIZATION_KEY.REFRESH_TOKEN]]: refreshToken,
+            [key[AUTHORIZATION_KEY.JWT]]: jwt,
           };
           this.setStore(setStore);
+          process.env.REACT_APP_HEADER_JWT === 'true' && isJwtChange && location.reload();
         }
       } else {
         return logout();
