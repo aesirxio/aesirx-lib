@@ -116,7 +116,8 @@ const BI_EVENTS_FIELD_KEY = {
 };
 
 const BI_ISPS_FIELD_KEY = {
-  DEVICE: 'device',
+  ISP: 'isp',
+  BOUNCE_RATE: 'bounce_rate',
 };
 
 export {

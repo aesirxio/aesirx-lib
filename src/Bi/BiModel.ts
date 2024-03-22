@@ -440,7 +440,7 @@ class IspsItemModel extends BaseItemModel {
   constructor(entity: any) {
     super(entity);
     if (entity) {
-      this.isps = entity[BI_ISPS_FIELD_KEY.DEVICE] ?? '';
+      this.isps = entity[BI_ISPS_FIELD_KEY.ISP] ?? '';
       this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
       this.number_of_page_views = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
       this.number_of_unique_page_views =
@@ -457,7 +457,7 @@ class IspsItemModel extends BaseItemModel {
   toJSON = () => {
     return {
       ...this.baseToJSON(),
-      [BI_ISPS_FIELD_KEY.DEVICE]: this.isps,
+      [BI_ISPS_FIELD_KEY.ISP]: this.isps,
       [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
       [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
       [BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
@@ -518,6 +518,19 @@ class BrowsersItemModel extends BaseItemModel {
       [BI_SUMMARY_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
     };
   };
+}
+
+class IspsModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new IspsItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
 }
 
 class LanguagesModel extends BaseModel {
@@ -678,4 +691,5 @@ export {
   LanguagesModel,
   PagesModel,
   EventsModel,
+  IspsModel,
 };
