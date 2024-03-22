@@ -115,6 +115,10 @@ const BI_EVENTS_FIELD_KEY = {
   DATE: 'date',
 };
 
+const BI_ISPS_FIELD_KEY = {
+  DEVICE: 'device',
+};
+
 export {
   BI_DASHBOARD_FIELD_KEY,
   BI_WIDGET_FIELD_KEY,
@@ -132,4 +136,5 @@ export {
   BI_VISITOR_FIELD_KEY,
   BI_FLOW_DETAIL_KEY,
   BI_EVENTS_FIELD_KEY,
+  BI_ISPS_FIELD_KEY
 };
