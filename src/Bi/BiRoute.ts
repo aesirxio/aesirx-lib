@@ -360,6 +360,20 @@ class BiRoute extends BaseRoute {
       )
     );
   };
+  getIsps = (dataFilter: any, dateFilter: any) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: 'isps' + version,
+          filter: dataFilter,
+          date: dateFilter,
+        },
+        false,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
+        true
+      )
+    );
+  };
   init = () => {
     return AesirXApiInstance.post(
       this.createRequestURL(

@@ -155,6 +155,20 @@ describe('Bi', () => {
     expect(response).not.toBeNull();
   });
 
+  it('Get Isps', async () => {
+    const service = new AesirxBiApiService();
+    const dataFilter = {
+      'filter[domain]': 'aesirx.io',
+    };
+    const dateFilter = {
+      date_start: '2023-03-28',
+      date_end: '2023-03-30',
+    };
+
+    const response: any = await service.getIsps(dataFilter, dateFilter);
+    expect(response).not.toBeNull();
+  });
+
   it('Get Languages', async () => {
     const service = new AesirxBiApiService();
     const dataFilter = {

@@ -14,6 +14,7 @@ import {
   DomainModel,
   EventsModel,
   FlowItemModel,
+  IspsModel,
   LanguagesModel,
   MetricsModel,
   PagesModel,
@@ -241,6 +242,33 @@ class AesirxBiApiService {
       let pagination = null;
       if (data) {
         results = new DevicesModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (process.env.NODE_ENV !== 'test') {
+        return error;
+      }
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getIsps = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getIsps(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new IspsModel(data);
         pagination = results.getBiPagination();
       }
       if (results) {
