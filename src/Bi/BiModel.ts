@@ -28,6 +28,8 @@ import {
   BI_CONSENTS_TIER_FIELD_KEY,
   BI_REFERER_FIELD_KEY,
   BI_FLOW_LIST_FIELD_KEY,
+  BI_CHANNEL_FIELD_KEY,
+  BI_OUTLINK_FIELD_KEY,
 } from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
@@ -522,7 +524,6 @@ class IspsItemModel extends BaseItemModel {
     };
   };
 }
-
 
 class BrowsersModel extends BaseModel {
   items: any = null;
@@ -1124,6 +1125,105 @@ class FlowListItemModel extends BaseItemModel {
   };
 }
 
+class ChannelModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new ChannelItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+
+class ChannelItemModel extends BaseItemModel {
+  channel: any = null;
+  number_of_visitors: any = null;
+  total_number_of_visitors: any = null;
+  number_of_page_views: any = null;
+  number_of_unique_page_views: any = null;
+  average_session_duration: any = null;
+  number_of_pages_per_session: any = null;
+  bounce_rate: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.channel = entity[BI_CHANNEL_FIELD_KEY.CHANNEL] ?? '';
+      this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.total_number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.TOTAL_NUMBER_OF_VISITORS] ?? '';
+      this.number_of_page_views = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
+      this.number_of_unique_page_views =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
+      this.average_session_duration = entity[BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION] ?? '';
+      this.number_of_pages_per_session =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION] ?? '';
+      this.bounce_rate = entity[BI_SUMMARY_FIELD_KEY.BOUNCE_RATE] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_CHANNEL_FIELD_KEY.CHANNEL]: this.channel,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.TOTAL_NUMBER_OF_VISITORS]: this.total_number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
+      [BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION]: this.number_of_pages_per_session,
+      [BI_SUMMARY_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
+    };
+  };
+}
+
+class OutlinkModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new OutlinkItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+
+class OutlinkItemModel extends BaseItemModel {
+  referer: any = null;
+  total_urls: any = null;
+  urls: any = null;
+  number_of_visitors: any = null;
+  total_number_of_visitors: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.referer = entity[BI_OUTLINK_FIELD_KEY.REFERER] ?? '';
+      this.total_urls = entity[BI_OUTLINK_FIELD_KEY.TOTAL_URLS] ?? '';
+      this.urls = entity[BI_OUTLINK_FIELD_KEY.URLS] ?? '';
+      this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.total_number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.TOTAL_NUMBER_OF_VISITORS] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_OUTLINK_FIELD_KEY.REFERER]: this.referer,
+      [BI_OUTLINK_FIELD_KEY.TOTAL_URLS]: this.total_urls,
+      [BI_OUTLINK_FIELD_KEY.URLS]: this.urls,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.TOTAL_NUMBER_OF_VISITORS]: this.total_number_of_visitors,
+    };
+  };
+}
+
 export {
   DomainModel,
   VisitorsModel,
@@ -1151,4 +1251,5 @@ export {
   ConsentsTierModel,
   RefererModel,
   FlowListModel,
+  ChannelModel,
 };

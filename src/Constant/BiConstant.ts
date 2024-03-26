@@ -194,6 +194,17 @@ const BI_ISPS_FIELD_KEY = {
   BOUNCE_RATE: 'bounce_rate',
 };
 
+const BI_CHANNEL_FIELD_KEY = {
+  CHANNEL: 'channel',
+};
+
+const BI_OUTLINK_FIELD_KEY = {
+  REFERER: 'referer',
+  TOTAL_URLS: 'total_urls',
+  URLS: 'urls',
+  URL: 'url',
+};
+
 export {
   BI_DASHBOARD_FIELD_KEY,
   BI_WIDGET_FIELD_KEY,
@@ -222,4 +233,6 @@ export {
   BI_REFERER_FIELD_KEY,
   BI_FLOW_LIST_FIELD_KEY,
   BI_ISPS_FIELD_KEY,
+  BI_CHANNEL_FIELD_KEY,
+  BI_OUTLINK_FIELD_KEY,
 };
