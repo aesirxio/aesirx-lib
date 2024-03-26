@@ -29,6 +29,8 @@ import {
   WoocommerceStatisticModel,
   FlowListModel,
   ChannelModel,
+  OutlinkModel,
+  AttributeModel,
 } from './BiModel';
 import BiRoute from './BiRoute';
 
@@ -67,12 +69,19 @@ class AesirxBiApiService {
   getAttribute = async (dataFilter: any, dateFilter: any) => {
     try {
       const data = await this.route.getAttribute(dataFilter, dateFilter);
-
-      if (data?.collection) {
-        return data.collection;
-      } else {
-        return null;
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new AttributeModel(data);
+        pagination = results.getBiPagination();
       }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
@@ -662,6 +671,29 @@ class AesirxBiApiService {
       let pagination = null;
       if (data) {
         results = new ChannelModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getOutlink = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getOutlink(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new OutlinkModel(data);
         pagination = results.getBiPagination();
       }
       if (results) {

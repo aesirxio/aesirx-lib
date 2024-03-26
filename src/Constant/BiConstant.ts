@@ -205,6 +205,11 @@ const BI_OUTLINK_FIELD_KEY = {
   URL: 'url',
 };
 
+const BI_ATTRIBUTE_FIELD_KEY = {
+  NAME: 'name',
+  VALUES: 'values',
+};
+
 export {
   BI_DASHBOARD_FIELD_KEY,
   BI_WIDGET_FIELD_KEY,
@@ -235,4 +240,5 @@ export {
   BI_ISPS_FIELD_KEY,
   BI_CHANNEL_FIELD_KEY,
   BI_OUTLINK_FIELD_KEY,
+  BI_ATTRIBUTE_FIELD_KEY,
 };
