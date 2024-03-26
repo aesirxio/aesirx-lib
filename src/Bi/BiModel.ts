@@ -31,6 +31,7 @@ import {
   BI_CHANNEL_FIELD_KEY,
   BI_OUTLINK_FIELD_KEY,
   BI_ATTRIBUTE_FIELD_KEY,
+  BI_EVENTS_TYPE_FIELD_KEY,
 } from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
@@ -1096,12 +1097,12 @@ class FlowListItemModel extends BaseItemModel {
         ).length ?? 0;
       this.sop_id = entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]?.length
         ? entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]
-            ?.find((item: any) => {
-              return item?.attributes;
-            })
-            ?.attributes?.find((attr: any) => {
-              return attr?.name === 'sop_id';
-            })?.value ?? 'Not Available'
+          ?.find((item: any) => {
+            return item?.attributes;
+          })
+          ?.attributes?.find((attr: any) => {
+            return attr?.name === 'sop_id';
+          })?.value ?? 'Not Available'
         : 'Not Available';
     }
   }
@@ -1225,6 +1226,46 @@ class OutlinkItemModel extends BaseItemModel {
   };
 }
 
+class EventsTypeModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new EventsTypeItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class EventsTypeItemModel extends BaseItemModel {
+  event_name = null;
+  event_type = null;
+  total_visitor = null;
+  unique_visitor = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.event_name = entity[BI_EVENTS_TYPE_FIELD_KEY.EVENT_NAME] ?? '';
+      this.event_type = entity[BI_EVENTS_TYPE_FIELD_KEY.EVENT_TYPE] ?? '';
+      this.total_visitor = entity[BI_EVENTS_TYPE_FIELD_KEY.TOTAL_VISITOR] ?? '';
+      this.unique_visitor = entity[BI_EVENTS_TYPE_FIELD_KEY.UNIQUE_VISITOR] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_EVENTS_TYPE_FIELD_KEY.EVENT_NAME]: this.event_name,
+      [BI_EVENTS_TYPE_FIELD_KEY.EVENT_TYPE]: this.event_type,
+      [BI_EVENTS_TYPE_FIELD_KEY.TOTAL_VISITOR]: this.total_visitor,
+      [BI_EVENTS_TYPE_FIELD_KEY.UNIQUE_VISITOR]: this.unique_visitor,
+    };
+  };
+}
+
 class AttributeModel extends BaseModel {
   items: any = null;
   constructor(entities: any) {
@@ -1290,4 +1331,5 @@ export {
   ChannelModel,
   OutlinkModel,
   AttributeModel,
+  EventsTypeModel,
 };

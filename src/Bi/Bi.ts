@@ -31,6 +31,7 @@ import {
   ChannelModel,
   OutlinkModel,
   AttributeModel,
+  EventsTypeModel,
 } from './BiModel';
 import BiRoute from './BiRoute';
 
@@ -694,6 +695,30 @@ class AesirxBiApiService {
       let pagination = null;
       if (data) {
         results = new OutlinkModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getEventsType = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getEventsType(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new EventsTypeModel(data);
         pagination = results.getBiPagination();
       }
       if (results) {

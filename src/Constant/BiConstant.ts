@@ -210,6 +210,13 @@ const BI_ATTRIBUTE_FIELD_KEY = {
   VALUES: 'values',
 };
 
+const BI_EVENTS_TYPE_FIELD_KEY = {
+  EVENT_NAME: 'event_name',
+  EVENT_TYPE: 'event_type',
+  TOTAL_VISITOR: 'total_visitor',
+  UNIQUE_VISITOR: 'unique_visitor',
+}
+
 export {
   BI_DASHBOARD_FIELD_KEY,
   BI_WIDGET_FIELD_KEY,
@@ -241,4 +248,5 @@ export {
   BI_CHANNEL_FIELD_KEY,
   BI_OUTLINK_FIELD_KEY,
   BI_ATTRIBUTE_FIELD_KEY,
+  BI_EVENTS_TYPE_FIELD_KEY
 };
