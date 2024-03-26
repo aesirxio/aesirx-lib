@@ -205,6 +205,11 @@ const BI_OUTLINK_FIELD_KEY = {
   URL: 'url',
 };
 
+const BI_ATTRIBUTE_FIELD_KEY = {
+  NAME: 'name',
+  VALUES: 'values',
+};
+
 const BI_EVENTS_TYPE_FIELD_KEY = {
   EVENT_NAME: 'event_name',
   EVENT_TYPE: 'event_type',
@@ -242,5 +247,6 @@ export {
   BI_ISPS_FIELD_KEY,
   BI_CHANNEL_FIELD_KEY,
   BI_OUTLINK_FIELD_KEY,
+  BI_ATTRIBUTE_FIELD_KEY,
   BI_EVENTS_TYPE_FIELD_KEY
 };

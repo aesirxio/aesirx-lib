@@ -30,6 +30,7 @@ import {
   BI_FLOW_LIST_FIELD_KEY,
   BI_CHANNEL_FIELD_KEY,
   BI_OUTLINK_FIELD_KEY,
+  BI_ATTRIBUTE_FIELD_KEY,
   BI_EVENTS_TYPE_FIELD_KEY,
 } from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
@@ -1265,6 +1266,41 @@ class EventsTypeItemModel extends BaseItemModel {
   };
 }
 
+class AttributeModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new AttributeItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+
+class AttributeItemModel extends BaseItemModel {
+  name: any = null;
+  values: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.name = entity[BI_ATTRIBUTE_FIELD_KEY.NAME] ?? '';
+      this.values = entity[BI_ATTRIBUTE_FIELD_KEY.VALUES] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_ATTRIBUTE_FIELD_KEY.NAME]: this.name,
+      [BI_ATTRIBUTE_FIELD_KEY.VALUES]: this.values,
+    };
+  };
+}
+
 export {
   DomainModel,
   VisitorsModel,
@@ -1293,5 +1329,7 @@ export {
   RefererModel,
   FlowListModel,
   ChannelModel,
+  OutlinkModel,
+  AttributeModel,
   EventsTypeModel,
 };
