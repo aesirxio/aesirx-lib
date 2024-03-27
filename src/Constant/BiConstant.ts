@@ -208,6 +208,7 @@ const BI_OUTLINK_FIELD_KEY = {
 const BI_ATTRIBUTE_FIELD_KEY = {
   NAME: 'name',
   VALUES: 'values',
+  VALUE: 'value',
 };
 
 const BI_EVENTS_TYPE_FIELD_KEY = {
