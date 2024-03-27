@@ -32,6 +32,7 @@ import {
   BI_OUTLINK_FIELD_KEY,
   BI_ATTRIBUTE_FIELD_KEY,
   BI_EVENTS_TYPE_FIELD_KEY,
+  BI_REGION_FIELD_KEY,
 } from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
@@ -1097,12 +1098,12 @@ class FlowListItemModel extends BaseItemModel {
         ).length ?? 0;
       this.sop_id = entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]?.length
         ? entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]
-          ?.find((item: any) => {
-            return item?.attributes;
-          })
-          ?.attributes?.find((attr: any) => {
-            return attr?.name === 'sop_id';
-          })?.value ?? 'Not Available'
+            ?.find((item: any) => {
+              return item?.attributes;
+            })
+            ?.attributes?.find((attr: any) => {
+              return attr?.name === 'sop_id';
+            })?.value ?? 'Not Available'
         : 'Not Available';
     }
   }
@@ -1301,6 +1302,61 @@ class AttributeItemModel extends BaseItemModel {
   };
 }
 
+class RegionModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new RegionItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+
+class RegionItemModel extends BaseItemModel {
+  region: any = null;
+  number_of_visitors: any = null;
+  total_number_of_visitors: any = null;
+  number_of_page_views: any = null;
+  number_of_unique_page_views: any = null;
+  average_session_duration: any = null;
+  number_of_pages_per_session: any = null;
+  bounce_rate: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.region = entity[BI_REGION_FIELD_KEY.REGION] ?? '';
+      this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.total_number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.TOTAL_NUMBER_OF_VISITORS] ?? '';
+      this.number_of_page_views = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
+      this.number_of_unique_page_views =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
+      this.average_session_duration = entity[BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION] ?? '';
+      this.number_of_pages_per_session =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION] ?? '';
+      this.bounce_rate = entity[BI_SUMMARY_FIELD_KEY.BOUNCE_RATE] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_REGION_FIELD_KEY.REGION]: this.region,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.TOTAL_NUMBER_OF_VISITORS]: this.total_number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
+      [BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION]: this.number_of_pages_per_session,
+      [BI_SUMMARY_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
+    };
+  };
+}
+
 export {
   DomainModel,
   VisitorsModel,
@@ -1332,4 +1388,5 @@ export {
   OutlinkModel,
   AttributeModel,
   EventsTypeModel,
+  RegionModel,
 };
