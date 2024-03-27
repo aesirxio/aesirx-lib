@@ -420,6 +420,36 @@ class BiRoute extends BaseRoute {
     );
   };
 
+  getRegion = (dataFilter: any, dateFilter: any) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: 'regions' + version,
+          filter: dataFilter,
+          date: dateFilter,
+        },
+        false,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
+        true
+      )
+    );
+  };
+
+  getUserFlow = (dataFilter: any, dateFilter: any) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: 'user_flows' + version,
+          filter: dataFilter,
+          date: dateFilter,
+        },
+        false,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
+        true
+      )
+    );
+  };
+
   init = () => {
     return AesirXApiInstance.post(
       this.createRequestURL(
