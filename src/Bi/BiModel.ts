@@ -33,6 +33,7 @@ import {
   BI_ATTRIBUTE_FIELD_KEY,
   BI_EVENTS_TYPE_FIELD_KEY,
   BI_REGION_FIELD_KEY,
+  BI_USER_FLOW_FIELD_KEY,
 } from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
@@ -1357,6 +1358,27 @@ class RegionItemModel extends BaseItemModel {
   };
 }
 
+class UserFlowModel extends BaseModel {
+  nodes: any = null;
+  links: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.nodes = entity[BI_USER_FLOW_FIELD_KEY.NODES] ?? '';
+      this.links = entity[BI_USER_FLOW_FIELD_KEY.LINKS] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      [BI_USER_FLOW_FIELD_KEY.NODES]: this.nodes,
+      [BI_USER_FLOW_FIELD_KEY.LINKS]: this.links,
+    };
+  };
+}
+
 export {
   DomainModel,
   VisitorsModel,
@@ -1389,4 +1411,5 @@ export {
   AttributeModel,
   EventsTypeModel,
   RegionModel,
+  UserFlowModel,
 };

@@ -33,6 +33,7 @@ import {
   AttributeModel,
   EventsTypeModel,
   RegionModel,
+  UserFlowModel,
 } from './BiModel';
 import BiRoute from './BiRoute';
 
@@ -744,6 +745,30 @@ class AesirxBiApiService {
       let pagination = null;
       if (data) {
         results = new RegionModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getUserFlow = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getUserFlow(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new UserFlowModel(data);
         pagination = results.getBiPagination();
       }
       if (results) {

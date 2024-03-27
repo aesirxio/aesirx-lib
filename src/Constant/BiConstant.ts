@@ -221,6 +221,11 @@ const BI_REGION_FIELD_KEY = {
   REGION: 'region',
 };
 
+const BI_USER_FLOW_FIELD_KEY = {
+  NODES: 'nodes',
+  LINKS: 'links',
+};
+
 export {
   BI_DASHBOARD_FIELD_KEY,
   BI_WIDGET_FIELD_KEY,
@@ -254,4 +259,5 @@ export {
   BI_ATTRIBUTE_FIELD_KEY,
   BI_EVENTS_TYPE_FIELD_KEY,
   BI_REGION_FIELD_KEY,
+  BI_USER_FLOW_FIELD_KEY,
 };
