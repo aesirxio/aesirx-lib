@@ -97,14 +97,14 @@ class ProductFieldValueItemModel extends BaseItemModel {
       data[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.CUSTOM_FIELDS] &&
       Object.keys(data[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).length
     ) {
-      Object.keys(data[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).forEach(function (
-        key
-      ) {
-        formData.append(
-          [PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + '[' + key + ']',
-          data[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key]
-        );
-      });
+      Object.keys(data[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).forEach(
+        function (key) {
+          formData.append(
+            [PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + '[' + key + ']',
+            data[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key]
+          );
+        }
+      );
     }
     return formData;
   };
@@ -126,12 +126,12 @@ class ProductFieldValueItemModel extends BaseItemModel {
       Object.keys(data[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).length
     ) {
       formData[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.CUSTOM_FIELDS] = {};
-      Object.keys(data[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).forEach(function (
-        key
-      ) {
-        formData[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key] =
-          data[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key];
-      });
+      Object.keys(data[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).forEach(
+        function (key) {
+          formData[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key] =
+            data[PIM_PRODUCT_FIELD_VALUE_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key];
+        }
+      );
     }
     return formData;
   };

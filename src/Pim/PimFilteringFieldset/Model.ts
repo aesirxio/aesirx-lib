@@ -82,14 +82,14 @@ class FilteringFieldsetItemModel extends BaseItemModel {
       data[PIM_FILTERING_FIELDSET_DETAIL_FIELD_KEY.CUSTOM_FIELDS] &&
       Object.keys(data[PIM_FILTERING_FIELDSET_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).length
     ) {
-      Object.keys(data[PIM_FILTERING_FIELDSET_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).forEach(function (
-        key
-      ) {
-        formData.append(
-          [PIM_FILTERING_FIELDSET_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + '[' + key + ']',
-          data[PIM_FILTERING_FIELDSET_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key]
-        );
-      });
+      Object.keys(data[PIM_FILTERING_FIELDSET_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).forEach(
+        function (key) {
+          formData.append(
+            [PIM_FILTERING_FIELDSET_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + '[' + key + ']',
+            data[PIM_FILTERING_FIELDSET_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key]
+          );
+        }
+      );
     }
     return formData;
   };
@@ -111,12 +111,12 @@ class FilteringFieldsetItemModel extends BaseItemModel {
       Object.keys(data[PIM_FILTERING_FIELDSET_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).length
     ) {
       formData[PIM_FILTERING_FIELDSET_DETAIL_FIELD_KEY.CUSTOM_FIELDS] = {};
-      Object.keys(data[PIM_FILTERING_FIELDSET_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).forEach(function (
-        key
-      ) {
-        formData[PIM_FILTERING_FIELDSET_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key] =
-          data[PIM_FILTERING_FIELDSET_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key];
-      });
+      Object.keys(data[PIM_FILTERING_FIELDSET_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).forEach(
+        function (key) {
+          formData[PIM_FILTERING_FIELDSET_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key] =
+            data[PIM_FILTERING_FIELDSET_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key];
+        }
+      );
     }
     return formData;
   };
