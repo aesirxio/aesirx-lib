@@ -58,6 +58,7 @@ const BI_VISITOR_FIELD_KEY = {
   REFERER: 'referer',
   URL: 'url',
   FLOW_ID: 'flow_uuid',
+  UUID: 'uuid',
 };
 
 const BI_SUMMARY_FIELD_KEY = {
@@ -175,6 +176,57 @@ const BI_REFERER_FIELD_KEY = {
   REFERER: 'referer',
 };
 
+const BI_FLOW_LIST_FIELD_KEY = {
+  UUID: 'uuid',
+  FLOW_UUID: 'flow_uuid',
+  GEO: 'geo',
+  START: 'start',
+  END: 'end',
+  URL: 'url',
+  REFERRER: 'referrer',
+  EVENTS: 'events',
+  SOP_ID: 'sop_id',
+  EVENT: 'event',
+  CONVERSION: 'conversion',
+};
+const BI_ISPS_FIELD_KEY = {
+  ISP: 'isp',
+  BOUNCE_RATE: 'bounce_rate',
+};
+
+const BI_CHANNEL_FIELD_KEY = {
+  CHANNEL: 'channel',
+};
+
+const BI_OUTLINK_FIELD_KEY = {
+  REFERER: 'referer',
+  TOTAL_URLS: 'total_urls',
+  URLS: 'urls',
+  URL: 'url',
+};
+
+const BI_ATTRIBUTE_FIELD_KEY = {
+  NAME: 'name',
+  VALUES: 'values',
+  VALUE: 'value',
+};
+
+const BI_EVENTS_TYPE_FIELD_KEY = {
+  EVENT_NAME: 'event_name',
+  EVENT_TYPE: 'event_type',
+  TOTAL_VISITOR: 'total_visitor',
+  UNIQUE_VISITOR: 'unique_visitor',
+};
+
+const BI_REGION_FIELD_KEY = {
+  REGION: 'region',
+};
+
+const BI_USER_FLOW_FIELD_KEY = {
+  NODES: 'nodes',
+  LINKS: 'links',
+};
+
 export {
   BI_DASHBOARD_FIELD_KEY,
   BI_WIDGET_FIELD_KEY,
@@ -195,10 +247,18 @@ export {
   BI_VISITS_FIELD_KEY,
   BI_WOOCOMMERCE_PRODUCT_FIELD_KEY,
   BI_WOOCOMMERCE_PRODUCT_CHART_FIELD_KEY,
-  BI_WOOCOMMERCE_STATISTIC_FIELD_KEY,
   BI_WOOCOMMERCE_STATISTIC_CHART_FIELD_KEY,
+  BI_WOOCOMMERCE_STATISTIC_FIELD_KEY,
   BI_CONSENTS_LIST_FIELD_KEY,
   BI_CONSENTS_DATE_FIELD_KEY,
   BI_CONSENTS_TIER_FIELD_KEY,
   BI_REFERER_FIELD_KEY,
+  BI_FLOW_LIST_FIELD_KEY,
+  BI_ISPS_FIELD_KEY,
+  BI_CHANNEL_FIELD_KEY,
+  BI_OUTLINK_FIELD_KEY,
+  BI_ATTRIBUTE_FIELD_KEY,
+  BI_EVENTS_TYPE_FIELD_KEY,
+  BI_REGION_FIELD_KEY,
+  BI_USER_FLOW_FIELD_KEY,
 };

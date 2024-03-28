@@ -14,6 +14,7 @@ import {
   DomainModel,
   EventsModel,
   FlowItemModel,
+  IspsModel,
   LanguagesModel,
   MetricsModel,
   PagesModel,
@@ -26,6 +27,13 @@ import {
   WoocommerceProductModel,
   WoocommerceStatisticChartModel,
   WoocommerceStatisticModel,
+  FlowListModel,
+  ChannelModel,
+  OutlinkModel,
+  AttributeModel,
+  EventsTypeModel,
+  RegionModel,
+  UserFlowModel,
 } from './BiModel';
 import BiRoute from './BiRoute';
 
@@ -64,12 +72,19 @@ class AesirxBiApiService {
   getAttribute = async (dataFilter: any, dateFilter: any) => {
     try {
       const data = await this.route.getAttribute(dataFilter, dateFilter);
-
-      if (data?.collection) {
-        return data.collection;
-      } else {
-        return null;
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new AttributeModel(data);
+        pagination = results.getBiPagination();
       }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
@@ -240,6 +255,33 @@ class AesirxBiApiService {
       let pagination = null;
       if (data) {
         results = new DevicesModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (process.env.NODE_ENV !== 'test') {
+        return error;
+      }
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getIsps = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getIsps(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new IspsModel(data);
         pagination = results.getBiPagination();
       }
       if (results) {
@@ -584,6 +626,149 @@ class AesirxBiApiService {
       let pagination = null;
       if (data) {
         results = new RefererModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getFlowList = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getFlowList(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new FlowListModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getChannel = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getChannel(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new ChannelModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getOutlink = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getOutlink(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new OutlinkModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getEventsType = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getEventsType(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new EventsTypeModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getRegion = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getRegion(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new RegionModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getUserFlow = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getUserFlow(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new UserFlowModel(data);
         pagination = results.getBiPagination();
       }
       if (results) {
