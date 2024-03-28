@@ -15,7 +15,7 @@
     "moment": "^2.29.4",
     "murmurhash-js": "^1.0.0",
     "query-string": "7",
-    "react-secure-storage": "^1.2.2"
+    "react-secure-storage": "^1.3.2"
   },
   "scripts": {
     "lint": "cross-env NODE_ENV=production BABEL_ENV=production eslint --fix \"src/**/\"",
