@@ -1,4 +1,4 @@
-import AesirxPimProductPriceApiService from './PimProductPrice';
+import { AesirxPimProductPriceApiService } from './PimProductPrice';
 import { describe, expect } from '@jest/globals';
 let createID: any = '';
 

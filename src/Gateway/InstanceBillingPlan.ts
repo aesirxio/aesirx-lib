@@ -6,7 +6,7 @@
 import axios from 'axios';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
-import Storage from '../Utils/Storage';
+import { Storage } from '../Utils/Storage';
 
 const baseUrl =
   process.env.BASE_ENDPOINT_PRICING_PLAN_URL !== undefined &&
@@ -122,7 +122,7 @@ AesirxPricingPlanApiInstance.interceptors.request.use(
       }
     } else {
       accessToken = Storage.getItem(AUTHORIZATION_KEY.PRICING_PLAN_ACCESS_TOKEN);
-      const authorizationHeader = Storage.getItem(
+      const authorizationHeader: any = Storage.getItem(
         AUTHORIZATION_KEY.PRICING_PLAN_AUTHORIZED_TOKEN_HEADER
       );
 

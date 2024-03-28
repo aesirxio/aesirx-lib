@@ -33,4 +33,4 @@ class AesirxPimTagApiService {
   };
 }
 
-export default AesirxPimTagApiService;
+export { AesirxPimTagApiService };

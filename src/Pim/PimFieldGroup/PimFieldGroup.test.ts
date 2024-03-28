@@ -1,4 +1,4 @@
-import AesirxPimFieldGroupApiService from './PimFieldGroup';
+import { AesirxPimFieldGroupApiService } from './PimFieldGroup';
 import { describe, expect } from '@jest/globals';
 let createID: any = '';
 

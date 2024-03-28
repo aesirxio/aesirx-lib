@@ -5,6 +5,7 @@
 
 import BaseItemModel from '../../Abstract/BaseItemModel';
 import { PIM_PRODUCT_DETAIL_FIELD_KEY } from '../../Constant/PimConstant';
+import { Helper } from '../../Utils/Helper';
 class ProductItemModel extends BaseItemModel {
   id: any = null;
   sku: any = null;
@@ -21,7 +22,8 @@ class ProductItemModel extends BaseItemModel {
   related_categories = null;
   thumb_image = null;
   modified_time = null;
-
+  product_type_id = null;
+  product_type_name = null;
   constructor(entity: any) {
     super(entity);
     if (entity) {
@@ -39,6 +41,8 @@ class ProductItemModel extends BaseItemModel {
       this.publish_up = entity[PIM_PRODUCT_DETAIL_FIELD_KEY.PUBLISHED_UP] ?? '';
       this.related_categories = entity[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES] ?? '';
       this.modified_time = entity[PIM_PRODUCT_DETAIL_FIELD_KEY.MODIFIED_TIME] ?? '';
+      this.product_type_id = entity[PIM_PRODUCT_DETAIL_FIELD_KEY.PRODUCT_TYPE_ID] ?? '';
+      this.product_type_name = entity[PIM_PRODUCT_DETAIL_FIELD_KEY.PRODUCT_TYPE_NAME] ?? '';
     }
   }
 
@@ -46,23 +50,15 @@ class ProductItemModel extends BaseItemModel {
     return {};
   };
 
-  isJsonString = (str: any) => {
-    try {
-      JSON.parse(str);
-    } catch (e) {
-      return false;
-    }
-    return true;
-  };
-
   toJSON = () => {
     let customFields = Object.keys(this.custom_fields)
       .map((key) => {
         let value = JSON.parse(JSON.stringify(this.custom_fields[key]));
-        let isJson = this.isJsonString(value);
         if (Array.isArray(value)) {
-          value = value.map((data) => data && JSON.parse(data));
-        } else if (isJson) {
+          value = value.map((data) =>
+            data ? (Helper.isJson(data) ? JSON.parse(data) : data) : ''
+          );
+        } else if (Helper.isJson(value)) {
           value = JSON.parse(value);
         }
         return {
@@ -86,6 +82,8 @@ class ProductItemModel extends BaseItemModel {
       [PIM_PRODUCT_DETAIL_FIELD_KEY.PUBLISH_UP]: this.publish_up,
       [PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES]: this.related_categories,
       [PIM_PRODUCT_DETAIL_FIELD_KEY.MODIFIED_TIME]: this.modified_time,
+      [PIM_PRODUCT_DETAIL_FIELD_KEY.PRODUCT_TYPE_ID]: this.product_type_id,
+      [PIM_PRODUCT_DETAIL_FIELD_KEY.PRODUCT_TYPE_NAME]: this.product_type_name,
     };
   };
 
@@ -115,11 +113,20 @@ class ProductItemModel extends BaseItemModel {
     ) {
       Object.keys(data[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).forEach(function (key) {
         if (Array.isArray(data[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key])) {
-          data[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key].map((field: any) => {
-            return formData.append(
-              [PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + '[' + key + '][]',
-              typeof field === 'object' ? JSON.stringify(field) : field
-            );
+          data[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key].map((field: any, index: any) => {
+            if (typeof field === 'object' && field !== null && !Array.isArray(field)) {
+              Object.keys(field).forEach(function (fieldKey) {
+                return formData.append(
+                  [PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + `[${key}][${index}][${fieldKey}]`,
+                  field[fieldKey]
+                );
+              });
+            } else {
+              return formData.append(
+                [PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + '[' + key + '][' + index + ']',
+                field
+              );
+            }
           });
         } else {
           formData.append(
@@ -161,30 +168,21 @@ class ProductItemModel extends BaseItemModel {
     ) {
       formData[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS] = {};
       Object.keys(data[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).forEach(function (key) {
-        if (key !== 'variant' && key !== 'property' && key !== 'tag') {
-          let fieldData = data[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key];
-          if (typeof fieldData === 'object' && fieldData !== null && !Array.isArray(fieldData)) {
-            formData[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key] = [JSON.stringify(fieldData)];
-          } else if (Array.isArray(fieldData)) {
-            formData[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key] = fieldData.map((field) =>
-              typeof field === 'object' && field !== null ? JSON.stringify(field) : field
-            );
-          } else {
-            formData[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key] = fieldData;
-          }
-        }
+        formData[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key] =
+          data[PIM_PRODUCT_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key];
       });
     }
 
-    if (
-      data[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES] &&
-      data[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES].length
-    ) {
-      formData[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES] = data[
-        PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES
-      ].map((category: any) => {
-        return category;
-      });
+    if (data[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES]) {
+      if (data[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES].length) {
+        formData[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES] = data[
+          PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES
+        ].map((category: any) => {
+          return category;
+        });
+      } else {
+        formData[PIM_PRODUCT_DETAIL_FIELD_KEY.RELATED_CATEGORIES + '[]'] = '';
+      }
     }
 
     return formData;

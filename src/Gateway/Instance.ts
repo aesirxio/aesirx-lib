@@ -8,8 +8,9 @@ import queryString from 'query-string';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
 import BaseRoute from '../Abstract/BaseRoute';
-import Storage from '../Utils/Storage';
-import AesirXAuthenticationApiService from '../Authentication/Authentication';
+import { Storage } from '../Utils/Storage';
+import { AesirxAuthenticationApiService } from '../Authentication/Authentication';
+import { env } from '../env';
 
 const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
   {
@@ -46,9 +47,10 @@ const refreshToken = (failedRequest: any) => {
     [AUTHORIZATION_KEY.TOKEN_TYPE]: [AUTHORIZATION_KEY.TOKEN_TYPE],
     [AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER]: [AUTHORIZATION_KEY.AUTHORIZED_TOKEN_HEADER],
     [AUTHORIZATION_KEY.REFRESH_TOKEN]: [AUTHORIZATION_KEY.REFRESH_TOKEN],
+    [AUTHORIZATION_KEY.JWT]: [AUTHORIZATION_KEY.JWT],
   };
 
-  const request = new AesirXAuthenticationApiService();
+  const request = new AesirxAuthenticationApiService();
 
   request.refreshToken(failedRequest, AUTHORIZED_CODE_URL, refreshTokenFormData, key);
 };
@@ -62,6 +64,7 @@ createAuthRefreshInterceptor(AesirXApiInstance, refreshAuthLogic, {
 
 const pending: any = {};
 const CancelToken = axios.CancelToken;
+
 const removePending = (config: any, f: any) => {
   if (config) {
     const url = config.url.replace(config.baseURL, '/');
@@ -81,23 +84,24 @@ const removePending = (config: any, f: any) => {
     }
   }
 };
+
 AesirXApiInstance.interceptors.request.use(
   function (config: any) {
     let accessToken: any = '';
-
+    let jwt: any = '';
     if (process.env.NODE_ENV === 'test') {
       accessToken = process.env.accessToken;
     } else {
       accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
+      jwt = Storage.getItem(AUTHORIZATION_KEY.JWT);
     }
     if (config.method === 'post' || config.method === 'put') {
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
     }
-
-    if (accessToken) {
+    if (accessToken || jwt) {
       config.headers = {
         ...config.headers,
-        Authorization: 'Bearer ' + accessToken,
+        Authorization: 'Bearer ' + (env?.REACT_APP_HEADER_JWT === 'true' ? jwt : accessToken),
       };
     }
 

@@ -159,4 +159,4 @@ class AesirxCampaignApiService {
   }
 }
 
-export default AesirxCampaignApiService;
+export { AesirxCampaignApiService };

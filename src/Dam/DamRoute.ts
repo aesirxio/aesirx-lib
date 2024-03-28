@@ -10,6 +10,7 @@ class DamRoute extends BaseRoute {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'user_subscription',
+        'filter[product][]': 'product-aesirx-dam',
       })
     );
   };
@@ -37,7 +38,7 @@ class DamRoute extends BaseRoute {
     );
   };
 
-  getAssets = (collectionId = 0, dataFilter = {}) => {
+  getAssets = (collectionId = 0, dataFilter = { limitAsset: 2 }) => {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'dam_asset',
@@ -61,7 +62,12 @@ class DamRoute extends BaseRoute {
       this.createRequestURL({
         option: 'dam_asset',
       }),
-      data
+      data,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
     );
   };
 
@@ -73,7 +79,7 @@ class DamRoute extends BaseRoute {
       data,
       {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'multipart/form-data',
         },
       }
     );

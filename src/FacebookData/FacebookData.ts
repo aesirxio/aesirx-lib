@@ -6,12 +6,12 @@
 import FacebookDataRoute from './FacebookDataRoute';
 import axios from 'axios';
 import { AUTHORIZATION_KEY } from '../Constant/Constant';
-import Storage from '../Utils/Storage';
+import { Storage } from '../Utils/Storage';
 
 /**
  * Laravel Service - Facebook Data
  */
-class FacebookData {
+class AesirxFacebookDataApiService {
   route: any = null;
   accessToken = Storage.getItem(AUTHORIZATION_KEY.FACEBOOK_ADS_APP_ACCESS_TOKEN);
   facebookGraphApiDomain = 'graph.facebook.com';
@@ -114,4 +114,4 @@ class FacebookData {
   }
 }
 
-export default FacebookData;
+export { AesirxFacebookDataApiService };

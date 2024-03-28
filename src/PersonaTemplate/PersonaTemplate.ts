@@ -79,4 +79,4 @@ class AesirxPersonaTemplateApiService {
   }
 }
 
-export default AesirxPersonaTemplateApiService;
+export { AesirxPersonaTemplateApiService };

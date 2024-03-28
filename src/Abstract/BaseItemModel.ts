@@ -73,6 +73,7 @@ class BaseItemModel {
     return {
       created_date: this.createdDate,
       modified_date: Utils.formatDatetimeByLocale(this.modifiedDate),
+      modified_date_org: this.modifiedDate,
       created_by: this.createdBy,
       modified_by: this.modifiedBy,
     };

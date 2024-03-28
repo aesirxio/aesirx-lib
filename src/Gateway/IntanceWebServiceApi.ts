@@ -6,10 +6,10 @@
 import axios from 'axios';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 import { AUTHORIZATION_KEY, AXIOS_CONFIGS } from '../Constant/Constant';
-import Storage from '../Utils/Storage';
+import { Storage } from '../Utils/Storage';
 import BaseRoute from '../Abstract/BaseRoute';
 import queryString from 'query-string';
-import AesirxAuthenticationApiService from '../Authentication/Authentication';
+import { AesirxAuthenticationApiService } from '../Authentication/Authentication';
 const AUTHORIZED_CODE_URL = BaseRoute.__createRequestURL(
   {
     option: 'token',

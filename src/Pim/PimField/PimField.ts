@@ -136,4 +136,4 @@ class AesirxPimFieldApiService {
   };
 }
 
-export default AesirxPimFieldApiService;
+export { AesirxPimFieldApiService };

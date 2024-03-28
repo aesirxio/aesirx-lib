@@ -39,6 +39,13 @@ const BI_NEW_USERS_KEY = {
 
 const BI_VISITORS_FIELD_KEY = {
   VISITS: 'visits',
+  TOTAL_PAGE_VIEWS: 'total_page_views',
+  DATE: 'date',
+};
+
+const BI_VISITS_FIELD_KEY = {
+  VISITS: 'visits',
+  UNIQUE_VISITS: 'unique_visits',
   DATE: 'date',
 };
 
@@ -51,10 +58,13 @@ const BI_VISITOR_FIELD_KEY = {
   REFERER: 'referer',
   URL: 'url',
   FLOW_ID: 'flow_uuid',
+  UUID: 'uuid',
 };
 
 const BI_SUMMARY_FIELD_KEY = {
   NUMBER_OF_VISITORS: 'number_of_visitors',
+  TOTAL_NUMBER_OF_VISITORS: 'total_number_of_visitors',
+  NUMBER_OF_VISITORS_PERCENT: 'number_of_visitors_percent',
   NUMBER_OF_PAGE_VIEWS: 'number_of_page_views',
   NUMBER_OF_UNIQUE_PAGE_VIEWS: 'number_of_unique_page_views',
   AVERAGE_SESSION_DURATION: 'average_session_duration',
@@ -62,13 +72,29 @@ const BI_SUMMARY_FIELD_KEY = {
   BOUNCE_RATE: 'bounce_rate',
 };
 
-const BI_METRICS_FIELD_KEY = {
-  NUMBER_OF_VISITORS: 'visitors',
-  NUMBER_OF_PAGE_VIEWS: 'page_views',
-  NUMBER_OF_UNIQUE_PAGE_VIEWS: 'page_views_unique',
-  AVERAGE_SESSION_DURATION: 'session_duration_average_seconds',
-  NUMBER_OF_PAGES_PER_SESSION: 'pages_per_session_average',
-  BOUNCE_RATE: 'bounce_rate_percentage',
+const BI_DEVICES_FIELD_KEY = {
+  DEVICE: 'device',
+};
+
+const BI_COUNTRIES_FIELD_KEY = {
+  COUNTRY_NAME: 'country_name',
+  COUNTRY_CODE: 'country_code',
+};
+
+const BI_CITIES_FIELD_KEY = {
+  CITY: 'city',
+};
+
+const BI_BROWSERS_FIELD_KEY = {
+  BROWSER_NAME: 'browser_name',
+};
+
+const BI_PAGES_FIELD_KEY = {
+  URL: 'url',
+};
+
+const BI_LANGUAGES_FIELD_KEY = {
+  LANG: 'lang',
 };
 
 const BI_DOMAIN_FIELD_KEY = {
@@ -88,6 +114,117 @@ const BI_FLOW_DETAIL_KEY = {
   START: 'start',
   END: 'end',
   GEO: 'geo',
+  EVENTS: 'events',
+};
+
+const BI_EVENTS_FIELD_KEY = {
+  EVENT_NAME: 'event_name',
+  EVENT_TYPE: 'event_type',
+  TOTAL_VISITOR: 'total_visitor',
+  DATE: 'date',
+};
+
+const BI_WOOCOMMERCE_PRODUCT_FIELD_KEY = {
+  AVG_PRICE: 'avg_price',
+  AVG_QUANTITY: 'avg_quantity',
+  ITEMS_SOLD: 'items_sold',
+  PRODUCT: 'product',
+  PRODUCT_REVENUE: 'product_revenue',
+  QUANTITY: 'quantity',
+};
+
+const BI_WOOCOMMERCE_PRODUCT_CHART_FIELD_KEY = {
+  DATE: 'date',
+  QUANTITY: 'quantity',
+};
+
+const BI_WOOCOMMERCE_STATISTIC_FIELD_KEY = {
+  AVG_ORDER_VALUE: 'avg_order_value',
+  CONVERSION_RATE: 'conversion_rate',
+  TOTAL_ADD_TO_CARTS: 'total_add_to_carts',
+  TOTAL_REVENUE: 'total_revenue',
+  TRANSACTIONS: 'transactions',
+};
+
+const BI_WOOCOMMERCE_STATISTIC_CHART_FIELD_KEY = {
+  DATE: 'date',
+  TOTAL_PURCHASERS: 'total_purchasers',
+  TOTAL_REVENUE: 'total_revenue',
+};
+
+const BI_CONSENTS_LIST_FIELD_KEY = {
+  CONSENT: 'consent',
+  DATETIME: 'datetime',
+  EXPIRATION: 'expiration',
+  TIER: 'tier',
+  UUID: 'uuid',
+  WALLET: 'wallet',
+  WEB3ID: 'web3id',
+};
+
+const BI_CONSENTS_DATE_FIELD_KEY = {
+  DATE: 'date',
+  TOTAL: 'total',
+};
+
+const BI_CONSENTS_TIER_FIELD_KEY = {
+  TIER: 'tier',
+  TOTAL: 'total',
+};
+
+const BI_REFERER_FIELD_KEY = {
+  REFERER: 'referer',
+};
+
+const BI_FLOW_LIST_FIELD_KEY = {
+  UUID: 'uuid',
+  FLOW_UUID: 'flow_uuid',
+  GEO: 'geo',
+  START: 'start',
+  END: 'end',
+  URL: 'url',
+  REFERRER: 'referrer',
+  EVENTS: 'events',
+  SOP_ID: 'sop_id',
+  EVENT: 'event',
+  CONVERSION: 'conversion',
+};
+const BI_ISPS_FIELD_KEY = {
+  ISP: 'isp',
+  BOUNCE_RATE: 'bounce_rate',
+};
+
+const BI_CHANNEL_FIELD_KEY = {
+  CHANNEL: 'channel',
+};
+
+const BI_OUTLINK_FIELD_KEY = {
+  REFERER: 'referer',
+  TOTAL_URLS: 'total_urls',
+  URLS: 'urls',
+  URL: 'url',
+};
+
+const BI_ATTRIBUTE_FIELD_KEY = {
+  NAME: 'name',
+  VALUES: 'values',
+  VALUE: 'value',
+};
+
+const BI_EVENTS_TYPE_FIELD_KEY = {
+  EVENT_NAME: 'event_name',
+  EVENT_TYPE: 'event_type',
+  TOTAL_VISITOR: 'total_visitor',
+  UNIQUE_VISITOR: 'unique_visitor',
+};
+
+const BI_REGION_FIELD_KEY = {
+  REGION: 'region',
+};
+
+const BI_USER_FLOW_FIELD_KEY = {
+  NODES: 'nodes',
+  LINKS: 'links',
 };
 
 export {
@@ -98,7 +235,30 @@ export {
   BI_VISITORS_FIELD_KEY,
   BI_DOMAIN_FIELD_KEY,
   BI_SUMMARY_FIELD_KEY,
-  BI_METRICS_FIELD_KEY,
+  BI_DEVICES_FIELD_KEY,
+  BI_COUNTRIES_FIELD_KEY,
+  BI_CITIES_FIELD_KEY,
+  BI_BROWSERS_FIELD_KEY,
+  BI_PAGES_FIELD_KEY,
+  BI_LANGUAGES_FIELD_KEY,
   BI_VISITOR_FIELD_KEY,
   BI_FLOW_DETAIL_KEY,
+  BI_EVENTS_FIELD_KEY,
+  BI_VISITS_FIELD_KEY,
+  BI_WOOCOMMERCE_PRODUCT_FIELD_KEY,
+  BI_WOOCOMMERCE_PRODUCT_CHART_FIELD_KEY,
+  BI_WOOCOMMERCE_STATISTIC_CHART_FIELD_KEY,
+  BI_WOOCOMMERCE_STATISTIC_FIELD_KEY,
+  BI_CONSENTS_LIST_FIELD_KEY,
+  BI_CONSENTS_DATE_FIELD_KEY,
+  BI_CONSENTS_TIER_FIELD_KEY,
+  BI_REFERER_FIELD_KEY,
+  BI_FLOW_LIST_FIELD_KEY,
+  BI_ISPS_FIELD_KEY,
+  BI_CHANNEL_FIELD_KEY,
+  BI_OUTLINK_FIELD_KEY,
+  BI_ATTRIBUTE_FIELD_KEY,
+  BI_EVENTS_TYPE_FIELD_KEY,
+  BI_REGION_FIELD_KEY,
+  BI_USER_FLOW_FIELD_KEY,
 };

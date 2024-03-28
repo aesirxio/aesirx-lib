@@ -1,4 +1,4 @@
-import AesirxPimCategoryApiService from './PimCategory';
+import { AesirxPimCategoryApiService } from './PimCategory';
 import { describe, expect } from '@jest/globals';
 
 let createID: any = '';

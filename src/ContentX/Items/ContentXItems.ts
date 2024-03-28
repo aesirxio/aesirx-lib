@@ -127,4 +127,4 @@ class AesirxContentXItemsApiService {
   };
 }
 
-export default AesirxContentXItemsApiService;
+export { AesirxContentXItemsApiService };

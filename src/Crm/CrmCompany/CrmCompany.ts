@@ -160,4 +160,4 @@ class AesirxCrmCompanyApiService {
   };
 }
 
-export default AesirxCrmCompanyApiService;
+export { AesirxCrmCompanyApiService };

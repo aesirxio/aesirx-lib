@@ -21,6 +21,15 @@ const MEMBER_FIELD_KEY = {
   CREATED_DATE: 'registerDate',
   TIMEZONE: 'timezone',
   LOGO: 'member_logo',
+  AVATAR_DAM: 'avatar_dam',
+  USERNAME: 'username',
+  WALLET_METAMASK: 'wallet_metamask',
+  WALLET_CONCORDIUM: 'wallet_concordium',
+  DESCRIPTION: 'description',
+  ORGANIZATION: 'organization',
+  FIRST_NAME: 'first_name',
+  LAST_NAME: 'sur_name',
+  CHATGPT_API_KEY: 'chatgpt_api_key',
 };
 
 const MEMBER_GET_FIELD_KEY = {
@@ -42,6 +51,12 @@ const MEMBER_GET_FIELD_KEY = {
   ALLOW_CREATE_ITEM: 'allow_create_item',
   ORGANIZATION: 'organization',
   LOGO: 'member_logo',
+  WALLET_METAMASK: 'wallet_metamask',
+  WALLET_CONCORDIUM: 'wallet_concordium',
+  DESCRIPTION: 'description',
+  FIRST_NAME: 'first_name',
+  LAST_NAME: 'sur_name',
+  CHATGPT_API_KEY: 'chatgpt_api_key',
 };
 
 const MEMBER_CREATE_FIELD_KEY = {

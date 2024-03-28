@@ -16,18 +16,21 @@ class BaseRoute {
     webserviceVersion: '1.0.0',
     api: 'hal',
   };
+
   createRequestURL = (props: any, isDefault = true, baseUrl = this.baseURL, isBi = false) => {
     let result;
+    baseUrl = baseUrl ?? this.baseURL;
     if (isBi) {
       const datePath = props?.date ? `${props?.date?.date_start}/${props?.date?.date_end}` : null;
-
-      result = this.baseURL.concat('/').concat(props?.url);
-
+      result = baseUrl.concat('/').concat(props?.url);
       if (datePath) {
         result = result.concat(datePath);
       }
       if (props.filter) {
         result = result.concat('?').concat(queryString.stringify(props.filter));
+      }
+      if (baseUrl && !result?.startsWith('http')) {
+        result = 'https://' + result;
       }
       return decodeURI(result);
     } else {

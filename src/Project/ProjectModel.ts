@@ -44,11 +44,11 @@ class ProjectFilterModel extends BaseModel {
     const pagination = this.pureEntities.result.pagination;
 
     return {
-      page: pagination.page ? parseInt(pagination.page) : null,
-      pageLimit: pagination.pageLimit ? parseInt(pagination.pageLimit) : null,
-      limitstart: pagination.limitStart ? parseInt(pagination.limitStart) : null,
-      totalItems: pagination.totalItems ? parseInt(pagination.totalItems) : null,
-      totalPages: pagination.totalPage ? parseInt(pagination.totalPage) : null,
+      page: pagination.page ? parseInt(pagination.page) : 1,
+      pageLimit: pagination.pageLimit ? parseInt(pagination.pageLimit) : 0,
+      limitstart: pagination.limitStart ? parseInt(pagination.limitStart) : 0,
+      totalItems: pagination.totalItems ? parseInt(pagination.totalItems) : 0,
+      totalPages: pagination.totalPage ? parseInt(pagination.totalPage) : 0,
     };
   };
 }
@@ -59,6 +59,7 @@ class ProjectItemModel extends BaseItemModel {
   shortDescription = '';
   logo = '';
   projectLead = null;
+  status = 0;
 
   constructor(entity: any) {
     super(entity);
@@ -69,6 +70,7 @@ class ProjectItemModel extends BaseItemModel {
       this.shortDescription = entity[ESI_PROJECT_API_RESPONSE_FIELD_KEY.SHORT_DESCRIPTION] ?? '';
       this.logo = entity[ESI_PROJECT_API_RESPONSE_FIELD_KEY.LOGO] ?? '';
       this.projectLead = entity[ESI_PROJECT_API_RESPONSE_FIELD_KEY.PROJECT_LEAD] ?? 0;
+      this.status = entity[ESI_PROJECT_API_RESPONSE_FIELD_KEY.STATUS] ?? 0;
     }
   }
 
@@ -92,6 +94,10 @@ class ProjectItemModel extends BaseItemModel {
     return this.projectLead;
   };
 
+  getStatus = () => {
+    return this.status;
+  };
+
   toJSON = () => {
     return {
       ...this.baseToJSON(),
@@ -102,6 +108,7 @@ class ProjectItemModel extends BaseItemModel {
       [ESI_PROJECT_FIELD_KEY.SHORT_DESCRIPTION]: this.shortDescription,
       [ESI_PROJECT_FIELD_KEY.LOGO]: this.logo,
       [ESI_PROJECT_FIELD_KEY.PROJECT_LEAD]: this.projectLead,
+      [ESI_PROJECT_FIELD_KEY.STATUS]: this.status,
     };
   };
 
@@ -115,6 +122,7 @@ class ProjectItemModel extends BaseItemModel {
       [ESI_PROJECT_API_RESPONSE_FIELD_KEY.LOGO]: data[ESI_PROJECT_FIELD_KEY.LOGO] ?? '',
       [ESI_PROJECT_API_RESPONSE_FIELD_KEY.PROJECT_LEAD]:
         data[ESI_PROJECT_FIELD_KEY.PROJECT_LEAD] ?? '',
+      [ESI_PROJECT_API_RESPONSE_FIELD_KEY.STATUS]: data[ESI_PROJECT_FIELD_KEY.STATUS] ?? '',
     };
   };
 
@@ -132,6 +140,7 @@ class ProjectItemModel extends BaseItemModel {
         data[ESI_PROJECT_FIELD_KEY.SHORT_DESCRIPTION],
       [ESI_PROJECT_API_RESPONSE_FIELD_KEY.LOGO]: data[ESI_PROJECT_FIELD_KEY.LOGO],
       [ESI_PROJECT_API_RESPONSE_FIELD_KEY.PROJECT_LEAD]: data[ESI_PROJECT_FIELD_KEY.PROJECT_LEAD],
+      [ESI_PROJECT_API_RESPONSE_FIELD_KEY.STATUS]: data[ESI_PROJECT_FIELD_KEY.STATUS],
     };
   };
 }

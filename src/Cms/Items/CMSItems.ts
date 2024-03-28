@@ -127,4 +127,4 @@ class AesirxCmsItemsApiService {
   };
 }
 
-export default AesirxCmsItemsApiService;
+export { AesirxCmsItemsApiService };

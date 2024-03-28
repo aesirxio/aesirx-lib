@@ -303,4 +303,4 @@ class AesirxDamApiService {
   };
 }
 
-export default AesirxDamApiService;
+export { AesirxDamApiService };

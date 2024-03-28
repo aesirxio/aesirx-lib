@@ -71,4 +71,4 @@ class AesirxCmsFieldsApiService {
   };
 }
 
-export default AesirxCmsFieldsApiService;
+export { AesirxCmsFieldsApiService };

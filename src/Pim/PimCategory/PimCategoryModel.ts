@@ -35,6 +35,8 @@ class CategoryItemModel extends BaseItemModel {
   modified_time = null;
   product_quantity = null;
   parent_name = null;
+  product_type_id = null;
+  product_type_name = null;
 
   constructor(entity: any) {
     super(entity);
@@ -57,6 +59,8 @@ class CategoryItemModel extends BaseItemModel {
       this.modified_time = entity[PIM_CATEGORY_DETAIL_FIELD_KEY.MODIFIED_TIME] ?? '';
       this.product_quantity = entity[PIM_CATEGORY_DETAIL_FIELD_KEY.PRODUCT_QUANTITY] ?? '';
       this.parent_name = entity[PIM_CATEGORY_DETAIL_FIELD_KEY.PARENT_NAME] ?? '';
+      this.product_type_id = entity[PIM_CATEGORY_DETAIL_FIELD_KEY.PRODUCT_TYPE_ID] ?? '';
+      this.product_type_name = entity[PIM_CATEGORY_DETAIL_FIELD_KEY.PRODUCT_TYPE_NAME] ?? '';
     }
   }
 
@@ -83,6 +87,8 @@ class CategoryItemModel extends BaseItemModel {
       [PIM_CATEGORY_DETAIL_FIELD_KEY.MODIFIED_TIME]: this.modified_time,
       [PIM_CATEGORY_DETAIL_FIELD_KEY.PRODUCT_QUANTITY]: this.product_quantity,
       [PIM_CATEGORY_DETAIL_FIELD_KEY.PARENT_NAME]: this.parent_name,
+      [PIM_CATEGORY_DETAIL_FIELD_KEY.PRODUCT_TYPE_ID]: this.product_type_id,
+      [PIM_CATEGORY_DETAIL_FIELD_KEY.PRODUCT_TYPE_NAME]: this.product_type_name,
     };
   };
 
@@ -109,10 +115,28 @@ class CategoryItemModel extends BaseItemModel {
       Object.keys(data[PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).length
     ) {
       Object.keys(data[PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS]).forEach(function (key) {
-        formData.append(
-          [PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + '[' + key + ']',
-          data[PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key]
-        );
+        if (Array.isArray(data[PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key])) {
+          data[PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key].map((field: any, index: any) => {
+            if (typeof field === 'object' && field !== null && !Array.isArray(field)) {
+              Object.keys(field).forEach(function (fieldKey) {
+                return formData.append(
+                  [PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + `[${key}][${index}][${fieldKey}]`,
+                  field[fieldKey]
+                );
+              });
+            } else {
+              return formData.append(
+                [PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + '[' + key + '][' + index + ']',
+                field
+              );
+            }
+          });
+        } else {
+          formData.append(
+            [PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS] + '[' + key + ']',
+            data[PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key]
+          );
+        }
       });
     }
     if (
@@ -153,15 +177,16 @@ class CategoryItemModel extends BaseItemModel {
           data[PIM_CATEGORY_DETAIL_FIELD_KEY.CUSTOM_FIELDS][key];
       });
     }
-    if (
-      data[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES] &&
-      data[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES].length
-    ) {
-      formData[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES] = data[
-        PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES
-      ].map((category: any) => {
-        return category.id;
-      });
+    if (data[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES]) {
+      if (data[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES].length) {
+        formData[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES] = data[
+          PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES
+        ].map((category: any) => {
+          return category.id;
+        });
+      } else {
+        formData[PIM_CATEGORY_DETAIL_FIELD_KEY.RELATED_CATEGORIES + '[]'] = '';
+      }
     }
     return formData;
   };

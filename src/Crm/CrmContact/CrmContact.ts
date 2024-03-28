@@ -159,4 +159,4 @@ class AesirxCrmContactApiService {
   };
 }
 
-export default AesirxCrmContactApiService;
+export { AesirxCrmContactApiService };

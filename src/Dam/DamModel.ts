@@ -242,15 +242,22 @@ class AssetsItemModel extends BaseItemModel {
   };
 
   static __transformItemToApiOfUpdation = (data: any) => {
-    let formData: any = {};
-    const excluded = [DAM_ASSETS_FIELD_KEY.COLLECTION_ID];
+    let formData = new FormData();
+    const excluded = [DAM_ASSETS_FIELD_KEY.COLLECTION_ID, DAM_ASSETS_FIELD_KEY.FILE];
     Object.keys(DAM_ASSETS_API_FIELD_KEY).forEach((index) => {
       if (!excluded.includes(DAM_ASSETS_FIELD_KEY[index]) && data[DAM_ASSETS_FIELD_KEY[index]]) {
-        formData[DAM_ASSETS_API_FIELD_KEY[index]] = data[DAM_ASSETS_FIELD_KEY[index]];
+        formData.append(DAM_ASSETS_API_FIELD_KEY[index], data[DAM_ASSETS_FIELD_KEY[index]]);
       }
     });
-    formData[DAM_ASSETS_API_FIELD_KEY.COLLECTION_ID] =
-      data[DAM_ASSETS_API_FIELD_KEY.COLLECTION_ID] ?? 0;
+
+    formData.append(
+      DAM_ASSETS_API_FIELD_KEY.COLLECTION_ID,
+      data[DAM_ASSETS_FIELD_KEY.COLLECTION_ID] ?? 0
+    );
+
+    if (data[DAM_ASSETS_FIELD_KEY.FILE]) {
+      formData.append([DAM_ASSETS_API_FIELD_KEY.FILE] + '[]', data[DAM_ASSETS_FIELD_KEY.FILE]);
+    }
 
     return formData;
   };
