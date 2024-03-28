@@ -17,6 +17,7 @@ import {
   BI_LANGUAGES_FIELD_KEY,
   BI_PAGES_FIELD_KEY,
   BI_EVENTS_FIELD_KEY,
+  BI_ISPS_FIELD_KEY,
   BI_VISITS_FIELD_KEY,
   BI_WOOCOMMERCE_PRODUCT_FIELD_KEY,
   BI_WOOCOMMERCE_PRODUCT_CHART_FIELD_KEY,
@@ -26,6 +27,13 @@ import {
   BI_CONSENTS_DATE_FIELD_KEY,
   BI_CONSENTS_TIER_FIELD_KEY,
   BI_REFERER_FIELD_KEY,
+  BI_FLOW_LIST_FIELD_KEY,
+  BI_CHANNEL_FIELD_KEY,
+  BI_OUTLINK_FIELD_KEY,
+  BI_ATTRIBUTE_FIELD_KEY,
+  BI_EVENTS_TYPE_FIELD_KEY,
+  BI_REGION_FIELD_KEY,
+  BI_USER_FLOW_FIELD_KEY,
 } from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
@@ -244,6 +252,7 @@ class VisitorItemModel extends BaseItemModel {
   url = null;
   referer = null;
   flow_id = null;
+  uuid = null;
   constructor(entity: any) {
     super(entity);
     if (entity) {
@@ -255,6 +264,7 @@ class VisitorItemModel extends BaseItemModel {
       this.url = entity[BI_VISITOR_FIELD_KEY.URL] ?? '';
       this.referer = entity[BI_VISITOR_FIELD_KEY.REFERER] ?? '';
       this.flow_id = entity[BI_VISITOR_FIELD_KEY.FLOW_ID] ?? '';
+      this.uuid = entity[BI_VISITOR_FIELD_KEY.UUID] ?? '';
     }
   }
   toObject = () => {
@@ -271,6 +281,7 @@ class VisitorItemModel extends BaseItemModel {
       [BI_VISITOR_FIELD_KEY.URL]: this.url,
       [BI_VISITOR_FIELD_KEY.REFERER]: this.referer,
       [BI_VISITOR_FIELD_KEY.FLOW_ID]: this.flow_id,
+      [BI_VISITOR_FIELD_KEY.UUID]: this.uuid,
     };
   };
 }
@@ -479,6 +490,45 @@ class CitiesItemModel extends BaseItemModel {
   };
 }
 
+class IspsItemModel extends BaseItemModel {
+  isps: any = null;
+  number_of_visitors: any = null;
+  number_of_page_views: any = null;
+  number_of_unique_page_views: any = null;
+  average_session_duration: any = null;
+  number_of_pages_per_session: any = null;
+  bounce_rate: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.isps = entity[BI_ISPS_FIELD_KEY.ISP] ?? '';
+      this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.number_of_page_views = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
+      this.number_of_unique_page_views =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
+      this.average_session_duration = entity[BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION] ?? '';
+      this.number_of_pages_per_session =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION] ?? '';
+      this.bounce_rate = entity[BI_SUMMARY_FIELD_KEY.BOUNCE_RATE] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_ISPS_FIELD_KEY.ISP]: this.isps,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
+      [BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION]: this.number_of_pages_per_session,
+      [BI_SUMMARY_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
+    };
+  };
+}
+
 class BrowsersModel extends BaseModel {
   items: any = null;
   constructor(entities: any) {
@@ -532,6 +582,19 @@ class BrowsersItemModel extends BaseItemModel {
       [BI_SUMMARY_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
     };
   };
+}
+
+class IspsModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new IspsItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
 }
 
 class LanguagesModel extends BaseModel {
@@ -988,6 +1051,334 @@ class RefererItemModel extends BaseItemModel {
   };
 }
 
+class FlowListModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new FlowListItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+
+class FlowListItemModel extends BaseItemModel {
+  uuid: any = null;
+  flow_uuid: any = null;
+  geo: any = null;
+  start: any = null;
+  end: any = null;
+  url: any = null;
+  referrer: any = null;
+  sop_id: any = null;
+  events: any = null;
+  event: any = null;
+  conversion: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.uuid = entity[BI_FLOW_LIST_FIELD_KEY.UUID] ?? '';
+      this.flow_uuid = entity[BI_FLOW_LIST_FIELD_KEY.FLOW_UUID] ?? '';
+      this.geo = entity[BI_FLOW_LIST_FIELD_KEY.GEO] ?? '';
+      this.start = entity[BI_FLOW_LIST_FIELD_KEY.START] ?? '';
+      this.end = entity[BI_FLOW_LIST_FIELD_KEY.END] ?? '';
+      this.url = entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]?.length
+        ? entity[BI_FLOW_LIST_FIELD_KEY.EVENTS][0]?.url
+        : '';
+      this.referrer = entity[BI_FLOW_LIST_FIELD_KEY.REFERRER] ?? '';
+      this.events = entity[BI_FLOW_LIST_FIELD_KEY.EVENTS] ?? '';
+      this.event =
+        entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]?.filter(
+          (item: any) => item?.event_type === 'click' || item?.event_type === 'submit'
+        ).length ?? 0;
+      this.conversion =
+        entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]?.filter(
+          (item: any) => item?.event_type === 'conversion'
+        ).length ?? 0;
+      this.sop_id = entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]?.length
+        ? entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]
+            ?.find((item: any) => {
+              return item?.attributes;
+            })
+            ?.attributes?.find((attr: any) => {
+              return attr?.name === 'sop_id';
+            })?.value ?? 'Not Available'
+        : 'Not Available';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_FLOW_LIST_FIELD_KEY.UUID]: this.uuid,
+      [BI_FLOW_LIST_FIELD_KEY.FLOW_UUID]: this.flow_uuid,
+      [BI_FLOW_LIST_FIELD_KEY.GEO]: this.geo,
+      [BI_FLOW_LIST_FIELD_KEY.START]: this.start,
+      [BI_FLOW_LIST_FIELD_KEY.END]: this.end,
+      [BI_FLOW_LIST_FIELD_KEY.URL]: this.url,
+      [BI_FLOW_LIST_FIELD_KEY.REFERRER]: this.referrer,
+      [BI_FLOW_LIST_FIELD_KEY.SOP_ID]: this.sop_id,
+      [BI_FLOW_LIST_FIELD_KEY.EVENTS]: this.events,
+      [BI_FLOW_LIST_FIELD_KEY.EVENT]: this.event,
+      [BI_FLOW_LIST_FIELD_KEY.CONVERSION]: this.conversion,
+    };
+  };
+}
+
+class ChannelModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new ChannelItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+
+class ChannelItemModel extends BaseItemModel {
+  channel: any = null;
+  number_of_visitors: any = null;
+  total_number_of_visitors: any = null;
+  number_of_page_views: any = null;
+  number_of_unique_page_views: any = null;
+  average_session_duration: any = null;
+  number_of_pages_per_session: any = null;
+  bounce_rate: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.channel = entity[BI_CHANNEL_FIELD_KEY.CHANNEL] ?? '';
+      this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.total_number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.TOTAL_NUMBER_OF_VISITORS] ?? '';
+      this.number_of_page_views = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
+      this.number_of_unique_page_views =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
+      this.average_session_duration = entity[BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION] ?? '';
+      this.number_of_pages_per_session =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION] ?? '';
+      this.bounce_rate = entity[BI_SUMMARY_FIELD_KEY.BOUNCE_RATE] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_CHANNEL_FIELD_KEY.CHANNEL]: this.channel,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.TOTAL_NUMBER_OF_VISITORS]: this.total_number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
+      [BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION]: this.number_of_pages_per_session,
+      [BI_SUMMARY_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
+    };
+  };
+}
+
+class OutlinkModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new OutlinkItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+
+class OutlinkItemModel extends BaseItemModel {
+  referer: any = null;
+  total_urls: any = null;
+  urls: any = null;
+  number_of_visitors: any = null;
+  total_number_of_visitors: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.referer = entity[BI_OUTLINK_FIELD_KEY.REFERER] ?? '';
+      this.total_urls = entity[BI_OUTLINK_FIELD_KEY.TOTAL_URLS] ?? '';
+      this.urls = entity[BI_OUTLINK_FIELD_KEY.URLS] ?? '';
+      this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.total_number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.TOTAL_NUMBER_OF_VISITORS] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_OUTLINK_FIELD_KEY.REFERER]: this.referer,
+      [BI_OUTLINK_FIELD_KEY.TOTAL_URLS]: this.total_urls,
+      [BI_OUTLINK_FIELD_KEY.URLS]: this.urls,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.TOTAL_NUMBER_OF_VISITORS]: this.total_number_of_visitors,
+    };
+  };
+}
+
+class EventsTypeModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new EventsTypeItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class EventsTypeItemModel extends BaseItemModel {
+  event_name = null;
+  event_type = null;
+  total_visitor = null;
+  unique_visitor = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.event_name = entity[BI_EVENTS_TYPE_FIELD_KEY.EVENT_NAME] ?? '';
+      this.event_type = entity[BI_EVENTS_TYPE_FIELD_KEY.EVENT_TYPE] ?? '';
+      this.total_visitor = entity[BI_EVENTS_TYPE_FIELD_KEY.TOTAL_VISITOR] ?? '';
+      this.unique_visitor = entity[BI_EVENTS_TYPE_FIELD_KEY.UNIQUE_VISITOR] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_EVENTS_TYPE_FIELD_KEY.EVENT_NAME]: this.event_name,
+      [BI_EVENTS_TYPE_FIELD_KEY.EVENT_TYPE]: this.event_type,
+      [BI_EVENTS_TYPE_FIELD_KEY.TOTAL_VISITOR]: this.total_visitor,
+      [BI_EVENTS_TYPE_FIELD_KEY.UNIQUE_VISITOR]: this.unique_visitor,
+    };
+  };
+}
+
+class AttributeModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new AttributeItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+
+class AttributeItemModel extends BaseItemModel {
+  name: any = null;
+  values: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.name = entity[BI_ATTRIBUTE_FIELD_KEY.NAME] ?? '';
+      this.values = entity[BI_ATTRIBUTE_FIELD_KEY.VALUES] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_ATTRIBUTE_FIELD_KEY.NAME]: this.name,
+      [BI_ATTRIBUTE_FIELD_KEY.VALUES]: this.values,
+    };
+  };
+}
+
+class RegionModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new RegionItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+
+class RegionItemModel extends BaseItemModel {
+  region: any = null;
+  number_of_visitors: any = null;
+  total_number_of_visitors: any = null;
+  number_of_page_views: any = null;
+  number_of_unique_page_views: any = null;
+  average_session_duration: any = null;
+  number_of_pages_per_session: any = null;
+  bounce_rate: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.region = entity[BI_REGION_FIELD_KEY.REGION] ?? '';
+      this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.total_number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.TOTAL_NUMBER_OF_VISITORS] ?? '';
+      this.number_of_page_views = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
+      this.number_of_unique_page_views =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
+      this.average_session_duration = entity[BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION] ?? '';
+      this.number_of_pages_per_session =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION] ?? '';
+      this.bounce_rate = entity[BI_SUMMARY_FIELD_KEY.BOUNCE_RATE] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_REGION_FIELD_KEY.REGION]: this.region,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.TOTAL_NUMBER_OF_VISITORS]: this.total_number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
+      [BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION]: this.number_of_pages_per_session,
+      [BI_SUMMARY_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
+    };
+  };
+}
+
+class UserFlowModel extends BaseModel {
+  nodes: any = null;
+  links: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.nodes = entity[BI_USER_FLOW_FIELD_KEY.NODES] ?? '';
+      this.links = entity[BI_USER_FLOW_FIELD_KEY.LINKS] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      [BI_USER_FLOW_FIELD_KEY.NODES]: this.nodes,
+      [BI_USER_FLOW_FIELD_KEY.LINKS]: this.links,
+    };
+  };
+}
+
 export {
   DomainModel,
   VisitorsModel,
@@ -1004,6 +1395,7 @@ export {
   LanguagesModel,
   PagesModel,
   EventsModel,
+  IspsModel,
   VisitsModel,
   WoocommerceStatisticModel,
   WoocommerceStatisticChartModel,
@@ -1013,4 +1405,11 @@ export {
   ConsentsDateModel,
   ConsentsTierModel,
   RefererModel,
+  FlowListModel,
+  ChannelModel,
+  OutlinkModel,
+  AttributeModel,
+  EventsTypeModel,
+  RegionModel,
+  UserFlowModel,
 };
