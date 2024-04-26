@@ -331,6 +331,31 @@ class BiRoute extends BaseRoute {
       )
     );
   };
+  getConsentsTemplate = (domain: any) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: `datastream/template/${domain}`,
+        },
+        false,
+        process.env.REACT_APP_WEB3_ENDPOINT_URL ?? 'https://web3id.backend.aesirx.io:8001',
+        true
+      )
+    );
+  };
+  updateConsentsTemplate = (data: any) => {
+    return AesirXApiInstance.post(
+      this.createRequestURL(
+        {
+          url: `datastream/template`,
+        },
+        false,
+        process.env.REACT_APP_WEB3_ENDPOINT_URL ?? 'https://web3id.backend.aesirx.io:8001',
+        true
+      ),
+      data
+    );
+  };
 
   getReferer = (dataFilter: any, dateFilter: any) => {
     return AesirXApiInstance.get(
