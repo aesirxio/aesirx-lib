@@ -625,9 +625,6 @@ class AesirxBiApiService {
       if (data) {
         results = data;
       }
-      if (results) {
-        results = results;
-      }
       return results;
     } catch (error) {
       if (axios.isCancel(error)) {
@@ -642,9 +639,6 @@ class AesirxBiApiService {
       let results = null;
       if (data) {
         results = data;
-      }
-      if (results) {
-        results = results;
       }
       return results;
     } catch (error) {
