@@ -46,7 +46,7 @@
     "prettier": "^3.2.5",
     "ts-jest": "^29.1.1",
     "tsup": "^6.7.0",
-    "typescript": "^5.0.4",
+    "typescript": "^5.4.5",
     "@types/murmurhash-js": "^1.0.3"
   },
   "files": [
