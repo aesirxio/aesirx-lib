@@ -618,6 +618,36 @@ class AesirxBiApiService {
     }
   };
 
+  getConsentsTemplate = async (domain: any) => {
+    try {
+      const data = await this.route.getConsentsTemplate(domain);
+      let results = null;
+      if (data) {
+        results = data;
+      }
+      return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  updateConsentsTemplate = async (dataForm: any) => {
+    try {
+      const data = await this.route.updateConsentsTemplate(dataForm);
+      let results = null;
+      if (data) {
+        results = data;
+      }
+      return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
   getReferer = async (dataFilter: any, dateFilter: any) => {
     try {
       const data = await this.route.getReferer(dataFilter, dateFilter);
