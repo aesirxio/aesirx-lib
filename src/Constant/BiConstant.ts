@@ -115,6 +115,10 @@ const BI_FLOW_DETAIL_KEY = {
   END: 'end',
   GEO: 'geo',
   EVENTS: 'events',
+  EVENT: 'event',
+  CONVERSION: 'conversion',
+  ACTION: 'action',
+  DURATION: 'duration',
 };
 
 const BI_EVENTS_FIELD_KEY = {
@@ -188,6 +192,13 @@ const BI_FLOW_LIST_FIELD_KEY = {
   SOP_ID: 'sop_id',
   EVENT: 'event',
   CONVERSION: 'conversion',
+  ACTION: 'action',
+  DATE: 'date',
+  DURATION: 'duration',
+  DEVICE: 'device',
+  PAGEVIEW: 'pageview',
+  BOUNCE_RATE: 'bounce_rate',
+  UX_PERCENT: 'ux_percent',
 };
 const BI_ISPS_FIELD_KEY = {
   ISP: 'isp',

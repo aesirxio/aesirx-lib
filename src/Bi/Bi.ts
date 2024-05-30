@@ -34,6 +34,7 @@ import {
   EventsTypeModel,
   RegionModel,
   UserFlowModel,
+  FlowDateModel,
 } from './BiModel';
 import BiRoute from './BiRoute';
 
@@ -680,6 +681,30 @@ class AesirxBiApiService {
       let pagination = null;
       if (data) {
         results = new FlowListModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getFlowDate = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getFlowDate(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new FlowDateModel(data);
         pagination = results.getBiPagination();
       }
       if (results) {

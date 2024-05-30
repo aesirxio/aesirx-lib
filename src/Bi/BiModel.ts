@@ -299,6 +299,10 @@ class FlowItemModel extends BaseItemModel {
   end = null;
   geo = null;
   events = [];
+  event = null;
+  conversion = null;
+  action = null;
+  duration = null;
   constructor(entity: any) {
     super(entity);
     if (entity) {
@@ -313,6 +317,10 @@ class FlowItemModel extends BaseItemModel {
       this.end = entity[BI_FLOW_DETAIL_KEY.END] ?? '';
       this.geo = entity[BI_FLOW_DETAIL_KEY.GEO] ?? '';
       this.events = entity[BI_FLOW_DETAIL_KEY.EVENTS] ?? [];
+      this.event = entity[BI_FLOW_DETAIL_KEY.EVENT] ?? 0;
+      this.conversion = entity[BI_FLOW_DETAIL_KEY.CONVERSION] ?? 0;
+      this.action = entity[BI_FLOW_DETAIL_KEY.ACTION] ?? 0;
+      this.duration = entity[BI_FLOW_DETAIL_KEY.DURATION] ?? 0;
     }
   }
   toObject = () => {
@@ -332,6 +340,10 @@ class FlowItemModel extends BaseItemModel {
       [BI_FLOW_DETAIL_KEY.END]: this.end,
       [BI_FLOW_DETAIL_KEY.GEO]: this.geo,
       [BI_FLOW_DETAIL_KEY.EVENTS]: this.events,
+      [BI_FLOW_DETAIL_KEY.EVENT]: this.event,
+      [BI_FLOW_DETAIL_KEY.CONVERSION]: this.conversion,
+      [BI_FLOW_DETAIL_KEY.ACTION]: this.action,
+      [BI_FLOW_DETAIL_KEY.DURATION]: this.duration,
     };
   };
 }
@@ -1076,6 +1088,12 @@ class FlowListItemModel extends BaseItemModel {
   events: any = null;
   event: any = null;
   conversion: any = null;
+  action: any = null;
+  duration: any = null;
+  device: any = null;
+  pageview: any = null;
+  bounce_rate: any = null;
+  ux_percent: any = null;
   constructor(entity: any) {
     super(entity);
     if (entity) {
@@ -1089,14 +1107,14 @@ class FlowListItemModel extends BaseItemModel {
         : '';
       this.referrer = entity[BI_FLOW_LIST_FIELD_KEY.REFERRER] ?? '';
       this.events = entity[BI_FLOW_LIST_FIELD_KEY.EVENTS] ?? '';
-      this.event =
-        entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]?.filter(
-          (item: any) => item?.event_type === 'click' || item?.event_type === 'submit'
-        ).length ?? 0;
-      this.conversion =
-        entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]?.filter(
-          (item: any) => item?.event_type === 'conversion'
-        ).length ?? 0;
+      this.event = entity[BI_FLOW_LIST_FIELD_KEY.EVENT] ?? 0;
+      this.conversion = entity[BI_FLOW_LIST_FIELD_KEY.CONVERSION] ?? 0;
+      this.action = entity[BI_FLOW_LIST_FIELD_KEY.ACTION] ?? 0;
+      this.duration = entity[BI_FLOW_LIST_FIELD_KEY.DURATION] ?? 0;
+      this.device = entity[BI_FLOW_LIST_FIELD_KEY.DEVICE] ?? '';
+      this.pageview = entity[BI_FLOW_LIST_FIELD_KEY.PAGEVIEW] ?? 0;
+      this.bounce_rate = entity[BI_FLOW_LIST_FIELD_KEY.BOUNCE_RATE] ?? 0;
+      this.ux_percent = entity[BI_FLOW_LIST_FIELD_KEY.UX_PERCENT] ?? 0;
       this.sop_id = entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]?.length
         ? entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]
             ?.find((item: any) => {
@@ -1125,6 +1143,53 @@ class FlowListItemModel extends BaseItemModel {
       [BI_FLOW_LIST_FIELD_KEY.EVENTS]: this.events,
       [BI_FLOW_LIST_FIELD_KEY.EVENT]: this.event,
       [BI_FLOW_LIST_FIELD_KEY.CONVERSION]: this.conversion,
+      [BI_FLOW_LIST_FIELD_KEY.ACTION]: this.action,
+      [BI_FLOW_LIST_FIELD_KEY.DURATION]: this.duration,
+      [BI_FLOW_LIST_FIELD_KEY.DEVICE]: this.device,
+      [BI_FLOW_LIST_FIELD_KEY.PAGEVIEW]: this.pageview,
+      [BI_FLOW_LIST_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
+      [BI_FLOW_LIST_FIELD_KEY.UX_PERCENT]: this.ux_percent,
+    };
+  };
+}
+
+class FlowDateModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new FlowDateItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+
+class FlowDateItemModel extends BaseItemModel {
+  date: any = null;
+  event: any = null;
+  conversion: any = null;
+  action: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.date = entity[BI_FLOW_LIST_FIELD_KEY.DATE] ?? '';
+      this.event = entity[BI_FLOW_LIST_FIELD_KEY.EVENT] ?? '';
+      this.conversion = entity[BI_FLOW_LIST_FIELD_KEY.CONVERSION] ?? '';
+      this.action = entity[BI_FLOW_LIST_FIELD_KEY.ACTION] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_FLOW_LIST_FIELD_KEY.DATE]: this.date,
+      [BI_FLOW_LIST_FIELD_KEY.EVENT]: this.event,
+      [BI_FLOW_LIST_FIELD_KEY.CONVERSION]: this.conversion,
+      [BI_FLOW_LIST_FIELD_KEY.ACTION]: this.action,
     };
   };
 }
@@ -1406,6 +1471,7 @@ export {
   ConsentsTierModel,
   RefererModel,
   FlowListModel,
+  FlowDateModel,
   ChannelModel,
   OutlinkModel,
   AttributeModel,
