@@ -385,6 +385,19 @@ class BiRoute extends BaseRoute {
       )
     );
   };
+  getFlowDate = (dataFilter: any, dateFilter: any) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: 'flow' + version + dateFilter?.date_start + '/' + dateFilter?.date_end + '/date',
+          filter: dataFilter,
+        },
+        false,
+        process.env.REACT_APP_BI_ENDPOINT_URL,
+        true
+      )
+    );
+  };
   getIsps = (dataFilter: any, dateFilter: any) => {
     return AesirXApiInstance.get(
       this.createRequestURL(
