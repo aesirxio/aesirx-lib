@@ -303,6 +303,8 @@ class FlowItemModel extends BaseItemModel {
   conversion = null;
   action = null;
   duration = null;
+  ux_percent = null;
+  pageview = null;
   constructor(entity: any) {
     super(entity);
     if (entity) {
@@ -321,6 +323,8 @@ class FlowItemModel extends BaseItemModel {
       this.conversion = entity[BI_FLOW_DETAIL_KEY.CONVERSION] ?? 0;
       this.action = entity[BI_FLOW_DETAIL_KEY.ACTION] ?? 0;
       this.duration = entity[BI_FLOW_DETAIL_KEY.DURATION] ?? 0;
+      this.ux_percent = entity[BI_FLOW_DETAIL_KEY.UX_PERCENT] ?? 0;
+      this.pageview = entity[BI_FLOW_DETAIL_KEY.PAGE_VIEW] ?? 0;
     }
   }
   toObject = () => {
@@ -344,6 +348,8 @@ class FlowItemModel extends BaseItemModel {
       [BI_FLOW_DETAIL_KEY.CONVERSION]: this.conversion,
       [BI_FLOW_DETAIL_KEY.ACTION]: this.action,
       [BI_FLOW_DETAIL_KEY.DURATION]: this.duration,
+      [BI_FLOW_DETAIL_KEY.UX_PERCENT]: this.ux_percent,
+      [BI_FLOW_DETAIL_KEY.PAGE_VIEW]: this.pageview,
     };
   };
 }
@@ -1094,6 +1100,9 @@ class FlowListItemModel extends BaseItemModel {
   pageview: any = null;
   bounce_rate: any = null;
   ux_percent: any = null;
+  visit_actions: any = null;
+  event_actions: any = null;
+  conversion_actions: any = null;
   constructor(entity: any) {
     super(entity);
     if (entity) {
@@ -1124,6 +1133,9 @@ class FlowListItemModel extends BaseItemModel {
               return attr?.name === 'sop_id';
             })?.value ?? 'Not Available'
         : 'Not Available';
+      this.visit_actions = entity[BI_FLOW_LIST_FIELD_KEY.VISIT_ACTIONS] ?? 0;
+      this.event_actions = entity[BI_FLOW_LIST_FIELD_KEY.EVENT_ACTIONS] ?? 0;
+      this.conversion_actions = entity[BI_FLOW_LIST_FIELD_KEY.CONVERSION_ACTIONS] ?? 0;
     }
   }
   toObject = () => {
@@ -1149,6 +1161,9 @@ class FlowListItemModel extends BaseItemModel {
       [BI_FLOW_LIST_FIELD_KEY.PAGEVIEW]: this.pageview,
       [BI_FLOW_LIST_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
       [BI_FLOW_LIST_FIELD_KEY.UX_PERCENT]: this.ux_percent,
+      [BI_FLOW_LIST_FIELD_KEY.VISIT_ACTIONS]: this.visit_actions,
+      [BI_FLOW_LIST_FIELD_KEY.EVENT_ACTIONS]: this.event_actions,
+      [BI_FLOW_LIST_FIELD_KEY.CONVERSION_ACTIONS]: this.conversion_actions,
     };
   };
 }

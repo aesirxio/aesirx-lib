@@ -119,6 +119,8 @@ const BI_FLOW_DETAIL_KEY = {
   CONVERSION: 'conversion',
   ACTION: 'action',
   DURATION: 'duration',
+  UX_PERCENT: 'ux_percent',
+  PAGE_VIEW: 'pageview',
 };
 
 const BI_EVENTS_FIELD_KEY = {
@@ -199,6 +201,9 @@ const BI_FLOW_LIST_FIELD_KEY = {
   PAGEVIEW: 'pageview',
   BOUNCE_RATE: 'bounce_rate',
   UX_PERCENT: 'ux_percent',
+  VISIT_ACTIONS: 'visit_actions',
+  EVENT_ACTIONS: 'event_actions',
+  CONVERSION_ACTIONS: 'conversion_actions',
 };
 const BI_ISPS_FIELD_KEY = {
   ISP: 'isp',
