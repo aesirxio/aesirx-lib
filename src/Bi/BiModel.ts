@@ -1186,6 +1186,7 @@ class FlowDateItemModel extends BaseItemModel {
   event: any = null;
   conversion: any = null;
   action: any = null;
+  pageview: any = null;
   constructor(entity: any) {
     super(entity);
     if (entity) {
@@ -1193,6 +1194,7 @@ class FlowDateItemModel extends BaseItemModel {
       this.event = entity[BI_FLOW_LIST_FIELD_KEY.EVENT] ?? '';
       this.conversion = entity[BI_FLOW_LIST_FIELD_KEY.CONVERSION] ?? '';
       this.action = entity[BI_FLOW_LIST_FIELD_KEY.ACTION] ?? '';
+      this.pageview = entity[BI_FLOW_LIST_FIELD_KEY.PAGEVIEW] ?? '';
     }
   }
   toObject = () => {
@@ -1205,6 +1207,7 @@ class FlowDateItemModel extends BaseItemModel {
       [BI_FLOW_LIST_FIELD_KEY.EVENT]: this.event,
       [BI_FLOW_LIST_FIELD_KEY.CONVERSION]: this.conversion,
       [BI_FLOW_LIST_FIELD_KEY.ACTION]: this.action,
+      [BI_FLOW_LIST_FIELD_KEY.PAGEVIEW]: this.pageview,
     };
   };
 }
