@@ -128,6 +128,8 @@ const BI_EVENTS_FIELD_KEY = {
   EVENT_TYPE: 'event_type',
   TOTAL_VISITOR: 'total_visitor',
   DATE: 'date',
+  OG_TITLE: 'og_title',
+  OG_IMAGE: 'og_image',
 };
 
 const BI_WOOCOMMERCE_PRODUCT_FIELD_KEY = {
