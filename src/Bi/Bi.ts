@@ -61,7 +61,6 @@ class AesirxBiApiService {
       if (results) {
         results = results.toJSON();
       }
-
       return results;
     } catch (error) {
       if (axios.isCancel(error)) {
