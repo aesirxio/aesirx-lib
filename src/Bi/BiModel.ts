@@ -1124,15 +1124,7 @@ class FlowListItemModel extends BaseItemModel {
       this.pageview = entity[BI_FLOW_LIST_FIELD_KEY.PAGEVIEW] ?? 0;
       this.bounce_rate = entity[BI_FLOW_LIST_FIELD_KEY.BOUNCE_RATE] ?? 0;
       this.ux_percent = entity[BI_FLOW_LIST_FIELD_KEY.UX_PERCENT] ?? 0;
-      this.sop_id = entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]?.length
-        ? entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]
-            ?.find((item: any) => {
-              return item?.attributes;
-            })
-            ?.attributes?.find((attr: any) => {
-              return attr?.name === 'sop_id';
-            })?.value ?? 'Not Available'
-        : 'Not Available';
+      this.sop_id = entity[BI_FLOW_LIST_FIELD_KEY.SOP_ID] ?? '';
       this.visit_actions = entity[BI_FLOW_LIST_FIELD_KEY.VISIT_ACTIONS] ?? 0;
       this.event_actions = entity[BI_FLOW_LIST_FIELD_KEY.EVENT_ACTIONS] ?? 0;
       this.conversion_actions = entity[BI_FLOW_LIST_FIELD_KEY.CONVERSION_ACTIONS] ?? 0;
