@@ -5,7 +5,7 @@
 
 import AesirXApiInstance from '../Gateway/Instance';
 import BaseRoute from '../Abstract/BaseRoute';
-
+import { env } from '../env';
 const version = '/v1/';
 
 class BiRoute extends BaseRoute {
@@ -18,7 +18,7 @@ class BiRoute extends BaseRoute {
           filter: dataFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -32,7 +32,7 @@ class BiRoute extends BaseRoute {
           filter: dataFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -45,7 +45,7 @@ class BiRoute extends BaseRoute {
           filter: dataFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -60,7 +60,7 @@ class BiRoute extends BaseRoute {
           filter: dataFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -75,7 +75,7 @@ class BiRoute extends BaseRoute {
           filter: dataFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -90,7 +90,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -104,7 +104,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -118,7 +118,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -133,7 +133,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -148,7 +148,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -163,7 +163,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -178,7 +178,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -193,7 +193,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -208,7 +208,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -223,7 +223,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -238,7 +238,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -253,7 +253,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -268,7 +268,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -283,7 +283,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -298,7 +298,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -312,7 +312,7 @@ class BiRoute extends BaseRoute {
           filter: dataFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -326,7 +326,7 @@ class BiRoute extends BaseRoute {
           filter: dataFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -338,7 +338,7 @@ class BiRoute extends BaseRoute {
           url: `datastream/template/${domain}`,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL ?? 'https://api.analytics.aesirx.io',
+        env.REACT_APP_BI_ENDPOINT_URL ?? 'https://api.analytics.aesirx.io',
         true
       )
     );
@@ -350,7 +350,7 @@ class BiRoute extends BaseRoute {
           url: `datastream/template`,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL ?? 'https://api.analytics.aesirx.io',
+        env.REACT_APP_BI_ENDPOINT_URL ?? 'https://api.analytics.aesirx.io',
         true
       ),
       data
@@ -365,7 +365,7 @@ class BiRoute extends BaseRoute {
           filter: dataFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -380,7 +380,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -393,7 +393,7 @@ class BiRoute extends BaseRoute {
           filter: dataFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -407,7 +407,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -422,7 +422,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -437,7 +437,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -452,7 +452,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -467,7 +467,7 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -482,7 +482,46 @@ class BiRoute extends BaseRoute {
           date: dateFilter,
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
+        true
+      )
+    );
+  };
+  getLiveVisitorsDevice = (dataFilter: any) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: 'live_visitors/device',
+          filter: dataFilter,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL,
+        true
+      )
+    );
+  };
+  getLiveVisitorsList = (dataFilter: any) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: 'live_visitors/list',
+          filter: dataFilter,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL,
+        true
+      )
+    );
+  };
+  getLiveVisitorsTotal = (dataFilter: any) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: 'live_visitors/total',
+          filter: dataFilter,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
     );
@@ -495,7 +534,7 @@ class BiRoute extends BaseRoute {
           url: 'visitor' + version + 'init',
         },
         false,
-        process.env.REACT_APP_BI_ENDPOINT_URL,
+        env.REACT_APP_BI_ENDPOINT_URL,
         true
       ),
       {
