@@ -1104,6 +1104,8 @@ class FlowListItemModel extends BaseItemModel {
   visit_actions: any = null;
   event_actions: any = null;
   conversion_actions: any = null;
+  bad_user: any = null;
+  traffic: any = null;
   constructor(entity: any) {
     super(entity);
     if (entity) {
@@ -1129,6 +1131,11 @@ class FlowListItemModel extends BaseItemModel {
       this.visit_actions = entity[BI_FLOW_LIST_FIELD_KEY.VISIT_ACTIONS] ?? 0;
       this.event_actions = entity[BI_FLOW_LIST_FIELD_KEY.EVENT_ACTIONS] ?? 0;
       this.conversion_actions = entity[BI_FLOW_LIST_FIELD_KEY.CONVERSION_ACTIONS] ?? 0;
+      this.bad_user = entity[BI_FLOW_LIST_FIELD_KEY.BAD_USER] ?? false;
+      this.traffic = entity[BI_FLOW_LIST_FIELD_KEY.TRAFFIC] ?? {
+        bad_user: entity[BI_FLOW_LIST_FIELD_KEY.BAD_USER] ?? false,
+        device: entity[BI_FLOW_LIST_FIELD_KEY.DEVICE] ?? '',
+      };
     }
   }
   toObject = () => {
@@ -1157,6 +1164,7 @@ class FlowListItemModel extends BaseItemModel {
       [BI_FLOW_LIST_FIELD_KEY.VISIT_ACTIONS]: this.visit_actions,
       [BI_FLOW_LIST_FIELD_KEY.EVENT_ACTIONS]: this.event_actions,
       [BI_FLOW_LIST_FIELD_KEY.CONVERSION_ACTIONS]: this.conversion_actions,
+      [BI_FLOW_LIST_FIELD_KEY.TRAFFIC]: this.traffic,
     };
   };
 }
@@ -1525,6 +1533,7 @@ class LiveVisitorsListItemModel extends BaseItemModel {
   ip: any = null;
   geo: any = null;
   events: any = null;
+  url: any = null;
 
   constructor(entity: any) {
     super(entity);
@@ -1533,6 +1542,7 @@ class LiveVisitorsListItemModel extends BaseItemModel {
       this.ip = entity[BI_FLOW_DETAIL_KEY.IP] ?? '';
       this.geo = entity[BI_FLOW_DETAIL_KEY.GEO] ?? '';
       this.events = entity[BI_FLOW_DETAIL_KEY.EVENTS] ?? '';
+      this.url = entity[BI_FLOW_LIST_FIELD_KEY.URL] ?? '';
     }
   }
   toObject = () => {
@@ -1545,6 +1555,7 @@ class LiveVisitorsListItemModel extends BaseItemModel {
       [BI_FLOW_DETAIL_KEY.IP]: this.ip,
       [BI_FLOW_DETAIL_KEY.GEO]: this.geo,
       [BI_FLOW_DETAIL_KEY.EVENTS]: this.events,
+      [BI_FLOW_LIST_FIELD_KEY.URL]: this.url,
     };
   };
 }
