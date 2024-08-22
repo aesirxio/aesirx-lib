@@ -10,6 +10,7 @@ class DamRoute extends BaseRoute {
     return AesirXApiInstance.get(
       this.createRequestURL({
         option: 'com_dam_asset',
+        task: 'getTotalStorage',
       })
     );
   };

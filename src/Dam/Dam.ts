@@ -242,14 +242,9 @@ class AesirxDamApiService {
     try {
       const data = await this.route.getSubscription();
       let result = null;
-      if (data) {
-        result = new SubscriptionModel(data);
+      if (data.result) {
+        result = data.result;
       }
-
-      if (result) {
-        result = result.toJSON();
-      }
-
       return result;
     } catch (error) {
       if (axios.isCancel(error)) {
