@@ -3,13 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import {
-  AssetsItemModel,
-  AssetsModel,
-  ColectionModel,
-  CollectionItemModel,
-  SubscriptionModel,
-} from './DamModel';
+import { AssetsItemModel, AssetsModel, ColectionModel, CollectionItemModel } from './DamModel';
 import DamRoute from './DamRoute';
 import axios from 'axios';
 
