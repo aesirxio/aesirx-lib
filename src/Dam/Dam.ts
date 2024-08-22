@@ -3,13 +3,7 @@
  * @license     GNU General Public License version 3, see LICENSE.
  */
 
-import {
-  AssetsItemModel,
-  AssetsModel,
-  ColectionModel,
-  CollectionItemModel,
-  SubscriptionModel,
-} from './DamModel';
+import { AssetsItemModel, AssetsModel, ColectionModel, CollectionItemModel } from './DamModel';
 import DamRoute from './DamRoute';
 import axios from 'axios';
 
@@ -242,14 +236,9 @@ class AesirxDamApiService {
     try {
       const data = await this.route.getSubscription();
       let result = null;
-      if (data) {
-        result = new SubscriptionModel(data);
+      if (data.result) {
+        result = data.result;
       }
-
-      if (result) {
-        result = result.toJSON();
-      }
-
       return result;
     } catch (error) {
       if (axios.isCancel(error)) {
