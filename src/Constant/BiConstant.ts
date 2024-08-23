@@ -206,6 +206,8 @@ const BI_FLOW_LIST_FIELD_KEY = {
   VISIT_ACTIONS: 'visit_actions',
   EVENT_ACTIONS: 'event_actions',
   CONVERSION_ACTIONS: 'conversion_actions',
+  BAD_USER: 'bad_user',
+  TRAFFIC: 'traffic',
 };
 const BI_ISPS_FIELD_KEY = {
   ISP: 'isp',
