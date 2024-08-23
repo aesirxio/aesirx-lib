@@ -9,8 +9,8 @@ class DamRoute extends BaseRoute {
   getSubscription = () => {
     return AesirXApiInstance.get(
       this.createRequestURL({
-        option: 'user_subscription',
-        'filter[product][]': 'product-aesirx-dam',
+        option: 'com_dam_asset',
+        task: 'getTotalStorage',
       })
     );
   };
