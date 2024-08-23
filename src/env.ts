@@ -55,8 +55,8 @@ const customEnv = {
 
   REACT_APP_ORDER_ID: process.env.REACT_APP_ORDER_ID,
   NEXT_PUBLIC_ORDER_ID: process.env.NEXT_PUBLIC_ORDER_ID,
-  
+
   REACT_APP_CODE: process.env.REACT_APP_CODE,
   NEXT_PUBLIC_CODE: process.env.NEXT_PUBLIC_CODE,
 };
-export const env = { ...customEnv, ...s['env'] };
+export const env = { ...customEnv, ...process.env, ...s['env'] };
