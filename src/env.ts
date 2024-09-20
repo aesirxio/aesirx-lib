@@ -58,5 +58,11 @@ const customEnv = {
 
   REACT_APP_CODE: process.env.REACT_APP_CODE,
   NEXT_PUBLIC_CODE: process.env.NEXT_PUBLIC_CODE,
+
+  REACT_APP_BI_ENDPOINT_URL: process.env.REACT_APP_BI_ENDPOINT_URL,
+  REACT_APP_ENDPOINT_ANALYTICS_URL: process.env.REACT_APP_ENDPOINT_ANALYTICS_URL,
+  REACT_APP_DATA_STREAM: process.env.REACT_APP_DATA_STREAM,
+  REACT_APP_HEADER_JWT: process.env.REACT_APP_HEADER_JWT,
+  REACT_APP_WOOCOMMERCE_MENU: process.env.REACT_APP_WOOCOMMERCE_MENU,
 };
 export const env = { ...customEnv, ...process.env, ...s['env'] };
