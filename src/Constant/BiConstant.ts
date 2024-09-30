@@ -206,6 +206,8 @@ const BI_FLOW_LIST_FIELD_KEY = {
   VISIT_ACTIONS: 'visit_actions',
   EVENT_ACTIONS: 'event_actions',
   CONVERSION_ACTIONS: 'conversion_actions',
+  BAD_USER: 'bad_user',
+  TRAFFIC: 'traffic',
 };
 const BI_ISPS_FIELD_KEY = {
   ISP: 'isp',
@@ -245,6 +247,10 @@ const BI_USER_FLOW_FIELD_KEY = {
   LINKS: 'links',
 };
 
+const BI_LIVE_VISITORS_TOTAL_FIELD_KEY = {
+  TOTAL: 'total',
+};
+
 export {
   BI_DASHBOARD_FIELD_KEY,
   BI_WIDGET_FIELD_KEY,
@@ -279,4 +285,5 @@ export {
   BI_EVENTS_TYPE_FIELD_KEY,
   BI_REGION_FIELD_KEY,
   BI_USER_FLOW_FIELD_KEY,
+  BI_LIVE_VISITORS_TOTAL_FIELD_KEY,
 };

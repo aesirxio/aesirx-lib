@@ -35,6 +35,9 @@ import {
   RegionModel,
   UserFlowModel,
   FlowDateModel,
+  LiveVisitorsDeviceModel,
+  LiveVisitorsTotalModel,
+  LiveVisitorsListModel,
 } from './BiModel';
 import BiRoute from './BiRoute';
 
@@ -823,6 +826,76 @@ class AesirxBiApiService {
       let pagination = null;
       if (data) {
         results = new UserFlowModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getLiveVisitorsDevice = async (dataFilter: any) => {
+    try {
+      const data = await this.route.getLiveVisitorsDevice(dataFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new LiveVisitorsDeviceModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getLiveVisitorsList = async (dataFilter: any) => {
+    try {
+      const data = await this.route.getLiveVisitorsList(dataFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new LiveVisitorsListModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getLiveVisitorsTotal = async (dataFilter: any) => {
+    try {
+      const data = await this.route.getLiveVisitorsTotal(dataFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new LiveVisitorsTotalModel(data);
         pagination = results.getBiPagination();
       }
       if (results) {
