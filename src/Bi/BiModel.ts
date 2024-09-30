@@ -34,6 +34,7 @@ import {
   BI_EVENTS_TYPE_FIELD_KEY,
   BI_REGION_FIELD_KEY,
   BI_USER_FLOW_FIELD_KEY,
+  BI_LIVE_VISITORS_TOTAL_FIELD_KEY,
 } from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
@@ -1103,6 +1104,8 @@ class FlowListItemModel extends BaseItemModel {
   visit_actions: any = null;
   event_actions: any = null;
   conversion_actions: any = null;
+  bad_user: any = null;
+  traffic: any = null;
   constructor(entity: any) {
     super(entity);
     if (entity) {
@@ -1124,18 +1127,15 @@ class FlowListItemModel extends BaseItemModel {
       this.pageview = entity[BI_FLOW_LIST_FIELD_KEY.PAGEVIEW] ?? 0;
       this.bounce_rate = entity[BI_FLOW_LIST_FIELD_KEY.BOUNCE_RATE] ?? 0;
       this.ux_percent = entity[BI_FLOW_LIST_FIELD_KEY.UX_PERCENT] ?? 0;
-      this.sop_id = entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]?.length
-        ? entity[BI_FLOW_LIST_FIELD_KEY.EVENTS]
-            ?.find((item: any) => {
-              return item?.attributes;
-            })
-            ?.attributes?.find((attr: any) => {
-              return attr?.name === 'sop_id';
-            })?.value ?? 'Not Available'
-        : 'Not Available';
+      this.sop_id = entity[BI_FLOW_LIST_FIELD_KEY.SOP_ID] ?? '';
       this.visit_actions = entity[BI_FLOW_LIST_FIELD_KEY.VISIT_ACTIONS] ?? 0;
       this.event_actions = entity[BI_FLOW_LIST_FIELD_KEY.EVENT_ACTIONS] ?? 0;
       this.conversion_actions = entity[BI_FLOW_LIST_FIELD_KEY.CONVERSION_ACTIONS] ?? 0;
+      this.bad_user = entity[BI_FLOW_LIST_FIELD_KEY.BAD_USER] ?? false;
+      this.traffic = entity[BI_FLOW_LIST_FIELD_KEY.TRAFFIC] ?? {
+        bad_user: entity[BI_FLOW_LIST_FIELD_KEY.BAD_USER] ?? false,
+        device: entity[BI_FLOW_LIST_FIELD_KEY.DEVICE] ?? '',
+      };
     }
   }
   toObject = () => {
@@ -1164,6 +1164,7 @@ class FlowListItemModel extends BaseItemModel {
       [BI_FLOW_LIST_FIELD_KEY.VISIT_ACTIONS]: this.visit_actions,
       [BI_FLOW_LIST_FIELD_KEY.EVENT_ACTIONS]: this.event_actions,
       [BI_FLOW_LIST_FIELD_KEY.CONVERSION_ACTIONS]: this.conversion_actions,
+      [BI_FLOW_LIST_FIELD_KEY.TRAFFIC]: this.traffic,
     };
   };
 }
@@ -1462,6 +1463,120 @@ class UserFlowModel extends BaseModel {
   };
 }
 
+class LiveVisitorsDeviceModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new LiveVisitorsDeviceItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+
+class LiveVisitorsDeviceItemModel extends BaseItemModel {
+  device: any = null;
+  number_of_visitors: any = null;
+  number_of_page_views: any = null;
+  number_of_unique_page_views: any = null;
+  average_session_duration: any = null;
+  number_of_pages_per_session: any = null;
+  bounce_rate: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.device = entity[BI_DEVICES_FIELD_KEY.DEVICE] ?? '';
+      this.number_of_visitors = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS] ?? '';
+      this.number_of_page_views = entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS] ?? '';
+      this.number_of_unique_page_views =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS] ?? '';
+      this.average_session_duration = entity[BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION] ?? '';
+      this.number_of_pages_per_session =
+        entity[BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION] ?? '';
+      this.bounce_rate = entity[BI_SUMMARY_FIELD_KEY.BOUNCE_RATE] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_DEVICES_FIELD_KEY.DEVICE]: this.device,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_VISITORS]: this.number_of_visitors,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGE_VIEWS]: this.number_of_page_views,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_UNIQUE_PAGE_VIEWS]: this.number_of_unique_page_views,
+      [BI_SUMMARY_FIELD_KEY.AVERAGE_SESSION_DURATION]: this.average_session_duration,
+      [BI_SUMMARY_FIELD_KEY.NUMBER_OF_PAGES_PER_SESSION]: this.number_of_pages_per_session,
+      [BI_SUMMARY_FIELD_KEY.BOUNCE_RATE]: this.bounce_rate,
+    };
+  };
+}
+
+class LiveVisitorsListModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new LiveVisitorsListItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+
+class LiveVisitorsListItemModel extends BaseItemModel {
+  uuid: any = null;
+  ip: any = null;
+  geo: any = null;
+  events: any = null;
+  url: any = null;
+
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.uuid = entity[BI_FLOW_DETAIL_KEY.UUID] ?? '';
+      this.ip = entity[BI_FLOW_DETAIL_KEY.IP] ?? '';
+      this.geo = entity[BI_FLOW_DETAIL_KEY.GEO] ?? '';
+      this.events = entity[BI_FLOW_DETAIL_KEY.EVENTS] ?? '';
+      this.url = entity[BI_FLOW_LIST_FIELD_KEY.URL] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_FLOW_DETAIL_KEY.UUID]: this.uuid,
+      [BI_FLOW_DETAIL_KEY.IP]: this.ip,
+      [BI_FLOW_DETAIL_KEY.GEO]: this.geo,
+      [BI_FLOW_DETAIL_KEY.EVENTS]: this.events,
+      [BI_FLOW_LIST_FIELD_KEY.URL]: this.url,
+    };
+  };
+}
+class LiveVisitorsTotalModel extends BaseModel {
+  total: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.total = entity[BI_LIVE_VISITORS_TOTAL_FIELD_KEY.TOTAL] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      [BI_LIVE_VISITORS_TOTAL_FIELD_KEY.TOTAL]: this.total,
+    };
+  };
+}
+
 export {
   DomainModel,
   VisitorsModel,
@@ -1496,4 +1611,7 @@ export {
   EventsTypeModel,
   RegionModel,
   UserFlowModel,
+  LiveVisitorsDeviceModel,
+  LiveVisitorsListModel,
+  LiveVisitorsTotalModel,
 };
