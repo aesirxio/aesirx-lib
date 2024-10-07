@@ -100,8 +100,8 @@ AesirXApiInstance.interceptors.request.use(
     }
     if (accessToken || jwt) {
       config.headers = {
-        ...config.headers,
         Authorization: 'Bearer ' + (env?.REACT_APP_HEADER_JWT === 'true' ? jwt : accessToken),
+        ...config.headers,
       };
     }
 

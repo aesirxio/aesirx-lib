@@ -6,6 +6,8 @@
 import AesirxServiceApiInstance from '../Gateway/InstanceServiceApi';
 import AesirXApiInstance from '../Gateway/Instance';
 import BaseRoute from '../Abstract/BaseRoute';
+import { Storage } from '../Utils/Storage';
+import { AUTHORIZATION_KEY } from '../Constant/Constant';
 
 class MemberRoute extends BaseRoute {
   createMemberRequest = (data: any) => {
@@ -29,7 +31,12 @@ class MemberRoute extends BaseRoute {
       this.createRequestURL({
         option: 'persona',
         task: 'getTokenByUser',
-      })
+      }),
+      {
+        headers: {
+          Authorization: 'Bearer ' + Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN),
+        },
+      }
     );
   };
 
@@ -38,7 +45,12 @@ class MemberRoute extends BaseRoute {
       this.createRequestURL({
         option: 'member',
         task: 'getFacebookAdsAppAccessToken',
-      })
+      }),
+      {
+        headers: {
+          Authorization: 'Bearer ' + Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN),
+        },
+      }
     );
   };
 
