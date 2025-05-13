@@ -181,6 +181,25 @@ const BI_CONSENTS_TIER_FIELD_KEY = {
   TOTAL: 'total',
 };
 
+const BI_CONSENTS_CATEGORY_FIELD_KEY = {
+  CATEGORY: 'category',
+  ALLOW: 'allow',
+  REJECT: 'reject',
+  TOTAL: 'total',
+};
+
+const BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY = {
+  DATE: 'date',
+  ALLOW_ANALYTICS: 'allow_analytics',
+  ALLOW_ADVERTISING: 'allow_advertising',
+  ALLOW_FUNCTIONAL: 'allow_functional',
+  ALLOW_CUSTOM: 'allow_custom',
+  REJECT_ANALYTICS: 'reject_analytics',
+  REJECT_ADVERTISING: 'reject_advertising',
+  REJECT_FUNCTIONAL: 'reject_functional',
+  REJECT_CUSTOM: 'reject_custom',
+};
+
 const BI_REFERER_FIELD_KEY = {
   REFERER: 'referer',
 };
@@ -287,4 +306,6 @@ export {
   BI_REGION_FIELD_KEY,
   BI_USER_FLOW_FIELD_KEY,
   BI_LIVE_VISITORS_TOTAL_FIELD_KEY,
+  BI_CONSENTS_CATEGORY_FIELD_KEY,
+  BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY,
 };

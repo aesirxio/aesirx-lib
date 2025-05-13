@@ -35,6 +35,8 @@ import {
   BI_REGION_FIELD_KEY,
   BI_USER_FLOW_FIELD_KEY,
   BI_LIVE_VISITORS_TOTAL_FIELD_KEY,
+  BI_CONSENTS_CATEGORY_FIELD_KEY,
+  BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY,
 } from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
@@ -1039,6 +1041,104 @@ class ConsentsTierItemModel extends BaseItemModel {
   };
 }
 
+class ConsentsCategoryModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new ConsentsCategoryItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class ConsentsCategoryItemModel extends BaseItemModel {
+  category: any = null;
+  allow: any = null;
+  reject: any = null;
+  total: any = null;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.category = entity[BI_CONSENTS_CATEGORY_FIELD_KEY.CATEGORY] ?? '';
+      this.allow = entity[BI_CONSENTS_CATEGORY_FIELD_KEY.ALLOW] ?? '';
+      this.reject = entity[BI_CONSENTS_CATEGORY_FIELD_KEY.REJECT] ?? '';
+      this.total = entity[BI_CONSENTS_CATEGORY_FIELD_KEY.TOTAL] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_CONSENTS_CATEGORY_FIELD_KEY.CATEGORY]: this.category,
+      [BI_CONSENTS_CATEGORY_FIELD_KEY.ALLOW]: this.allow,
+      [BI_CONSENTS_CATEGORY_FIELD_KEY.REJECT]: this.reject,
+      [BI_CONSENTS_CATEGORY_FIELD_KEY.TOTAL]: this.total,
+    };
+  };
+}
+
+class ConsentsCategoryByDateModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new ConsentsCategoryByDateItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class ConsentsCategoryByDateItemModel extends BaseItemModel {
+  date: any = null;
+  allow_analytics: any = 0;
+  allow_advertising: any = 0;
+  allow_functional: any = 0;
+  allow_custom: any = 0;
+  reject_analytics: any = 0;
+  reject_advertising: any = 0;
+  reject_functional: any = 0;
+  reject_custom: any = 0;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.date = entity[BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY.DATE] ?? '';
+      this.allow_analytics = entity[BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY.ALLOW_ANALYTICS] ?? '';
+      this.allow_advertising =
+        entity[BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY.ALLOW_ADVERTISING] ?? '';
+      this.allow_functional = entity[BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY.ALLOW_FUNCTIONAL] ?? '';
+      this.allow_custom = entity[BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY.ALLOW_CUSTOM] ?? '';
+      this.reject_analytics = entity[BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY.REJECT_ANALYTICS] ?? '';
+      this.reject_advertising =
+        entity[BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY.REJECT_ADVERTISING] ?? '';
+      this.reject_functional =
+        entity[BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY.REJECT_FUNCTIONAL] ?? '';
+      this.reject_custom = entity[BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY.REJECT_CUSTOM] ?? '';
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY.DATE]: this.date,
+      [BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY.ALLOW_ANALYTICS]: this.allow_analytics,
+      [BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY.ALLOW_ADVERTISING]: this.allow_advertising,
+      [BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY.ALLOW_FUNCTIONAL]: this.allow_functional,
+      [BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY.ALLOW_CUSTOM]: this.allow_custom,
+      [BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY.REJECT_ANALYTICS]: this.reject_analytics,
+      [BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY.REJECT_ADVERTISING]: this.reject_advertising,
+      [BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY.REJECT_FUNCTIONAL]: this.reject_functional,
+      [BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY.REJECT_CUSTOM]: this.reject_custom,
+    };
+  };
+}
+
 class RefererModel extends BaseModel {
   items: any = null;
   constructor(entities: any) {
@@ -1617,4 +1717,6 @@ export {
   LiveVisitorsDeviceModel,
   LiveVisitorsListModel,
   LiveVisitorsTotalModel,
+  ConsentsCategoryModel,
+  ConsentsCategoryByDateModel,
 };
