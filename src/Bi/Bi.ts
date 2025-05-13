@@ -38,6 +38,8 @@ import {
   LiveVisitorsDeviceModel,
   LiveVisitorsTotalModel,
   LiveVisitorsListModel,
+  ConsentsCategoryModel,
+  ConsentsCategoryByDateModel,
 } from './BiModel';
 import BiRoute from './BiRoute';
 
@@ -605,6 +607,54 @@ class AesirxBiApiService {
       let pagination = null;
       if (data) {
         results = new ConsentsTierModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getConsentsCategory = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getConsentsCategory(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new ConsentsCategoryModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getConsentsCategoryByDate = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getConsentsCategoryByDate(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new ConsentsCategoryByDateModel(data);
         pagination = results.getBiPagination();
       }
       if (results) {
