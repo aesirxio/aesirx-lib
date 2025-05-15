@@ -40,6 +40,8 @@ import {
   LiveVisitorsListModel,
   ConsentsCategoryModel,
   ConsentsCategoryByDateModel,
+  ConsentsRegionModel,
+  ConsentsOverrideLanguageModel,
 } from './BiModel';
 import BiRoute from './BiRoute';
 
@@ -665,6 +667,49 @@ class AesirxBiApiService {
         pagination: pagination,
       };
     } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getConsentsRegion = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getConsentsRegion(dataFilter, dateFilter);
+
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new ConsentsRegionModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getConsentsOverrideLanguage = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getConsentsOverrideLanguage(dataFilter, dateFilter);
+      let results = null;
+      if (data) {
+        results = new ConsentsOverrideLanguageModel(data);
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return results;
+    } catch (error) {
+      if (process.env.NODE_ENV !== 'test') {
+        return error;
+      }
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };
       } else throw error;
