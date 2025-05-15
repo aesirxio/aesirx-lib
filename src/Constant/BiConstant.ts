@@ -200,6 +200,21 @@ const BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY = {
   REJECT_CUSTOM: 'reject_custom',
 };
 
+const BI_CONSENTS_REGION_FIELD_KEY = {
+  TIMEZONE: 'timezone',
+  LANGUAGE: 'language',
+  TOTAL_CONSENT_REGION: 'total_consent_region',
+  OPT_IN_CONSENT_REGION: 'opt_in_consent_region',
+  OPT_OUT_CONSENT_REGION: 'opt_out_consent_region',
+  TOTAL_CONSENT: 'total_consent',
+};
+
+const BI_CONSENTS_OVERRIDE_LANGUAGE_FIELD_KEY = {
+  USER_OVERRIDE: 'user_override',
+  NOT_OVERRIDE: 'not_override',
+  TOTAL_CONSENT: 'total_consent',
+};
+
 const BI_REFERER_FIELD_KEY = {
   REFERER: 'referer',
 };
@@ -308,4 +323,6 @@ export {
   BI_LIVE_VISITORS_TOTAL_FIELD_KEY,
   BI_CONSENTS_CATEGORY_FIELD_KEY,
   BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY,
+  BI_CONSENTS_REGION_FIELD_KEY,
+  BI_CONSENTS_OVERRIDE_LANGUAGE_FIELD_KEY,
 };

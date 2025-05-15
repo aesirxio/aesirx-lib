@@ -369,6 +369,39 @@ class BiRoute extends BaseRoute {
       )
     );
   };
+  getConsentsRegion = (dataFilter: any, dateFilter: any) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url:
+            'consents' + version + dateFilter?.date_start + '/' + dateFilter?.date_end + '/region',
+          filter: dataFilter,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL,
+        true
+      )
+    );
+  };
+  getConsentsOverrideLanguage = (dataFilter: any, dateFilter: any) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url:
+            'consents' +
+            version +
+            dateFilter?.date_start +
+            '/' +
+            dateFilter?.date_end +
+            '/override-language',
+          filter: dataFilter,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL,
+        true
+      )
+    );
+  };
   getConsentsTemplate = (domain: any) => {
     return AesirXApiInstance.get(
       this.createRequestURL(

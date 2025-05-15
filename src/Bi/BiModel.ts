@@ -37,6 +37,8 @@ import {
   BI_LIVE_VISITORS_TOTAL_FIELD_KEY,
   BI_CONSENTS_CATEGORY_FIELD_KEY,
   BI_CONSENTS_CATEGORY_BY_DATE_FIELD_KEY,
+  BI_CONSENTS_REGION_FIELD_KEY,
+  BI_CONSENTS_OVERRIDE_LANGUAGE_FIELD_KEY,
 } from '../Constant/BiConstant';
 import BaseModel from '../Abstract/BaseModel';
 
@@ -1139,6 +1141,78 @@ class ConsentsCategoryByDateItemModel extends BaseItemModel {
   };
 }
 
+class ConsentsRegionModel extends BaseModel {
+  items: any = null;
+  constructor(entities: any) {
+    super(entities);
+    if (entities) {
+      this.items = entities.collection.map((element: any) => {
+        return new ConsentsRegionItemModel(element);
+      });
+      this.items.pagination = this.getBiPagination();
+    }
+  }
+}
+class ConsentsRegionItemModel extends BaseItemModel {
+  timezone: any = null;
+  language: any = null;
+  total_consent_region: any = 0;
+  opt_in_consent_region: any = 0;
+  opt_out_consent_region: any = 0;
+  total_consent: any = 0;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.timezone = entity[BI_CONSENTS_REGION_FIELD_KEY.TIMEZONE] ?? '';
+      this.language = entity[BI_CONSENTS_REGION_FIELD_KEY.LANGUAGE] ?? '';
+      this.total_consent_region = entity[BI_CONSENTS_REGION_FIELD_KEY.TOTAL_CONSENT_REGION] ?? 0;
+      this.opt_in_consent_region = entity[BI_CONSENTS_REGION_FIELD_KEY.OPT_IN_CONSENT_REGION] ?? 0;
+      this.opt_out_consent_region =
+        entity[BI_CONSENTS_REGION_FIELD_KEY.OPT_OUT_CONSENT_REGION] ?? 0;
+      this.total_consent = entity[BI_CONSENTS_REGION_FIELD_KEY.TOTAL_CONSENT] ?? 0;
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_CONSENTS_REGION_FIELD_KEY.TIMEZONE]: this.timezone,
+      [BI_CONSENTS_REGION_FIELD_KEY.LANGUAGE]: this.language,
+      [BI_CONSENTS_REGION_FIELD_KEY.TOTAL_CONSENT_REGION]: this.total_consent_region,
+      [BI_CONSENTS_REGION_FIELD_KEY.OPT_IN_CONSENT_REGION]: this.opt_in_consent_region,
+      [BI_CONSENTS_REGION_FIELD_KEY.OPT_OUT_CONSENT_REGION]: this.opt_out_consent_region,
+      [BI_CONSENTS_REGION_FIELD_KEY.TOTAL_CONSENT]: this.total_consent,
+    };
+  };
+}
+
+class ConsentsOverrideLanguageModel extends BaseItemModel {
+  user_override: any = 0;
+  not_override: any = 0;
+  total_consent: any = 0;
+  constructor(entity: any) {
+    super(entity);
+    if (entity) {
+      this.user_override = entity[BI_CONSENTS_OVERRIDE_LANGUAGE_FIELD_KEY.USER_OVERRIDE] ?? 0;
+      this.not_override = entity[BI_CONSENTS_OVERRIDE_LANGUAGE_FIELD_KEY.NOT_OVERRIDE] ?? 0;
+      this.total_consent = entity[BI_CONSENTS_OVERRIDE_LANGUAGE_FIELD_KEY.TOTAL_CONSENT] ?? 0;
+    }
+  }
+  toObject = () => {
+    return {};
+  };
+  toJSON = () => {
+    return {
+      ...this.baseToJSON(),
+      [BI_CONSENTS_OVERRIDE_LANGUAGE_FIELD_KEY.USER_OVERRIDE]: this.user_override,
+      [BI_CONSENTS_OVERRIDE_LANGUAGE_FIELD_KEY.NOT_OVERRIDE]: this.not_override,
+      [BI_CONSENTS_OVERRIDE_LANGUAGE_FIELD_KEY.TOTAL_CONSENT]: this.total_consent,
+    };
+  };
+}
+
 class RefererModel extends BaseModel {
   items: any = null;
   constructor(entities: any) {
@@ -1719,4 +1793,6 @@ export {
   LiveVisitorsTotalModel,
   ConsentsCategoryModel,
   ConsentsCategoryByDateModel,
+  ConsentsRegionModel,
+  ConsentsOverrideLanguageModel,
 };
