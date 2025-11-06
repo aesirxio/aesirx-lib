@@ -21,7 +21,6 @@ class CmpRoute extends BaseRoute {
     );
   };
   updateConsentsTemplate = (data: any) => {
-    console.log('updateConsentsTemplate');
     return AesirXApiInstance.post(
       this.createRequestURL(
         {
@@ -99,7 +98,6 @@ class CmpRoute extends BaseRoute {
   };
 
   updateUser = (data: any) => {
-    console.log('dataneeeeeee123', data);
     return AesirXApiInstance.post(
       this.createRequestURL(
         {
