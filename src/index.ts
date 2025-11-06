@@ -113,6 +113,9 @@ export * from './Dam/Dam';
 export * from './Constant/BiConstant';
 export * from './Bi/Bi';
 
+// Cmp
+export * from './Cmp/Cmp';
+
 // Organization
 export * from './Constant/OrganizationContent';
 export * from './Organization/Member/index';
