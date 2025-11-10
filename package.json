@@ -33,7 +33,7 @@
     "@babel/eslint-parser": "^7.25",
     "@babel/plugin-proposal-class-properties": "^7.17",
     "@babel/preset-env": "^7.23.9",
-    "@babel/preset-react": "^7.22.5",
+    "@babel/preset-react": "^7.25.9",
     "@babel/preset-typescript": "^7.23.3",
     "@jest/globals": "^29.7.0",
     "@types/crypto-js": "^4.1.1",
