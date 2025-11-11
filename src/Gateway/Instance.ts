@@ -97,7 +97,7 @@ AesirXApiInstance.interceptors.request.use(
     }
     if (
       (config.method === 'post' || config.method === 'put') &&
-      config.headers['Content-Type-Override'] !== 'true'
+      config.headers['Content-Type'] !== 'application/json'
     ) {
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
     }
