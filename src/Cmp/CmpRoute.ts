@@ -34,7 +34,7 @@ class CmpRoute extends BaseRoute {
       {
         headers: {
           'Content-Type': 'application/json',
-          override: 'true',
+          'Content-Type-Override': 'true',
         },
       }
     );
@@ -52,7 +52,7 @@ class CmpRoute extends BaseRoute {
       {
         headers: {
           'Content-Type': 'application/json',
-          override: 'true',
+          'Content-Type-Override': 'true',
         },
       }
     );
@@ -71,7 +71,7 @@ class CmpRoute extends BaseRoute {
       {
         headers: {
           'Content-Type': 'application/json',
-          override: 'true',
+          'Content-Type-Override': 'true',
         },
       }
     );
@@ -91,7 +91,7 @@ class CmpRoute extends BaseRoute {
       {
         headers: {
           'Content-Type': 'application/json',
-          override: 'true',
+          'Content-Type-Override': 'true',
         },
       }
     );
@@ -111,7 +111,7 @@ class CmpRoute extends BaseRoute {
       {
         headers: {
           'Content-Type': 'application/json',
-          override: 'true',
+          'Content-Type-Override': 'true',
         },
       }
     );
@@ -131,7 +131,7 @@ class CmpRoute extends BaseRoute {
         data: { ids: Array.isArray(ids) ? ids : [ids] },
         headers: {
           'Content-Type': 'application/json',
-          override: 'true',
+          'Content-Type-Override': 'true',
         },
       }
     );

@@ -95,7 +95,10 @@ AesirXApiInstance.interceptors.request.use(
       accessToken = Storage.getItem(AUTHORIZATION_KEY.ACCESS_TOKEN);
       jwt = Storage.getItem(AUTHORIZATION_KEY.JWT);
     }
-    if (config.method === 'post' || config.method === 'put') {
+    if (
+      (config.method === 'post' || config.method === 'put') &&
+      config.headers['Content-Type-Override'] !== 'true'
+    ) {
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
     }
     if (accessToken || jwt) {
