@@ -115,6 +115,45 @@ class AesirxBiApiService {
     }
   };
 
+  getAttributeUtm = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getAttributeUtm(dataFilter, dateFilter);
+      let results = null;
+      let pagination = null;
+      if (data) {
+        results = new AttributeModel(data);
+        pagination = results.getBiPagination();
+      }
+      if (results) {
+        results = results.toJSON();
+      }
+      return {
+        list: results,
+        pagination: pagination,
+      };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getAttributeDateUtm = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getAttributeDateUtm(dataFilter, dateFilter);
+
+      if (data?.collection) {
+        return data.collection;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
   getListDomain = async (dataFilter: any, listDomains: any) => {
     try {
       const data = await this.route.getListDomain(dataFilter, listDomains);
@@ -1000,6 +1039,76 @@ class AesirxBiApiService {
         list: results,
         pagination: pagination,
       };
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getUtmLinkList = async (domain: string) => {
+    try {
+      const data = await this.route.getUtmLinkList(domain);
+      let results = null;
+      if (data) {
+        results = data;
+      }
+      return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getUtmLinkDetail = async (id: any, domain: string) => {
+    try {
+      const data = await this.route.getUtmLinkDetail(id, domain);
+      let results = null;
+      if (data) {
+        results = data;
+      }
+      return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  createUtmLink = async (dataForm: any) => {
+    try {
+      const data = await this.route.createUtmLink(dataForm);
+      let results = null;
+      if (data) {
+        results = data;
+      }
+      return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  updateUtmLink = async (dataForm: any) => {
+    try {
+      const data = await this.route.updateUtmLink(dataForm);
+      let results = null;
+      if (data) {
+        results = data;
+      }
+      return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  deleteUtmLink = async (ids: any) => {
+    try {
+      const data = await this.route.deleteUtmLink(ids);
+      let results = null;
+      if (data) {
+        results = data;
+      }
+      return results;
     } catch (error) {
       if (axios.isCancel(error)) {
         return { message: 'isCancle' };

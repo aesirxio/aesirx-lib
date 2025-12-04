@@ -37,6 +37,34 @@ class BiRoute extends BaseRoute {
       )
     );
   };
+  getAttributeDateUtm = (dataFilter: any, dateFilter: any) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: 'attribute_date_utm' + version,
+          date: dateFilter,
+          filter: dataFilter,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL,
+        true
+      )
+    );
+  };
+  getAttributeUtm = (dataFilter: any, dateFilter: any) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: 'attribute_utm' + version,
+          date: dateFilter,
+          filter: dataFilter,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL,
+        true
+      )
+    );
+  };
   getFlowDetail = (flowId: any, dataFilter: any) => {
     return AesirXApiInstance.get(
       this.createRequestURL(
@@ -424,7 +452,12 @@ class BiRoute extends BaseRoute {
         env.REACT_APP_BI_ENDPOINT_URL ?? 'https://api.analytics.aesirx.io',
         true
       ),
-      data
+      data,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
     );
   };
 
@@ -595,6 +628,99 @@ class BiRoute extends BaseRoute {
         env.REACT_APP_BI_ENDPOINT_URL,
         true
       )
+    );
+  };
+
+  getUtmLinkList = (domain: string) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: `datastream/utm/${domain}`,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL ?? 'https://api.analytics.aesirx.io',
+        true
+      ),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  };
+
+  getUtmLinkDetail = (id = 0, domain: string) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: `datastream/utm/${domain}/${id}`,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL ?? 'https://api.analytics.aesirx.io',
+        true
+      ),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  };
+
+  createUtmLink = (data: any) => {
+    return AesirXApiInstance.post(
+      this.createRequestURL(
+        {
+          url: `datastream/utm`,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL ?? 'https://api.analytics.aesirx.io',
+        true
+      ),
+      data,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  };
+
+  updateUtmLink = (data: any) => {
+    return AesirXApiInstance.post(
+      this.createRequestURL(
+        {
+          url: `datastream/utm`,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL ?? 'https://api.analytics.aesirx.io',
+        true
+      ),
+      data,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  };
+
+  deleteUtmLink = (ids: any) => {
+    return AesirXApiInstance.delete(
+      this.createRequestURL(
+        {
+          url: `datastream/utm`,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL ?? 'https://api.analytics.aesirx.io',
+        true
+      ),
+      {
+        data: { ids: Array.isArray(ids) ? ids : [ids] },
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
     );
   };
 
