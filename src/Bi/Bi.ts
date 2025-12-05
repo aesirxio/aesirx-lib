@@ -1115,6 +1115,37 @@ class AesirxBiApiService {
       } else throw error;
     }
   };
+
+  getUniqueUtmLinks = async (dataFilter: any) => {
+    try {
+      const data = await this.route.getUniqueUtmLinks(dataFilter);
+
+      if (data?.collection) {
+        return data.collection;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getUniqueUtmValueType = async (dataFilter: any) => {
+    try {
+      const data = await this.route.getUniqueUtmValueType(dataFilter);
+
+      if (data?.collection) {
+        return data.collection;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
 }
 
 export { AesirxBiApiService };
