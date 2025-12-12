@@ -1146,6 +1146,107 @@ class AesirxBiApiService {
       } else throw error;
     }
   };
+  getTagEventList = async (domain: string) => {
+    try {
+      const data = await this.route.getTagEventList(domain);
+      let results = null;
+      if (data) {
+        results = data;
+      }
+      return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getTagEventDetail = async (id: any, domain: string) => {
+    try {
+      const data = await this.route.getTagEventDetail(id, domain);
+      let results = null;
+      if (data) {
+        results = data;
+      }
+      return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  createTagEvent = async (dataForm: any) => {
+    try {
+      const data = await this.route.createTagEvent(dataForm);
+      let results = null;
+      if (data) {
+        results = data;
+      }
+      return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  updateTagEvent = async (dataForm: any) => {
+    try {
+      const data = await this.route.updateTagEvent(dataForm);
+      let results = null;
+      if (data) {
+        results = data;
+      }
+      return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  deleteTagEvent = async (ids: any) => {
+    try {
+      const data = await this.route.deleteTagEvent(ids);
+      let results = null;
+      if (data) {
+        results = data;
+      }
+      return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  getUniqueEventNames = async (dataFilter: any) => {
+    try {
+      const data = await this.route.getUniqueEventNames(dataFilter);
+
+      if (data?.collection) {
+        return data.collection;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+  getAttributeDateTagEvent = async (dataFilter: any, dateFilter: any) => {
+    try {
+      const data = await this.route.getAttributeDateTagEvent(dataFilter, dateFilter);
+
+      if (data?.collection) {
+        return data.collection;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
 }
 
 export { AesirxBiApiService };

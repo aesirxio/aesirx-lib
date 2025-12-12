@@ -750,6 +750,127 @@ class BiRoute extends BaseRoute {
       )
     );
   };
+  getTagEventList = (domain: string) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: `datastream/tag_event/${domain}`,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL ?? 'https://api.analytics.aesirx.io',
+        true
+      ),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  };
+
+  getTagEventDetail = (id = 0, domain: string) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: `datastream/tag_event/${domain}/${id}`,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL ?? 'https://api.analytics.aesirx.io',
+        true
+      ),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  };
+
+  createTagEvent = (data: any) => {
+    return AesirXApiInstance.post(
+      this.createRequestURL(
+        {
+          url: `datastream/tag_event`,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL ?? 'https://api.analytics.aesirx.io',
+        true
+      ),
+      data,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  };
+
+  updateTagEvent = (data: any) => {
+    return AesirXApiInstance.post(
+      this.createRequestURL(
+        {
+          url: `datastream/tag_event`,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL ?? 'https://api.analytics.aesirx.io',
+        true
+      ),
+      data,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  };
+
+  deleteTagEvent = (ids: any) => {
+    return AesirXApiInstance.delete(
+      this.createRequestURL(
+        {
+          url: `datastream/tag_event`,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL ?? 'https://api.analytics.aesirx.io',
+        true
+      ),
+      {
+        data: { ids: Array.isArray(ids) ? ids : [ids] },
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  };
+
+  getUniqueEventNames = (dataFilter: any) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: 'unique_event_names',
+          filter: dataFilter,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL,
+        true
+      )
+    );
+  };
+
+  getAttributeDateTagEvent = (dataFilter: any, dateFilter: any) => {
+    return AesirXApiInstance.get(
+      this.createRequestURL(
+        {
+          url: 'attribute_date_tag_event' + version,
+          date: dateFilter,
+          filter: dataFilter,
+        },
+        false,
+        env.REACT_APP_BI_ENDPOINT_URL,
+        true
+      )
+    );
+  };
 
   init = () => {
     return AesirXApiInstance.post(
