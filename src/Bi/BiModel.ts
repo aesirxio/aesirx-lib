@@ -1707,19 +1707,29 @@ class LiveVisitorsListModel extends BaseModel {
 
 class LiveVisitorsListItemModel extends BaseItemModel {
   uuid: any = null;
+  flow_uuid: any = null;
   ip: any = null;
   geo: any = null;
   events: any = null;
   url: any = null;
+  end: any = null;
+  device: any = null;
+  browser_name: any = null;
+  utm_campaign: any = null;
 
   constructor(entity: any) {
     super(entity);
     if (entity) {
       this.uuid = entity[BI_FLOW_DETAIL_KEY.UUID] ?? '';
+      this.flow_uuid = entity[BI_FLOW_LIST_FIELD_KEY.FLOW_UUID] ?? '';
       this.ip = entity[BI_FLOW_DETAIL_KEY.IP] ?? '';
       this.geo = entity[BI_FLOW_DETAIL_KEY.GEO] ?? '';
       this.events = entity[BI_FLOW_DETAIL_KEY.EVENTS] ?? '';
       this.url = entity[BI_FLOW_LIST_FIELD_KEY.URL] ?? '';
+      this.end = entity[BI_FLOW_LIST_FIELD_KEY.END] ?? '';
+      this.device = entity[BI_FLOW_LIST_FIELD_KEY.DEVICE] ?? '';
+      this.browser_name = entity[BI_FLOW_LIST_FIELD_KEY.BROWSER_NAME] ?? '';
+      this.utm_campaign = entity[BI_FLOW_LIST_FIELD_KEY.UTM_CAMPAIGN] ?? '';
     }
   }
   toObject = () => {
@@ -1729,10 +1739,15 @@ class LiveVisitorsListItemModel extends BaseItemModel {
     return {
       ...this.baseToJSON(),
       [BI_FLOW_DETAIL_KEY.UUID]: this.uuid,
+      [BI_FLOW_LIST_FIELD_KEY.FLOW_UUID]: this.flow_uuid,
       [BI_FLOW_DETAIL_KEY.IP]: this.ip,
       [BI_FLOW_DETAIL_KEY.GEO]: this.geo,
       [BI_FLOW_DETAIL_KEY.EVENTS]: this.events,
       [BI_FLOW_LIST_FIELD_KEY.URL]: this.url,
+      [BI_FLOW_LIST_FIELD_KEY.END]: this.end,
+      [BI_FLOW_LIST_FIELD_KEY.DEVICE]: this.device,
+      [BI_FLOW_LIST_FIELD_KEY.BROWSER_NAME]: this.browser_name,
+      [BI_FLOW_LIST_FIELD_KEY.UTM_CAMPAIGN]: this.utm_campaign,
     };
   };
 }

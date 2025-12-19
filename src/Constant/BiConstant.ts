@@ -243,6 +243,8 @@ const BI_FLOW_LIST_FIELD_KEY = {
   CONVERSION_ACTIONS: 'conversion_actions',
   BAD_USER: 'bad_user',
   TRAFFIC: 'traffic',
+  BROWSER_NAME: 'browser_name',
+  UTM_CAMPAIGN: 'utm_campaign',
 };
 const BI_ISPS_FIELD_KEY = {
   ISP: 'isp',
