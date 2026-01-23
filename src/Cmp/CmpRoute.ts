@@ -126,7 +126,6 @@ class CmpRoute extends BaseRoute {
         data: { ids: Array.isArray(ids) ? ids : [ids] },
         headers: {
           'Content-Type': 'application/json',
-          'Content-Type-Override': 'true',
         },
       }
     );
