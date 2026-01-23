@@ -169,6 +169,7 @@ const BI_CONSENTS_LIST_FIELD_KEY = {
   WALLET: 'wallet',
   WEB3ID: 'web3id',
   IP: 'ip',
+  CONSENT_VERSION: 'consent_version',
 };
 
 const BI_CONSENTS_DATE_FIELD_KEY = {

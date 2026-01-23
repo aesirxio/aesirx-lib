@@ -944,6 +944,7 @@ class ConsentsListItemModel extends BaseItemModel {
   wallet: any = null;
   web3id: any = null;
   ip: any = null;
+  consent_version: any = null;
   constructor(entity: any) {
     super(entity);
     if (entity) {
@@ -955,6 +956,7 @@ class ConsentsListItemModel extends BaseItemModel {
       this.wallet = entity[BI_CONSENTS_LIST_FIELD_KEY.WALLET] ?? '';
       this.web3id = entity[BI_CONSENTS_LIST_FIELD_KEY.WEB3ID] ?? '';
       this.ip = entity[BI_CONSENTS_LIST_FIELD_KEY.IP] ?? '';
+      this.consent_version = entity[BI_CONSENTS_LIST_FIELD_KEY.CONSENT_VERSION] ?? '';
     }
   }
   toObject = () => {
@@ -971,6 +973,7 @@ class ConsentsListItemModel extends BaseItemModel {
       [BI_CONSENTS_LIST_FIELD_KEY.WALLET]: this.wallet,
       [BI_CONSENTS_LIST_FIELD_KEY.WEB3ID]: this.web3id,
       [BI_CONSENTS_LIST_FIELD_KEY.IP]: this.ip,
+      [BI_CONSENTS_LIST_FIELD_KEY.CONSENT_VERSION]: this.consent_version,
     };
   };
 }
