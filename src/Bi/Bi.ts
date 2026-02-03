@@ -785,6 +785,36 @@ class AesirxBiApiService {
     }
   };
 
+  getAnalyticsSetting = async (domain: any) => {
+    try {
+      const data = await this.route.getAnalyticsSetting(domain);
+      let results = null;
+      if (data) {
+        results = data;
+      }
+      return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
+  updateAnalyticsSetting = async (dataForm: any) => {
+    try {
+      const data = await this.route.updateAnalyticsSetting(dataForm);
+      let results = null;
+      if (data) {
+        results = data;
+      }
+      return results;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return { message: 'isCancle' };
+      } else throw error;
+    }
+  };
+
   getReferer = async (dataFilter: any, dateFilter: any) => {
     try {
       const data = await this.route.getReferer(dataFilter, dateFilter);
